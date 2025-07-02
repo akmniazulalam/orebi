@@ -3,6 +3,8 @@
 @theme {
   --color-header: #767676;
   --color-bHeaderBg: #F5F5F3;
+  --color-menuHeading: #262626;
+  --color-footerTexts: #6D6D6D;
 
   --font-dmSans: "DM Sans", "sans-serif"; 
 }
