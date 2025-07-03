@@ -31,17 +31,17 @@ const Header = () => {
                     Shop
                   </li>
                 </Link>
-                <Link to={"/"}>
+                <Link to={"/about"}>
                   <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
                     About
                   </li>
                 </Link>
-                <Link to={"/"}>
+                <Link to={"/contacts"}>
                   <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
                     Contacts
                   </li>
                 </Link>
-                <Link to={"/"}>
+                <Link to={"/journal"}>
                   <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
                     Journal
                   </li>
