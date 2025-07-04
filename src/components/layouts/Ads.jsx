@@ -1,7 +1,7 @@
 import Container from "./../Container";
 import AdOne from "/src/assets/adOne.png";
 import AdTwo from "/src/assets/adTwo.png";
-import AdThree from "/src/assets/AdThree.png";
+import AdThree from "/src/assets/adThree.png";
 import Image from "../Image";
 import { Link } from "react-router-dom";
 
