@@ -1,87 +1,30 @@
-import React from "react";
-import Slider from "react-slick";
+import React from 'react'
 import Container from "../Container";
-import Heading from "../Heading";
 import Image from "../Image";
-import Clock from "/src/assets/alarmClock.png";
-import SmartWatch from "/src/assets/smartWatch.png";
-import Basket from "/src/assets/basket.png";
-import Bag from "/src/assets/bag.png";
+import ProductOne from "/src/assets/productOne.png";
+import ProductTwo from "/src/assets/productTwo.png";
 import Cup from "/src/assets/cup.png";
+import ProductThree from "/src/assets/productThree.png";
+import Cap from "/src/assets/cap.png"
+import TeaTable from "/src/assets/teaTable.png"
+import HeadPhone from "/src/assets/headPhone.png"
+import SunGlass from "/src/assets/sunGlass.png"
 import Badge from "../Badge";
 import ActiveButtons from "../ActiveButtons";
-import ProductTexts from "../ProductTexts";
-import PrevArrow from "../PrevArrow";
-import NextArrow from "../NextArrow";
+import ProductTexts from "../ProductTexts"
+import Flex from '../Flex';
+import Black from '../Black';
 
-
-const settings = {
-  dots: false,
-  infinite: true,
-  speed: 500,
-  slidesToShow: 4,
-  slidesToScroll: 1,
-  autoplay: true,
-  prevArrow: <PrevArrow/>,
-  nextArrow: <NextArrow/>,
-  autoplaySpeed: 2000,
-  pauseOnHover: false,
-  responsive: [
-    {
-      breakpoint: 1024,
-      settings: { slidesToShow: 3 },
-    },
-    {
-      breakpoint: 768,
-      settings: { slidesToShow: 2 },
-    },
-    {
-      breakpoint: 480,
-      settings: { slidesToShow: 1 },
-    },
-    {
-      breakpoint: 320,
-      settings: { slidesToShow: 1 },
-    },
-  ],
-};
-
-
-const NewArrivals = () => {
+const BestSellers = () => {
   return (
-    <section className="pt-[135px]">
+    <section className="pt-[120px] pb-16">
       <Container>
-        <Heading
-          className={"font-dmSans font-bold text-[39px] text-menuHeading"}
-          text={"New Arrivals"}
-          as={"h3"}
-        />
-        <div className="productSlider mt-14 mb-16 max-w-[1320px] relative group">
-        <Slider {...settings}>
+        <Flex>
           <div className="px-4">
             <div className="relative w-full group/img">
               <Image
-                src={Clock}
-                alt={"Clock"}
-                className={"w-full h-full object-cover"}
-              />
-              <Badge
-                badgeT={"10%"}
-                className={"absolute top-[19px] left-[19px]"}
-              />
-              <ActiveButtons
-                className={
-                  "absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
-                }
-              />
-            </div>
-            <ProductTexts />
-          </div>
-          <div className="px-4">
-            <div className="relative w-full group/img">
-              <Image
-                src={SmartWatch}
-                alt={"SmartWatch"}
+                src={ProductOne}
+                alt={"ProductOne"}
                 className={"w-full h-full object-cover"}
               />
               <Badge
@@ -95,12 +38,13 @@ const NewArrivals = () => {
               />
             </div>
             <ProductTexts />
+            <Black/>
           </div>
           <div className="px-4">
             <div className="relative w-full group/img">
               <Image
-                src={Basket}
-                alt={"Basket"}
+                src={ProductTwo}
+                alt={"ProductTwo"}
                 className={"w-full h-full object-cover"}
               />
               <Badge
@@ -114,25 +58,7 @@ const NewArrivals = () => {
               />
             </div>
             <ProductTexts />
-          </div>
-          <div className="px-4">
-            <div className="relative w-full group/img">
-              <Image
-                src={Bag}
-                alt={"Bag"}
-                className={"w-full h-full object-cover"}
-              />
-              <Badge
-                badgeT={"New"}
-                className={"absolute top-[19px] left-[19px]"}
-              />
-              <ActiveButtons
-                className={
-                  "absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
-                }
-              />
-            </div>
-            <ProductTexts />
+            <Black/>
           </div>
           <div className="px-4">
             <div className="relative w-full group/img">
@@ -152,12 +78,32 @@ const NewArrivals = () => {
               />
             </div>
             <ProductTexts />
+            <Black/>
           </div>
-        </Slider>
-        </div>
+          <div className="px-4">
+            <div className="relative w-full group/img">
+              <Image
+                src={ProductThree}
+                alt={"ProductThree"}
+                className={"w-full h-full object-cover"}
+              />
+              <Badge
+                badgeT={"New"}
+                className={"absolute top-[19px] left-[19px]"}
+              />
+              <ActiveButtons
+                className={
+                  "absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
+                }
+              />
+            </div>
+            <ProductTexts />
+            <Black/>
+          </div>
+        </Flex>
       </Container>
     </section>
-  );
-};
+  )
+}
 
-export default NewArrivals;
+export default BestSellers
