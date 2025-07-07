@@ -1,0 +1,158 @@
+import React from "react";
+import Slider from "react-slick";
+import Container from "../Container";
+import Heading from "../Heading";
+import Image from "../Image";
+import Clock from "/src/assets/alarmClock.png";
+import SmartWatch from "/src/assets/smartWatch.png";
+import Basket from "/src/assets/basket.png";
+import Bag from "/src/assets/bag.png";
+import Badge from "../Badge";
+import ActiveButtons from "../ActiveButtons";
+import ProductTexts from "../ProductTexts";
+
+
+const settings = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: { slidesToShow: 3 },
+    },
+    {
+      breakpoint: 768,
+      settings: { slidesToShow: 2 },
+    },
+    {
+      breakpoint: 480,
+      settings: { slidesToShow: 1 },
+    },
+    {
+      breakpoint: 320,
+      settings: { slidesToShow: 1 },
+    },
+  ],
+};
+
+
+const NewArrivals = () => {
+  return (
+    <section className="pt-[135px]">
+      <Container>
+        <Heading
+          className={"font-dmSans font-bold text-[39px] text-menuHeading"}
+          text={"New Arrivals"}
+          as={"h3"}
+        />
+        <div className="productSlider pt-14 pb-9 max-w-[1320px]">
+        <Slider {...settings}>
+          <div className="px-3">
+            <div className="relative w-full group">
+              <Image
+                src={Clock}
+                alt={"Clock"}
+                className={"w-full h-full object-cover"}
+              />
+              <Badge
+                badgeT={"10%"}
+                className={"absolute top-[19px] left-[19px]"}
+              />
+              <ActiveButtons
+                className={
+                  "absolute bottom-0 left-0 w-full group-hover:opacity-100 transition-all duration-400"
+                }
+              />
+            </div>
+            <ProductTexts />
+          </div>
+          <div className="px-3">
+            <div className="relative w-full group">
+              <Image
+                src={SmartWatch}
+                alt={"SmartWatch"}
+                className={"w-full h-full object-cover"}
+              />
+              <Badge
+                badgeT={"New"}
+                className={"absolute top-[19px] left-[19px]"}
+              />
+              <ActiveButtons
+                className={
+                  "absolute bottom-0 left-0 w-full group-hover:opacity-100 transition-all duration-400"
+                }
+              />
+            </div>
+            <ProductTexts />
+          </div>
+          <div className="px-3">
+            <div className="relative w-full group">
+              <Image
+                src={Basket}
+                alt={"Basket"}
+                className={"w-full h-full object-cover"}
+              />
+              <Badge
+                badgeT={"New"}
+                className={"absolute top-[19px] left-[19px]"}
+              />
+              <ActiveButtons
+                className={
+                  "absolute bottom-0 left-0 w-full group-hover:opacity-100 transition-all duration-400"
+                }
+              />
+            </div>
+            <ProductTexts />
+          </div>
+          <div className="px-3">
+            <div className="relative w-full group">
+              <Image
+                src={Bag}
+                alt={"Bag"}
+                className={"w-full h-full object-cover"}
+              />
+              <Badge
+                badgeT={"New"}
+                className={"absolute top-[19px] left-[19px]"}
+              />
+              <ActiveButtons
+                className={
+                  "absolute bottom-0 left-0 w-full group-hover:opacity-100 transition-all duration-400"
+                }
+              />
+            </div>
+            <ProductTexts />
+          </div>
+          <div className="px-3">
+            <div className="relative w-full group">
+              <Image
+                src={Clock}
+                alt={"Clock"}
+                className={"w-full h-full object-cover"}
+              />
+              <Badge
+                badgeT={"10%"}
+                className={"absolute top-[19px] left-[19px]"}
+              />
+              <ActiveButtons
+                className={
+                  "absolute bottom-0 left-0 w-full group-hover:opacity-100 transition-all duration-400"
+                }
+              />
+            </div>
+            <ProductTexts />
+          </div>
+        </Slider>
+
+        </div>
+      </Container>
+    </section>
+  );
+};
+
+export default NewArrivals;
