@@ -5,6 +5,7 @@ import Logo from "../../assets/logo_two.png";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { BsInstagram } from "react-icons/bs";
 import Flex from "../Flex";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -23,21 +24,31 @@ const Footer = () => {
                     }
                   />
                   <ul className="flex flex-col gap-y-2">
-                    <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                      Home
-                    </li>
-                    <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                      Shop
-                    </li>
-                    <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                      About
-                    </li>
-                    <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                      Contact
-                    </li>
-                    <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                      Journal
-                    </li>
+                    <Link to={"/"}>
+                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                        Home
+                      </li>
+                    </Link>
+                    <Link to={"/shop"}>
+                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                        Shop
+                      </li>
+                    </Link>
+                    <Link to={"/about"}>
+                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                        About
+                      </li>
+                    </Link>
+                    <Link to={"/contacts"}>
+                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                        Contact
+                      </li>
+                    </Link>
+                    <Link to={"/journal"}>
+                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                        Journal
+                      </li>
+                    </Link>
                   </ul>
                 </div>
                 <div className="shop">
@@ -49,21 +60,31 @@ const Footer = () => {
                     }
                   />
                   <ul className="flex flex-col gap-y-2">
-                    <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                      Category 1
-                    </li>
-                    <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                      Category 2
-                    </li>
-                    <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                      Category 3
-                    </li>
-                    <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                      Category 4
-                    </li>
-                    <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                      Category 5
-                    </li>
+                    <Link to={"/"}>
+                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                        Category 1
+                      </li>
+                    </Link>
+                    <Link to={"/"}>
+                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                        Category 2
+                      </li>
+                    </Link>
+                    <Link to={"/"}>
+                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                        Category 3
+                      </li>
+                    </Link>
+                    <Link to={"/"}>
+                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                        Category 4
+                      </li>
+                    </Link>
+                    <Link to={"/"}>
+                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                        Category 5
+                      </li>
+                    </Link>
                   </ul>
                 </div>
                 <div className="help">
@@ -75,21 +96,31 @@ const Footer = () => {
                     }
                   />
                   <ul className="flex flex-col gap-y-2">
-                    <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                      Privacy Policy
-                    </li>
-                    <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                      Terms & Conditions
-                    </li>
-                    <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                      Special E-shop
-                    </li>
-                    <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                      Shipping
-                    </li>
-                    <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                      Secure Payments
-                    </li>
+                    <Link to={"/"}>
+                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                        Privacy Policy
+                      </li>
+                    </Link>
+                    <Link to={"/"}>
+                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                        Terms & Conditions
+                      </li>
+                    </Link>
+                    <Link to={"/"}>
+                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                        Special E-shop
+                      </li>
+                    </Link>
+                    <Link to={"/"}>
+                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                        Shipping
+                      </li>
+                    </Link>
+                    <Link to={"/"}>
+                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                        Secure Payments
+                      </li>
+                    </Link>
                   </ul>
                 </div>
                 <div>
@@ -112,7 +143,9 @@ const Footer = () => {
               </Flex>
             </div>
             <div className="flex flex-col justify-between">
-              <Image src={Logo} alt={Logo} className={"w-[120px]"} />
+              <Link to={"/"}>
+                <Image src={Logo} alt={Logo} className={"w-[120px]"} />
+              </Link>
               <p className="font-dmSans text-footerTexts text-[14px]">
                 2020 Orebi Minimal eCommerce Figma Template by Adveits
               </p>

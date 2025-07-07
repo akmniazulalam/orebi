@@ -10,7 +10,7 @@ const Ads = () => {
     <section className="pt-40">
       <Container>
         <div className="grid grid-cols-2 gap-6">
-          <Link to={"/"}>
+          <Link to={"/shop"}>
             <Image
               src={AdOne}
               alt={AdOne}
@@ -18,14 +18,14 @@ const Ads = () => {
             />
           </Link>
           <div className="grid grid-rows-2 gap-6">
-            <Link to={"/"}>
+            <Link to={"/shop"}>
               <Image
                 src={AdTwo}
                 alt={AdTwo}
                 className={"w-full h-full object-cover"}
               />
             </Link>
-            <Link to={"/"}>
+            <Link to={"/shop"}>
               <Image
                 src={AdThree}
                 alt={AdThree}

@@ -15,11 +15,11 @@ const Header = () => {
     <>
       <section className="py-7">
         <Container>
-          <Flex className={"justify-center relative"}>
+          <Flex>
             <Link to={"/"}>
-              <Image className={"absolute left-0"} src={Logo} alt={Logo} />
+              <Image src={Logo} alt={Logo} />
             </Link>
-            <div className="text-center">
+            <div className="m-auto">
               <ul className="flex gap-x-11">
                 <Link to={"/"}>
                   <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
