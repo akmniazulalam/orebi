@@ -9,8 +9,14 @@ import { FaShoppingCart } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { Link } from "react-router-dom";
+import CategoriesMenu from "../CategoriesMenu";
+import { useState } from "react";
 
 const Header = () => {
+  const [showMenu, setShowMenu] = useState(false);
+  const toggleMenu = () => {
+    setShowMenu(!showMenu);
+  };
   return (
     <>
       <section className="py-7">
@@ -54,14 +60,21 @@ const Header = () => {
       <section className="py-6 bg-bHeaderBg">
         <Container>
           <Flex className={"justify-between"}>
-            <Flex>
-              <MenuIcon />
-              <Heading
-                className={"font-dmSans text-[14px] text-[#262626] pl-3"}
-                text={"Shop by Category"}
-                as={"h4"}
-              />
-            </Flex>
+            <div onClick={toggleMenu} className="cursor-pointer relative">
+              <Flex>
+                <MenuIcon />
+                <div className="">
+                  <Heading
+                  className={"font-dmSans text-[14px] text-[#262626] pl-3"}
+                  text={"Shop by Category"}
+                  as={"h4"}
+                />
+                <div className="absolute top-[40px] left-0">
+                  {showMenu && <CategoriesMenu />}
+                </div>
+                </div>
+              </Flex>
+            </div>
             <div className="relative">
               <input
                 type="search"

@@ -1,8 +1,13 @@
 import React from 'react'
+import Intro from '../layouts/Intro'
+import Filter from '../layouts/Filter'
 
 const Shop = () => {
   return (
-    <h1 className='text-center text-blue-800 text-4xl font-bold font-dmSans pt-5'>Welcome to Shop Page</h1>
+    <>
+    <Intro text={"Products"} pText={"Products"}/>
+    <Filter/>
+    </>
   )
 }
 
