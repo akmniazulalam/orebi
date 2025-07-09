@@ -56,7 +56,7 @@ const NewArrivals = () => {
           text={"New Arrivals"}
           as={"h3"}
         />
-        <div className="productSlider mt-14 mb-16 max-w-[1320px] relative group">
+        <div className="productSlider mt-14 mb-16 -mx-4 relative group ">
         <Slider {...settings}>
           <div className="px-4">
             <div className="relative w-full group/img">

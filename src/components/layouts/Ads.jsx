@@ -5,11 +5,12 @@ import AdThree from "/src/assets/adThree.png";
 import Image from "../Image";
 import { Link } from "react-router-dom";
 
+
 const Ads = () => {
   return (
     <section className="pt-40">
       <Container>
-        <div className="grid grid-cols-2 gap-6">
+        <div className="grid grid-cols-2 gap-8">
           <Link to={"/shop"}>
             <Image
               src={AdOne}
@@ -17,7 +18,7 @@ const Ads = () => {
               className={"w-full h-full object-cover"}
             />
           </Link>
-          <div className="grid grid-rows-2 gap-6">
+          <div className="grid grid-rows-2 gap-8">
             <Link to={"/shop"}>
               <Image
                 src={AdTwo}

@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import Heading from '../Heading'
 import Container from '../Container'
 import Accordion from '../Accordion'

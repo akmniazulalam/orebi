@@ -7,16 +7,24 @@ import Heading from "../Heading";
 import { FaSearch } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
-import { IoMdArrowDropdown } from "react-icons/io";
+import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CategoriesMenu from "../CategoriesMenu";
 import { useState } from "react";
+import ToggleButtons from "../ToggleButtons";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const toggleMenu = () => {
     setShowMenu(!showMenu);
   };
+
+  const [showButton, setShowButton] = useState(false);
+
+  const toggleButtons = () => {
+    setShowButton(!showButton);
+  };
+
   return (
     <>
       <section className="py-7">
@@ -63,16 +71,13 @@ const Header = () => {
             <div onClick={toggleMenu} className="cursor-pointer relative">
               <Flex>
                 <MenuIcon />
-                <div className="">
-                  <Heading
+
+                <Heading
                   className={"font-dmSans text-[14px] text-[#262626] pl-3"}
                   text={"Shop by Category"}
                   as={"h4"}
                 />
-                <div className="absolute top-[40px] left-0">
-                  {showMenu && <CategoriesMenu />}
-                </div>
-                </div>
+                {<CategoriesMenu isOpen={showMenu} />}
               </Flex>
             </div>
             <div className="relative">
@@ -86,8 +91,17 @@ const Header = () => {
               </span>
             </div>
             <Flex>
-              <FaUser className="text-[#262626]" />
-              <IoMdArrowDropdown className="text-[#262626]" />
+              <div
+                className="flex items-center gap-x-1 relative cursor-pointer"
+                onClick={toggleButtons}>
+                <FaUser className="text-[#262626]" />
+                {showButton ? (
+                  <FaCaretUp className="text-[#262626]" />
+                ) : (
+                  <FaCaretDown className="text-[#262626]" />
+                )}
+                {<ToggleButtons isOpen={showButton} />}
+              </div>
               <FaShoppingCart className="text-[#262626] ml-6" />
             </Flex>
           </Flex>

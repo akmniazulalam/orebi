@@ -1,26 +1,28 @@
-import React from 'react'
+import React from "react";
 import Container from "../Container";
 import Image from "../Image";
 import ProductOne from "/src/assets/productOne.png";
 import ProductTwo from "/src/assets/productTwo.png";
 import Cup from "/src/assets/cup.png";
 import ProductThree from "/src/assets/productThree.png";
-import Cap from "/src/assets/cap.png"
-import TeaTable from "/src/assets/teaTable.png"
-import HeadPhone from "/src/assets/headPhone.png"
-import SunGlass from "/src/assets/sunGlass.png"
+import Heading from "../Heading";
 import Badge from "../Badge";
 import ActiveButtons from "../ActiveButtons";
-import ProductTexts from "../ProductTexts"
-import Flex from '../Flex';
-import Black from '../Black';
+import ProductTexts from "../ProductTexts";
+import Flex from "../Flex";
+import Black from "../Black";
 
 const BestSellers = () => {
   return (
-    <section className="pt-[120px] pb-16">
+    <section className="pt-[80px] pb-16">
       <Container>
-        <Flex>
-          <div className="px-4">
+        <Heading
+          className={"font-dmSans font-bold text-[39px] text-menuHeading mb-14"}
+          text={"Our Bestsellers"}
+          as={"h3"}
+        />
+        <Flex className={"gap-x-8"}>
+          <div>
             <div className="relative w-full group/img">
               <Image
                 src={ProductOne}
@@ -38,9 +40,9 @@ const BestSellers = () => {
               />
             </div>
             <ProductTexts />
-            <Black/>
+            <Black />
           </div>
-          <div className="px-4">
+          <div>
             <div className="relative w-full group/img">
               <Image
                 src={ProductTwo}
@@ -58,9 +60,9 @@ const BestSellers = () => {
               />
             </div>
             <ProductTexts />
-            <Black/>
+            <Black />
           </div>
-          <div className="px-4">
+          <div>
             <div className="relative w-full group/img">
               <Image
                 src={Cup}
@@ -78,9 +80,9 @@ const BestSellers = () => {
               />
             </div>
             <ProductTexts />
-            <Black/>
+            <Black />
           </div>
-          <div className="px-4">
+          <div>
             <div className="relative w-full group/img">
               <Image
                 src={ProductThree}
@@ -98,12 +100,12 @@ const BestSellers = () => {
               />
             </div>
             <ProductTexts />
-            <Black/>
+            <Black />
           </div>
         </Flex>
       </Container>
     </section>
-  )
-}
+  );
+};
 
-export default BestSellers
+export default BestSellers;
