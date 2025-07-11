@@ -10,20 +10,43 @@ import { FaUser } from "react-icons/fa";
 import { FaCaretDown, FaCaretUp } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import CategoriesMenu from "../CategoriesMenu";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import ToggleButtons from "../ToggleButtons";
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
-  };
 
   const [showButton, setShowButton] = useState(false);
 
-  const toggleButtons = () => {
-    setShowButton(!showButton);
+  const dropdownRef = useRef(null);
+
+  const toggleRef = useRef(null);
+
+  const toggleMenu = () => {
+    setShowMenu((prev) => !prev);
   };
+
+  const toggleButtons = () => {
+    setShowButton((p) => !p);
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setShowMenu(false);
+      }
+
+      if (toggleRef.current && !toggleRef.current.contains(event.target)) {
+        setShowButton(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <>
@@ -68,7 +91,10 @@ const Header = () => {
       <section className="py-6 bg-bHeaderBg">
         <Container>
           <Flex className={"justify-between"}>
-            <div onClick={toggleMenu} className="cursor-pointer relative">
+            <div
+              ref={dropdownRef}
+              onClick={toggleMenu}
+              className="cursor-pointer relative">
               <Flex>
                 <MenuIcon />
 
@@ -93,7 +119,8 @@ const Header = () => {
             <Flex>
               <div
                 className="flex items-center gap-x-1 relative cursor-pointer"
-                onClick={toggleButtons}>
+                onClick={toggleButtons}
+                ref={toggleRef}>
                 <FaUser className="text-[#262626]" />
                 {showButton ? (
                   <FaCaretUp className="text-[#262626]" />
