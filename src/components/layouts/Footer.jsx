@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <section className="bg-bHeaderBg py-12 mt-5">
+      <section className="bg-bHeaderBg py-12 mt-[100px]">
         <Container>
           <div className="flex justify-between">
             <div className="w-[58%]">

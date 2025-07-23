@@ -13,7 +13,7 @@ import Black from '../Black';
 
 const SpecialOffers = () => {
   return (
-    <section className="pt-[120px] pb-16">
+    <section className="pt-[120px]">
       <Container>
         <Heading
           className={"font-dmSans font-bold text-[39px] text-menuHeading pb-14"}
