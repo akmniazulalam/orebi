@@ -11,17 +11,49 @@ import Cup from "/src/assets/cup.png";
 import Badge from "../Badge";
 import ActiveButtons from "../ActiveButtons";
 import ProductTexts from "../ProductTexts";
-import ProductList from './../ProductList';
-import products from "../../data/products";
+
+import NextArrow from "../NextArrow";
+import PrevArrow from "../PrevArrow";
+// import ProductList from './../ProductList';
+// import products from "../../data/products";
 
 
-
+const settings = {
+  dots: false,
+  infinite: true,
+  speed: 500,
+  slidesToShow: 4,
+  slidesToScroll: 1,
+  autoplay: true,
+  prevArrow: <PrevArrow />,
+  nextArrow: <NextArrow />,
+  autoplaySpeed: 2000,
+  pauseOnHover: false,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: { slidesToShow: 3 },
+    },
+    {
+      breakpoint: 768,
+      settings: { slidesToShow: 2 },
+    },
+    {
+      breakpoint: 480,
+      settings: { slidesToShow: 1 },
+    },
+    {
+      breakpoint: 320,
+      settings: { slidesToShow: 1 },
+    },
+  ],
+};
 
 
 
 const NewArrivals = ({addToCart}) => {
 
-  const newArrivalsProducts = products.filter((product) => product.category === "newArrivals")
+  // const newArrivalsProducts = products.filter((product) => product.category === "newArrivals")
 
   return (
     <section className="pt-[135px]">
@@ -32,7 +64,7 @@ const NewArrivals = ({addToCart}) => {
           as={"h3"}
         />
         <div className="productSlider mt-14 mb-16 group">
-        {/* <Slider {...settings}>
+        <Slider {...settings}>
           <div className="px-4">
             <div className="relative w-full group/img">
               <Image
@@ -128,8 +160,8 @@ const NewArrivals = ({addToCart}) => {
             </div>
             <ProductTexts />
           </div>
-        </Slider> */}
-        <ProductList addToCart={addToCart} products={newArrivalsProducts} isSlide/>
+        </Slider>
+        {/* <ProductList addToCart={addToCart} products={newArrivalsProducts} isSlide/> */}
         </div>
       </Container>
     </section>
