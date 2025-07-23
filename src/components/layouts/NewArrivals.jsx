@@ -63,7 +63,7 @@ const NewArrivals = ({addToCart}) => {
           text={"New Arrivals"}
           as={"h3"}
         />
-        <div className="productSlider mt-14 mb-16 group">
+        <div className="productSlider -mx-4 mt-14 mb-16 group">
         <Slider {...settings}>
           <div className="px-4">
             <div className="relative w-full group/img">
