@@ -29,6 +29,7 @@ const settings = {
   nextArrow: <NextArrow />,
   autoplaySpeed: 2000,
   pauseOnHover: false,
+  cssEase: "ease-in-out",
   responsive: [
     {
       breakpoint: 1024,
