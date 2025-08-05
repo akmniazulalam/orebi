@@ -280,11 +280,11 @@ const NewArrivals = () => {
                 key={i}
                 className="w-6 h-6 mx-2 flex items-center justify-center">
                 {i === activeDot ? (
-                  <div className="w-6 h-6 border-2 border-black rounded-full flex items-center justify-center">
+                  <div className="w-6 h-6 border-2 border-black rounded-full flex items-center justify-center cursor-pointer">
                     <div className="w-2 h-2 bg-black rounded-full" />
                   </div>
                 ) : (
-                  <div className="w-2 h-2 bg-black rounded-full" />
+                  <div className="w-2 h-2 bg-black rounded-full cursor-pointer" />
                 )}
               </div>
             ))}
