@@ -14,14 +14,15 @@ import Black from "../Black";
 import axios from "axios";
 
 const BestSellers = () => {
+  
   const [bestProduct, setBestProduct] = useState([]);
 
   useEffect(() => {
     async function all() {
-      let data = await axios.get(
+      let res = await axios.get(
         "https://akmniazulalam.github.io/orebiApi/data/index.json"
       );
-      setBestProduct(data.data.data);      
+      setBestProduct(res.data.data);      
     }
     all();
   }, []);
