@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../Container";
 import Image from "../Image";
 import ProductOne from "/src/assets/productOne.png";
@@ -11,8 +11,21 @@ import ActiveButtons from "../ActiveButtons";
 import ProductTexts from "../ProductTexts";
 import Flex from "../Flex";
 import Black from "../Black";
+import axios from "axios";
 
 const BestSellers = () => {
+  const [bestProduct, setBestProduct] = useState([]);
+
+  useEffect(() => {
+    async function all() {
+      let data = await axios.get(
+        "https://akmniazulalam.github.io/orebiApi/data/index.json"
+      );
+      setBestProduct(data.data.data);      
+    }
+    all();
+  }, []);
+
   return (
     <section className="pt-[80px] pb-16">
       <Container>
@@ -22,27 +35,29 @@ const BestSellers = () => {
           as={"h3"}
         />
         <Flex className={"gap-x-8"}>
-          <div>
-            <div className="relative w-full group/img">
-              <Image
-                src={ProductOne}
-                alt={"ProductOne"}
-                className={"w-full h-full object-cover"}
-              />
-              <Badge
-                badgeT={"New"}
-                className={"absolute top-[19px] left-[19px]"}
-              />
-              <ActiveButtons
-                className={
-                  "absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
-                }
-              />
+          {bestProduct.map((item) => (
+            <div key={item.id}>
+              <div className="relative w-full group/img">
+                <Image
+                  src={item.image}
+                  alt={item.title}
+                  className={"w-full h-full object-cover"}
+                />
+                <Badge
+                  badgeT={"New"}
+                  className={"absolute top-[19px] left-[19px]"}
+                />
+                <ActiveButtons
+                  className={
+                    "absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
+                  }
+                />
+              </div>
+              <ProductTexts />
+              <Black />
             </div>
-            <ProductTexts />
-            <Black />
-          </div>
-          <div>
+          ))}
+          {/* <div>
             <div className="relative w-full group/img">
               <Image
                 src={ProductTwo}
@@ -101,7 +116,7 @@ const BestSellers = () => {
             </div>
             <ProductTexts />
             <Black />
-          </div>
+          </div> */}
         </Flex>
       </Container>
     </section>
