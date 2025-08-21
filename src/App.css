@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
 @theme {
+  
   --color-header: #767676;
   --color-bHeaderBg: #F5F5F3;
   --color-menuHeading: #262626;
