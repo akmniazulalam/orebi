@@ -4,6 +4,10 @@ import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import CompareIcon from '../assets/icons/CompareIcon';
 
 const ActiveButtons = ({className}) => {
+  const handleCart = () => {
+    console.log("ami achi");
+    
+  }
   return (
     <div className={`py-5 px-[18px] bg-white opacity-0 ${className}`}>
         <Flex className={"justify-end"}>
@@ -15,7 +19,7 @@ const ActiveButtons = ({className}) => {
             <CompareIcon/>
         </Flex>
         <Flex className={"pt-4 justify-end"}>
-            <button className='font-dmSans text-base text-header hover:text-menuHeading transition-all duration-300 hover:font-bold cursor-pointer'>Add to Cart</button>
+            <button className='font-dmSans text-base text-header hover:text-menuHeading transition-all duration-300 hover:font-bold cursor-pointer' onClick={handleCart}>Add to Cart</button>
             <FaShoppingCart className='text-menuHeading ml-3'/>
         </Flex>
     </div>

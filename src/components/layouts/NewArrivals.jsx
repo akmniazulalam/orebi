@@ -168,7 +168,7 @@
 
 // export default NewArrivals;
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import Container from "../Container";
 import Heading from "../Heading";
@@ -183,6 +183,7 @@ import axios from "axios";
 const NewArrivals = () => {
   const [myProduct, setMyProduct] = useState([]);
   const [activeDot, setActiveDot] = useState(0);
+  const sliderRef = useRef(null);
 
   useEffect(() => {
     async function fetchData() {
@@ -209,7 +210,7 @@ const NewArrivals = () => {
   };
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 4,
@@ -222,20 +223,6 @@ const NewArrivals = () => {
     cssEase: "ease-in-out",
     afterChange: (index) => {
       setActiveDot(index % 4); // Always 0 to 3
-    },
-    appendDots: (dots) => (
-      <div>
-        <ul className="flex justify-center mt-6">{dots}</ul>
-      </div>
-    ),
-    customPaging: (i) => {
-      // Show only 4 dots with correct active state
-      return (
-        <button
-          className={`w-1 h-1 rounded-full mx-1 ${
-            i === activeDot ? "bg-red-500" : "bg-gray-300"
-          }`}></button>
-      );
     },
   };
 
@@ -251,7 +238,7 @@ const NewArrivals = () => {
           as={"h3"}
         />
         <div className="-mx-4 mt-14 mb-6 group">
-          <Slider {...settings} dots={false}>
+          <Slider ref={sliderRef} {...settings}>
             {myProduct.map((item) => (
               <div key={item.id} className="px-4">
                 <div
@@ -278,7 +265,11 @@ const NewArrivals = () => {
             {fakeDotArray.map((i) => (
               <div
                 key={i}
-                className="w-6 h-6 mx-2 flex items-center justify-center">
+                className="w-6 h-6 mx-2 flex items-center justify-center cursor-pointer"
+                onClick={() => {
+                  sliderRef.current.slickGoTo(i);
+                  setActiveDot(i); // instant change, no late effect
+                }}>
                 {i === activeDot ? (
                   <div className="w-6 h-6 border-2 border-black rounded-full flex items-center justify-center cursor-pointer">
                     <div className="w-2 h-2 bg-black rounded-full" />
