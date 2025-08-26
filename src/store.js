@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
-import counter from '/src/features/counter/counterSlice'
+import counterReducer from '/src/features/counter/counterSlice'
+import addToCartReducer from '/src/features/cart/addToCartSlice'
 
 
 export default configureStore({
   reducer: {
-    counter: counter,
+    counter: counterReducer,
+    cart: addToCartReducer,
   },
 })

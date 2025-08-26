@@ -12,13 +12,21 @@ import { Link } from "react-router-dom";
 import CategoriesMenu from "../CategoriesMenu";
 import { useEffect, useRef, useState } from "react";
 import ToggleButtons from "../ToggleButtons";
+import { useDispatch, useSelector } from "react-redux";
+import CartDropdowns from "../CartDropdowns";
+import removeFromCart from '/src/features/cart/addToCartSlice'
 
 const Header = () => {
+  const cartItems = useSelector((state) => state.cart.items);
+
+  const [showCart, setShowCart] = useState(false);
+
   const [showMenu, setShowMenu] = useState(false);
 
   const [showButton, setShowButton] = useState(false);
 
   const dropdownRef = useRef(null);
+  const cartRef = useRef(null);
 
   const toggleRef = useRef(null);
 
@@ -29,6 +37,20 @@ const Header = () => {
   const toggleButtons = () => {
     setShowButton((p) => !p);
   };
+
+  
+
+  useEffect(() => {
+    const clickOutside = (event) => {
+      if (cartRef.current && !cartRef.current.contains(event.target)) {
+        setShowCart(false);
+      }
+    };
+    document.addEventListener("mousedown", clickOutside);
+    return () => {
+      document.removeEventListener("mousedown", clickOutside);
+    };
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -129,7 +151,12 @@ const Header = () => {
                 )}
                 {<ToggleButtons isOpen={showButton} />}
               </div>
-              <FaShoppingCart className="text-[#262626] ml-6" />
+              <div className="relative" ref={cartRef}>
+                <FaShoppingCart className="text-[#262626] ml-6 cursor-pointer" onClick={() => setShowCart(!showCart)}/>
+                {
+                  showCart && <CartDropdowns items={cartItems} onClick={() => setShowCart(!showCart)} />
+                }
+              </div>
             </Flex>
           </Flex>
         </Container>
