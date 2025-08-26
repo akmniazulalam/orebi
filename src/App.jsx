@@ -12,10 +12,12 @@ import Journal from "./components/pages/Journal";
 import DemoPage from "./components/pages/DemoPage";
 import Cart from "./components/pages/Cart";
 import Checkout from "./components/pages/Checkout";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <>
+    <ScrollToTop/>
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route path="/" element={<Home />} />

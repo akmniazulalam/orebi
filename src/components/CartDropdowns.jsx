@@ -44,7 +44,7 @@ const CartDropdowns = ({items, onClick}) => {
             </h4>
             <div className="flex items-center justify-between">
               <Link to={"/cart"}>
-                <button className="py-[14px] px-10 border-2 border-black font-dmSans text-sm text-menuHeading font-bold  hover:text-white hover:bg-black transition-all duration-300 cursor-pointer">
+                <button className="py-[14px] px-10 border-2 border-black font-dmSans text-sm text-menuHeading font-bold  hover:text-white hover:bg-black transition-all duration-300 cursor-pointer" onClick={onClick}>
                   View Cart
                 </button>
               </Link>
