@@ -217,7 +217,7 @@ const NewArrivals = () => {
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 2000,
-    pauseOnHover: false,
+    pauseOnHover: true,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
     cssEase: "ease-in-out",
