@@ -58,7 +58,7 @@ const Filter = () => {
         {isOpen && (
           <div className="">
             <Flex className={"border-b-2 border-infoBg pb-5"}>
-              <div className="bg-black h-[11px] w-[11px] rounded-full mr-3"></div>
+              <div className="bg-black h-2.75 w-2.75 rounded-full mr-3"></div>
               <p className="font-dmSans text-base text-header">Color 1</p>
             </Flex>
             <Flex className={"border-b-2 border-infoBg py-5"}>
