@@ -13,6 +13,7 @@ import DemoPage from "./components/pages/DemoPage";
 import Cart from "./components/pages/Cart";
 import Checkout from "./components/pages/Checkout";
 import ScrollToTop from "./components/ScrollToTop";
+import ProductDetails from "./components/pages/ProductDetails";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/demo" element={<DemoPage />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/productdetails" element={<ProductDetails />} />
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
