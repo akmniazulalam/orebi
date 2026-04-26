@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import FilterTwo from "../layouts/FilterTwo";
 import Products from "../Products";
 import Cup from "/src/assets/cup.png";
@@ -12,12 +12,26 @@ import SunGlass from "/src/assets/sunGlass.png";
 import Clock from "/src/assets/alarmClock.png";
 import { Link } from "react-router-dom";
 import Flex from "../Flex";
+import axios from "axios";
 
 const ShopProducts = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        "https://mern-ecommerce-91cv.onrender.com/api/v1/product/getproduct",
+      )
+      .then((res) => setProducts(res.data.data));
+  }, []);
+
   return (
     <div>
       <FilterTwo />
       <div className="grid grid-cols-3 gap-x-6 gap-y-11 grid-rows-4 mb-14">
+        {products.map((item) => (
+          <Products src={item.image} />
+        ))}
         <Products src={Cup} alt={"cup.png"} isBadge badgeT={"New"} />
         <Products
           src={HeadPhone}
