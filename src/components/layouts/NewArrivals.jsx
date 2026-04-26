@@ -230,7 +230,7 @@ const NewArrivals = () => {
   const fakeDotArray = [0, 1, 2, 3];
 
   return (
-    <section className="pt-[135px]">
+    <section className="pt-33.75">
       <Container>
         <Heading
           className={"font-dmSans font-bold text-[39px] text-menuHeading"}
