@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Container from "../Container";
 import Image from "../Image";
 import cup from "/src/assets/cup.png";
@@ -16,23 +16,45 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const ProductDetails = () => {
+  const { id } = useParams();
+  const [quantity, setQuantity] = useState(1)
+  const [singleProduct, setSingleProduct] = useState(null);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://mern-ecommerce-91cv.onrender.com/api/v1/product/singleproduct/${id}`,
+      )
+      .then((res) => setSingleProduct(res.data.data));
+  }, []);
+
+  const handleIncrement = () => {
+    setQuantity(quantity + 1)
+  }
+  const handleDecrement = () => {
+    if (quantity > 1) {
+        setQuantity(quantity - 1)
+    }
+  }
   return (
     <>
       <Intro text={"Single Product"} pText={"Single Product"} />
       <Container>
         <div className={"grid grid-cols-2 grid-rows-2 gap-9 mb-10"}>
-          <Image src={cup} className={"w-full"} />
-          <Image src={cup} className={"w-full"} />
-          <Image src={cup} className={"w-full"} />
-          <Image src={cup} className={"w-full"} />
+          <Image src={singleProduct?.image} className={"w-full"} />
+          <Image src={singleProduct?.image} className={"w-full"} />
+          <Image src={singleProduct?.image} className={"w-full"} />
+          <Image src={singleProduct?.image} className={"w-full"} />
         </div>
         <div className="w-1/2">
           <Heading
             as={"h3"}
             className={"text-3xl font-bold font-dmSans"}
-            text={"Product"}
+            text={singleProduct?.name}
           />
           <Flex className={"gap-x-5 items-center my-3"}>
             <Flex>
@@ -48,7 +70,7 @@ const ProductDetails = () => {
             <span className="text-header text-base font-dmSans line-through">
               $88.00
             </span>
-            <span className="text-[20px] font-dmSans font-bold">$44.00</span>
+            <span className="text-[20px] font-dmSans font-bold">${singleProduct?.price}</span>
           </Flex>
           <hr className="text-[#d8d8d8]" />
           <Flex className={"my-8 items-center gap-x-11"}>
@@ -73,7 +95,7 @@ const ProductDetails = () => {
             />
             <Select className={"rounded-none!"}>
               <SelectTrigger className="w-36 h-10 rounded-none">
-                <SelectValue placeholder="Select size" />
+                <SelectValue placeholder={singleProduct?.size} />
               </SelectTrigger>
 
               <SelectContent>
@@ -95,10 +117,10 @@ const ProductDetails = () => {
               className={"uppercase font-dmSans font-bold text-sm"}
               text={"quantity:"}
             />
-            <div className="border py-1.5 px-5 w-36 flex gap-x-10 font-dmSans text-header">
-              <button>-</button>
-              <h6>1</h6>
-              <button>+</button>
+            <div className="border py-1.5 px-3 w-36 flex gap-x-10 font-dmSans text-header">
+              <button onClick={handleDecrement} className="cursor-pointer">-</button>
+              <h6>{quantity}</h6>
+              <button onClick={handleIncrement} className="cursor-pointer">+</button>
             </div>
           </Flex>
           <hr className="text-[#d8d8d8]" />

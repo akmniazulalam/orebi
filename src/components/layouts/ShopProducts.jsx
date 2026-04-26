@@ -30,7 +30,9 @@ const ShopProducts = () => {
       <FilterTwo />
       <div className="grid grid-cols-3 gap-x-6 gap-y-11 grid-rows-4 mb-14">
         {products.map((item) => (
-          <Products src={item.image} />
+          <Link to={`/productdetails/${item._id}`}>
+            <Products src={item.image} className={"bg-amber-500"} />
+          </Link>
         ))}
         <Products src={Cup} alt={"cup.png"} isBadge badgeT={"New"} />
         <Products
