@@ -62,19 +62,19 @@ const Filter = () => {
               <p className="font-dmSans text-base text-header">Color 1</p>
             </Flex>
             <Flex className={"border-b-2 border-infoBg py-5"}>
-              <div className="bg-[#FF8686] h-[11px] w-[11px] rounded-full mr-3"></div>
+              <div className="bg-[#FF8686] h-2.75 w-2.75 rounded-full mr-3"></div>
               <p className="font-dmSans text-base text-header">Color 2</p>
             </Flex>
             <Flex className={"border-b-2 border-infoBg py-5"}>
-              <div className="bg-[#7ED321] h-[11px] w-[11px] rounded-full mr-3"></div>
+              <div className="bg-[#7ED321] h-2.75 w-2.75 rounded-full mr-3"></div>
               <p className="font-dmSans text-base text-header">Color 3</p>
             </Flex>
             <Flex className={"border-b-2 border-infoBg py-5"}>
-              <div className="bg-[#B6B6B6] h-[11px] w-[11px] rounded-full mr-3"></div>
+              <div className="bg-[#B6B6B6] h-2.75 w-2.75 rounded-full mr-3"></div>
               <p className="font-dmSans text-base text-header">Color 4</p>
             </Flex>
             <Flex className={"border-b-2 border-infoBg py-5"}>
-              <div className="bg-[#15CBA5] h-[11px] w-[11px] rounded-full mr-3"></div>
+              <div className="bg-[#15CBA5] h-2.75 w-2.75 rounded-full mr-3"></div>
               <p className="font-dmSans text-base text-header">Color 5</p>
             </Flex>
           </div>
