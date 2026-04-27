@@ -121,7 +121,7 @@ const Header = () => {
                 <MenuIcon />
 
                 <Heading
-                  className={"font-dmSans text-[14px] text-[#262626] pl-3"}
+                  className={"font-dmSans text-[14px] text-menuHeading pl-3"}
                   text={"Shop by Category"}
                   as={"h4"}
                 />
@@ -132,7 +132,7 @@ const Header = () => {
               <input
                 type="search"
                 placeholder="Search Products"
-                className="placeholder:text-[#C4C4C4] placeholder:font-dmSans placeholder:text-[14px] p-5 bg-white w-[600px] focus:outline-0"
+                className="placeholder:text-[#C4C4C4] placeholder:font-dmSans placeholder:text-[14px] p-5 bg-white w-150 focus:outline-0"
               />
               <span className="absolute top-1/2 right-4 -translate-y-1/2">
                 <FaSearch />
@@ -143,16 +143,16 @@ const Header = () => {
                 className="flex items-center gap-x-1 relative cursor-pointer"
                 onClick={toggleButtons}
                 ref={toggleRef}>
-                <FaUser className="text-[#262626]" />
+                <FaUser className="text-menuHeading" />
                 {showButton ? (
-                  <FaCaretUp className="text-[#262626]" />
+                  <FaCaretUp className="text-menuHeading" />
                 ) : (
-                  <FaCaretDown className="text-[#262626]" />
+                  <FaCaretDown className="text-menuHeading" />
                 )}
                 {<ToggleButtons isOpen={showButton} />}
               </div>
               <div className="relative" ref={cartRef}>
-                <FaShoppingCart className="text-[#262626] ml-6 cursor-pointer" onClick={() => setShowCart(!showCart)}/>
+                <FaShoppingCart className="text-menuHeading ml-6 cursor-pointer" onClick={() => setShowCart(!showCart)}/>
                 {
                   showCart && <CartDropdowns items={cartItems} onClick={() => setShowCart(!showCart)} />
                 }

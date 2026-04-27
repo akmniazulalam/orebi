@@ -9,7 +9,7 @@ export const addToCartSlice = createSlice({
     addToCart: (state, action) => {
       const product = action.payload;
       // check already ache কিনা
-      const existingItem = state.items.find((item) => item.id === product.id);
+      const existingItem = state.items.find((item) => (item._id || item.id) === (product._id || product.id));
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
@@ -17,14 +17,14 @@ export const addToCartSlice = createSlice({
       }
     },
     removeFromCart: (state, action) => {
-      state.items = state.items.filter((item) => item.id !== action.payload);
+      state.items = state.items.filter((item) => (item._id || item.id) !== action.payload);
     },
     increaseQuantity: (state, action) => {
-      const item = state.items.find((i) => i.id === action.payload);
+      const item = state.items.find((i) => (i._id || i.id) === action.payload);
       if (item) item.quantity += 1;
     },
     decreaseQuantity: (state, action) => {
-      const item = state.items.find((i) => i.id === action.payload);
+      const item = state.items.find((i) => (i._id || i.id) === action.payload);
       if (item && item.quantity > 1) item.quantity -= 1;
     },
   },

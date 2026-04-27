@@ -8,25 +8,25 @@ const CartDropdowns = ({items, onClick}) => {
     const subTotal = items.reduce((total, item) => total + item.price, 0)
     const dispatch = useDispatch()
   return (
-    <div className="absolute top-[40px] right-0 w-[358px] z-10">
+    <div className="absolute top-10 right-0 w-89.5 z-10">
       {items.length === 0 ? (
         <div className="p-4 bg-[#acaca1]">
           <p>There is no product.</p>
         </div>
       ) : (
         <div className="">
-          <div className="p-5 bg-[#F5F5F3] space-y-4">
+          <div className="p-5 bg-bHeaderBg space-y-4">
             {items.map((item) => (
-              <div key={item.id} className="flex gap-x-5 items-center">
-                <img src={item.thumbnail} alt={item.title} className="w-20 h-20 bg-[#D8D8D8]" />
+              <div key={item._id || item.id} className="flex gap-x-5 items-center">
+                <img src={item.thumbnail || item.image} alt={item.title} className="w-20 h-20 bg-[#D8D8D8]" />
                 <div className="text-left space-y-2.5">
-                  <h3 className="text-[14px] font-dmSans font-bold text-menuHeading">{item.title}</h3>
+                  <h3 className="text-[14px] font-dmSans font-bold text-menuHeading">{item.title || item.name}</h3>
                   <p className="text-[14px] font-dmSans font-bold text-menuHeading">${item.price.toFixed(2)}</p>
                 </div>
                 <button
                   className="cursor-pointer ml-auto"
                   onClick={(e) => {
-                    dispatch(removeFromCart(item.id))
+                    dispatch(removeFromCart(item._id || item.id))
                     e.stopPropagation();
                   }}>
                   <ImCross />
@@ -35,8 +35,8 @@ const CartDropdowns = ({items, onClick}) => {
             ))}
           </div>
 
-          <div className="pt-[15px] px-[21px] pb-[20px] bg-white">
-            <h4 className="pb-4 text-left font-dmSans text-base text-[#767676]">
+          <div className="pt-3.75 px-5.25 pb-5 bg-white">
+            <h4 className="pb-4 text-left font-dmSans text-base text-header">
               Subtotal:
               <span className="pl-2 font-bold text-menuHeading font-dmSans text-base">
                 ${subTotal.toFixed(2)}

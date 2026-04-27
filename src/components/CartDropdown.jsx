@@ -4,7 +4,7 @@ import Heading from "./Heading";
 
 const CartDropdown = ({ items }) => {
   return (
-    <div className="absolute top-[40px] right-0 bg-header p-5 w-[358px] z-10">
+    <div className="absolute top-10 right-0 bg-header p-5 w-89.5 z-10">
       {items.length === 0 ? (
         <p>There is no product.</p>
       ) : (

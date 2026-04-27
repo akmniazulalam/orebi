@@ -19,15 +19,15 @@ const SpecialOffers = () => {
   useEffect(() => {
     async function all() {
       let res = await axios.get(
-        "https://akmniazulalam.github.io/OrebiEcomApi/data/products.json"
+        "https://akmniazulalam.github.io/OrebiEcomApi/data/products.json",
       );
       setSpecial(res.data.data);
     }
-    all()
+    all();
   }, []);
 
   return (
-    <section className="pt-[120px]">
+    <section className="pt-30">
       <Container>
         <Heading
           className={"font-dmSans font-bold text-[39px] text-menuHeading pb-14"}
@@ -46,9 +46,10 @@ const SpecialOffers = () => {
                   />
                   <Badge
                     badgeT={"New"}
-                    className={"absolute top-[19px] left-[19px]"}
+                    className={"absolute top-4.75 left-4.75"}
                   />
                   <ActiveButtons
+                    product={item}
                     className={
                       "absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
                     }

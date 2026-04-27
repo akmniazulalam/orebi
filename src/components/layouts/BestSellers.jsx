@@ -14,21 +14,20 @@ import Black from "../Black";
 import axios from "axios";
 
 const BestSellers = () => {
-  
   const [bestProduct, setBestProduct] = useState([]);
 
   useEffect(() => {
     async function all() {
       let res = await axios.get(
-        "https://akmniazulalam.github.io/orebiApi/data/index.json"
+        "https://akmniazulalam.github.io/orebiApi/data/index.json",
       );
-      setBestProduct(res.data.data);      
+      setBestProduct(res.data.data);
     }
     all();
   }, []);
 
   return (
-    <section className="pt-[80px] pb-16">
+    <section className="pt-20 pb-16">
       <Container>
         <Heading
           className={"font-dmSans font-bold text-[39px] text-menuHeading mb-14"}
@@ -46,9 +45,10 @@ const BestSellers = () => {
                 />
                 <Badge
                   badgeT={"New"}
-                  className={"absolute top-[19px] left-[19px]"}
+                  className={"absolute top-4.75 left-4.75"}
                 />
                 <ActiveButtons
+                  product={item}
                   className={
                     "absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
                   }

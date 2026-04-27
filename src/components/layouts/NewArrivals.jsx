@@ -251,7 +251,7 @@ const NewArrivals = () => {
                   />
                   <Badge
                     badgeT={badgeTexts[item.id] || "New"}
-                    className="absolute top-[19px] left-[19px]"
+                    className="absolute top-4.75 left-4.75"
                   />
                   <ActiveButtons product={item} className="absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400" />
                 </div>

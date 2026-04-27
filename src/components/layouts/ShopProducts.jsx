@@ -19,9 +19,7 @@ const ShopProducts = () => {
 
   useEffect(() => {
     axios
-      .get(
-        "https://mern-ecommerce-91cv.onrender.com/api/v1/product/getproduct",
-      )
+      .get("https://mern-ecommerce-91cv.onrender.com/api/v1/product/getproduct")
       .then((res) => setProducts(res.data.data));
   }, []);
 
@@ -31,31 +29,88 @@ const ShopProducts = () => {
       <div className="grid grid-cols-3 gap-x-6 gap-y-11 grid-rows-4 mb-14">
         {products.map((item) => (
           <Link to={`/productdetails/${item._id}`}>
-            <Products src={item.image} className={"bg-amber-500"} />
+            <Products
+              src={item.image}
+              text={item.name}
+              price={`$${item.price}`}
+              product={item}
+              className={"bg-amber-500"}
+            />
           </Link>
         ))}
-        <Products src={Cup} alt={"cup.png"} isBadge badgeT={"New"} />
+        <Products
+          src={Cup}
+          alt={"cup.png"}
+          isBadge
+          badgeT={"New"}
+          product={{ id: 1, title: "Basic Crew Neck Tee", price: 44, image: Cup }}
+        />
         <Products
           src={HeadPhone}
           alt={"headPhone.png"}
+          product={{
+            id: 2,
+            title: "Basic Crew Neck Tee",
+            price: 44,
+            image: HeadPhone,
+          }}
           isBadge
           badgeT={"-10%"}
         />
-        <Products src={TeaTable} alt={"teaTable.png"} />
-        <Products src={Cap} alt={"cap.png"} />
+        <Products
+          src={TeaTable}
+          alt={"teaTable.png"}
+          product={{ id: 3,title: "Basic Crew Neck Tee", price: 44, image: TeaTable }}
+        />
+        <Products src={Cap} alt={"cap.png"} product={{ id: 4, title: "Basic Crew Neck Tee", price: 44, image: Cap }}/>
         <Products
           src={WallClock}
           alt={"wallClock.png"}
+          product={{ id: 5, title: "Basic Crew Neck Tee", price: 44, image: WallClock }}
           isBadge
           badgeT={"New"}
         />
-        <Products src={Bag} alt={"productThree.png"} />
-        <Products src={SunGlass} alt={"sunGlass.png"} isBadge badgeT={"-10%"} />
-        <Products src={TeaTable} alt={"teaTable.png"} isBadge badgeT={"-15%"} />
-        <Products src={Cap} alt={"cap.png"} isBadge badgeT={"-10%"} />
-        <Products src={Dustbin} alt={"dustbin.png"} />
-        <Products src={Clock} alt={"alarmClock.png"} />
-        <Products src={SunGlass} alt={"sunGlass.png"} />
+        <Products
+          src={Bag}
+          alt={"productThree.png"}
+          product={{ id: 6, title: "Basic Crew Neck Tee", price: 44, image: Bag }}
+        />
+        <Products
+          src={SunGlass}
+          alt={"sunGlass.png"}
+          isBadge
+          badgeT={"-10%"}
+          product={{ id: 7, title: "Basic Crew Neck Tee", price: 44, image: SunGlass }}
+        />
+        <Products
+          src={TeaTable}
+          alt={"teaTable.png"}
+          isBadge
+          badgeT={"-15%"}
+          product={{ id: 8, title: "Basic Crew Neck Tee", price: 44, image: TeaTable }}
+        />
+        <Products
+          src={Cap}
+          alt={"cap.png"}
+          isBadge
+          badgeT={"-10%"}
+          product={{id: 9, title: "Basic Crew Neck Tee", price: 44, image: Cap }}
+        />
+        <Products
+          src={Dustbin}
+          alt={"dustbin.png"}
+          product={{ id: 10, title: "Basic Crew Neck Tee", price: 44, image: Dustbin }}
+        />
+        <Products
+          src={Clock}
+          alt={"alarmClock.png"}
+          product={{id: 11, title: "Basic Crew Neck Tee", price: 44, image: Clock }}
+        />
+        <Products
+          src={SunGlass}
+          alt={"sunGlass.png"}
+          product={{id: 12, title: "Basic Crew Neck Tee", price: 44, image: SunGlass }}
+        />
       </div>
       <Flex className={"justify-between"}>
         <Flex className={"gap-x-4"}>
