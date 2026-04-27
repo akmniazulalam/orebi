@@ -43,13 +43,13 @@ const ShopProducts = () => {
           alt={"cup.png"}
           isBadge
           badgeT={"New"}
-          product={{ id: 1, title: "Basic Crew Neck Tee", price: 44, image: Cup }}
+          product={{ id: 41, title: "Basic Crew Neck Tee", price: 44, image: Cup }}
         />
         <Products
           src={HeadPhone}
           alt={"headPhone.png"}
           product={{
-            id: 2,
+            id: 42,
             title: "Basic Crew Neck Tee",
             price: 44,
             image: HeadPhone,
@@ -60,56 +60,56 @@ const ShopProducts = () => {
         <Products
           src={TeaTable}
           alt={"teaTable.png"}
-          product={{ id: 3,title: "Basic Crew Neck Tee", price: 44, image: TeaTable }}
+          product={{ id: 43,title: "Basic Crew Neck Tee", price: 44, image: TeaTable }}
         />
-        <Products src={Cap} alt={"cap.png"} product={{ id: 4, title: "Basic Crew Neck Tee", price: 44, image: Cap }}/>
+        <Products src={Cap} alt={"cap.png"} product={{ id: 44, title: "Basic Crew Neck Tee", price: 44, image: Cap }}/>
         <Products
           src={WallClock}
           alt={"wallClock.png"}
-          product={{ id: 5, title: "Basic Crew Neck Tee", price: 44, image: WallClock }}
+          product={{ id: 45, title: "Basic Crew Neck Tee", price: 44, image: WallClock }}
           isBadge
           badgeT={"New"}
         />
         <Products
           src={Bag}
           alt={"productThree.png"}
-          product={{ id: 6, title: "Basic Crew Neck Tee", price: 44, image: Bag }}
+          product={{ id: 46, title: "Basic Crew Neck Tee", price: 44, image: Bag }}
         />
         <Products
           src={SunGlass}
           alt={"sunGlass.png"}
           isBadge
           badgeT={"-10%"}
-          product={{ id: 7, title: "Basic Crew Neck Tee", price: 44, image: SunGlass }}
+          product={{ id: 47, title: "Basic Crew Neck Tee", price: 44, image: SunGlass }}
         />
         <Products
           src={TeaTable}
           alt={"teaTable.png"}
           isBadge
           badgeT={"-15%"}
-          product={{ id: 8, title: "Basic Crew Neck Tee", price: 44, image: TeaTable }}
+          product={{ id: 48, title: "Basic Crew Neck Tee", price: 44, image: TeaTable }}
         />
         <Products
           src={Cap}
           alt={"cap.png"}
           isBadge
           badgeT={"-10%"}
-          product={{id: 9, title: "Basic Crew Neck Tee", price: 44, image: Cap }}
+          product={{id: 49, title: "Basic Crew Neck Tee", price: 44, image: Cap }}
         />
         <Products
           src={Dustbin}
           alt={"dustbin.png"}
-          product={{ id: 10, title: "Basic Crew Neck Tee", price: 44, image: Dustbin }}
+          product={{ id: 50, title: "Basic Crew Neck Tee", price: 44, image: Dustbin }}
         />
         <Products
           src={Clock}
           alt={"alarmClock.png"}
-          product={{id: 11, title: "Basic Crew Neck Tee", price: 44, image: Clock }}
+          product={{id: 51, title: "Basic Crew Neck Tee", price: 44, image: Clock }}
         />
         <Products
           src={SunGlass}
           alt={"sunGlass.png"}
-          product={{id: 12, title: "Basic Crew Neck Tee", price: 44, image: SunGlass }}
+          product={{id: 52, title: "Basic Crew Neck Tee", price: 44, image: SunGlass }}
         />
       </div>
       <Flex className={"justify-between"}>
@@ -120,23 +120,23 @@ const ShopProducts = () => {
             </div>
           </Link>
           <Link to={"/shop"}>
-            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-header border border-[#F0F0F0] hover:bg-menuHeading hover:text-white transition-all duration-300">
+            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-header border border-infoBg hover:bg-menuHeading hover:text-white transition-all duration-300">
               2
             </div>
           </Link>
           <Link to={"/shop"}>
-            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-header border border-[#F0F0F0] hover:bg-menuHeading hover:text-white transition-all duration-300">
+            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-header border border-infoBg hover:bg-menuHeading hover:text-white transition-all duration-300">
               3
             </div>
           </Link>
           <Link to={"/shop"}>
-            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-header border border-[#F0F0F0] hover:bg-menuHeading hover:text-white transition-all duration-300">
+            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-header border border-infoBg hover:bg-menuHeading hover:text-white transition-all duration-300">
               4
             </div>
           </Link>
           <p className="font-dmSans text-sm text-header px-2">...</p>
           <Link to={"/shop"}>
-            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-header border border-[#F0F0F0] hover:bg-menuHeading hover:text-white transition-all duration-300">
+            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-header border border-infoBg hover:bg-menuHeading hover:text-white transition-all duration-300">
               10
             </div>
           </Link>
