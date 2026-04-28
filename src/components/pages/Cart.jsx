@@ -17,18 +17,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "@/features/cart/addToCartSlice";
 
 const Cart = () => {
+  const cartItems = useSelector((state) => state.cart.items);
+  const subTotal = cartItems.reduce((total, item) => total + item.price, 0)
   const dispatch = useDispatch()
+
   const [quantity, setQuantity] = useState(1);
+
   const handleIncrement = () => {
     setQuantity(quantity + 1);
   };
+
   const handleDecrement = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   };
 
-  const cartItems = useSelector((state) => state.cart.items);
 
   console.log(cartItems);
 
@@ -140,7 +144,7 @@ const Cart = () => {
                 Subtotal
               </th>
               <td className="font-dmSans text-base text-header py-4 px-5 w-2xs">
-                389.99 $
+                ${subTotal.toFixed(2)}
               </td>
             </tr>
             <tr className="">
