@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Intro from "../Intro";
 import Container from "../Container";
-import sunglass from "/src/assets/sunGlass.png";
 import { ImCross } from "react-icons/im";
 import {
   Select,
@@ -14,11 +13,11 @@ import {
 } from "@/components/ui/select";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "@/features/cart/addToCartSlice";
+import { decreaseQuantity, increaseQuantity, removeFromCart } from "@/features/cart/addToCartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
-  const subTotal = cartItems.reduce((total, item) => total + item.price, 0)
+  const subTotal = cartItems.reduce((total, item) => total + item.price*item.quantity, 0)
   const dispatch = useDispatch()
 
   const [quantity, setQuantity] = useState(1);
@@ -86,20 +85,20 @@ const Cart = () => {
                 <td className="py-6 px-5">
                   <div className="py-1.5 px-4 w-36 border border-infoBg flex gap-x-10 font-dmSans text-header justify-center">
                     <button
-                      onClick={handleDecrement}
+                      onClick={() => dispatch(decreaseQuantity(item._id || item.id))}
                       className="cursor-pointer">
                       -
                     </button>
-                    <h6>{quantity}</h6>
+                    <h6>{item.quantity}</h6>
                     <button
-                      onClick={handleIncrement}
+                      onClick={() => dispatch(increaseQuantity(item._id || item.id))}
                       className="cursor-pointer">
                       +
                     </button>
                   </div>
                 </td>
                 <td className="text-[20px] font-dmSans font-bold text-menuHeading py-6 px-5">
-                  $44
+                  ${item.quantity*item.price}
                 </td>
               </tr>
             </tbody>
