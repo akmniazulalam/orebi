@@ -152,7 +152,7 @@ const Cart = () => {
                 Total
               </th>
               <td className="font-dmSans text-base text-menuHeading py-4 px-5 w-2xs">
-                389.99 $
+                ${subTotal.toFixed(2)}
               </td>
             </tr>
           </table>
