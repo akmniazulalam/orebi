@@ -117,7 +117,7 @@ const ProductDetails = () => {
               className={"uppercase font-dmSans font-bold text-sm"}
               text={"quantity:"}
             />
-            <div className="border py-1.5 px-3 w-36 flex gap-x-10 font-dmSans text-header">
+            <div className="border py-1.5 px-4 w-36 flex gap-x-10 font-dmSans text-header">
               <button onClick={handleDecrement} className="cursor-pointer">-</button>
               <h6>{quantity}</h6>
               <button onClick={handleIncrement} className="cursor-pointer">+</button>

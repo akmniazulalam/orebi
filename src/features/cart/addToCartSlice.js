@@ -8,7 +8,7 @@ export const addToCartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const product = action.payload;
-      // check already ache কিনা
+      
       const existingItem = state.items.find((item) => (item._id || item.id) === (product._id || product.id));
       if (existingItem) {
         existingItem.quantity += 1;
