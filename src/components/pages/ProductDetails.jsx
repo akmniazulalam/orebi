@@ -16,11 +16,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import addToCart from "/src/features/cart/addToCartSlice"
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 
 const ProductDetails = () => {
   const { id } = useParams();
+  const dispatch = useDispatch()
   const [quantity, setQuantity] = useState(1)
   const [singleProduct, setSingleProduct] = useState(null);
 
@@ -137,7 +140,7 @@ const ProductDetails = () => {
             <button className="py-3 px-10 text-menuHeading text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading">
               Add to Wish List
             </button>
-            <button className="py-3 px-10 text-menuHeading text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading">
+            <button className="py-3 px-10 text-menuHeading text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading" onClick={() => dispatch(addToCart(singleProduct))}>
               Add to Cart
             </button>
           </Flex>
