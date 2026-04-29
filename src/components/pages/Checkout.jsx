@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Intro from "../Intro";
 import Container from "../Container";
 import Heading from "../Heading";
@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/select";
 
 const Checkout = () => {
+  const [selectedBank, setSelectedBank] = useState("")
+  const [selectedBankTwo, setSelectedBankTwo] = useState("")
   return (
     <>
       <Intro pText={"Checkout"} text={"Checkout"} />
@@ -193,22 +195,56 @@ const Checkout = () => {
             />
             <table className="border border-infoBg mt-6 mb-7.5 text-left">
               <tr className="border-b border-infoBg">
-                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">Product</th>
-                <td className="font-dmSans text-base text-header py-4 px-5 w-2xs">Total</td>
+                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">
+                  Product
+                </th>
+                <td className="font-dmSans text-base text-header py-4 px-5 w-2xs">
+                  Total
+                </td>
               </tr>
               <tr className="border-b border-infoBg">
-                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">Product Name x 1</th>
-                <td className="font-dmSans text-base text-header py-4 px-5 w-2xs">389.99$</td>
+                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">
+                  Product Name x 1
+                </th>
+                <td className="font-dmSans text-base text-header py-4 px-5 w-2xs">
+                  389.99$
+                </td>
               </tr>
               <tr className="border-b border-infoBg">
-                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">Subtotal</th>
-                <td className="font-dmSans text-base text-menuHeading py-4 px-5 w-2xs">389.99$</td>
+                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">
+                  Subtotal
+                </th>
+                <td className="font-dmSans text-base text-menuHeading py-4 px-5 w-2xs">
+                  389.99$
+                </td>
               </tr>
               <tr>
-                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">Total</th>
-                <td className="font-dmSans text-base text-menuHeading py-4 px-5 w-2xs">389.99$</td>
+                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">
+                  Total
+                </th>
+                <td className="font-dmSans text-base text-menuHeading py-4 px-5 w-2xs">
+                  389.99$
+                </td>
               </tr>
             </table>
+          </div>
+          <div className="py-7 px-8 border border-infoBg">
+            <div className="flex items-center gap-x-2"> {/* id ar htmlFor same rakhle label e click korleo tokhon select hoy */}
+              <input type="radio" name="bank" className="accent-black cursor-pointer" id="bank" onChange={(e) => setSelectedBank(e.target.value)} /> {/* radio color change korte accent-color use korte hoy */}
+              <label htmlFor="bank" className={`font-dmSans font-bold text-base cursor-pointer ${selectedBank? "text-menuHeading" : "text-header"}`}>
+                Bank
+              </label>
+            </div>
+            <div className="flex items-center gap-x-2 cursor-pointer">
+              <input type="radio" name="bank" className="accent-black cursor-pointer" id="bank2" onChange={(e) => setSelectedBankTwo(e.target.value)} />
+              <label htmlFor="bank2" className={`font-dmSans font-bold text-base cursor-pointer ${selectedBankTwo? "text-menuHeading" : "text-header"}`}>
+                Bank 2
+              </label>
+            </div>
+            <p className="pt-3 pb-6 font-dmSans font-base text-header leading-7.5">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <span className="text-menuHeading">privacy policy.</span></p>
+             <button className="py-5 px-12 text-white text-sm font-bold font-dmSa bg-menuHeading cursor-pointer border border-menuHeading">
+              Proceed to Bank
+            </button>
           </div>
         </div>
       </Container>
