@@ -164,26 +164,51 @@ const Checkout = () => {
               className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
             />
           </div>
-          <div className="">
+          <div className="pt-28">
             <Heading
-            className={
-              "pt-28 pb-10 font-dmSans font-bold text-[39px] text-menuHeading"
-            }
-            text={"Additional Information"}
-            as={"h2"}
-          />
-          <h3 className="font-dmSans font-bold text-base text-menuHeading leading-6 pb-2.5">
-            Other Notes (optional)
-          </h3>
-          <p className="">
-            
-          </p>
-          <textarea
-            name="notes"
-            id="notes"
-            rows={"4"}
-            placeholder="Notes about your order, e.g. special notes for delivery."
-            className="border-b border-infoBg w-full resize-none focus:outline-0 placeholder:font-dmSans placeholder:text-sm placeholder:text-header"></textarea>
+              className={
+                "pb-10 font-dmSans font-bold text-[39px] text-menuHeading"
+              }
+              text={"Additional Information"}
+              as={"h2"}
+            />
+            <h3 className="font-dmSans font-bold text-base text-menuHeading leading-6 pb-2.5">
+              Other Notes (optional)
+            </h3>
+            <p className=""></p>
+            <textarea
+              name="notes"
+              id="notes"
+              rows={"4"}
+              placeholder="Notes about your order, e.g. special notes for delivery."
+              className="border-b border-infoBg w-full resize-none focus:outline-0 placeholder:font-dmSans placeholder:text-sm placeholder:text-header"></textarea>
+          </div>
+          <div className="pt-28">
+            <Heading
+              className={
+                "pb-11 font-dmSans font-bold text-[39px] text-menuHeading"
+              }
+              text={"Your Order"}
+              as={"h2"}
+            />
+            <table className="border border-infoBg mt-6 mb-7.5 text-left">
+              <tr className="border-b border-infoBg">
+                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">Product</th>
+                <td className="font-dmSans text-base text-header py-4 px-5 w-2xs">Total</td>
+              </tr>
+              <tr className="border-b border-infoBg">
+                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">Product Name x 1</th>
+                <td className="font-dmSans text-base text-header py-4 px-5 w-2xs">389.99$</td>
+              </tr>
+              <tr className="border-b border-infoBg">
+                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">Subtotal</th>
+                <td className="font-dmSans text-base text-menuHeading py-4 px-5 w-2xs">389.99$</td>
+              </tr>
+              <tr>
+                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">Total</th>
+                <td className="font-dmSans text-base text-menuHeading py-4 px-5 w-2xs">389.99$</td>
+              </tr>
+            </table>
           </div>
         </div>
       </Container>
