@@ -1,8 +1,11 @@
 import React from 'react'
+import Intro from '../Intro'
 
 const Checkout = () => {
   return (
-    <div>Checkout</div>
+    <>
+    <Intro pText={"Checkout"} text={"Checkout"} />
+    </>
   )
 }
 
