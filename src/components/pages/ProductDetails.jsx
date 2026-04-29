@@ -16,10 +16,10 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import addToCart from "/src/features/cart/addToCartSlice"
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
+import { addToCart } from "@/features/cart/addToCartSlice";
 
 const ProductDetails = () => {
   const { id } = useParams();
