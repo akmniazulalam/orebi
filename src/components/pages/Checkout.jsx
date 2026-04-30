@@ -14,8 +14,8 @@ import {
 } from "@/components/ui/select";
 
 const Checkout = () => {
-  const [selectedBank, setSelectedBank] = useState("")
-  const [selectedBankTwo, setSelectedBankTwo] = useState("")
+  const [selectedBank, setSelectedBank] = useState("");
+  const [selectedBankTwo, setSelectedBankTwo] = useState("");
   return (
     <>
       <Intro pText={"Checkout"} text={"Checkout"} />
@@ -229,20 +229,52 @@ const Checkout = () => {
             </table>
           </div>
           <div className="py-7 px-8 border border-infoBg">
-            <div className="flex items-center gap-x-2"> {/* id ar htmlFor same rakhle label e click korleo tokhon select hoy */}
-              <input type="radio" name="bank" className="accent-black cursor-pointer" id="bank" onChange={(e) => setSelectedBank(e.target.value)} /> {/* radio color change korte accent-color use korte hoy */}
-              <label htmlFor="bank" className={`font-dmSans font-bold text-base cursor-pointer ${selectedBank? "text-menuHeading" : "text-header"}`}>
+            <div className="flex items-center gap-x-2">
+              {" "}
+              {/* id ar htmlFor same rakhle label e click korleo tokhon select hoy */}
+              <input
+                type="radio"
+                name="bank"
+                className="accent-black cursor-pointer"
+                id="bank"
+                value={"bank"}
+                onChange={(e) => setSelectedBank(e.target.value)}
+              />{" "}
+              {/* radio color change korte accent-color use korte hoy */}
+              <label
+                htmlFor="bank"
+                className={`font-dmSans font-bold text-base cursor-pointer ${selectedBank === "bank" ? "text-menuHeading" : "text-header"}`}>
                 Bank
               </label>
             </div>
+            {selectedBank === "bank" && (
+              <div className="relative mb-6 mt-6 bg-bHeaderBg font-dmSans text-sm text-header py-5 px-6">
+              <div className="absolute -top-2 left-8 border-r-8 border-l-8 border-b-8 border-r-transparent border-l-transparent border-b-bHeaderBg"></div>
+              <p>Pay via Bank; you can pay with your credit card if you don’t have a Bank account.</p>
+            </div>
+            )}
             <div className="flex items-center gap-x-2 cursor-pointer">
-              <input type="radio" name="bank" className="accent-black cursor-pointer" id="bank2" onChange={(e) => setSelectedBankTwo(e.target.value)} />
-              <label htmlFor="bank2" className={`font-dmSans font-bold text-base cursor-pointer ${selectedBankTwo? "text-menuHeading" : "text-header"}`}>
+              <input
+                type="radio"
+                name="bank"
+                className="accent-black cursor-pointer"
+                id="bank2"
+                value={"bank2"}
+                onChange={(e) => setSelectedBank(e.target.value)}
+              />
+              <label
+                htmlFor="bank2"
+                className={`font-dmSans font-bold text-base cursor-pointer ${selectedBank === "bank2" ? "text-menuHeading" : "text-header"}`}>
                 Bank 2
               </label>
             </div>
-            <p className="pt-3 pb-6 font-dmSans font-base text-header leading-7.5">Your personal data will be used to process your order, support your experience throughout this website, and for other purposes described in our <span className="text-menuHeading">privacy policy.</span></p>
-             <button className="py-5 px-12 text-white text-sm font-bold font-dmSa bg-menuHeading cursor-pointer border border-menuHeading">
+            <p className="pt-3 pb-6 font-dmSans font-base text-header leading-7.5">
+              Your personal data will be used to process your order, support
+              your experience throughout this website, and for other purposes
+              described in our 
+              <span className="text-menuHeading"> privacy policy.</span>
+            </p>
+            <button className="py-5 px-12 text-white text-sm font-bold font-dmSa bg-menuHeading cursor-pointer border border-menuHeading">
               Proceed to Bank
             </button>
           </div>
