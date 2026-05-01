@@ -227,6 +227,9 @@ const Signup = () => {
             </div>
           </Flex>
         </div>
+        <hr className="text-infoBg my-15" />
+        <input type="checkbox" />
+        <p>I have read and agree to the Privacy Policy</p>
       </Container>
     </>
   );
