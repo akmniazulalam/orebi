@@ -15,7 +15,6 @@ import {
 
 const Checkout = () => {
   const [selectedBank, setSelectedBank] = useState("");
-  const [selectedBankTwo, setSelectedBankTwo] = useState("");
   return (
     <>
       <Intro pText={"Checkout"} text={"Checkout"} />
