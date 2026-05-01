@@ -232,7 +232,20 @@ const Signup = () => {
           <input type="checkbox" id="check" className="cursor-pointer"/>
           <label htmlFor="check" className="font-dmSans text-sm text-header cursor-pointer">I have read and agree to the Privacy Policy</label>
         </div>
+        <div className="flex items-center gap-x-6 pt-5">  
         <p className="font-dmSans text-sm text-header">Subscribe Newsletter</p>
+        <div className="flex items-center gap-x-2">
+            <input type="radio" name="newsletter" id="yes" className="accent-black appearance-none border border-header h-3 w-3 checked:bg-header cursor-pointer"/>
+        <label htmlFor="yes" className="font-dmSans text-sm text-header cursor-pointer">Yes</label>
+        </div>
+        <div className="flex items-center gap-x-2">
+            <input type="radio" name="newsletter" id="no" className="accent-black appearance-none w-3 h-3 border border-header checked:bg-header cursor-pointer"/>
+        <label htmlFor="no" className="font-dmSans text-sm text-header cursor-pointer">No</label>
+        </div>
+        </div>
+        <button className="py-3 px-18 mt-6 text-white text-sm font-bold font-dmSans bg-menuHeading cursor-pointer border border-menuHeading">
+              Log in
+            </button>
       </Container>
     </>
   );

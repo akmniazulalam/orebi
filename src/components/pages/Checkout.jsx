@@ -273,7 +273,7 @@ const Checkout = () => {
               described in our 
               <span className="text-menuHeading"> privacy policy.</span>
             </p>
-            <button className="py-5 px-12 text-white text-sm font-bold font-dmSa bg-menuHeading cursor-pointer border border-menuHeading">
+            <button className="py-5 px-12 text-white text-sm font-bold font-dmSans bg-menuHeading cursor-pointer border border-menuHeading">
               Proceed to Bank
             </button>
           </div>
