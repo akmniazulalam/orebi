@@ -232,6 +232,7 @@ const Signup = () => {
           <input type="checkbox" id="check" className="cursor-pointer"/>
           <label htmlFor="check" className="font-dmSans text-sm text-header cursor-pointer">I have read and agree to the Privacy Policy</label>
         </div>
+        <p className="font-dmSans text-sm text-header">Subscribe Newsletter</p>
       </Container>
     </>
   );
