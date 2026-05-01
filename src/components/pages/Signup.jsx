@@ -217,11 +217,11 @@ const Signup = () => {
             </div>
             <div className="w-full">
               <h3 className="font-dmSans font-bold text-base text-menuHeading">
-                Last Name
+                Repeat Password
               </h3>
               <input
                 type="text"
-                placeholder="Last Name"
+                placeholder="Repeat Password"
                 className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
               />
             </div>
