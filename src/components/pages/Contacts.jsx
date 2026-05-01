@@ -1,8 +1,11 @@
 import React from 'react'
+import Intro from '../Intro'
 
 const Contacts = () => {
   return (
-    <h1 className='text-center text-blue-800 text-4xl font-bold font-dmSans pt-5'>Welcome to Contact Page</h1>
+    <>
+    <Intro text={"Contacts"} pText={"Contacts"} />
+    </>
   )
 }
 
