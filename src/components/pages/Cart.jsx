@@ -24,12 +24,24 @@ import {
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
-  const subTotal = cartItems.reduce(
+  let subTotal = cartItems.reduce(
     (total, item) => total + item.price * item.quantity,
     0,
   );
   const dispatch = useDispatch();
 
+  // coupon code
+  
+  const [coupon, setCoupon] = useState(0)
+
+  const couponDiscount = subTotal * 0.2
+  
+  const handleCoupon = () => {
+    setCoupon(subTotal - couponDiscount)
+  }
+  
+  // coupon code
+  
   const [quantity, setQuantity] = useState(1);
 
   const handleIncrement = () => {
@@ -140,7 +152,7 @@ const Cart = () => {
             {/* <button className="font-bold font-dmSans text-sm text-menuHeading cursor-pointer"></button> */}
             <Field orientation="horizontal">
               <Input type="search" placeholder="Coupon" className={"border-2! border-infoBg! rounded-none!"} />
-              <Button className={"rounded-none! cursor-pointer"}>Apply coupon</Button>
+              <Button className={"rounded-none! cursor-pointer"} onClick={handleCoupon}>Apply coupon</Button>
             </Field>
           </div>
           <button className="font-bold font-dmSans text-sm text-menuHeading cursor-pointer">
@@ -166,7 +178,7 @@ const Cart = () => {
                 Total
               </th>
               <td className="font-dmSans text-base text-menuHeading py-4 px-5 w-2xs">
-                ${subTotal.toFixed(2)}
+                ${coupon > 0 ? coupon.toFixed(2) : subTotal.toFixed(2)}
               </td>
             </tr>
           </table>
