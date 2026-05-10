@@ -2,6 +2,9 @@ import React, { useState } from "react";
 import Intro from "../Intro";
 import Container from "../Container";
 import { ImCross } from "react-icons/im";
+import { Button } from "@/components/ui/button";
+import { Field } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
 import {
   Select,
   SelectContent,
@@ -13,12 +16,19 @@ import {
 } from "@/components/ui/select";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { decreaseQuantity, increaseQuantity, removeFromCart } from "@/features/cart/addToCartSlice";
+import {
+  decreaseQuantity,
+  increaseQuantity,
+  removeFromCart,
+} from "@/features/cart/addToCartSlice";
 
 const Cart = () => {
   const cartItems = useSelector((state) => state.cart.items);
-  const subTotal = cartItems.reduce((total, item) => total + item.price*item.quantity, 0)
-  const dispatch = useDispatch()
+  const subTotal = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0,
+  );
+  const dispatch = useDispatch();
 
   const [quantity, setQuantity] = useState(1);
 
@@ -31,7 +41,6 @@ const Cart = () => {
       setQuantity(quantity - 1);
     }
   };
-
 
   console.log(cartItems);
 
@@ -69,7 +78,7 @@ const Cart = () => {
                       <ImCross />
                     </button>
                     <img
-                      src={item.thumnail || item.image}
+                      src={item.thumbnail || item.image}
                       className="w-20 h-20 bg-[#D8D8D8] ml-10 mx-5"
                     />
                     <div className="text-left space-y-2.5">
@@ -85,20 +94,24 @@ const Cart = () => {
                 <td className="py-6 px-5">
                   <div className="py-1.5 px-4 w-36 border border-infoBg flex gap-x-10 font-dmSans text-header justify-center">
                     <button
-                      onClick={() => dispatch(decreaseQuantity(item._id || item.id))}
+                      onClick={() =>
+                        dispatch(decreaseQuantity(item._id || item.id))
+                      }
                       className="cursor-pointer">
                       -
                     </button>
                     <h6>{item.quantity}</h6>
                     <button
-                      onClick={() => dispatch(increaseQuantity(item._id || item.id))}
+                      onClick={() =>
+                        dispatch(increaseQuantity(item._id || item.id))
+                      }
                       className="cursor-pointer">
                       +
                     </button>
                   </div>
                 </td>
                 <td className="text-[20px] font-dmSans font-bold text-menuHeading py-6 px-5">
-                  ${item.quantity*item.price}
+                  ${(item.quantity * item.price).toFixed(2)}
                 </td>
               </tr>
             </tbody>
@@ -124,9 +137,11 @@ const Cart = () => {
               </SelectContent>
             </Select>
 
-            <button className="font-bold font-dmSans text-sm text-menuHeading cursor-pointer">
-              Apply coupon
-            </button>
+            {/* <button className="font-bold font-dmSans text-sm text-menuHeading cursor-pointer"></button> */}
+            <Field orientation="horizontal">
+              <Input type="search" placeholder="Coupon" className={"border-2! border-infoBg! rounded-none!"} />
+              <Button className={"rounded-none! cursor-pointer"}>Apply coupon</Button>
+            </Field>
           </div>
           <button className="font-bold font-dmSans text-sm text-menuHeading cursor-pointer">
             Update Cart
