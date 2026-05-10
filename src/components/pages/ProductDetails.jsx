@@ -23,8 +23,8 @@ import { addToCart } from "@/features/cart/addToCartSlice";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const dispatch = useDispatch()
-  const [quantity, setQuantity] = useState(1)
+  const dispatch = useDispatch();
+  const [quantity, setQuantity] = useState(1);
   const [singleProduct, setSingleProduct] = useState(null);
 
   useEffect(() => {
@@ -36,27 +36,41 @@ const ProductDetails = () => {
   }, []);
 
   const handleIncrement = () => {
-    setQuantity(quantity + 1)
-  }
+    if (quantity < singleProduct?.variants[0].stock) {
+      setQuantity(quantity + 1);
+    }
+  };
   const handleDecrement = () => {
     if (quantity > 1) {
-        setQuantity(quantity - 1)
+      setQuantity(quantity - 1);
     }
-  }
+  };
   return (
     <>
       <Intro text={"Single Product"} pText={"Single Product"} />
       <Container>
         <div className={"grid grid-cols-2  gap-9 mb-10"}>
-          <Image src={singleProduct?.variants[0].images[0]} className={"w-full"} />
+          <Image
+            src={singleProduct?.variants[0].images[0]}
+            className={"w-full"}
+          />
           {singleProduct?.variants[1] && (
-            <Image src={singleProduct?.variants[1].images[0]} className={"w-full"} />
+            <Image
+              src={singleProduct?.variants[1].images[0]}
+              className={"w-full"}
+            />
           )}
           {singleProduct?.variants[2] && (
-            <Image src={singleProduct?.variants[2].images[0]} className={"w-full"} />
+            <Image
+              src={singleProduct?.variants[2].images[0]}
+              className={"w-full"}
+            />
           )}
           {singleProduct?.variants[3] && (
-            <Image src={singleProduct?.variants[3].images[0]} className={"w-full"} />
+            <Image
+              src={singleProduct?.variants[3].images[0]}
+              className={"w-full"}
+            />
           )}
         </div>
         <div className="w-1/2">
@@ -79,7 +93,9 @@ const ProductDetails = () => {
             <span className="text-header text-base font-dmSans line-through">
               $88.00
             </span>
-            <span className="text-[20px] font-dmSans font-bold">${singleProduct?.variants[0].price}</span>
+            <span className="text-[20px] font-dmSans font-bold">
+              ${singleProduct?.variants[0].price}
+            </span>
           </Flex>
           <hr className="text-[#d8d8d8]" />
           <Flex className={"my-8 items-center gap-x-11"}>
@@ -89,11 +105,9 @@ const ProductDetails = () => {
               text={"color:"}
             />
             <Flex className={"gap-x-3 items-center"}>
-              <FaCircle className="text-[#979797] w-5 h-5 cursor-pointer hover:scale-135 transition-all duration-300 object-cover" />
-              <FaCircle className="text-[#FF8686] w-5 h-5 cursor-pointer hover:scale-135 transition-all duration-300 object-cover" />
-              <FaCircle className="text-[#7ED321] w-5 h-5 cursor-pointer hover:scale-135 transition-all duration-300 object-cover" />
-              <FaCircle className="text-[#B6B6B6] w-5 h-5 cursor-pointer hover:scale-135 transition-all duration-300 object-cover" />
-              <FaCircle className="text-[#15CBA5] w-5 h-5 cursor-pointer hover:scale-135 transition-all duration-300 object-cover" />
+              {singleProduct?.variants.map((item, index) => (
+                <FaCircle key={index} style={{color: item.color}} className="w-5 h-5 cursor-pointer hover:scale-135 transition-all duration-300 object-cover" />
+              ))}
             </Flex>
           </Flex>
           <Flex className={"my-8 items-center gap-x-16"}>
@@ -111,7 +125,9 @@ const ProductDetails = () => {
                 <SelectGroup>
                   <SelectLabel>Sizes</SelectLabel>
                   {singleProduct?.variants.map((item) => (
-                    <SelectItem key={item._id} value={item.size}>{item.size}</SelectItem>
+                    <SelectItem key={item._id} value={item.size}>
+                      {item.size}
+                    </SelectItem>
                   ))}
                 </SelectGroup>
               </SelectContent>
@@ -124,9 +140,13 @@ const ProductDetails = () => {
               text={"quantity:"}
             />
             <div className="border py-1.5 px-4 w-36 flex gap-x-10 font-dmSans text-header">
-              <button onClick={handleDecrement} className="cursor-pointer">-</button>
+              <button onClick={handleDecrement} className="cursor-pointer">
+                -
+              </button>
               <h6>{quantity}</h6>
-              <button onClick={handleIncrement} className="cursor-pointer">+</button>
+              <button onClick={handleIncrement} className="cursor-pointer">
+                +
+              </button>
             </div>
           </Flex>
           <hr className="text-[#d8d8d8]" />
@@ -143,7 +163,9 @@ const ProductDetails = () => {
             <button className="py-3 px-10 text-menuHeading text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading">
               Add to Wish List
             </button>
-            <button className="py-3 px-10 text-menuHeading text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading" onClick={() => dispatch(addToCart(singleProduct))}>
+            <button
+              className="py-3 px-10 text-menuHeading text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading"
+              onClick={() => dispatch(addToCart(singleProduct))}>
               Add to Cart
             </button>
           </Flex>
