@@ -30,9 +30,9 @@ const ShopProducts = () => {
         {products.map((item) => (
           <Link to={`/productdetails/${item._id}`}>
             <Products
-              src={item.image}
+              src={item.variants[0].images[0]}
               text={item.name}
-              price={`$${item.price}`}
+              price={`$${item.variants[0].price}`}
               product={item}
               className={"bg-amber-500"}
             />

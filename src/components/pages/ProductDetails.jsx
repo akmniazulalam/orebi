@@ -47,11 +47,17 @@ const ProductDetails = () => {
     <>
       <Intro text={"Single Product"} pText={"Single Product"} />
       <Container>
-        <div className={"grid grid-cols-2 grid-rows-2 gap-9 mb-10"}>
-          <Image src={singleProduct?.image} className={"w-full"} />
-          <Image src={singleProduct?.image} className={"w-full"} />
-          <Image src={singleProduct?.image} className={"w-full"} />
-          <Image src={singleProduct?.image} className={"w-full"} />
+        <div className={"grid grid-cols-2  gap-9 mb-10"}>
+          <Image src={singleProduct?.variants[0].images[0]} className={"w-full"} />
+          {singleProduct?.variants[1] && (
+            <Image src={singleProduct?.variants[1].images[0]} className={"w-full"} />
+          )}
+          {singleProduct?.variants[2] && (
+            <Image src={singleProduct?.variants[2].images[0]} className={"w-full"} />
+          )}
+          {singleProduct?.variants[3] && (
+            <Image src={singleProduct?.variants[3].images[0]} className={"w-full"} />
+          )}
         </div>
         <div className="w-1/2">
           <Heading
@@ -73,7 +79,7 @@ const ProductDetails = () => {
             <span className="text-header text-base font-dmSans line-through">
               $88.00
             </span>
-            <span className="text-[20px] font-dmSans font-bold">${singleProduct?.price}</span>
+            <span className="text-[20px] font-dmSans font-bold">${singleProduct?.variants[0].price}</span>
           </Flex>
           <hr className="text-[#d8d8d8]" />
           <Flex className={"my-8 items-center gap-x-11"}>
@@ -98,18 +104,15 @@ const ProductDetails = () => {
             />
             <Select className={"rounded-none!"}>
               <SelectTrigger className="w-36 h-10 rounded-none">
-                <SelectValue placeholder={singleProduct?.size} />
+                <SelectValue placeholder={singleProduct?.variants[0].size} />
               </SelectTrigger>
 
-              <SelectContent>
+              <SelectContent position="popper">
                 <SelectGroup>
                   <SelectLabel>Sizes</SelectLabel>
-
-                  <SelectItem value="xs">Extra Small</SelectItem>
-                  <SelectItem value="sm">Small</SelectItem>
-                  <SelectItem value="md">Medium</SelectItem>
-                  <SelectItem value="lg">Large</SelectItem>
-                  <SelectItem value="xl">Extra Large</SelectItem>
+                  {singleProduct?.variants.map((item) => (
+                    <SelectItem key={item._id} value={item.size}>{item.size}</SelectItem>
+                  ))}
                 </SelectGroup>
               </SelectContent>
             </Select>
