@@ -13,7 +13,8 @@ const Products = ({
   badgeT,
   product,
   text,
-  price
+  price,
+  color
 }) => {
   return (
     <div>
@@ -34,7 +35,7 @@ const Products = ({
         />
       </div>
       <ProductTexts text={text} price={price}/>
-      <Black />
+      <Black color={color}/>
     </div>
   );
 };

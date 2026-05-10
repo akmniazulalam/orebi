@@ -32,7 +32,10 @@ const ShopProducts = () => {
             <Products
               src={item.variants[0].images[0]}
               text={item.name}
+              isBadge
+              badgeT={item.variants[1].badge}
               price={`$${item.variants[0].price}`}
+              color={item?.variants[0].color}
               product={item}
               className={"bg-amber-500"}
             />

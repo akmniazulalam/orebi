@@ -1,8 +1,8 @@
 import React from 'react'
 
-const Black = () => {
+const Black = ({color}) => {
   return (
-    <p className="font-dmSans text-base text-header pt-4">Black</p>
+    <p className="font-dmSans text-base text-header pt-4">{color || "Black"}</p>
   )
 }
 
