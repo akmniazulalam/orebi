@@ -29,15 +29,30 @@ const Cart = () => {
   const [discount, setDiscount] = useState(0);
 
   // apply coupon
-  const handleCoupon = () => {
-    if (couponCode === "SAVE20") {
-      setDiscount(subTotal * 0.2);
-      toast.success("Coupon applied!");
-    } else {
-      setDiscount(0);
-      toast.error("Invalid coupon");
-    }
-  };
+  const handleCoupon = async () => {
+  try {
+
+    const res = await axios.post(
+      "http://localhost:3000/api/v1/coupon/apply-coupon",
+      {
+        code: couponCode,
+        subtotal: subTotal,
+      }
+    );
+
+    setDiscount(res.data.discount);
+
+    toast.success(res.data.message);
+
+  } catch (error) {
+
+    toast.error(
+      error.response?.data?.message || "Something went wrong"
+    );
+
+    setDiscount(0);
+  }
+};
 
   // final total
   const total = Math.max(subTotal - discount, 0);
@@ -183,10 +198,10 @@ const Cart = () => {
               />
 
               <Button
-                className="rounded-none cursor-pointer"
+                className="rounded-none cursor-pointer font-dmSans"
                 onClick={handleCoupon}
               >
-                Apply
+                Apply Coupon
               </Button>
             </Field>
 
