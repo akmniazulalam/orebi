@@ -9,7 +9,6 @@ import Error from "./components/pages/Error";
 import About from "./components/pages/About";
 import Contacts from "./components/pages/Contacts";
 import Journal from "./components/pages/Journal";
-import DemoPage from "./components/pages/DemoPage";
 import Cart from "./components/pages/Cart";
 import Checkout from "./components/pages/Checkout";
 import ScrollToTop from "./components/ScrollToTop";
@@ -28,7 +27,6 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/journal" element={<Journal />} />
-          <Route path="/demo" element={<DemoPage />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/productdetails/:id" element={<ProductDetails />} />
