@@ -16,6 +16,8 @@ import {
 } from "@/components/ui/select";
 import { Link } from "react-router-dom";
 import useCart from "@/store/cart";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const Cart = () => {
   const {items, removeFromCart, increaseQuantity, decreaseQuantity} = useCart((state) => state);
@@ -33,7 +35,7 @@ const Cart = () => {
   try {
 
     const res = await axios.post(
-      "http://localhost:3000/api/v1/coupon/apply-coupon",
+      "https://mern-ecommerce-91cv.onrender.com/api/v1/coupon/apply-coupon",
       {
         code: couponCode,
         subtotal: subTotal,
@@ -49,6 +51,7 @@ const Cart = () => {
     toast.error(
       error.response?.data?.message || "Something went wrong"
     );
+console.log(error);
 
     setDiscount(0);
   }
@@ -69,9 +72,8 @@ const Cart = () => {
     }
   };
 
-  console.log(items);
 
-  // ✅ Empty cart
+  // Empty cart
   if (items.length === 0) {
     return (
       <>
