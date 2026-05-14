@@ -12,12 +12,12 @@ import { Link } from "react-router-dom";
 import CategoriesMenu from "../CategoriesMenu";
 import { useEffect, useRef, useState } from "react";
 import ToggleButtons from "../ToggleButtons";
-import { useDispatch, useSelector } from "react-redux";
 import CartDropdowns from "../CartDropdowns";
-import removeFromCart from '/src/features/cart/addToCartSlice'
+import useCart from "@/store/cart";
 
 const Header = () => {
-  const cartItems = useSelector((state) => state.cart.items);
+
+  const items = useCart((state) => state.items)
 
   const [showCart, setShowCart] = useState(false);
 
@@ -154,7 +154,7 @@ const Header = () => {
               <div className="relative" ref={cartRef}>
                 <FaShoppingCart className="text-menuHeading ml-6 cursor-pointer" onClick={() => setShowCart(!showCart)}/>
                 {
-                  showCart && <CartDropdowns items={cartItems} onClick={() => setShowCart(!showCart)} />
+                  showCart && <CartDropdowns items={items} onClick={() => setShowCart(!showCart)} />
                 }
               </div>
             </Flex>
