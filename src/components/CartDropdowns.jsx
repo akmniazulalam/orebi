@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const CartDropdowns = ({ items, onClick }) => {
   const removeFromCart = useCart((state) => state.removeFromCart);
-  // const subTotal = items.reduce((total, item) => total + (item.price || item.variants[0].price), 0)
+  const subTotal = items.reduce((total, item) => total + (item.price || item.variants[0].price), 0)
   return (
     <div className="absolute top-10 right-0 w-89.5 z-10">
       {items.length === 0 ? (
@@ -31,7 +31,7 @@ const CartDropdowns = ({ items, onClick }) => {
                     {item.title || item.name}
                   </h3>
                   <p className="text-[14px] font-dmSans font-bold text-menuHeading">
-                    ${item.price.toFixed(2) || item.variants[0].price}
+                    ${(item.price || item.variants[0].price).toFixed(2)}
                   </p>
                 </div>
                 <button
