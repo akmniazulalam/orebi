@@ -214,31 +214,32 @@ const Cart = () => {
             Cart totals
           </p>
           <table className="border border-infoBg mt-6 mb-7.5 ml-auto text-left">
-            <tr className="border-b border-infoBg">
-              <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">
-                Subtotal
-              </th>
-              <td className="font-dmSans text-base text-header py-4 px-5 w-2xs">
-                ${subTotal.toFixed(2)}
-              </td>
-            </tr>
-            <tr className="border-b border-infoBg">
-              <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">
-                Discount
-              </th>
-              <td className="font-dmSans text-base text-header py-4 px-5 w-2xs">
-                -${discount.toFixed(2)}
-              </td>
-            </tr>
-
-            <tr className="">
-              <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">
-                Total
-              </th>
-              <td className="font-dmSans text-base text-menuHeading py-4 px-5 w-2xs">
-                ${total.toFixed(2)}
-              </td>
-            </tr>
+            <tbody>
+              <tr className="border-b border-infoBg">
+                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">
+                  Subtotal
+                </th>
+                <td className="font-dmSans text-base text-header py-4 px-5 w-2xs">
+                  ${subTotal.toFixed(2)}
+                </td>
+              </tr>
+              <tr className="border-b border-infoBg">
+                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">
+                  Discount
+                </th>
+                <td className="font-dmSans text-base text-header py-4 px-5 w-2xs">
+                  -${discount.toFixed(2)}
+                </td>
+              </tr>
+              <tr>
+                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">
+                  Total
+                </th>
+                <td className="font-dmSans text-base text-menuHeading py-4 px-5 w-2xs">
+                  ${total.toFixed(2)}
+                </td>
+              </tr>
+            </tbody>
           </table>
           <Link to={"/checkout"}>
             <button className="py-5 px-8 text-white text-sm font-bold font-dmSa bg-menuHeading cursor-pointer border border-menuHeading">
