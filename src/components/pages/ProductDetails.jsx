@@ -18,12 +18,11 @@ import {
 } from "@/components/ui/select";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useDispatch } from "react-redux";
-import { addToCart } from "@/features/cart/addToCartSlice";
+
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const dispatch = useDispatch();
+
   const [quantity, setQuantity] = useState(1);
   const [singleProduct, setSingleProduct] = useState(null);
 
