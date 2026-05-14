@@ -11,3 +11,7 @@
 .animate-slide{
     animation: animate 0.3s ease-in-out forwards;
 }
+
+*{
+    font-family: "DM Sans", "sans-serif";
+}
