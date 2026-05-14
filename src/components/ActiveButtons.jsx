@@ -2,11 +2,12 @@ import React from 'react'
 import Flex from './Flex'
 import { FaHeart, FaShoppingCart } from "react-icons/fa";
 import CompareIcon from '../assets/icons/CompareIcon';
-import { useDispatch } from 'react-redux';
-import {addToCart} from '/src/features/cart/addToCartSlice'
+import useCart from '@/store/cart';
+
 
 const ActiveButtons = ({className, product}) => {
-  const dispatch = useDispatch()
+
+    const addToCart = useCart((state) => state.addToCart)
 
   return (
     <div className={`py-5 px-4.5 bg-white opacity-0 ${className}`} onClick={(e) => e.preventDefault()}>
@@ -19,7 +20,7 @@ const ActiveButtons = ({className, product}) => {
             <CompareIcon/>
         </Flex>
         <Flex className={"pt-4 justify-end"}>
-            <button className='font-dmSans text-base text-header hover:text-menuHeading transition-all duration-300 hover:font-bold cursor-pointer' onClick={() => dispatch(addToCart(product))}>Add to Cart</button>
+            <button className='font-dmSans text-base text-header hover:text-menuHeading transition-all duration-300 hover:font-bold cursor-pointer' onClick={() => addToCart(product)}>Add to Cart</button>
             <FaShoppingCart className='text-menuHeading ml-3'/>
         </Flex>
     </div>
