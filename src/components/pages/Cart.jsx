@@ -24,17 +24,23 @@ const Cart = () => {
     0,
   );
 
-  // coupon code
-  
-  const [coupon, setCoupon] = useState(0)
+// coupon states
+  const [couponCode, setCouponCode] = useState("");
+  const [discount, setDiscount] = useState(0);
 
-  const couponDiscount = subTotal * 0.2
-  
+  // apply coupon
   const handleCoupon = () => {
-    setCoupon(subTotal - couponDiscount)
-  }
-  
-  // coupon code
+    if (couponCode === "SAVE20") {
+      setDiscount(subTotal * 0.2);
+      toast.success("Coupon applied!");
+    } else {
+      setDiscount(0);
+      toast.error("Invalid coupon");
+    }
+  };
+
+  // final total
+  const total = Math.max(subTotal - discount, 0);
   
   const [quantity, setQuantity] = useState(1);
 
@@ -49,6 +55,29 @@ const Cart = () => {
   };
 
   console.log(items);
+
+  // ✅ Empty cart
+  if (items.length === 0) {
+    return (
+      <>
+        <Intro text={"Cart"} pText={"Cart"} />
+
+        <Container>
+          <div className="pb-14 text-center">
+            <h2 className="text-3xl font-bold">
+              Your cart is empty
+            </h2>
+
+            <Link to={"/shop"}>
+              <button className="mt-5 px-6 py-3 bg-black text-white cursor-pointer">
+                Continue Shopping
+              </button>
+            </Link>
+          </div>
+        </Container>
+      </>
+    );
+  }
 
   return (
     <>
@@ -143,12 +172,26 @@ const Cart = () => {
               </SelectContent>
             </Select>
 
-            {/* <button className="font-bold font-dmSans text-sm text-menuHeading cursor-pointer"></button> */}
+            {/* coupon */}
             <Field orientation="horizontal">
-              <Input type="search" placeholder="Coupon" className={"border-2! border-infoBg! rounded-none!"} />
-              <Button className={"rounded-none! cursor-pointer"} onClick={handleCoupon}>Apply coupon</Button>
+              <Input
+                type="text"
+                placeholder="Coupon code"
+                value={couponCode}
+                onChange={(e) => setCouponCode(e.target.value)}
+                className="border-2 border-infoBg rounded-none"
+              />
+
+              <Button
+                className="rounded-none cursor-pointer"
+                onClick={handleCoupon}
+              >
+                Apply
+              </Button>
             </Field>
+
           </div>
+
           <button className="font-bold font-dmSans text-sm text-menuHeading cursor-pointer">
             Update Cart
           </button>
@@ -167,12 +210,21 @@ const Cart = () => {
                 ${subTotal.toFixed(2)}
               </td>
             </tr>
+            <tr className="border-b border-infoBg">
+              <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">
+                Discount
+              </th>
+              <td className="font-dmSans text-base text-header py-4 px-5 w-2xs">
+                -${discount.toFixed(2)}
+              </td>
+            </tr>
+            
             <tr className="">
               <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">
                 Total
               </th>
               <td className="font-dmSans text-base text-menuHeading py-4 px-5 w-2xs">
-                ${coupon > 0 ? coupon.toFixed(2) : subTotal.toFixed(2)}
+                ${total.toFixed(2)}
               </td>
             </tr>
           </table>
