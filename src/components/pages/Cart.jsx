@@ -193,7 +193,7 @@ const Cart = () => {
                 placeholder="Coupon code"
                 value={couponCode}
                 onChange={(e) => setCouponCode(e.target.value)}
-                className="border-2 border-infoBg rounded-none"
+                className="border-2 border-infoBg rounded-none font-semibold"
               />
 
               <Button
