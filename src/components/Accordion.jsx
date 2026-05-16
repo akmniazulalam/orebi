@@ -19,8 +19,8 @@ const Accordion = ({ title, content }) => {
       </button>
 
       <div
-        className={`px-5 bg-infoBg w-full text-base text-header font-dmSans transition-all duration-300 ${
-          isOpen ? "opacity-100 py-5 h-16" : "opacity-0 h-0 py-0"
+        className={`px-4 bg-infoBg w-full text-base text-header font-dmSans transition-all duration-300 ${
+          isOpen ? "opacity-100 py-2.5 h-17.5" : "opacity-0 h-0 py-0"
         }`}>
         {content}
       </div>
