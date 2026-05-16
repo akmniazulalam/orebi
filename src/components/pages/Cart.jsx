@@ -158,8 +158,9 @@ const Cart = () => {
                 </td>
                 <td className="text-[20px] font-dmSans font-bold text-menuHeading py-6 px-5">
                   $
-                  {item.quantity *
-                    (item.price || item.variants[0].price).toFixed(2)}
+                  {(
+                    item.quantity * (item.price || item.variants[0].price)
+                  ).toFixed(2)}
                 </td>
               </tr>
             </tbody>
