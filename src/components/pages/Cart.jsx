@@ -227,7 +227,7 @@ const Cart = () => {
                 <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">
                   Discount
                 </th>
-                <td className="font-dmSans text-base text-header py-4 px-5 w-2xs">
+                <td className="font-dmSans font-medium text-base text-header py-4 px-5 w-2xs">
                   -${discount.toFixed(2)}
                 </td>
               </tr>
