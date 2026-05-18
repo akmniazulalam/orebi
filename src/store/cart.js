@@ -7,15 +7,18 @@ const useCart = create(
       items: [],
       addToCart: (product) =>
         set((state) => {
-          const existingItem = state.items.find(  // ekhane find ekta array er moddhe loop chaliye just specific ekta item ke return kore. array ke na.
+          // ekhane find ekta array er moddhe loop chaliye condition match kora just specific ekta item ke return kore. array ke na.
+          const existingItem = state.items.find(  
             (item) => (item._id || item.id) === (product._id || product.id),
           );
           if (existingItem) {
             return {
-              items: state.items.map((item) =>   // ekhane map ekta array er moddhe loop chaliye ekta array return kore. specific item ke na.
+              // ekhane map ekta array er moddhe loop chaliye ekta array return kore. specific item ke na.
+              // ekhane abaro map chaliye array update kora hocche. zustand e purono je state ta ache mane ekhane jemon items er vitorer object gulo ache seguloke modify kora jayna. tai abar notun object baniye notun array return kore state update korte hocche.
+              items: state.items.map((item) =>
                 (item._id || item.id) === (product._id || product.id)
                   ? {
-                      ...item,
+                      ...item, // ekhane ekta notun item object banano hocche jekhane existing item er shudhu quantity take update kora hocche tai notun kore object banano hocche. kintu shudhu jodi quantity update er code dewa hoy tahole quantity e thakbe object er moddhe. baki name, price etc. hariye jabe. tai ...item diye ager property guloke rakha hocche.
                       quantity: item.quantity + 1,
                     }
                   : item,
