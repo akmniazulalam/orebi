@@ -7,14 +7,14 @@ const useCart = create(
       items: [],
       addToCart: (product) =>
         set((state) => {
-          // ekhane find ekta array er moddhe loop chaliye condition match kora just specific ekta item ke return kore. array ke na.
+          // ekhane find ekta array er moddhe loop chaliye condition match kora just specific ekta item ke return kore. array ke na. ekhane find e id diye khuja hocche kintu oi id er puro object takei return kore. find() muloto condition match kora puro element takei return kore.
           const existingItem = state.items.find(  
             (item) => (item._id || item.id) === (product._id || product.id),
           );
           if (existingItem) {
             return {
               // ekhane map ekta array er moddhe loop chaliye ekta array return kore. specific item ke na.
-              // ekhane abaro map chaliye array update kora hocche. zustand e purono je state ta ache mane ekhane jemon items er vitorer object gulo ache seguloke modify kora jayna. tai abar notun object baniye notun array return kore state update korte hocche.
+              // ekhane abaro map chaliye array update kora hocche. zustand e purono je state ta ache mane ekhane jemon items er vitorer object gulo ache seguloke direct modify kora jayna. tai abar notun object baniye notun array return kore state update korte hocche. ar items ke update kora hocche mane emon vabe update  korte hobe jeno ager jei item gulo chilo already segulo jeno thik thake. karon ekhane items ke return korle ekdom notun ekta array hoye jabe jetar sathe ager items array er kono mil thakbena.
               items: state.items.map((item) =>
                 (item._id || item.id) === (product._id || product.id)
                   ? {
