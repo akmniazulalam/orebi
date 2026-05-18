@@ -57,7 +57,7 @@ const useCart = create(
           ),
         })),
     }),
-    { name: "cart-storage" }, // ekhane name mane hocche localStorage e kon key naame data save hobe.
+    { name: "cart-storage" }, // ekhane name mane hocche localStorage e kon key naame data save hobe. key ta name e likhte hobe. persist middleware use korleo name na dile Zustand kaaj korbe na. karon persist er minimum configuration hishebe name lagei. eta na dile localstorage e save hobena. error ashte pare. karon zustand to jante hobe kon key naame localstorage e save hobe.
   ),
 );
 
