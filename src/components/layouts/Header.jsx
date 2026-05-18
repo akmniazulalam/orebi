@@ -20,9 +20,7 @@ const Header = () => {
   const items = useCart((state) => state.items)
 
   const [showCart, setShowCart] = useState(false);
-
   const [showMenu, setShowMenu] = useState(false);
-
   const [showButton, setShowButton] = useState(false);
 
   const dropdownRef = useRef(null);
@@ -39,7 +37,6 @@ const Header = () => {
   };
 
   
-
   useEffect(() => {
     const clickOutside = (event) => {
       if (cartRef.current && !cartRef.current.contains(event.target)) {
