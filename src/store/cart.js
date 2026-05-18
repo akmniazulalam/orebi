@@ -57,7 +57,7 @@ const useCart = create(
           ),
         })),
     }),
-    { name: "cart-storage" },
+    { name: "cart-storage" }, // ekhane name mane hocche localStorage e kon key naame data save hobe
   ),
 );
 
