@@ -16,8 +16,7 @@ import CartDropdowns from "../CartDropdowns";
 import useCart from "@/store/cart";
 
 const Header = () => {
-
-  const items = useCart((state) => state.items)
+  const items = useCart((state) => state.items);
 
   const [showCart, setShowCart] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
@@ -36,7 +35,6 @@ const Header = () => {
     setShowButton((p) => !p);
   };
 
-  
   useEffect(() => {
     const clickOutside = (event) => {
       if (cartRef.current && !cartRef.current.contains(event.target)) {
@@ -110,20 +108,19 @@ const Header = () => {
       <section className="py-6 bg-bHeaderBg">
         <Container>
           <Flex className={"justify-between"}>
-            <div
-              ref={dropdownRef}
-              onClick={toggleMenu}
-              className="cursor-pointer relative">
-              <Flex>
-                <MenuIcon />
+            <div className="relative" ref={dropdownRef}>
+              <div onClick={toggleMenu} className="cursor-pointer ">
+                <Flex>
+                  <MenuIcon />
 
-                <Heading
-                  className={"font-dmSans text-[14px] text-menuHeading pl-3"}
-                  text={"Shop by Category"}
-                  as={"h4"}
-                />
-                {<CategoriesMenu isOpen={showMenu} />}
-              </Flex>
+                  <Heading
+                    className={"font-dmSans text-[14px] text-menuHeading pl-3"}
+                    text={"Shop by Category"}
+                    as={"h4"}
+                  />
+                </Flex>
+              </div>
+              {<CategoriesMenu isOpen={showMenu} />}
             </div>
             <div className="relative">
               <input
@@ -136,23 +133,30 @@ const Header = () => {
               </span>
             </div>
             <Flex>
-              <div
-                className="flex items-center gap-x-1 relative cursor-pointer"
-                onClick={toggleButtons}
-                ref={toggleRef}>
-                <FaUser className="text-menuHeading" />
-                {showButton ? (
-                  <FaCaretUp className="text-menuHeading" />
-                ) : (
-                  <FaCaretDown className="text-menuHeading" />
-                )}
+              <div className="relative" ref={toggleRef}>
+                <div
+                  className="flex items-center gap-x-1 cursor-pointer"
+                  onClick={toggleButtons}>
+                  <FaUser className="text-menuHeading" />
+                  {showButton ? (
+                    <FaCaretUp className="text-menuHeading" />
+                  ) : (
+                    <FaCaretDown className="text-menuHeading" />
+                  )}
+                </div>
                 {<ToggleButtons isOpen={showButton} />}
               </div>
               <div className="relative" ref={cartRef}>
-                <FaShoppingCart className="text-menuHeading ml-6 cursor-pointer" onClick={() => setShowCart(!showCart)}/>
-                {
-                  showCart && <CartDropdowns items={items} onClick={() => setShowCart(!showCart)} />
-                }
+                <FaShoppingCart
+                  className="text-menuHeading ml-6 cursor-pointer"
+                  onClick={() => setShowCart(!showCart)}
+                />
+                {showCart && (
+                  <CartDropdowns
+                    items={items}
+                    onClick={() => setShowCart(!showCart)}
+                  />
+                )}
               </div>
             </Flex>
           </Flex>
