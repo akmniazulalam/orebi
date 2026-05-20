@@ -131,7 +131,7 @@ const Checkout = () => {
     }`;
   return (
     <>
-      <Intro />
+      <Intro text={"Checkout"} pText={"Checkout"}/>
       <section className="bg-gray-50 py-10">
         <Container>
           {/* Breadcrumb / Steps */}
@@ -514,7 +514,7 @@ const Checkout = () => {
                                 payment: undefined,
                               }));
                             }}
-                            className="h-4 w-4 accent-gray-900"
+                            className="h-4 w-4 accent-gray-900 cursor-pointer"
                           />
                           <Icon className="h-5 w-5 text-gray-700" />
                           <span className="text-sm font-semibold text-gray-900">
