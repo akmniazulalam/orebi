@@ -18,12 +18,14 @@ import { Link } from "react-router-dom";
 import useCart from "@/store/cart";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { Minus, Plus, ShoppingBag, Tag, ArrowRight } from "lucide-react";
 
 const Cart = () => {
   const { items, removeFromCart, increaseQuantity, decreaseQuantity } = useCart(
     (state) => state,
   );
-  let subTotal = items.reduce(
+
+  const subTotal = items.reduce(
     (total, item) =>
       total + (item.price || item.variants[0].price) * item.quantity,
     0,
@@ -38,51 +40,46 @@ const Cart = () => {
     try {
       const res = await axios.post(
         "https://mern-ecommerce-91cv.onrender.com/api/v1/coupon/apply-coupon",
-        {
-          code: couponCode,
-          subtotal: subTotal,
-        },
+        { code: couponCode, subtotal: subTotal },
       );
-
       setDiscount(res.data.discount);
-
       toast.success(res.data.message);
     } catch (error) {
       toast.error(error.response?.data?.message || "Something went wrong");
-
       setDiscount(0);
     }
   };
 
   // final total
   const total = Math.max(subTotal - discount, 0);
+  const savings = subTotal > 0 ? ((discount / subTotal) * 100).toFixed(0) : 0;
 
   const [quantity, setQuantity] = useState(1);
-
-  const handleIncrement = () => {
-    setQuantity(quantity + 1);
-  };
-
-  const handleDecrement = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
+  const handleIncrement = () => setQuantity(quantity + 1);
+  const handleDecrement = () => quantity > 1 && setQuantity(quantity - 1);
 
   // Empty cart
   if (items.length === 0) {
     return (
       <>
         <Intro text={"Cart"} pText={"Cart"} />
-
         <Container>
-          <div className="pb-14 text-center">
-            <h2 className="text-3xl font-bold">Your cart is empty</h2>
-
-            <Link to={"/shop"}>
-              <button className="mt-5 px-6 py-3 bg-black text-white cursor-pointer">
+          <div className="flex flex-col items-center justify-center py-24 px-4 text-center">
+            <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center mb-6">
+              <ShoppingBag className="w-12 h-12 text-gray-400" />
+            </div>
+            <h2 className="text-3xl font-bold text-gray-900 mb-2">
+              Your cart is empty
+            </h2>
+            <p className="text-gray-500 mb-8 max-w-md">
+              Looks like you haven't added anything yet. Let's find something
+              you'll love.
+            </p>
+            <Link to="/shop">
+              <Button className="px-8 py-6 text-base font-semibold rounded-full bg-black hover:bg-gray-800 text-white">
                 Continue Shopping
-              </button>
+                <ArrowRight className="ml-2 w-4 h-4" />
+              </Button>
             </Link>
           </div>
         </Container>
@@ -94,158 +91,223 @@ const Cart = () => {
     <>
       <Intro text={"Cart"} pText={"Cart"} />
       <Container>
-        <table className="border border-infoBg w-full">
-          <thead className="border border-[#F5F7F7] bg-bHeaderBg w-full">
-            <tr>
-              <th className="font-dmSans font-bold text-base text-menuHeading p-5 w-1/4 text-left">
-                Product
-              </th>
-              <th className="font-dmSans font-bold text-base text-menuHeading p-5 w-1/4 text-left">
-                Price
-              </th>
-              <th className="font-dmSans font-bold text-base text-menuHeading p-5 w-1/4 text-left">
-                Quantity
-              </th>
-              <th className="font-dmSans font-bold text-base text-menuHeading p-5 w-1/4 text-left">
-                Total
-              </th>
-            </tr>
-          </thead>
-          {items.map((item) => (
-            <tbody className="border border-infoBg w-full">
-              <tr>
-                <td className="px-5 py-6">
-                  <div className="flex items-center">
-                    <button
-                      className="cursor-pointer"
-                      onClick={() => {
-                        removeFromCart(item._id || item.id);
-                      }}>
-                      <ImCross />
-                    </button>
-                    <img
-                      src={
-                        item.thumbnail ||
-                        item.image ||
-                        item.variants[0].images[0]
-                      }
-                      className="w-20 h-20 bg-[#D8D8D8] ml-10 mx-5"
-                    />
-                    <div className="text-left space-y-2.5">
-                      <h3 className="text-[15px] font-dmSans font-bold text-menuHeading">
-                        {item.name || item.title}
-                      </h3>
-                    </div>
-                  </div>
-                </td>
-                <td className="text-[20px] font-dmSans font-bold text-menuHeading py-6 px-5">
-                  ${item.price || item.variants[0].price}
-                </td>
-                <td className="py-6 px-5">
-                  <div className="py-1.5 px-4 w-36 border border-infoBg flex gap-x-10 font-dmSans text-header justify-center">
-                    <button
-                      onClick={() => decreaseQuantity(item._id || item.id)}
-                      className="cursor-pointer">
-                      -
-                    </button>
-                    <h6>{item.quantity}</h6>
-                    <button
-                      onClick={() => increaseQuantity(item._id || item.id)}
-                      className="cursor-pointer">
-                      +
-                    </button>
-                  </div>
-                </td>
-                <td className="text-[20px] font-dmSans font-bold text-menuHeading py-6 px-5">
-                  $
-                  {(
-                    item.quantity * (item.price || item.variants[0].price)
-                  ).toFixed(2)}
-                </td>
-              </tr>
-            </tbody>
-          ))}
-        </table>
-        <div className="border border-infoBg p-5 border-t-0 flex justify-between items-center">
-          <div className="flex gap-x-5 items-center">
-            <Select className={"rounded-none!"}>
-              <SelectTrigger className="w-40 h-10 rounded-none">
-                <SelectValue placeholder={"SIZE"} />
-              </SelectTrigger>
-
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Sizes</SelectLabel>
-
-                  <SelectItem value="xs">Extra Small</SelectItem>
-                  <SelectItem value="sm">Small</SelectItem>
-                  <SelectItem value="md">Medium</SelectItem>
-                  <SelectItem value="lg">Large</SelectItem>
-                  <SelectItem value="xl">Extra Large</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-
-            {/* coupon */}
-            <Field orientation="horizontal">
-              <Input
-                type="text"
-                placeholder="Coupon code"
-                value={couponCode}
-                onChange={(e) => setCouponCode(e.target.value)}
-                className="border-2 border-infoBg rounded-none font-semibold"
-              />
-
-              <Button
-                className="rounded-none cursor-pointer font-dmSans"
-                onClick={handleCoupon}>
-                Apply Coupon
-              </Button>
-            </Field>
+        <div className="py-10 px-4 lg:px-0">
+          <div className="mb-8">
+            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900">
+              Shopping Cart
+            </h1>
+            <p className="text-gray-500 mt-1">
+              {items.length} {items.length === 1 ? "item" : "items"} in your
+              cart
+            </p>
           </div>
 
-          <button className="font-bold font-dmSans text-sm text-menuHeading cursor-pointer">
-            Update Cart
-          </button>
-        </div>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* LEFT — Items */}
+            <div className="lg:col-span-2">
+              <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+                {/* Header (desktop) */}
+                <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-gray-50 border-b border-gray-200 text-xs uppercase tracking-wider font-semibold text-gray-500">
+                  <div className="col-span-6">Product</div>
+                  <div className="col-span-2 text-center">Price</div>
+                  <div className="col-span-2 text-center">Quantity</div>
+                  <div className="col-span-2 text-right">Total</div>
+                </div>
 
-        <div className="text-end">
-          <p className="pt-13 text-[20px] font-dmSans font-bold text-menuHeading">
-            Cart totals
-          </p>
-          <table className="border border-infoBg mt-6 mb-7.5 ml-auto text-left">
-            <tbody>
-              <tr className="border-b border-infoBg">
-                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">
-                  Subtotal
-                </th>
-                <td className="font-dmSans font-medium text-base text-header py-4 px-5 w-2xs">
-                  ${subTotal.toFixed(2)}
-                </td>
-              </tr>
-              <tr className="border-b border-infoBg">
-                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">
-                  Discount
-                </th>
-                <td className="font-dmSans font-medium text-base text-header py-4 px-5 w-2xs">
-                  -${discount.toFixed(2)}
-                </td>
-              </tr>
-              <tr>
-                <th className="font-bold font-dmSans text-base text-menuHeading py-4 px-5 w-2xs border-r border-infoBg text-left">
-                  Total
-                </th>
-                <td className="font-dmSans text-base text-menuHeading py-4 px-5 w-2xs font-semibold">
-                  ${total.toFixed(2)}
-                </td>
-              </tr>
-            </tbody>
-          </table>
-          <Link to={"/checkout"}>
-            <button className="py-5 px-8 text-white text-sm font-bold font-dmSa bg-menuHeading cursor-pointer border border-menuHeading">
-              Proceed to Checkout
-            </button>
-          </Link>
+                {/* Items */}
+                <div className="divide-y divide-gray-100">
+                  {items.map((item) => {
+                    const price = item.price || item.variants[0].price;
+                    const lineTotal = (item.quantity * price).toFixed(2);
+                    return (
+                      <div
+                        key={item._id || item.id}
+                        className="grid grid-cols-12 gap-4 px-4 md:px-6 py-5 items-center hover:bg-gray-50/50 transition-colors">
+                        {/* Product */}
+                        <div className="col-span-12 md:col-span-6 flex items-center gap-4">
+                          <button
+                            onClick={() => removeFromCart(item._id || item.id)}
+                            className="w-7 h-7 rounded-full bg-gray-100 hover:bg-red-500 hover:text-white text-gray-500 flex items-center justify-center transition-colors shrink-0"
+                            aria-label="Remove item">
+                            <ImCross className="w-2.5 h-2.5" />
+                          </button>
+                          <div className="w-20 h-20 rounded-xl overflow-hidden bg-gray-100 shrink-0">
+                            <img
+                              src={
+                                item.thumbnail ||
+                                item.image ||
+                                item.variants[0].images[0]
+                              }
+                              alt={item.name || item.title}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <div className="min-w-0">
+                            <h3 className="font-semibold text-gray-900 truncate">
+                              {item.name || item.title}
+                            </h3>
+                            <p className="text-sm text-gray-500 md:hidden mt-1">
+                              ${price}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Price */}
+                        <div className="hidden md:block col-span-2 text-center text-gray-700 font-medium">
+                          ${price}
+                        </div>
+
+                        {/* Quantity */}
+                        <div className="col-span-6 md:col-span-2 flex justify-start md:justify-center">
+                          <div className="inline-flex items-center border border-gray-200 rounded-full overflow-hidden">
+                            <button
+                              onClick={() =>
+                                decreaseQuantity(item._id || item.id)
+                              }
+                              className="w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors"
+                              aria-label="Decrease quantity">
+                              <Minus className="w-3.5 h-3.5" />
+                            </button>
+                            <span className="w-10 text-center font-semibold text-sm">
+                              {item.quantity}
+                            </span>
+                            <button
+                              onClick={() =>
+                                increaseQuantity(item._id || item.id)
+                              }
+                              className="w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors"
+                              aria-label="Increase quantity">
+                              <Plus className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        </div>
+
+                        {/* Total */}
+                        <div className="col-span-6 md:col-span-2 text-right font-bold text-gray-900">
+                          ${lineTotal}
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Coupon + size */}
+              <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
+                  <label className="block text-xs uppercase tracking-wider font-semibold text-gray-500 mb-3">
+                    Select Size
+                  </label>
+                  <Select>
+                    <SelectTrigger className="rounded-xl">
+                      <SelectValue placeholder="Choose a size" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectGroup>
+                        <SelectLabel>Sizes</SelectLabel>
+                        <SelectItem value="xs">Extra Small</SelectItem>
+                        <SelectItem value="s">Small</SelectItem>
+                        <SelectItem value="m">Medium</SelectItem>
+                        <SelectItem value="l">Large</SelectItem>
+                        <SelectItem value="xl">Extra Large</SelectItem>
+                      </SelectGroup>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
+                  <label className="block text-xs uppercase tracking-wider font-semibold text-gray-500 mb-3">
+                    <Tag className="inline w-3.5 h-3.5 mr-1" />
+                    Have a coupon?
+                  </label>
+                  <div className="flex gap-2">
+                    <Input
+                      placeholder="Enter code"
+                      value={couponCode}
+                      onChange={(e) => setCouponCode(e.target.value)}
+                      className="rounded-xl"
+                    />
+                    <Button
+                      onClick={handleCoupon}
+                      className="rounded-xl bg-black hover:bg-gray-800 text-white px-5 shrink-0">
+                      Apply
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 flex justify-end">
+                <Button
+                  variant="outline"
+                  className="rounded-full border-gray-300 hover:bg-gray-50">
+                  Update Cart
+                </Button>
+              </div>
+            </div>
+
+            {/* RIGHT — Summary */}
+            <div className="lg:col-span-1">
+              <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 lg:sticky lg:top-6">
+                <h2 className="text-xl font-bold text-gray-900 pb-4 border-b border-gray-100">
+                  Order Summary
+                </h2>
+
+                <div className="space-y-3 py-5">
+                  <div className="flex justify-between text-gray-600">
+                    <span>Subtotal</span>
+                    <span className="font-medium text-gray-900">
+                      ${subTotal.toFixed(2)}
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-gray-600">
+                    <span>
+                      Discount
+                      {discount > 0 && (
+                        <span className="ml-2 text-xs font-semibold text-green-600 bg-green-50 px-2 py-0.5 rounded-full">
+                          -{savings}%
+                        </span>
+                      )}
+                    </span>
+                    <span className="font-medium text-green-600">
+                      -${discount.toFixed(2)}
+                    </span>
+                  </div>
+                  <div className="flex justify-between text-gray-600">
+                    <span>Shipping</span>
+                    <span className="font-medium text-gray-900">Free</span>
+                  </div>
+                </div>
+
+                <div className="flex justify-between items-end pt-4 border-t border-gray-100">
+                  <span className="font-semibold text-gray-900">Total</span>
+                  <div className="text-right">
+                    <div className="text-2xl font-bold text-gray-900">
+                      ${total.toFixed(2)}
+                    </div>
+                    <div className="text-xs text-gray-400">USD, tax incl.</div>
+                  </div>
+                </div>
+
+                <Link to="/checkout" className="block mt-6">
+                  <Button className="w-full py-6 rounded-full bg-black hover:bg-gray-800 text-white text-base font-semibold">
+                    Proceed to Checkout
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                </Link>
+
+                <Link
+                  to="/shop"
+                  className="block text-center mt-4 text-sm text-gray-500 hover:text-gray-900 transition-colors">
+                  ← Continue Shopping
+                </Link>
+
+                <div className="mt-6 pt-5 border-t border-gray-100 flex items-center justify-center gap-2 text-xs text-gray-400">
+                  <span>🔒</span>
+                  <span>Secure checkout · SSL encrypted</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </Container>
     </>
