@@ -195,7 +195,7 @@ const Checkout = () => {
                 <Button
                   type="button"
                   onClick={applyCoupon}
-                  className="h-11 bg-gray-900 px-6 text-white hover:bg-gray-800">
+                  className="h-11 bg-gray-900 px-6 text-white hover:bg-gray-800 cursor-pointer">
                   Apply coupon
                 </Button>
               </div>
@@ -391,7 +391,7 @@ const Checkout = () => {
                 <label className="mt-5 flex items-center gap-2 text-sm text-gray-700">
                   <input
                     type="checkbox"
-                    className="h-4 w-4 accent-gray-900"
+                    className="h-4 w-4 accent-gray-900 cursor-pointer"
                     checked={form.shipToDifferent}
                     onChange={update("shipToDifferent")}
                   />
@@ -441,7 +441,7 @@ const Checkout = () => {
                         <input
                           type="radio"
                           name="shipping"
-                          className="h-4 w-4 accent-gray-900"
+                          className="h-4 w-4 accent-gray-900 cursor-pointer"
                           checked={shipping === opt.id}
                           onChange={() => setShipping(opt.id)}
                         />
@@ -612,7 +612,7 @@ const Checkout = () => {
                   <label className="mt-5 flex items-start gap-2 text-xs text-gray-600">
                     <input
                       type="checkbox"
-                      className="mt-0.5 h-4 w-4 accent-gray-900"
+                      className="mt-0.5 h-4 w-4 accent-gray-900 cursor-pointer"
                       checked={form.terms}
                       onChange={update("terms")}
                       data-error={!!errors.terms}
@@ -641,7 +641,7 @@ const Checkout = () => {
                   <Button
                     type="submit"
                     disabled={submitting}
-                    className="mt-5 h-12 w-full bg-gray-900 text-base font-semibold text-white hover:bg-gray-800">
+                    className="mt-5 h-12 w-full bg-gray-900 text-base font-semibold text-white hover:bg-gray-800 cursor-pointer">
                     {submitting ? (
                       <>
                         <Loader2 className="h-5 w-5 animate-spin" /> Processing…
