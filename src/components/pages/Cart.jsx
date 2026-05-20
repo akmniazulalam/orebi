@@ -127,7 +127,7 @@ const Cart = () => {
                         <div className="col-span-12 md:col-span-6 flex items-center gap-4">
                           <button
                             onClick={() => removeFromCart(item._id || item.id)}
-                            className="w-7 h-7 rounded-full bg-gray-100 hover:bg-red-500 hover:text-white text-gray-500 flex items-center justify-center transition-colors shrink-0"
+                            className="w-7 h-7 rounded-full bg-gray-100 hover:bg-red-500 hover:text-white text-gray-500 flex items-center justify-center transition-colors shrink-0 cursor-pointer"
                             aria-label="Remove item">
                             <ImCross className="w-2.5 h-2.5" />
                           </button>
@@ -229,7 +229,7 @@ const Cart = () => {
                     />
                     <Button
                       onClick={handleCoupon}
-                      className="rounded-xl bg-black hover:bg-gray-800 text-white px-5 shrink-0">
+                      className="rounded-xl bg-black hover:bg-gray-800 text-white px-5 shrink-0 cursor-pointer">
                       Apply
                     </Button>
                   </div>
@@ -239,7 +239,7 @@ const Cart = () => {
               <div className="mt-6 flex justify-end">
                 <Button
                   variant="outline"
-                  className="rounded-full border-gray-300 hover:bg-gray-50">
+                  className="rounded-full border-gray-300 hover:bg-gray-50 cursor-pointer">
                   Update Cart
                 </Button>
               </div>
@@ -289,7 +289,7 @@ const Cart = () => {
                 </div>
 
                 <Link to="/checkout" className="block mt-6">
-                  <Button className="w-full py-6 rounded-full bg-black hover:bg-gray-800 text-white text-base font-semibold">
+                  <Button className="w-full py-6 rounded-full bg-black hover:bg-gray-800 text-white text-base font-semibold cursor-pointer">
                     Proceed to Checkout
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
