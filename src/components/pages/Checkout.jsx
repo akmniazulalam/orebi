@@ -57,19 +57,19 @@ const Checkout = () => {
   const [submitting, setSubmitting] = useState(false);
   const [shipping, setShipping] = useState("standard");
   const update = (k) => (e) => {
-    const v = e?.target?.type === "checkbox" ? e.target.checked : e.target.value;
+    const v =
+      e?.target?.type === "checkbox" ? e.target.checked : e.target.value;
     setForm((f) => ({ ...f, [k]: v }));
     setErrors((er) => ({ ...er, [k]: undefined }));
   };
   // ----- Order summary (mock, matches original "Product Name x 1 / 389.99$") -----
-  const items = [
-    { id: 1, name: "Product Name", qty: 1, price: 389.99 },
-  ];
+  const items = [{ id: 1, name: "Product Name", qty: 1, price: 389.99 }];
   const subtotal = useMemo(
     () => items.reduce((s, i) => s + i.price * i.qty, 0),
-    []
+    [],
   );
-  const shippingCost = shipping === "express" ? 19.99 : subtotal > 200 ? 0 : 9.99;
+  const shippingCost =
+    shipping === "express" ? 19.99 : subtotal > 200 ? 0 : 9.99;
   const discount = couponApplied ? subtotal * 0.1 : 0;
   const tax = (subtotal - discount) * 0.05;
   const total = subtotal - discount + shippingCost + tax;
@@ -83,7 +83,7 @@ const Checkout = () => {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ code: coupon }),
-        }
+        },
       );
       const data = await res.json().catch(() => ({}));
       if (res.ok) {
@@ -138,8 +138,7 @@ const Checkout = () => {
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <Link
               to="/cart"
-              className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900"
-            >
+              className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900">
               <ArrowLeft className="h-4 w-4" /> Back to cart
             </Link>
             <ol className="flex items-center gap-2 text-xs sm:text-sm">
@@ -155,17 +154,15 @@ const Checkout = () => {
                       s.done
                         ? "bg-green-600 text-white"
                         : s.active
-                        ? "bg-gray-900 text-white"
-                        : "bg-gray-200 text-gray-500"
-                    }`}
-                  >
+                          ? "bg-gray-900 text-white"
+                          : "bg-gray-200 text-gray-500"
+                    }`}>
                     {s.done ? <Check className="h-3.5 w-3.5" /> : i + 1}
                   </span>
                   <span
                     className={`${
                       s.active ? "font-semibold text-gray-900" : "text-gray-500"
-                    }`}
-                  >
+                    }`}>
                     {s.label}
                   </span>
                   {i < arr.length - 1 && (
@@ -182,8 +179,7 @@ const Checkout = () => {
             <button
               type="button"
               onClick={() => setShowCoupon((v) => !v)}
-              className="font-semibold text-gray-900 underline-offset-4 hover:underline"
-            >
+              className="font-semibold text-gray-900 underline-offset-4 hover:underline cursor-pointer">
               Click here to enter your code
             </button>
           </div>
@@ -199,8 +195,7 @@ const Checkout = () => {
                 <Button
                   type="button"
                   onClick={applyCoupon}
-                  className="h-11 bg-gray-900 px-6 text-white hover:bg-gray-800"
-                >
+                  className="h-11 bg-gray-900 px-6 text-white hover:bg-gray-800">
                   Apply coupon
                 </Button>
               </div>
@@ -208,8 +203,7 @@ const Checkout = () => {
                 <p
                   className={`mt-2 text-xs ${
                     couponApplied ? "text-green-600" : "text-red-500"
-                  }`}
-                >
+                  }`}>
                   {couponMsg}
                 </p>
               )}
@@ -217,8 +211,7 @@ const Checkout = () => {
           )}
           <form
             onSubmit={handlePlaceOrder}
-            className="grid grid-cols-1 gap-8 lg:grid-cols-3"
-          >
+            className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {/* LEFT: Billing details */}
             <div className="space-y-6 lg:col-span-2">
               <div className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-sm">
@@ -237,7 +230,9 @@ const Checkout = () => {
                       onChange={update("firstName")}
                     />
                     {errors.firstName && (
-                      <p className="mt-1 text-xs text-red-500">{errors.firstName}</p>
+                      <p className="mt-1 text-xs text-red-500">
+                        {errors.firstName}
+                      </p>
                     )}
                   </div>
                   <div>
@@ -251,7 +246,9 @@ const Checkout = () => {
                       onChange={update("lastName")}
                     />
                     {errors.lastName && (
-                      <p className="mt-1 text-xs text-red-500">{errors.lastName}</p>
+                      <p className="mt-1 text-xs text-red-500">
+                        {errors.lastName}
+                      </p>
                     )}
                   </div>
                 </div>
@@ -274,12 +271,10 @@ const Checkout = () => {
                     onValueChange={(v) => {
                       setForm((f) => ({ ...f, country: v }));
                       setErrors((er) => ({ ...er, country: undefined }));
-                    }}
-                  >
+                    }}>
                     <SelectTrigger
                       data-error={!!errors.country}
-                      className={`h-11 ${errors.country ? "border-red-500" : ""}`}
-                    >
+                      className={`h-11 ${errors.country ? "border-red-500" : ""}`}>
                       <SelectValue placeholder="Select a country" />
                     </SelectTrigger>
                     <SelectContent>
@@ -294,7 +289,9 @@ const Checkout = () => {
                     </SelectContent>
                   </Select>
                   {errors.country && (
-                    <p className="mt-1 text-xs text-red-500">{errors.country}</p>
+                    <p className="mt-1 text-xs text-red-500">
+                      {errors.country}
+                    </p>
                   )}
                 </div>
                 <div className="mt-5">
@@ -354,7 +351,9 @@ const Checkout = () => {
                       onChange={update("postcode")}
                     />
                     {errors.postcode && (
-                      <p className="mt-1 text-xs text-red-500">{errors.postcode}</p>
+                      <p className="mt-1 text-xs text-red-500">
+                        {errors.postcode}
+                      </p>
                     )}
                   </div>
                   <div>
@@ -368,7 +367,9 @@ const Checkout = () => {
                       onChange={update("phone")}
                     />
                     {errors.phone && (
-                      <p className="mt-1 text-xs text-red-500">{errors.phone}</p>
+                      <p className="mt-1 text-xs text-red-500">
+                        {errors.phone}
+                      </p>
                     )}
                   </div>
                 </div>
@@ -435,8 +436,7 @@ const Checkout = () => {
                         shipping === opt.id
                           ? "border-gray-900 bg-gray-50"
                           : "border-gray-200 hover:border-gray-300"
-                      }`}
-                    >
+                      }`}>
                       <div className="flex items-center gap-3">
                         <input
                           type="radio"
@@ -466,10 +466,30 @@ const Checkout = () => {
                 </h2>
                 <div className="space-y-3">
                   {[
-                    { id: "bank", title: "Direct Bank Transfer", icon: Banknote, desc: "Pay via Bank; you can pay with your credit card if you don’t have a Bank account." },
-                    { id: "bank2", title: "Bank 2", icon: Banknote, desc: "Alternate bank transfer." },
-                    { id: "card", title: "Credit / Debit Card", icon: CreditCard, desc: "Visa, Mastercard, Amex, Discover." },
-                    { id: "cod", title: "Cash on Delivery", icon: Wallet, desc: "Pay when your order is delivered." },
+                    {
+                      id: "bank",
+                      title: "Direct Bank Transfer",
+                      icon: Banknote,
+                      desc: "Pay via Bank; you can pay with your credit card if you don’t have a Bank account.",
+                    },
+                    {
+                      id: "bank2",
+                      title: "Bank 2",
+                      icon: Banknote,
+                      desc: "Alternate bank transfer.",
+                    },
+                    {
+                      id: "card",
+                      title: "Credit / Debit Card",
+                      icon: CreditCard,
+                      desc: "Visa, Mastercard, Amex, Discover.",
+                    },
+                    {
+                      id: "cod",
+                      title: "Cash on Delivery",
+                      icon: Wallet,
+                      desc: "Pay when your order is delivered.",
+                    },
                   ].map((m) => {
                     const Icon = m.icon;
                     const active = selectedBank === m.id;
@@ -480,8 +500,7 @@ const Checkout = () => {
                           active
                             ? "border-gray-900 bg-gray-50"
                             : "border-gray-200 hover:border-gray-300"
-                        }`}
-                      >
+                        }`}>
                         <label className="flex cursor-pointer items-center gap-3 p-4">
                           <input
                             type="radio"
@@ -490,7 +509,10 @@ const Checkout = () => {
                             checked={active}
                             onChange={(e) => {
                               setSelectedBank(e.target.value);
-                              setErrors((er) => ({ ...er, payment: undefined }));
+                              setErrors((er) => ({
+                                ...er,
+                                payment: undefined,
+                              }));
                             }}
                             className="h-4 w-4 accent-gray-900"
                           />
@@ -504,10 +526,22 @@ const Checkout = () => {
                             {m.desc}
                             {m.id === "card" && (
                               <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                                <input placeholder="Card number" className={inputCls("card")} />
-                                <input placeholder="Name on card" className={inputCls("card")} />
-                                <input placeholder="MM / YY" className={inputCls("card")} />
-                                <input placeholder="CVC" className={inputCls("card")} />
+                                <input
+                                  placeholder="Card number"
+                                  className={inputCls("card")}
+                                />
+                                <input
+                                  placeholder="Name on card"
+                                  className={inputCls("card")}
+                                />
+                                <input
+                                  placeholder="MM / YY"
+                                  className={inputCls("card")}
+                                />
+                                <input
+                                  placeholder="CVC"
+                                  className={inputCls("card")}
+                                />
                               </div>
                             )}
                           </div>
@@ -536,10 +570,10 @@ const Checkout = () => {
                     {items.map((it) => (
                       <div
                         key={it.id}
-                        className="flex items-center justify-between py-3 text-sm"
-                      >
+                        className="flex items-center justify-between py-3 text-sm">
                         <span className="text-gray-800">
-                          {it.name} <span className="text-gray-400">x {it.qty}</span>
+                          {it.name}{" "}
+                          <span className="text-gray-400">x {it.qty}</span>
                         </span>
                         <span className="font-medium text-gray-900">
                           ${(it.price * it.qty).toFixed(2)}
@@ -559,7 +593,9 @@ const Checkout = () => {
                     <div className="flex items-center justify-between py-3 text-sm text-gray-600">
                       <span>Shipping</span>
                       <span>
-                        {shippingCost === 0 ? "Free" : `$${shippingCost.toFixed(2)}`}
+                        {shippingCost === 0
+                          ? "Free"
+                          : `$${shippingCost.toFixed(2)}`}
                       </span>
                     </div>
                     <div className="flex items-center justify-between py-3 text-sm text-gray-600">
@@ -582,14 +618,18 @@ const Checkout = () => {
                       data-error={!!errors.terms}
                     />
                     <span>
-                      Your personal data will be used to process your order, support
-                      your experience throughout this website, and for other purposes
-                      described in our{" "}
-                      <Link to="/privacy" className="font-semibold text-gray-900 underline">
+                      Your personal data will be used to process your order,
+                      support your experience throughout this website, and for
+                      other purposes described in our{" "}
+                      <Link
+                        to="/privacy"
+                        className="font-semibold text-gray-900 underline">
                         privacy policy
                       </Link>
                       . I agree to the{" "}
-                      <Link to="/terms" className="font-semibold text-gray-900 underline">
+                      <Link
+                        to="/terms"
+                        className="font-semibold text-gray-900 underline">
                         terms & conditions
                       </Link>
                       .
@@ -601,8 +641,7 @@ const Checkout = () => {
                   <Button
                     type="submit"
                     disabled={submitting}
-                    className="mt-5 h-12 w-full bg-gray-900 text-base font-semibold text-white hover:bg-gray-800"
-                  >
+                    className="mt-5 h-12 w-full bg-gray-900 text-base font-semibold text-white hover:bg-gray-800">
                     {submitting ? (
                       <>
                         <Loader2 className="h-5 w-5 animate-spin" /> Processing…
@@ -627,8 +666,7 @@ const Checkout = () => {
                     {["VISA", "MC", "AMEX", "PayPal", "Apple Pay"].map((b) => (
                       <span
                         key={b}
-                        className="rounded-md border border-gray-200 bg-gray-50 px-3 py-1.5 text-[11px] font-semibold text-gray-700"
-                      >
+                        className="rounded-md border border-gray-200 bg-gray-50 px-3 py-1.5 text-[11px] font-semibold text-gray-700">
                         {b}
                       </span>
                     ))}
@@ -638,7 +676,8 @@ const Checkout = () => {
                       <Truck className="mx-auto mb-1 h-4 w-4" /> Free returns
                     </div>
                     <div className="rounded-lg bg-gray-50 p-2">
-                      <ShieldCheck className="mx-auto mb-1 h-4 w-4" /> Buyer protection
+                      <ShieldCheck className="mx-auto mb-1 h-4 w-4" /> Buyer
+                      protection
                     </div>
                     <div className="rounded-lg bg-gray-50 p-2">
                       <Lock className="mx-auto mb-1 h-4 w-4" /> 256-bit SSL
