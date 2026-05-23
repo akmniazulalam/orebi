@@ -162,16 +162,16 @@ const Header = () => {
             </div>
             <Flex>
               {/* Dark Mode */}
-        <Button
-          variant="ghost"
-          onClick={toggleDarkMode}
-          className="h-9 w-9 cursor-pointer">
-          {darkMode ? (
-            <Sun className="h-5 w-5 text-yellow-500" />
-          ) : (
-            <Moon className="h-5 w-5 text-muted-foreground" />
-          )}
-        </Button>
+              <Button
+                variant="ghost"
+                onClick={toggleDarkMode}
+                className="h-9 w-9 cursor-pointer">
+                {darkMode ? (
+                  <Sun className="h-5 w-5 text-yellow-500" />
+                ) : (
+                  <Moon className="h-5 w-5 text-muted-foreground" />
+                )}
+              </Button>
               <div className="relative" ref={toggleRef}>
                 <div
                   className="flex items-center gap-x-1 cursor-pointer"

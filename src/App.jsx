@@ -17,6 +17,15 @@ import Signup from "./components/pages/Signup";
 import Login from "./components/pages/Login";
 
 function App() {
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+
+    if (savedTheme === "dark") {
+      document.documentElement.classList.add("dark"); //document.documentElement = <html> tag
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
   return (
     <>
     <ScrollToTop/>
