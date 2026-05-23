@@ -16,6 +16,27 @@ import CartDropdowns from "../CartDropdowns";
 import useCart from "@/store/cart";
 
 const Header = () => {
+  const [darkMode, setDarkMode] = useState(false);
+  // Dark mode sync
+  useEffect(() => {
+    const isDark = document.documentElement.classList.contains("dark");
+    setDarkMode(isDark);
+  }, []);
+  // Dark toggle
+  const toggleDarkMode = () => {
+    setDarkMode((prev) => {
+      const newMode = !prev;
+      if (newMode) {
+        document.documentElement.classList.add("dark");
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+        localStorage.setItem("theme", "light");
+      }
+      return newMode;
+    });
+  };
+
   const items = useCart((state) => state.items);
 
   const [showCart, setShowCart] = useState(false);
@@ -35,16 +56,19 @@ const Header = () => {
     setShowButton((p) => !p);
   };
 
-  useEffect(() => {  // event listener add ba remove korar kaaj take side effect bole. ar side effect er kaaj korte hole useEffect lage. etar moddhe na dile barbar event listener add ba remove hote thakbe. function multiple times run hobe. memory leak hobe. kintu ekhane useEffect e dependency array ta empty rakhay ei component ba page ta mount ba render hole ekbar e event listener add hobe. tai useEffect er moddhe rakha.
+  useEffect(() => {
+    // event listener add ba remove korar kaaj take side effect bole. ar side effect er kaaj korte hole useEffect lage. etar moddhe na dile barbar event listener add ba remove hote thakbe. function multiple times run hobe. memory leak hobe. kintu ekhane useEffect e dependency array ta empty rakhay ei component ba page ta mount ba render hole ekbar e event listener add hobe. tai useEffect er moddhe rakha.
     const clickOutside = (event) => {
-      if (cartRef.current && !cartRef.current.contains(event.target)) { // ekhane check kora hocche first e je ei useRef ta te ki kono html element ba tag ache kina. jodi thake tahole ei useRef er object property current er moddhe thakbe oi tag ta. ar ekhane event.target mane hocche jei tag e useRef ta ache sei tag ta te action hocche kina. cartRef.current.contains diye oi useRef er tag ta te action hocche kina seta dekhche. ekhane action mane hocche mousedown ta jeta pore use kora hoyeche function call korar somoy. to ekhane duita check hocche, prothome dekhche je useRef ta tag e ache kina abong mousedown jei action ta hocche seta ei useRef er baire hocche kina. karon ekhane ! ei sign use kora hoyeche jeta diye bujhano hocche je mousedown action ta ei ref er baire kothao hocche. jodi baire kothao hoy tahole showcart false kore dibe mane cart er dropdown ta off hoye jabe.
+      if (cartRef.current && !cartRef.current.contains(event.target)) {
+        // ekhane check kora hocche first e je ei useRef ta te ki kono html element ba tag ache kina. jodi thake tahole ei useRef er object property current er moddhe thakbe oi tag ta. ar ekhane event.target mane hocche jei tag e useRef ta ache sei tag ta te action hocche kina. cartRef.current.contains diye oi useRef er tag ta te action hocche kina seta dekhche. ekhane action mane hocche mousedown ta jeta pore use kora hoyeche function call korar somoy. to ekhane duita check hocche, prothome dekhche je useRef ta tag e ache kina abong mousedown jei action ta hocche seta ei useRef er baire hocche kina. karon ekhane ! ei sign use kora hoyeche jeta diye bujhano hocche je mousedown action ta ei ref er baire kothao hocche. jodi baire kothao hoy tahole showcart false kore dibe mane cart er dropdown ta off hoye jabe.
         setShowCart(false);
       }
     };
 
     document.addEventListener("mousedown", clickOutside); // ekhane mousedown hocche onClick er cheyeo druto kaaj kore. click korle khub fast ei function ta run hobe. jodi document er jekono jaygay jodi mousedown hoy tahole ei function ta call hobe.
 
-    return () => { // eta hocche cleanup function. return diye arrow function use kore likhte hoy. eta tokhon run hobe jokhon ei component unmount hobe mane ei page ta close hoye jabe. onno page e chole jabe tokhon. page change hole. normally ekbar jodi event listener add hoye jay tahole setake browser permanently add kore rakhe. jodi onno kono page eo chole jawa hoy tao ei event ta add thake. page change hole ei component ta unmount hoye jay. tokhon ekhane joto state true chilo segulo false hoye jay. tai dropdown ta jodi open o thake tao off hoye jay onno page e gele. kintu event listener je add kora holo seta tokhon o royei jay. tai onno page e giyeo jodi kono jaygay click kora hoy tokhon event add hote thake. jotobar click kora hobe totobar add hote thakbe. ei function ta cholte thakbe. memory usage barbe, performance issue korte pare, lag korte pare, react warning dite pare. tai manually ei event take remove kore dite hoy. jokhon kono event listener add kora hobe setake erokom return diye arrow function e remove o kore dite hoy jetake cleanup function bole.
+    return () => {
+      // eta hocche cleanup function. return diye arrow function use kore likhte hoy. eta tokhon run hobe jokhon ei component unmount hobe mane ei page ta close hoye jabe. onno page e chole jabe tokhon. page change hole. normally ekbar jodi event listener add hoye jay tahole setake browser permanently add kore rakhe. jodi onno kono page eo chole jawa hoy tao ei event ta add thake. page change hole ei component ta unmount hoye jay. tokhon ekhane joto state true chilo segulo false hoye jay. tai dropdown ta jodi open o thake tao off hoye jay onno page e gele. kintu event listener je add kora holo seta tokhon o royei jay. tai onno page e giyeo jodi kono jaygay click kora hoy tokhon event add hote thake. jotobar click kora hobe totobar add hote thakbe. ei function ta cholte thakbe. memory usage barbe, performance issue korte pare, lag korte pare, react warning dite pare. tai manually ei event take remove kore dite hoy. jokhon kono event listener add kora hobe setake erokom return diye arrow function e remove o kore dite hoy jetake cleanup function bole.
       document.removeEventListener("mousedown", clickOutside);
     };
   }, []);
