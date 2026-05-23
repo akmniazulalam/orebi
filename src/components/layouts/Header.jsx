@@ -99,7 +99,7 @@ const Header = () => {
         <Container>
           <Flex>
             <Link to={"/"}>
-              <Image src={Logo} alt={Logo} />
+              <Image src={Logo} alt={Logo} className={"dark:invert"} />
             </Link>
             <div className="m-auto">
               <ul className="flex gap-x-11">

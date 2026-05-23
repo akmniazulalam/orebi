@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <section className="bg-bHeaderBg py-12 mt-[100px]">
+      <section className="bg-bHeaderBg py-12 mt-25">
         <Container>
           <div className="flex justify-between">
             <div className="w-[58%]">
@@ -144,7 +144,7 @@ const Footer = () => {
             </div>
             <div className="flex flex-col justify-between">
               <Link to={"/"}>
-                <Image src={Logo} alt={Logo} className={"w-[120px]"} />
+                <Image src={Logo} alt={Logo} className={"w-30 dark:invert"} />
               </Link>
               <p className="font-dmSans text-footerTexts text-[14px]">
                 2020 Orebi Minimal eCommerce Figma Template by Adveits
