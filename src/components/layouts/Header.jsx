@@ -14,6 +14,8 @@ import { useEffect, useRef, useState } from "react";
 import ToggleButtons from "../ToggleButtons";
 import CartDropdowns from "../CartDropdowns";
 import useCart from "@/store/cart";
+import { Button } from "@/components/ui/button";
+import { Moon, Sun } from "lucide-react";
 
 const Header = () => {
   const [darkMode, setDarkMode] = useState(false);
@@ -159,6 +161,17 @@ const Header = () => {
               </span>
             </div>
             <Flex>
+              {/* Dark Mode */}
+        <Button
+          variant="ghost"
+          onClick={toggleDarkMode}
+          className="h-9 w-9 cursor-pointer">
+          {darkMode ? (
+            <Sun className="h-5 w-5 text-yellow-500" />
+          ) : (
+            <Moon className="h-5 w-5 text-muted-foreground" />
+          )}
+        </Button>
               <div className="relative" ref={toggleRef}>
                 <div
                   className="flex items-center gap-x-1 cursor-pointer"
