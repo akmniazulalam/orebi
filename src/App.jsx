@@ -15,6 +15,7 @@ import ScrollToTop from "./components/ScrollToTop";
 import ProductDetails from "./components/pages/ProductDetails";
 import Signup from "./components/pages/Signup";
 import Login from "./components/pages/Login";
+import { useEffect } from "react";
 
 function App() {
   useEffect(() => {
