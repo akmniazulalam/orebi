@@ -15,7 +15,7 @@ const CategoriesMenu = ({ isOpen }) => {
     <>
       {isOpen && (
         <div
-          className={`w-65.75 z-10 absolute left-0 transition-all duration-300 bg-menuHeading animate-slide`}>
+          className={`w-65.75 z-10 absolute left-0 transition-all duration-300 bg-menuHeading dark:bg-[#262626] animate-slide`}>
           {category.map((item) => (
             <div
               key={item}

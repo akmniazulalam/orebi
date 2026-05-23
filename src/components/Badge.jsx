@@ -1,7 +1,7 @@
 import React from 'react'
 
 const Badge = ({className, badgeT}) => {
-  let bgClass = "bg-menuHeading text-white"; // default
+  let bgClass = "bg-menuHeading text-white dark:bg-[#262626]"; // default
 
   if (badgeT.includes("%")) {
     bgClass = "bg-[#778899] text-white";

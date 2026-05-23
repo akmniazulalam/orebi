@@ -118,28 +118,28 @@ const ShopProducts = () => {
       <Flex className={"justify-between"}>
         <Flex className={"gap-x-4"}>
           <Link to={"/shop"}>
-            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-white bg-menuHeading">
+            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-white dark:text-[#262626] bg-menuHeading">
               1
             </div>
           </Link>
           <Link to={"/shop"}>
-            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-header border border-infoBg hover:bg-menuHeading hover:text-white transition-all duration-300">
+            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-header border border-infoBg hover:bg-menuHeading hover:text-white dark:hover:text-[#262626] transition-all duration-300">
               2
             </div>
           </Link>
           <Link to={"/shop"}>
-            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-header border border-infoBg hover:bg-menuHeading hover:text-white transition-all duration-300">
+            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-header border border-infoBg hover:bg-menuHeading hover:text-white dark:hover:text-[#262626] transition-all duration-300">
               3
             </div>
           </Link>
           <Link to={"/shop"}>
-            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-header border border-infoBg hover:bg-menuHeading hover:text-white transition-all duration-300">
+            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-header border border-infoBg hover:bg-menuHeading hover:text-white dark:hover:text-[#262626] transition-all duration-300">
               4
             </div>
           </Link>
           <p className="font-dmSans text-sm text-header px-2">...</p>
           <Link to={"/shop"}>
-            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-header border border-infoBg hover:bg-menuHeading hover:text-white transition-all duration-300">
+            <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-header border border-infoBg hover:bg-menuHeading hover:text-white dark:hover:text-[#262626] transition-all duration-300">
               10
             </div>
           </Link>

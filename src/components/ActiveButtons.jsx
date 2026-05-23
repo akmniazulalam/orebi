@@ -12,24 +12,24 @@ const ActiveButtons = ({ className, product }) => {
       className={`py-5 px-4.5 bg-white opacity-0 ${className}`}
       onClick={(e) => e.preventDefault()}>
       <Flex className={"justify-end"}>
-        <button className="font-dmSans text-base text-header hover:text-menuHeading transition-all duration-300 hover:font-bold cursor-pointer">
+        <button className="font-dmSans text-base text-header dark:hover:text-[#262626] hover:text-menuHeading transition-all duration-300 hover:font-bold cursor-pointer">
           Add to Wish List
         </button>
-        <FaHeart className="text-menuHeading ml-3" />
+        <FaHeart className="text-menuHeading ml-3 dark:text-[#262626]" />
       </Flex>
       <Flex className={"pt-4 justify-end"}>
-        <button className="font-dmSans text-base text-header pr-3 hover:text-menuHeading transition-all duration-300 hover:font-bold cursor-pointer">
+        <button className="font-dmSans text-base text-header pr-3 dark:hover:text-[#262626] hover:text-menuHeading transition-all duration-300 hover:font-bold cursor-pointer">
           Compare
         </button>
         <CompareIcon />
       </Flex>
       <Flex className={"pt-4 justify-end"}>
         <button
-          className="font-dmSans text-base text-header hover:text-menuHeading transition-all duration-300 hover:font-bold cursor-pointer"
+          className="font-dmSans text-base text-header dark:hover:text-[#262626] hover:text-menuHeading transition-all duration-300 hover:font-bold cursor-pointer"
           onClick={() => addToCart(product)}>
           Add to Cart
         </button>
-        <FaShoppingCart className="text-menuHeading ml-3" />
+        <FaShoppingCart className="text-menuHeading ml-3 dark:text-[#262626]" />
       </Flex>
     </div>
   );

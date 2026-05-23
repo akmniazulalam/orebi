@@ -154,7 +154,7 @@ const Header = () => {
               <input
                 type="search"
                 placeholder="Search Products"
-                className="placeholder:text-[#C4C4C4] placeholder:font-dmSans placeholder:text-[14px] p-5 bg-white w-150 focus:outline-0"
+                className="placeholder:text-[#C4C4C4] placeholder:font-dmSans placeholder:text-[14px] p-5 bg-white dark:bg-[#1F1F1F] w-150 focus:outline-0"
               />
               <span className="absolute top-1/2 right-4 -translate-y-1/2">
                 <FaSearch />
@@ -169,7 +169,7 @@ const Header = () => {
                 {darkMode ? (
                   <Sun className="h-5 w-5 text-yellow-500" />
                 ) : (
-                  <Moon className="h-5 w-5 text-muted-foreground" />
+                  <Moon className="h-5 w-5 text-menuHeading" />
                 )}
               </Button>
               <div className="relative" ref={toggleRef}>
