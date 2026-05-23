@@ -165,7 +165,7 @@ const Header = () => {
               <Button
                 variant="ghost"
                 onClick={toggleDarkMode}
-                className="h-9 w-9 cursor-pointer">
+                className="h-9 w-9 cursor-pointer mr-5">
                 {darkMode ? (
                   <Sun className="h-5 w-5 text-yellow-500" />
                 ) : (
