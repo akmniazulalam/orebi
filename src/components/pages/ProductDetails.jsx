@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Container from "../Container";
 import Image from "../Image";
-import cup from "/src/assets/cup.png";
+import { ShoppingCart, Check, Shirt } from "lucide-react";
+import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import Flex from "../Flex";
 import Intro from "../Intro";
 import Heading from "../Heading";
@@ -20,12 +21,109 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 import useCart from "@/store/cart";
 
-
 const ProductDetails = () => {
   const { id } = useParams();
-  const addToCart = useCart((state) => state.addToCart)
+  const addToCart = useCart((state) => state.addToCart);
   const [quantity, setQuantity] = useState(1);
   const [singleProduct, setSingleProduct] = useState(null);
+
+  const [animating, setAnimating] = useState(false);
+  const [showText, setShowText] = useState(true);
+  const [showShirt, setShowShirt] = useState(false);
+  const [showTick, setShowTick] = useState(false);
+  const [moveCart, setMoveCart] = useState(false);
+
+  const cartControls = useAnimation();
+  const shirtControls = useAnimation();
+
+  const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  const handleClick = async () => {
+    addToCart(singleProduct);
+    if (animating) return;
+
+    setAnimating(true);
+
+    // HIDE TEXT
+    setShowText(false);
+
+    // CART CENTER
+    await cartControls.start({
+      x: 64,
+      transition: {
+        duration: 0.8,
+        ease: "easeInOut",
+      },
+    });
+
+    await sleep(300);
+
+    // SHOW SHIRT
+    setShowShirt(true);
+
+    await sleep(300);
+
+    // SHIRT UP
+    await shirtControls.start({
+      y: -50,
+      scale: 1.35,
+      rotate: 0,
+      transition: {
+        duration: 0.7,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    });
+
+    await sleep(150);
+
+    // SHIRT RETURN
+    await shirtControls.start({
+      y: 0,
+      scale: 1,
+      rotate: 0,
+      transition: {
+        duration: 0.7,
+        ease: "easeInOut",
+      },
+    });
+
+    await sleep(300);
+
+    // HIDE SHIRT
+    setShowShirt(false);
+
+    // SHOW TICK
+    setShowTick(true);
+
+    await sleep(700);
+
+    // MOVE CART
+    setMoveCart(true);
+
+    await cartControls.start({
+      x: 155,
+      transition: {
+        duration: 1.2,
+        ease: "easeInOut",
+      },
+    });
+
+    // RESET
+    setTimeout(async () => {
+      setShowText(true);
+      setShowTick(false);
+      setMoveCart(false);
+
+      await cartControls.start({
+        x: 0,
+        transition: {
+          duration: 0,
+        },
+      });
+
+      setAnimating(false);
+    }, 500);
+  };
 
   useEffect(() => {
     axios
@@ -106,7 +204,11 @@ const ProductDetails = () => {
             />
             <Flex className={"gap-x-3 items-center"}>
               {singleProduct?.variants.map((item, index) => (
-                <FaCircle key={index} style={{color: item.color}} className="w-5 h-5 cursor-pointer hover:scale-135 transition-all duration-300 object-cover" />
+                <FaCircle
+                  key={index}
+                  style={{ color: item.color }}
+                  className="w-5 h-5 cursor-pointer hover:scale-135 transition-all duration-300 object-cover"
+                />
               ))}
             </Flex>
           </Flex>
@@ -164,9 +266,102 @@ const ProductDetails = () => {
               Add to Wish List
             </button>
             <button
-              className="py-3 px-10 text-menuHeading dark:hover:text-[#262626] text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading"
-              onClick={() => addToCart(singleProduct)}>
-              Add to Cart
+              onClick={handleClick}
+              className="relative overflow-visible py-3 px-10 w-[220px] h-[52px] text-menuHeading dark:hover:text-[#262626] group text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading flex items-center justify-center">
+              {/* TEXT */}
+              {showText && (
+                <motion.span className="ml-8 transition-colors duration-300 group-hover:text-[#262626]">
+                  Add to Cart
+                </motion.span>
+              )}
+
+              {/* CART */}
+              <motion.div animate={cartControls} className="absolute left-9">
+                <div className="relative w-[36px] h-[28px]">
+                  {/* MAIN CART */}
+                  <motion.div
+                    animate={
+                      moveCart
+                        ? {
+                            x: [0, 2, 0],
+                          }
+                        : {}
+                    }
+                    transition={{
+                      repeat: moveCart ? Infinity : 0,
+                      duration: 0.2,
+                    }}>
+                    <ShoppingCart
+                      size={28}
+                      className="text-menuHeading transition-colors duration-300 group-hover:text-[#262626]"
+                      strokeWidth={2.2}
+                    />
+                  </motion.div>
+
+                  {/* SHIRT */}
+                  {showShirt && (
+                    <motion.div
+                      initial={{
+                        y: 0,
+                        scale: 1,
+                        rotate: 0,
+                        opacity: 1,
+                      }}
+                      animate={shirtControls}
+                      className="absolute left-[10px] top-[8px] z-50">
+                      <Shirt
+                        size={18}
+                        className="text-menuHeading group-hover:text-black"
+                        strokeWidth={2.5}
+                      />
+                    </motion.div>
+                  )}
+
+                  {/* SMALL CLEAR TICK */}
+                  {showTick && (
+                    <motion.div
+                      initial={{
+                        scale: 0,
+                        opacity: 0,
+                      }}
+                      animate={{
+                        scale: 1,
+                        opacity: 1,
+                      }}
+                      transition={{
+                        duration: 0.35,
+                      }}
+                      className="absolute left-[12px] top-[8px] z-20">
+                      <Check size={11} className="text-green-400 stroke-[4]" />
+                    </motion.div>
+                  )}
+
+                  {/* WHEELS */}
+                  {moveCart && (
+                    <>
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{
+                          repeat: Infinity,
+                          duration: 0.25,
+                          ease: "linear",
+                        }}
+                        className="absolute bottom-[0px] left-[5px] w-[6px] h-[6px] border border-white rounded-full"
+                      />
+
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{
+                          repeat: Infinity,
+                          duration: 0.25,
+                          ease: "linear",
+                        }}
+                        className="absolute bottom-[0px] right-[4px] w-[6px] h-[6px] border border-white rounded-full"
+                      />
+                    </>
+                  )}
+                </div>
+              </motion.div>
             </button>
           </Flex>
           <hr className="text-[#d8d8d8]" />
