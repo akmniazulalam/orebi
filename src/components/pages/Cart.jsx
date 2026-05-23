@@ -93,10 +93,10 @@ const Cart = () => {
       <Container>
         <div className="py-10 px-4 lg:px-0">
           <div className="mb-8">
-            <h1 className="text-3xl lg:text-4xl font-bold text-gray-900">
+            <h1 className="text-3xl lg:text-4xl font-bold text-menuHeading">
               Shopping Cart
             </h1>
-            <p className="text-gray-500 mt-1">
+            <p className="text-header mt-1">
               {items.length} {items.length === 1 ? "item" : "items"} in your
               cart
             </p>
@@ -164,20 +164,20 @@ const Cart = () => {
                               onClick={() =>
                                 decreaseQuantity(item._id || item.id)
                               }
-                              className="w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors"
+                              className="w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer"
                               aria-label="Decrease quantity">
-                              <Minus className="w-3.5 h-3.5" />
+                              <Minus className="w-3.5 h-3.5 dark:text-[#262626]" />
                             </button>
-                            <span className="w-10 text-center font-semibold text-sm">
+                            <span className="w-10 text-center font-semibold text-sm dark:text-[#262626]">
                               {item.quantity}
                             </span>
                             <button
                               onClick={() =>
                                 increaseQuantity(item._id || item.id)
                               }
-                              className="w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors"
+                              className="w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer"
                               aria-label="Increase quantity">
-                              <Plus className="w-3.5 h-3.5" />
+                              <Plus className="w-3.5 h-3.5 dark:text-[#262626]" />
                             </button>
                           </div>
                         </div>

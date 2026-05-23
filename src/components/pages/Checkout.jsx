@@ -132,7 +132,7 @@ const Checkout = () => {
   return (
     <>
       <Intro text={"Checkout"} pText={"Checkout"}/>
-      <section className="bg-gray-50 py-10">
+      <section className="bg-background py-10">
         <Container>
           {/* Breadcrumb / Steps */}
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
@@ -161,7 +161,7 @@ const Checkout = () => {
                   </span>
                   <span
                     className={`${
-                      s.active ? "font-semibold text-gray-900" : "text-gray-500"
+                      s.active ? "font-semibold text-menuHeading" : "text-gray-500"
                     }`}>
                     {s.label}
                   </span>

@@ -160,11 +160,11 @@ const ProductDetails = () => {
           </Flex>
           <hr className="text-[#d8d8d8]" />
           <Flex className={"my-8 items-center gap-x-4"}>
-            <button className="py-3 px-10 text-menuHeading text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading">
+            <button className="py-3 px-10 text-menuHeading dark:hover:text-[#262626] text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading">
               Add to Wish List
             </button>
             <button
-              className="py-3 px-10 text-menuHeading text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading"
+              className="py-3 px-10 text-menuHeading dark:hover:text-[#262626] text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading"
               onClick={() => addToCart(singleProduct)}>
               Add to Cart
             </button>
