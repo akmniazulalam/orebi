@@ -35,7 +35,7 @@ const ProductDetails = () => {
   const [resetting, setResetting] = useState(false);
   const [showPortal, setShowPortal] = useState(false);
   const [shirtReturn, setShirtReturn] = useState(false);
-
+  const [fillColor, setFillColor] = useState(false)
   const cartControls = useAnimation();
 
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -45,14 +45,13 @@ const ProductDetails = () => {
 
     addToCart(singleProduct);
 
-    setAnimating(true);
-
     // HIDE TEXT
     setShowText(false);
+    setAnimating(true);
 
     // MOVE CART TO CENTER
     await cartControls.start({
-      x: 64,
+      x: 56,
       transition: {
         duration: 0.7,
         ease: [0.22, 1, 0.36, 1],
@@ -83,6 +82,8 @@ const ProductDetails = () => {
 
     await sleep(650);
 
+    setFillColor(true)
+
     // HIDE SHIRT
     setShowShirt(false);
     setShirtReturn(false);
@@ -108,27 +109,30 @@ const ProductDetails = () => {
     // START RESET
     setMoveCart(false);
     setShowTick(false);
-
+    setFillColor(false)
     setResetting(true);
 
     cartControls.set({
       x: -64,
     });
 
-    setShowText(true);
-
     setTimeout(async () => {
-  await cartControls.start({
-    x: 0,
-    transition: {
-      duration: 0.7,
-      ease: [0.22, 1, 0.36, 1],
-    },
-  });
+      // text first invisible obosthay left e ready thakbe
+      setShowText(true);
 
-  setResetting(false);
-  setAnimating(false);
-}, 50);
+      await Promise.all([
+        cartControls.start({
+          x: 0,
+          transition: {
+            duration: 0.7,
+            ease: [0.22, 1, 0.36, 1],
+          },
+        }),
+      ]);
+
+      setResetting(false);
+      setAnimating(false);
+    }, 50);
   };
 
   useEffect(() => {
@@ -275,27 +279,42 @@ const ProductDetails = () => {
               onClick={handleClick}
               className={`relative ${moveCart ? "overflow-hidden" : resetting ? "overflow-hidden" : "overflow-visible"} py-3 px-10 w-[220px] h-[52px] text-menuHeading dark:hover:text-[#262626] group text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading flex items-center justify-center`}>
               {/* TEXT */}
-              {showText && (
-                <motion.span
-                  initial={false}
-                  animate={
-                    showText
+
+              <motion.span
+                initial={false}
+                animate={
+                  !showText
+                    ? {
+                        opacity: 0,
+                        x: -30,
+                        transition: {
+                          opacity: {
+                            duration: 0.15,
+                          },
+                          x: {
+                            delay: 0.15,
+                            duration: 0,
+                          },
+                        },
+                      }
+                    : resetting
                       ? {
-                          opacity: 1,
-                          x: resetting ? [-20, 0] : 0,
+                          opacity: [0, 1],
+                          x: [-60, 0],
                         }
                       : {
-                          opacity: 0,
-                          x: -10,
+                          opacity: 1,
+                          x: 0,
                         }
-                  }
-                  transition={{
-                    duration: 2,
-                  }}
-                  className="ml-8 transition-colors duration-300 group-hover:text-[#262626]">
-                  Add to Cart
-                </motion.span>
-              )}
+                }
+                transition={{
+                  duration: resetting ? 1 : 0.4,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="ml-8 transition-colors duration-300 dark:group-hover:text-[#262626]">
+                Add to Cart
+              </motion.span>
+
               {/* ELASTIC BORDER BUMP */}
               <AnimatePresence>
                 {showPortal && (
@@ -331,8 +350,8 @@ const ProductDetails = () => {
                         preserveAspectRatio="none">
                         <path
                           d="M 0 96 L 0 90 C 80 90, 170 75, 250 20 C 330 75, 420 90, 500 90 L 500 96 Z"
-                          fill="white"
-                          className=""
+                          fill="menuHeading"
+                          className="group-hover:fill-menuHeading"
                         />
                       </svg>
                     </div>
@@ -347,7 +366,7 @@ const ProductDetails = () => {
                     initial={{
                       opacity: 0,
                       x: "-50%",
-                      y: 10,
+                      y: 8,
                       scale: 0.5,
                       rotate: -25,
                     }}
@@ -356,7 +375,7 @@ const ProductDetails = () => {
                         ? {
                             opacity: 1,
                             x: -6,
-                            y: 16,
+                            y: 8,
                             scale: 0.55,
                             rotate: 0,
                           }
@@ -372,7 +391,7 @@ const ProductDetails = () => {
                       duration: 0.7,
                       ease: [0.22, 1, 0.36, 1],
                     }}
-                    className="absolute left-1/2 top-[2px] z-50 pointer-events-none">
+                    className="absolute left-[47%] top-[2px] z-50 pointer-events-none">
                     <FaTshirt
                       size={24}
                       className="text-menuHeading dark:text-white group-hover:text-black drop-shadow-xl"
@@ -388,34 +407,29 @@ const ProductDetails = () => {
                 <motion.div
                   className="relative w-[36px] h-[28px]"
                   animate={
-  resetting
-    ? {
-        x: [-80, 0],
-        opacity: [0, 1],
-      }
-    : {
-        x: 0,
-        opacity: 1,
-        rotate: moveCart ? -12 : 0,
-        y: moveCart ? -2 : 0,
-      }
-}
+                    resetting
+                      ? {
+                          x: [-80, 0],
+                          opacity: [0, 1],
+                        }
+                      : {
+                          x: 0,
+                          opacity: 1,
+                          rotate: moveCart ? -12 : 0,
+                          y: moveCart ? -2 : 0,
+                        }
+                  }
                   transition={{
-  duration: resetting ? 0.7 : 0.4,
-  ease: [0.22, 1, 0.36, 1],
-}}
+                    duration: resetting ? 1 : 0.4,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
                   style={{
                     transformOrigin: "8px 22px",
                   }}>
                   {/* MAIN CART */}
                   <ShoppingCart
                     size={28}
-                    className="
-        text-menuHeading
-        transition-colors
-        duration-300
-        group-hover:text-[#262626]
-      "
+                    className={`text-menuHeading ${fillColor ? "fill-white" : "fill-none"} ${fillColor ? "group-hover:fill-[#262626]" : "fill-none"} transition-colors duration-300 group-hover:text-white dark:group-hover:text-[#262626]`}
                     strokeWidth={2.2}
                   />
 
@@ -435,7 +449,7 @@ const ProductDetails = () => {
                       }}
                       className="
           absolute
-          left-[12px]
+          left-[10px]
           top-[8px]
           z-20
         ">
