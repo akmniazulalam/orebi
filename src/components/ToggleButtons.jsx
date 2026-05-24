@@ -8,7 +8,7 @@ const ToggleButtons = ({isOpen}) => {
       <button className="w-50 bg-similarBlack font-dmSans font-bold text-sm text-white text-center py-4 px-14 cursor-pointer">
         My Account
       </button>
-      <button className="w-50 bg-white font-dmSans text-sm text-menuHeading text-center border border-[#F0f0f0] py-4 px-14 cursor-pointer">
+      <button className="w-50 bg-white font-dmSans text-sm text-menuHeading dark:text-[#262626] font-bold text-center border border-[#F0f0f0] py-4 px-14 cursor-pointer">
         Log Out
       </button>
     </div>
