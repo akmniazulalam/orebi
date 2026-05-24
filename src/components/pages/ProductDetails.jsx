@@ -20,7 +20,7 @@ import {
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import useCart from "@/store/cart";
-
+import { FaTshirt } from "react-icons/fa";
 const ProductDetails = () => {
   const { id } = useParams();
   const addToCart = useCart((state) => state.addToCart);
@@ -103,28 +103,32 @@ const ProductDetails = () => {
       },
     });
 
-    await sleep(150);
+    await sleep(50);
 
-// START RESET
-setMoveCart(false);
-setShowTick(false);
+    // START RESET
+    setMoveCart(false);
+    setShowTick(false);
 
-setResetting(true);
+    setResetting(true);
 
-await cartControls.start({
-  x: 0,
-  transition: {
-    duration: 0,
-  },
-});
+    cartControls.set({
+      x: -64,
+    });
 
-setShowText(true);
+    setShowText(true);
 
-await sleep(450);
+    setTimeout(async () => {
+  await cartControls.start({
+    x: 0,
+    transition: {
+      duration: 0.7,
+      ease: [0.22, 1, 0.36, 1],
+    },
+  });
 
-setResetting(false);
-
-setAnimating(false);
+  setResetting(false);
+  setAnimating(false);
+}, 50);
   };
 
   useEffect(() => {
@@ -269,24 +273,26 @@ setAnimating(false);
             </button>
             <button
               onClick={handleClick}
-              className={`relative ${moveCart ? "overflow-hidden" : "overflow-visible"} py-3 px-10 w-[220px] h-[52px] text-menuHeading dark:hover:text-[#262626] group text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading flex items-center justify-center`}>
+              className={`relative ${moveCart ? "overflow-hidden" : resetting ? "overflow-hidden" : "overflow-visible"} py-3 px-10 w-[220px] h-[52px] text-menuHeading dark:hover:text-[#262626] group text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading flex items-center justify-center`}>
               {/* TEXT */}
               {showText && (
-                <motion.span initial={false}
-  animate={
-    showText
-      ? {
-          opacity: 1,
-          x: resetting ? [-20, 0] : 0,
-        }
-      : {
-          opacity: 0,
-          x: -10,
-        }
-  }
-  transition={{
-    duration: 0.4,
-  }} className="ml-8 transition-colors duration-300 group-hover:text-[#262626]">
+                <motion.span
+                  initial={false}
+                  animate={
+                    showText
+                      ? {
+                          opacity: 1,
+                          x: resetting ? [-20, 0] : 0,
+                        }
+                      : {
+                          opacity: 0,
+                          x: -10,
+                        }
+                  }
+                  transition={{
+                    duration: 2,
+                  }}
+                  className="ml-8 transition-colors duration-300 group-hover:text-[#262626]">
                   Add to Cart
                 </motion.span>
               )}
@@ -315,8 +321,7 @@ setAnimating(false);
                     }}
                     className="absolute left-1/2 top-[-19px] -translate-x-1/2 z-40 pointer-events-none">
                     {/* OUTER SHAPE */}
-                    <div
-                      className="relative w-32 h-6">
+                    <div className="relative w-32 h-6">
                       {/* INNER CUT */}
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -368,7 +373,7 @@ setAnimating(false);
                       ease: [0.22, 1, 0.36, 1],
                     }}
                     className="absolute left-1/2 top-[2px] z-50 pointer-events-none">
-                    <Shirt
+                    <FaTshirt
                       size={24}
                       className="text-menuHeading dark:text-white group-hover:text-black drop-shadow-xl"
                       strokeWidth={2.5}
@@ -379,45 +384,42 @@ setAnimating(false);
 
               {/* CART */}
               <motion.div animate={cartControls} className="absolute left-9">
-                <div className="relative w-[36px] h-[28px]">
+                {/* WHOLE CART SYSTEM */}
+                <motion.div
+                  className="relative w-[36px] h-[28px]"
+                  animate={
+  resetting
+    ? {
+        x: [-80, 0],
+        opacity: [0, 1],
+      }
+    : {
+        x: 0,
+        opacity: 1,
+        rotate: moveCart ? -12 : 0,
+        y: moveCart ? -2 : 0,
+      }
+}
+                  transition={{
+  duration: resetting ? 0.7 : 0.4,
+  ease: [0.22, 1, 0.36, 1],
+}}
+                  style={{
+                    transformOrigin: "8px 22px",
+                  }}>
                   {/* MAIN CART */}
-                  <motion.div
-  animate={
-    moveCart
-      ? {
-          x: [0, 160],
-          rotate: [0, -12],
-          y: [0, -2],
-        }
-      : resetting
-        ? {
-            x: [-60, 0],
-            rotate: [0, 0],
-            opacity: [0, 1],
-          }
-        : {
-            x: 0,
-            rotate: 0,
-            y: 0,
-            opacity: 1,
-          }
-  }
-  transition={{
-    duration: resetting ? 0.45 : 1,
-    ease: [0.22, 1, 0.36, 1],
-  }}
-  style={{
-    transformOrigin: "8px 22px",
-  }}
->
-                    <ShoppingCart
-                      size={28}
-                      className="text-menuHeading transition-colors duration-300 group-hover:text-[#262626]"
-                      strokeWidth={2.2}
-                    />
-                  </motion.div>
+                  <ShoppingCart
+                    size={28}
+                    className="
+        text-menuHeading
+        transition-colors
+        duration-300
+        group-hover:text-[#262626]
+      "
+                    strokeWidth={2.2}
+                  />
 
-                  {/* TICK */}
+                  {/* SUCCESS TICK */}
                   {showTick && (
                     <motion.div
                       initial={{
@@ -431,36 +433,16 @@ setAnimating(false);
                       transition={{
                         duration: 0.35,
                       }}
-                      className="absolute left-[12px] top-[8px] z-20">
+                      className="
+          absolute
+          left-[12px]
+          top-[8px]
+          z-20
+        ">
                       <Check size={11} className="text-green-400 stroke-[4]" />
                     </motion.div>
                   )}
-
-                  {/* WHEELS */}
-                  {/* {moveCart && (
-                    <>
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{
-                          repeat: Infinity,
-                          duration: 0.25,
-                          ease: "linear",
-                        }}
-                        className="absolute bottom-[0px] left-[5px] w-[6px] h-[6px] border border-white rounded-full"
-                      />
-
-                      <motion.div
-                        animate={{ rotate: 360 }}
-                        transition={{
-                          repeat: Infinity,
-                          duration: 0.25,
-                          ease: "linear",
-                        }}
-                        className="absolute bottom-[0px] right-[4px] w-[6px] h-[6px] border border-white rounded-full"
-                      />
-                    </>
-                  )} */}
-                </div>
+                </motion.div>
               </motion.div>
             </button>
           </Flex>
