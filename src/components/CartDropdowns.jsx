@@ -47,7 +47,7 @@ const CartDropdowns = ({ items, onClick }) => {
           </div>
 
           <div className="pt-3.75 px-5.25 pb-5 bg-white">
-            <h4 className="pb-4 text-left font-dmSans text-base text-header">
+            <h4 className="pb-4 text-left font-dmSans text-base text-header dark:text-[#4b4646] font-medium">
               Subtotal:
               <span className="pl-2 font-bold text-menuHeading dark:text-[#262626] font-dmSans text-base">
                 ${subTotal.toFixed(2)}
