@@ -32,97 +32,99 @@ const ProductDetails = () => {
   const [showShirt, setShowShirt] = useState(false);
   const [showTick, setShowTick] = useState(false);
   const [moveCart, setMoveCart] = useState(false);
+  const [resetting, setResetting] = useState(false);
+  const [showPortal, setShowPortal] = useState(false);
+  const [shirtReturn, setShirtReturn] = useState(false);
 
   const cartControls = useAnimation();
-  const shirtControls = useAnimation();
 
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
   const handleClick = async () => {
-    addToCart(singleProduct);
     if (animating) return;
+
+    addToCart(singleProduct);
 
     setAnimating(true);
 
     // HIDE TEXT
     setShowText(false);
 
-    // CART CENTER
+    // MOVE CART TO CENTER
     await cartControls.start({
       x: 64,
-      transition: {
-        duration: 0.8,
-        ease: "easeInOut",
-      },
-    });
-
-    await sleep(300);
-
-    // SHOW SHIRT
-    setShowShirt(true);
-
-    await sleep(300);
-
-    // SHIRT UP
-    await shirtControls.start({
-      y: -50,
-      scale: 1.35,
-      rotate: 0,
       transition: {
         duration: 0.7,
         ease: [0.22, 1, 0.36, 1],
       },
     });
 
-    await sleep(150);
+    await sleep(120);
 
-    // SHIRT RETURN
-    await shirtControls.start({
-      y: 0,
-      scale: 1,
-      rotate: 0,
-      transition: {
-        duration: 0.7,
-        ease: "easeInOut",
-      },
-    });
+    // BORDER STRETCH EFFECT
+    setShowPortal(true);
 
-    await sleep(300);
+    await sleep(80);
+
+    // SHIRT COMES OUT
+    setShowShirt(true);
+
+    // SHIRT GOING UP
+    await sleep(320);
+
+    // BORDER NORMAL AGAIN
+    setShowPortal(false);
+
+    // SHIRT STAYS UP
+    await sleep(250);
+
+    // SHIRT RETURNS TO CART
+    setShirtReturn(true);
+
+    await sleep(650);
 
     // HIDE SHIRT
     setShowShirt(false);
+    setShirtReturn(false);
 
-    // SHOW TICK
+    // SUCCESS TICK
     setShowTick(true);
 
-    await sleep(700);
+    await sleep(650);
 
-    // MOVE CART
+    // CART DRIVE
     setMoveCart(true);
 
     await cartControls.start({
-      x: 155,
+      x: 200,
       transition: {
-        duration: 1.2,
+        duration: 1.1,
         ease: "easeInOut",
       },
     });
 
-    // RESET
-    setTimeout(async () => {
-      setShowText(true);
-      setShowTick(false);
-      setMoveCart(false);
+    await sleep(150);
 
-      await cartControls.start({
-        x: 0,
-        transition: {
-          duration: 0,
-        },
-      });
+// START RESET
+setMoveCart(false);
+setShowTick(false);
 
-      setAnimating(false);
-    }, 500);
+setResetting(true);
+
+await cartControls.start({
+  x: 0,
+  transition: {
+    duration: 0,
+  },
+});
+
+setShowText(true);
+
+await sleep(450);
+
+setResetting(false);
+
+setAnimating(false);
   };
 
   useEffect(() => {
@@ -267,30 +269,147 @@ const ProductDetails = () => {
             </button>
             <button
               onClick={handleClick}
-              className="relative overflow-visible py-3 px-10 w-[220px] h-[52px] text-menuHeading dark:hover:text-[#262626] group text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading flex items-center justify-center">
+              className={`relative ${moveCart ? "overflow-hidden" : "overflow-visible"} py-3 px-10 w-[220px] h-[52px] text-menuHeading dark:hover:text-[#262626] group text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading flex items-center justify-center`}>
               {/* TEXT */}
               {showText && (
-                <motion.span className="ml-8 transition-colors duration-300 group-hover:text-[#262626]">
+                <motion.span initial={false}
+  animate={
+    showText
+      ? {
+          opacity: 1,
+          x: resetting ? [-20, 0] : 0,
+        }
+      : {
+          opacity: 0,
+          x: -10,
+        }
+  }
+  transition={{
+    duration: 0.4,
+  }} className="ml-8 transition-colors duration-300 group-hover:text-[#262626]">
                   Add to Cart
                 </motion.span>
               )}
+              {/* ELASTIC BORDER BUMP */}
+              <AnimatePresence>
+                {showPortal && (
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      scaleX: 0.7,
+                      // scaleY: 0,
+                    }}
+                    animate={{
+                      opacity: 1,
+                      scaleX: 1,
+                      // scaleY: 1,
+                    }}
+                    exit={{
+                      opacity: 0,
+                      scaleX: 0.8,
+                      // scaleY: 0,
+                    }}
+                    transition={{
+                      duration: 0.18,
+                      ease: "easeOut",
+                    }}
+                    className="absolute left-1/2 top-[-19px] -translate-x-1/2 z-40 pointer-events-none">
+                    {/* OUTER SHAPE */}
+                    <div
+                      className="relative w-32 h-6">
+                      {/* INNER CUT */}
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 500 120"
+                        width="100%"
+                        height="100%"
+                        preserveAspectRatio="none">
+                        <path
+                          d="M 0 96 L 0 90 C 80 90, 170 75, 250 20 C 330 75, 420 90, 500 90 L 500 96 Z"
+                          fill="white"
+                          className=""
+                        />
+                      </svg>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+
+              {/* CINEMATIC SHIRT */}
+              <AnimatePresence>
+                {showShirt && (
+                  <motion.div
+                    initial={{
+                      opacity: 0,
+                      x: "-50%",
+                      y: 10,
+                      scale: 0.5,
+                      rotate: -25,
+                    }}
+                    animate={
+                      shirtReturn
+                        ? {
+                            opacity: 1,
+                            x: -6,
+                            y: 16,
+                            scale: 0.55,
+                            rotate: 0,
+                          }
+                        : {
+                            opacity: 1,
+                            x: "-50%",
+                            y: -95,
+                            scale: 1.45,
+                            rotate: 0,
+                          }
+                    }
+                    transition={{
+                      duration: 0.7,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="absolute left-1/2 top-[2px] z-50 pointer-events-none">
+                    <Shirt
+                      size={24}
+                      className="text-menuHeading dark:text-white group-hover:text-black drop-shadow-xl"
+                      strokeWidth={2.5}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* CART */}
               <motion.div animate={cartControls} className="absolute left-9">
                 <div className="relative w-[36px] h-[28px]">
                   {/* MAIN CART */}
                   <motion.div
-                    animate={
-                      moveCart
-                        ? {
-                            x: [0, 2, 0],
-                          }
-                        : {}
-                    }
-                    transition={{
-                      repeat: moveCart ? Infinity : 0,
-                      duration: 0.2,
-                    }}>
+  animate={
+    moveCart
+      ? {
+          x: [0, 160],
+          rotate: [0, -12],
+          y: [0, -2],
+        }
+      : resetting
+        ? {
+            x: [-60, 0],
+            rotate: [0, 0],
+            opacity: [0, 1],
+          }
+        : {
+            x: 0,
+            rotate: 0,
+            y: 0,
+            opacity: 1,
+          }
+  }
+  transition={{
+    duration: resetting ? 0.45 : 1,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  style={{
+    transformOrigin: "8px 22px",
+  }}
+>
                     <ShoppingCart
                       size={28}
                       className="text-menuHeading transition-colors duration-300 group-hover:text-[#262626]"
@@ -298,26 +417,7 @@ const ProductDetails = () => {
                     />
                   </motion.div>
 
-                  {/* SHIRT */}
-                  {showShirt && (
-                    <motion.div
-                      initial={{
-                        y: 0,
-                        scale: 1,
-                        rotate: 0,
-                        opacity: 1,
-                      }}
-                      animate={shirtControls}
-                      className="absolute left-[10px] top-[8px] z-50">
-                      <Shirt
-                        size={18}
-                        className="text-menuHeading group-hover:text-black"
-                        strokeWidth={2.5}
-                      />
-                    </motion.div>
-                  )}
-
-                  {/* SMALL CLEAR TICK */}
+                  {/* TICK */}
                   {showTick && (
                     <motion.div
                       initial={{
@@ -337,7 +437,7 @@ const ProductDetails = () => {
                   )}
 
                   {/* WHEELS */}
-                  {moveCart && (
+                  {/* {moveCart && (
                     <>
                       <motion.div
                         animate={{ rotate: 360 }}
@@ -359,7 +459,7 @@ const ProductDetails = () => {
                         className="absolute bottom-[0px] right-[4px] w-[6px] h-[6px] border border-white rounded-full"
                       />
                     </>
-                  )}
+                  )} */}
                 </div>
               </motion.div>
             </button>
