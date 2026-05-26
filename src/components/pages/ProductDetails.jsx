@@ -362,37 +362,43 @@ const ProductDetails = () => {
                   <motion.div
                     initial={{
                       opacity: 0,
-                      x: "-50%",
-                      y: 8,
-                      scale: 0.5,
+                      x: "-24%",
+                      y: 6,
+                      // scale: 0.5,
                       rotate: 0,
                     }}
                     animate={
                       shirtReturn
                         ? {
                             opacity: 1,
-                            x: -6,
-                            y: 8,
-                            scale: 0.55,
+                            x: "-24%",
+                            y: 6,
+                            // scale: 0.55,
                             rotate: 0,
-                            color: "black",
                           }
                         : {
                             opacity: 1,
-                            x: "-50%",
+                            x: "-24%",
                             y: -95,
-                            scale: 1.45,
+                            scale: 1.20,
                             rotate: 0,
                           }
                     }
                     transition={{
-                      duration: 0.7,
+                      duration: 0.5,
                       ease: [0.22, 1, 0.36, 1],
                     }}
                     className="absolute left-[47%] top-[2px] z-50 pointer-events-none">
                     <FaTshirt
                       size={24}
-                      className="text-menuHeading dark:text-white drop-shadow-xl"
+                      className={`
+    drop-shadow-xl transition-colors duration-300
+    ${
+      shirtReturn
+        ? "text-white dark:text-[#262626]"
+        : "text-menuHeading dark:text-white"
+    }
+  `}
                       strokeWidth={2.5}
                     />
                   </motion.div>
