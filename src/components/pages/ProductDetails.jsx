@@ -378,6 +378,7 @@ const ProductDetails = () => {
                             y: 8,
                             scale: 0.55,
                             rotate: 0,
+                            color: "black",
                           }
                         : {
                             opacity: 1,
