@@ -277,7 +277,7 @@ const ProductDetails = () => {
             </button>
             <button
               onClick={handleClick}
-              className={`relative ${moveCart ? "overflow-hidden" : resetting ? "overflow-hidden" : "overflow-visible"} py-3 px-10 w-[220px] h-[52px] text-menuHeading dark:hover:text-[#262626] group text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading flex items-center justify-center`}>
+              className={`relative ${moveCart ? "overflow-hidden" : resetting ? "overflow-hidden" : "overflow-visible"} py-3 px-10 w-[220px] h-[52px] text-white bg-menuHeading text-base font-bold font-dmSans cursor-pointer border-2 border-menuHeading flex items-center justify-center`}>
               {/* TEXT */}
 
               <motion.span
@@ -311,7 +311,7 @@ const ProductDetails = () => {
                   duration: resetting ? 1 : 0.4,
                   ease: [0.22, 1, 0.36, 1],
                 }}
-                className="ml-8 transition-colors duration-300 dark:group-hover:text-[#262626]">
+                className="ml-8 transition-colors duration-300 text-white dark:text-[#262626]">
                 Add to Cart
               </motion.span>
 
@@ -350,8 +350,8 @@ const ProductDetails = () => {
                         preserveAspectRatio="none">
                         <path
                           d="M 0 96 L 0 90 C 80 90, 170 75, 250 20 C 330 75, 420 90, 500 90 L 500 96 Z"
-                          fill="menuHeading"
-                          className="group-hover:fill-menuHeading"
+                          fill="#262626"
+                          className="fill-menuHeading"
                         />
                       </svg>
                     </div>
@@ -394,7 +394,7 @@ const ProductDetails = () => {
                     className="absolute left-[47%] top-[2px] z-50 pointer-events-none">
                     <FaTshirt
                       size={24}
-                      className="text-menuHeading dark:text-white group-hover:text-black drop-shadow-xl"
+                      className="text-menuHeading dark:text-white drop-shadow-xl"
                       strokeWidth={2.5}
                     />
                   </motion.div>
@@ -429,7 +429,7 @@ const ProductDetails = () => {
                   {/* MAIN CART */}
                   <ShoppingCart
                     size={28}
-                    className={`text-menuHeading ${fillColor ? "fill-white" : "fill-none"} ${fillColor ? "group-hover:fill-[#262626]" : "fill-none"} transition-colors duration-300 group-hover:text-white dark:group-hover:text-[#262626]`}
+                    className={`text-menuHeading ${fillColor ? "fill-white" : "fill-none"} ${fillColor ? "fill-[#262626]" : "fill-none"} transition-colors duration-300 text-white dark:text-[#262626]`}
                     strokeWidth={2.2}
                   />
 
