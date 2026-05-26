@@ -80,7 +80,7 @@ const ProductDetails = () => {
     // SHIRT RETURNS TO CART
     setShirtReturn(true);
 
-    await sleep(650);
+    await sleep(350);
 
     setFillColor(true)
 
@@ -368,7 +368,7 @@ const ProductDetails = () => {
                       x: "-50%",
                       y: 8,
                       scale: 0.5,
-                      rotate: -25,
+                      rotate: 0,
                     }}
                     animate={
                       shirtReturn
@@ -468,7 +468,7 @@ const ProductDetails = () => {
               className={"uppercase font-dmSans font-bold text-sm"}
               text={"features & details"}
             />
-            <span className="text-black font-dmSans">+</span>
+            <span className="text-menuHeading font-dmSans">+</span>
           </Flex>
           <hr className="text-[#d8d8d8]" />
           <Flex className={"my-6 items-center justify-between gap-x-6"}>
@@ -477,7 +477,7 @@ const ProductDetails = () => {
               className={"uppercase font-dmSans font-bold text-sm"}
               text={"shipping & returns"}
             />
-            <span className="text-black font-dmSans">+</span>
+            <span className="text-menuHeading font-dmSans">+</span>
           </Flex>
           <hr className="text-[#d8d8d8]" />
           <p className="font-dmSans text-base text-header leading-7 mt-6">
