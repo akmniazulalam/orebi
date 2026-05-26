@@ -35,7 +35,7 @@ const ProductDetails = () => {
   const [resetting, setResetting] = useState(false);
   const [showPortal, setShowPortal] = useState(false);
   const [shirtReturn, setShirtReturn] = useState(false);
-  const [fillColor, setFillColor] = useState(false)
+  const [fillColor, setFillColor] = useState(false);
   const cartControls = useAnimation();
 
   const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
@@ -82,7 +82,7 @@ const ProductDetails = () => {
 
     await sleep(350);
 
-    setFillColor(true)
+    setFillColor(true);
 
     // HIDE SHIRT
     setShowShirt(false);
@@ -109,7 +109,7 @@ const ProductDetails = () => {
     // START RESET
     setMoveCart(false);
     setShowTick(false);
-    setFillColor(false)
+    setFillColor(false);
     setResetting(true);
 
     cartControls.set({
@@ -277,7 +277,7 @@ const ProductDetails = () => {
             </button>
             <button
               onClick={handleClick}
-              className={`relative ${moveCart ? "overflow-hidden" : resetting ? "overflow-hidden" : "overflow-visible"} py-3 px-10 w-[220px] h-[52px] text-white bg-menuHeading text-base font-bold font-dmSans cursor-pointer border-2 border-menuHeading flex items-center justify-center`}>
+              className={`relative ${moveCart ? "overflow-hidden" : resetting ? "overflow-hidden" : "overflow-visible"} py-3 px-10 w-55 h-13 text-white bg-menuHeading text-base font-bold font-dmSans cursor-pointer border-2 border-menuHeading flex items-center justify-center`}>
               {/* TEXT */}
 
               <motion.span
@@ -380,7 +380,7 @@ const ProductDetails = () => {
                             opacity: 1,
                             x: "-24%",
                             y: -95,
-                            scale: 1.20,
+                            scale: 1.2,
                             rotate: 0,
                           }
                     }
@@ -388,17 +388,16 @@ const ProductDetails = () => {
                       duration: 0.5,
                       ease: [0.22, 1, 0.36, 1],
                     }}
-                    className="absolute left-[47%] top-[2px] z-50 pointer-events-none">
+                    className="absolute left-[47%] top-0.5 z-50 pointer-events-none">
                     <FaTshirt
                       size={24}
-                      className={`
-    drop-shadow-xl transition-colors duration-300
-    ${
-      shirtReturn
-        ? "text-white dark:text-[#262626]"
-        : "text-menuHeading dark:text-white"
-    }
-  `}
+                      className={`drop-shadow-xl transition-colors duration-300
+                      ${
+                        shirtReturn
+                          ? "text-white dark:text-[#262626]"
+                            : "text-menuHeading dark:text-white"
+                      }
+                    `}
                       strokeWidth={2.5}
                     />
                   </motion.div>
@@ -409,7 +408,7 @@ const ProductDetails = () => {
               <motion.div animate={cartControls} className="absolute left-9">
                 {/* WHOLE CART SYSTEM */}
                 <motion.div
-                  className="relative w-[36px] h-[28px]"
+                  className="relative w-9 h-7"
                   animate={
                     resetting
                       ? {
@@ -451,8 +450,8 @@ const ProductDetails = () => {
                       transition={{
                         duration: 0.35,
                       }}
-                      className="absolute left-[10px] top-[8px] z-20">
-                      <Check size={11} className="text-green-400 stroke-[4]" />
+                      className="absolute left-2.5 top-2 z-20">
+                      <Check size={11} className="text-red-400 stroke-4" />
                     </motion.div>
                   )}
                 </motion.div>
