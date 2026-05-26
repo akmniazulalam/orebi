@@ -430,7 +430,7 @@ const ProductDetails = () => {
                   {/* MAIN CART */}
                   <ShoppingCart
                     size={28}
-                    className={`text-menuHeading ${fillColor ? "fill-white" : "fill-none"} ${fillColor ? "fill-[#262626]" : "fill-none"} transition-colors duration-300 text-white dark:text-[#262626]`}
+                    className={`text-menuHeading ${fillColor ? "fill-white dark:fill-[#262626]" : "fill-none"} transition-colors duration-300 text-white dark:text-[#262626]`}
                     strokeWidth={2.2}
                   />
 
