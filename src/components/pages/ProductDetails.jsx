@@ -322,17 +322,14 @@ const ProductDetails = () => {
                     initial={{
                       opacity: 0,
                       scaleX: 0.7,
-                      // scaleY: 0,
                     }}
                     animate={{
                       opacity: 1,
                       scaleX: 1,
-                      // scaleY: 1,
                     }}
                     exit={{
                       opacity: 0,
                       scaleX: 0.8,
-                      // scaleY: 0,
                     }}
                     transition={{
                       duration: 0.18,
@@ -448,12 +445,7 @@ const ProductDetails = () => {
                       transition={{
                         duration: 0.35,
                       }}
-                      className="
-          absolute
-          left-[10px]
-          top-[8px]
-          z-20
-        ">
+                      className="absolute left-[10px] top-[8px] z-20">
                       <Check size={11} className="text-green-400 stroke-[4]" />
                     </motion.div>
                   )}
