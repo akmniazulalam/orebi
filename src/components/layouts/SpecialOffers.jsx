@@ -60,66 +60,6 @@ const SpecialOffers = () => {
               </div>
             );
           })}
-          {/* <div>
-            <div className="relative w-full group/img">
-              <Image
-                src={TeaTable}
-                alt={"TeaTable"}
-                className={"w-full h-full object-cover"}
-              />
-              <Badge
-                badgeT={"New"}
-                className={"absolute top-[19px] left-[19px]"}
-              />
-              <ActiveButtons
-                className={
-                  "absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
-                }
-              />
-            </div>
-            <ProductTexts />
-            <Black/>
-          </div>
-          <div>
-            <div className="relative w-full group/img">
-              <Image
-                src={HeadPhone}
-                alt={"HeadPhone"}
-                className={"w-full h-full object-cover"}
-              />
-              <Badge
-                badgeT={"New"}
-                className={"absolute top-[19px] left-[19px]"}
-              />
-              <ActiveButtons
-                className={
-                  "absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
-                }
-              />
-            </div>
-            <ProductTexts />
-            <Black/>
-          </div>
-          <div>
-            <div className="relative w-full group/img">
-              <Image
-                src={SunGlass}
-                alt={"SunGlass"}
-                className={"w-full h-full object-cover"}
-              />
-              <Badge
-                badgeT={"New"}
-                className={"absolute top-[19px] left-[19px]"}
-              />
-              <ActiveButtons
-                className={
-                  "absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
-                }
-              />
-            </div>
-            <ProductTexts />
-            <Black/>
-          </div> */}
         </Flex>
       </Container>
     </section>
