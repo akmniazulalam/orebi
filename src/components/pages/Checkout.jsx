@@ -190,7 +190,7 @@ const Checkout = () => {
                   placeholder="Coupon code"
                   value={coupon}
                   onChange={(e) => setCoupon(e.target.value)}
-                  className="h-11"
+                  className="h-11 dark:text-[#262626] font-bold"
                 />
                 <Button
                   type="button"
