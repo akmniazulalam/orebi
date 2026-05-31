@@ -225,7 +225,7 @@ const Cart = () => {
                       placeholder="Enter code"
                       value={couponCode}
                       onChange={(e) => setCouponCode(e.target.value)}
-                      className="rounded-xl dark:text-[#262626] font-bold"
+                      className="rounded-xl dark:text-[#262626] font-bold dark:border-[#E5E7EB]"
                     />
                     <Button
                       onClick={handleCoupon}
