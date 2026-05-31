@@ -194,12 +194,12 @@ const Cart = () => {
 
               {/* Coupon + size */}
               <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-white dark:border-[#E5E7EB] border border-gray-200 rounded-2xl p-5 shadow-sm">
+                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
                   <label className="block text-xs uppercase tracking-wider font-semibold text-gray-500 mb-3">
                     Select Size
                   </label>
                   <Select>
-                    <SelectTrigger className="rounded-xl">
+                    <SelectTrigger className="rounded-xl dark:border-[#E5E7EB]">
                       <SelectValue placeholder="Choose a size" />
                     </SelectTrigger>
                     <SelectContent>
