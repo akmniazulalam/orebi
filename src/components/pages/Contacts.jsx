@@ -48,7 +48,7 @@ const Contacts = () => {
               className="border-b border-infoBg w-full resize-none pt-2 focus:outline-0 placeholder:font-dmSans placeholder:text-sm placeholder:text-header"></textarea>
           </div>
         </div>
-        <button className="py-3 px-18 mt-6 text-white text-sm font-bold font-dmSans bg-menuHeading cursor-pointer border border-menuHeading">
+        <button className="py-3 px-18 mt-6 text-white dark:text-[#262626] text-sm font-bold font-dmSans bg-menuHeading cursor-pointer border border-menuHeading">
           Post
         </button>
         <iframe
