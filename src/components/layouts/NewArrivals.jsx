@@ -101,11 +101,11 @@ const NewArrivals = () => {
                   setActiveDot(i); // instant change, no late effect
                 }}>
                 {i === activeDot ? (
-                  <div className="w-6 h-6 border-2 border-black rounded-full flex items-center justify-center cursor-pointer">
-                    <div className="w-2 h-2 bg-black rounded-full" />
+                  <div className="w-6 h-6 border-2 border-black dark:border-white rounded-full flex items-center justify-center cursor-pointer">
+                    <div className="w-2 h-2 bg-black rounded-full dark:bg-white" />
                   </div>
                 ) : (
-                  <div className="w-2 h-2 bg-black rounded-full cursor-pointer" />
+                  <div className="w-2 h-2 bg-black dark:bg-white rounded-full cursor-pointer" />
                 )}
               </div>
             ))}
