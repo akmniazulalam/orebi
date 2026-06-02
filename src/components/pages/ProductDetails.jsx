@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import Container from "../Container";
 import Image from "../Image";
 import { ShoppingCart, Check, Shirt } from "lucide-react";
@@ -17,15 +17,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { useParams } from "react-router-dom";
-import axios from "axios";
+import { Link, useParams } from "react-router-dom";
 import useCart from "@/store/cart";
 import { FaTshirt } from "react-icons/fa";
+import { Loader2 } from "lucide-react";
+import { fetchProductById } from "@/services/productService";
+import { buildCartLineItem, findVariantByOptions } from "@/lib/cartUtils";
+import { getPrimaryVariant, getUniqueVariantColors } from "@/lib/productUtils";
+import toast from "react-hot-toast";
+
 const ProductDetails = () => {
   const { id } = useParams();
   const addToCart = useCart((state) => state.addToCart);
   const [quantity, setQuantity] = useState(1);
   const [singleProduct, setSingleProduct] = useState(null);
+  const [selectedColor, setSelectedColor] = useState("");
+  const [selectedSize, setSelectedSize] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState(null);
 
   const [animating, setAnimating] = useState(false);
   const [showText, setShowText] = useState(true);
@@ -43,7 +52,12 @@ const ProductDetails = () => {
   const handleClick = async () => {
     if (animating) return;
 
-    addToCart(singleProduct);
+    if (!selectedVariant) {
+      toast.error("Please select a variant");
+      return;
+    }
+
+    addToCart(buildCartLineItem(singleProduct, selectedVariant, quantity));
 
     // HIDE TEXT
     setShowText(false);
@@ -136,49 +150,124 @@ const ProductDetails = () => {
   };
 
   useEffect(() => {
-    axios
-      .get(
-        `https://mern-ecommerce-91cv.onrender.com/api/v1/product/singleproduct/${id}`,
-      )
-      .then((res) => setSingleProduct(res.data.data));
-  }, []);
+    setIsLoading(true);
+    setLoadError(null);
+
+    fetchProductById(id)
+      .then((product) => {
+        if (!product) {
+          setLoadError("Product not found");
+          return;
+        }
+        setSingleProduct(product);
+        const primary = getPrimaryVariant(product.variants);
+        setSelectedColor(primary?.color || "");
+        setSelectedSize(primary?.size || "");
+        setQuantity(1);
+      })
+      .catch(() => setLoadError("Failed to load product"))
+      .finally(() => setIsLoading(false));
+  }, [id]);
+
+  const selectedVariant = useMemo(
+    () =>
+      findVariantByOptions(singleProduct?.variants, {
+        color: selectedColor,
+        size: selectedSize,
+      }),
+    [singleProduct, selectedColor, selectedSize],
+  );
+
+  const colorOptions = useMemo(
+    () => getUniqueVariantColors(singleProduct?.variants ?? []),
+    [singleProduct],
+  );
+
+  const sizeOptions = useMemo(() => {
+    const sizes = new Set();
+    (singleProduct?.variants ?? []).forEach((variant) => {
+      if (variant.size?.trim()) {
+        sizes.add(variant.size.trim());
+      }
+    });
+    return [...sizes];
+  }, [singleProduct]);
+
+  const handleColorSelect = (color) => {
+    setSelectedColor(color);
+    const match = findVariantByOptions(singleProduct?.variants, {
+      color,
+      size: selectedSize,
+    });
+    if (match?.size) {
+      setSelectedSize(match.size);
+    }
+    setQuantity(1);
+  };
+
+  const handleSizeSelect = (size) => {
+    setSelectedSize(size);
+    const match = findVariantByOptions(singleProduct?.variants, {
+      color: selectedColor,
+      size,
+    });
+    if (match?.color) {
+      setSelectedColor(match.color);
+    }
+    setQuantity(1);
+  };
 
   const handleIncrement = () => {
-    if (quantity < singleProduct?.variants[0].stock) {
+    const maxStock = Number(selectedVariant?.stock ?? 0);
+    if (quantity < maxStock) {
       setQuantity(quantity + 1);
     }
   };
+
   const handleDecrement = () => {
     if (quantity > 1) {
       setQuantity(quantity - 1);
     }
   };
+
+  if (isLoading) {
+    return (
+      <div className="flex items-center justify-center min-h-[40vh] text-header font-dmSans">
+        <Loader2 className="h-6 w-6 animate-spin mr-2" />
+        Loading product...
+      </div>
+    );
+  }
+
+  if (loadError || !singleProduct) {
+    return (
+      <Container>
+        <div className="py-20 text-center font-dmSans">
+          <p className="text-lg font-semibold text-menuHeading">{loadError}</p>
+          <Link to="/shop" className="inline-block mt-4 underline text-header">
+            Back to shop
+          </Link>
+        </div>
+      </Container>
+    );
+  }
+
+  const variants = singleProduct.variants ?? [];
+  const galleryImages = variants
+    .map((variant) => variant.images?.[0])
+    .filter(Boolean)
+    .slice(0, 4);
+
   return (
     <>
       <Intro text={"Single Product"} pText={"Single Product"} />
       <Container>
-        <div className={"grid grid-cols-2  gap-9 mb-10"}>
-          <Image
-            src={singleProduct?.variants[0].images[0]}
-            className={"w-full"}
-          />
-          {singleProduct?.variants[1] && (
-            <Image
-              src={singleProduct?.variants[1].images[0]}
-              className={"w-full"}
-            />
-          )}
-          {singleProduct?.variants[2] && (
-            <Image
-              src={singleProduct?.variants[2].images[0]}
-              className={"w-full"}
-            />
-          )}
-          {singleProduct?.variants[3] && (
-            <Image
-              src={singleProduct?.variants[3].images[0]}
-              className={"w-full"}
-            />
+        <div className={"grid grid-cols-2 gap-9 mb-10"}>
+          {(galleryImages.length ? galleryImages : [selectedVariant?.images?.[0]]).map(
+            (src, index) =>
+              src ? (
+                <Image key={`${src}-${index}`} src={src} className="w-full" />
+              ) : null,
           )}
         </div>
         <div className="w-1/2">
@@ -202,7 +291,7 @@ const ProductDetails = () => {
               $88.00
             </span>
             <span className="text-[20px] font-dmSans font-bold">
-              ${singleProduct?.variants[0].price}
+              ${Number(selectedVariant?.price ?? 0).toFixed(2)}
             </span>
           </Flex>
           <hr className="text-[#d8d8d8]" />
@@ -212,13 +301,23 @@ const ProductDetails = () => {
               className={"uppercase font-dmSans font-bold text-sm"}
               text={"color:"}
             />
-            <Flex className={"gap-x-3 items-center"}>
-              {singleProduct?.variants.map((item, index) => (
-                <FaCircle
-                  key={index}
-                  style={{ color: item.color }}
-                  className="w-5 h-5 cursor-pointer hover:scale-135 transition-all duration-300 object-cover"
-                />
+            <Flex className={"gap-x-3 items-center flex-wrap"}>
+              {colorOptions.map((color) => (
+                <button
+                  key={color}
+                  type="button"
+                  title={color}
+                  onClick={() => handleColorSelect(color)}
+                  className={`rounded-full p-0.5 transition-transform ${
+                    selectedColor === color
+                      ? "ring-2 ring-menuHeading scale-110"
+                      : "hover:scale-110"
+                  }`}>
+                  <FaCircle
+                    style={{ color }}
+                    className="w-5 h-5"
+                  />
+                </button>
               ))}
             </Flex>
           </Flex>
@@ -228,17 +327,19 @@ const ProductDetails = () => {
               className={"uppercase font-dmSans font-bold text-sm"}
               text={"size:"}
             />
-            <Select className={"rounded-none!"}>
+            <Select
+              value={selectedSize || undefined}
+              onValueChange={handleSizeSelect}>
               <SelectTrigger className="w-36 h-10 rounded-none">
-                <SelectValue placeholder={singleProduct?.variants[0].size} />
+                <SelectValue placeholder={selectedSize || "Select size"} />
               </SelectTrigger>
 
               <SelectContent position="popper">
                 <SelectGroup>
                   <SelectLabel>Sizes</SelectLabel>
-                  {singleProduct?.variants.map((item) => (
-                    <SelectItem key={item._id} value={item.size}>
-                      {item.size}
+                  {sizeOptions.map((size) => (
+                    <SelectItem key={size} value={size}>
+                      {size}
                     </SelectItem>
                   ))}
                 </SelectGroup>
@@ -268,7 +369,11 @@ const ProductDetails = () => {
               className={"uppercase font-dmSans font-bold text-sm"}
               text={"status:"}
             />
-            <p className="text-header font-dmSans">In stock</p>
+            <p className="text-header font-dmSans">
+              {Number(selectedVariant?.stock) > 0
+                ? `In stock (${selectedVariant.stock} available)`
+                : "Out of stock"}
+            </p>
           </Flex>
           <hr className="text-[#d8d8d8]" />
           <Flex className={"my-8 items-center gap-x-4"}>

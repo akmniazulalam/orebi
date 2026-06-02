@@ -19,6 +19,13 @@ import useCart from "@/store/cart";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { Minus, Plus, ShoppingBag, Tag, ArrowRight } from "lucide-react";
+import {
+  getCartLineId,
+  getCartLineImage,
+  getCartLineName,
+  getCartLinePrice,
+} from "@/lib/cartUtils";
+import { apiUrls } from "@/lib/productApi";
 
 const Cart = () => {
   const { items, removeFromCart, increaseQuantity, decreaseQuantity } = useCart(
@@ -26,8 +33,7 @@ const Cart = () => {
   );
 
   const subTotal = items.reduce(
-    (total, item) =>
-      total + (item.price || item.variants[0].price) * item.quantity,
+    (total, item) => total + getCartLinePrice(item) * item.quantity,
     0,
   );
 
@@ -38,10 +44,10 @@ const Cart = () => {
   // apply coupon
   const handleCoupon = async () => {
     try {
-      const res = await axios.post(
-        "https://mern-ecommerce-91cv.onrender.com/api/v1/coupon/apply-coupon",
-        { code: couponCode, subtotal: subTotal },
-      );
+      const res = await axios.post(apiUrls.couponApply, {
+        code: couponCode,
+        subtotal: subTotal,
+      });
       setDiscount(res.data.discount);
       toast.success(res.data.message);
     } catch (error) {
@@ -117,35 +123,37 @@ const Cart = () => {
                 {/* Items */}
                 <div className="divide-y divide-gray-100">
                   {items.map((item) => {
-                    const price = item.price || item.variants[0].price;
+                    const lineId = getCartLineId(item);
+                    const price = getCartLinePrice(item);
                     const lineTotal = (item.quantity * price).toFixed(2);
                     return (
                       <div
-                        key={item._id || item.id}
+                        key={lineId}
                         className="grid grid-cols-12 gap-4 px-4 md:px-6 py-5 items-center hover:bg-gray-50/50 transition-colors">
                         {/* Product */}
                         <div className="col-span-12 md:col-span-6 flex items-center gap-4">
                           <button
-                            onClick={() => removeFromCart(item._id || item.id)}
+                            onClick={() => removeFromCart(lineId)}
                             className="w-7 h-7 rounded-full bg-gray-100 hover:bg-red-500 hover:text-white text-gray-500 flex items-center justify-center transition-colors shrink-0 cursor-pointer"
                             aria-label="Remove item">
                             <ImCross className="w-2.5 h-2.5" />
                           </button>
                           <div className="w-20 h-20 rounded-xl overflow-hidden bg-gray-100 shrink-0">
                             <img
-                              src={
-                                item.thumbnail ||
-                                item.image ||
-                                item.variants[0].images[0]
-                              }
-                              alt={item.name || item.title}
+                              src={getCartLineImage(item)}
+                              alt={getCartLineName(item)}
                               className="w-full h-full object-cover"
                             />
                           </div>
                           <div className="min-w-0">
                             <h3 className="font-semibold text-gray-900 truncate">
-                              {item.name || item.title}
+                              {getCartLineName(item)}
                             </h3>
+                            {(item.color || item.size) && (
+                              <p className="text-xs text-gray-500 mt-0.5">
+                                {[item.color, item.size].filter(Boolean).join(" · ")}
+                              </p>
+                            )}
                             <p className="text-sm text-gray-500 md:hidden mt-1">
                               ${price}
                             </p>
@@ -161,9 +169,7 @@ const Cart = () => {
                         <div className="col-span-6 md:col-span-2 flex justify-start md:justify-center">
                           <div className="inline-flex items-center border border-gray-200 rounded-full overflow-hidden">
                             <button
-                              onClick={() =>
-                                decreaseQuantity(item._id || item.id)
-                              }
+                              onClick={() => decreaseQuantity(lineId)}
                               className="w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer"
                               aria-label="Decrease quantity">
                               <Minus className="w-3.5 h-3.5 dark:text-[#262626]" />
@@ -172,9 +178,7 @@ const Cart = () => {
                               {item.quantity}
                             </span>
                             <button
-                              onClick={() =>
-                                increaseQuantity(item._id || item.id)
-                              }
+                              onClick={() => increaseQuantity(lineId)}
                               className="w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer"
                               aria-label="Increase quantity">
                               <Plus className="w-3.5 h-3.5 dark:text-[#262626]" />

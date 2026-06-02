@@ -27,6 +27,8 @@ import {
   ArrowLeft,
   Loader2,
 } from "lucide-react";
+import { apiUrls } from "@/lib/productApi";
+
 const Checkout = () => {
   // ----- Original feature: selected bank / payment method -----
   const [selectedBank, setSelectedBank] = useState("");
@@ -78,7 +80,7 @@ const Checkout = () => {
     setCouponMsg("");
     try {
       const res = await fetch(
-        "https://mern-ecommerce-91cv.onrender.com/api/v1/coupon/apply-coupon",
+        apiUrls.couponApply,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },

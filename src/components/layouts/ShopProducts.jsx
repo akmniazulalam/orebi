@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import FilterTwo from "../layouts/FilterTwo";
+import ProductList from "../ProductList";
 import Products from "../Products";
 import Cup from "/src/assets/cup.png";
 import HeadPhone from "/src/assets/headPhone.png";
@@ -12,109 +13,138 @@ import SunGlass from "/src/assets/sunGlass.png";
 import Clock from "/src/assets/alarmClock.png";
 import { Link } from "react-router-dom";
 import Flex from "../Flex";
-import axios from "axios";
+import { Loader2 } from "lucide-react";
+import { fetchProducts } from "@/services/productService";
+
+const staticDemoProducts = [
+  {
+    id: 41,
+    title: "Basic Crew Neck Tee",
+    price: 44,
+    image: Cup,
+    isBadge: true,
+    badgeT: "New",
+  },
+  {
+    id: 42,
+    title: "Basic Crew Neck Tee",
+    price: 44,
+    image: HeadPhone,
+    isBadge: true,
+    badgeT: "-10%",
+  },
+  {
+    id: 43,
+    title: "Basic Crew Neck Tee",
+    price: 44,
+    image: TeaTable,
+  },
+  {
+    id: 44,
+    title: "Basic Crew Neck Tee",
+    price: 44,
+    image: Cap,
+  },
+  {
+    id: 45,
+    title: "Basic Crew Neck Tee",
+    price: 44,
+    image: WallClock,
+    isBadge: true,
+    badgeT: "New",
+  },
+  {
+    id: 46,
+    title: "Basic Crew Neck Tee",
+    price: 44,
+    image: Bag,
+  },
+  {
+    id: 47,
+    title: "Basic Crew Neck Tee",
+    price: 44,
+    image: SunGlass,
+    isBadge: true,
+    badgeT: "-10%",
+  },
+  {
+    id: 48,
+    title: "Basic Crew Neck Tee",
+    price: 44,
+    image: TeaTable,
+    isBadge: true,
+    badgeT: "-15%",
+  },
+  {
+    id: 49,
+    title: "Basic Crew Neck Tee",
+    price: 44,
+    image: Cap,
+    isBadge: true,
+    badgeT: "-10%",
+  },
+  {
+    id: 50,
+    title: "Basic Crew Neck Tee",
+    price: 44,
+    image: Dustbin,
+  },
+  {
+    id: 51,
+    title: "Basic Crew Neck Tee",
+    price: 44,
+    image: Clock,
+  },
+  {
+    id: 52,
+    title: "Basic Crew Neck Tee",
+    price: 44,
+    image: SunGlass,
+  },
+];
 
 const ShopProducts = () => {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    axios
-      .get("https://mern-ecommerce-91cv.onrender.com/api/v1/product/getproduct")
-      .then((res) => setProducts(res.data.data));
+    fetchProducts()
+      .then(setProducts)
+      .catch((err) => console.error("Failed to load products", err))
+      .finally(() => setIsLoading(false));
   }, []);
 
   return (
     <div>
       <FilterTwo />
-      <div className="grid grid-cols-3 gap-x-6 gap-y-11 grid-rows-4 mb-14">
-        {products.map((item) => (
-          <Link to={`/productdetails/${item._id}`}>
-            <Products
-              src={item.variants[0].images[0]}
-              text={item.name}
-              isBadge
-              badgeT={item.variants[1].badge}
-              price={`$${item.variants[0].price}`}
-              color={item?.variants[0].color}
-              product={item}
-              className={"bg-amber-500"}
-            />
-          </Link>
+
+      {isLoading ? (
+        <div className="flex items-center justify-center py-20 text-header font-dmSans">
+          <Loader2 className="h-6 w-6 animate-spin mr-2" />
+          Loading products...
+        </div>
+      ) : (
+        <ProductList
+          products={products}
+          gridClassName="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-11 mb-14"
+        />
+      )}
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-11 grid-rows-4 mb-14">
+        {staticDemoProducts.map((item) => (
+          <Products
+            key={item.id}
+            src={item.image}
+            alt={item.title}
+            isBadge={item.isBadge}
+            badgeT={item.badgeT}
+            product={item}
+            text={item.title}
+            price={`$${item.price}`}
+          />
         ))}
-        <Products
-          src={Cup}
-          alt={"cup.png"}
-          isBadge
-          badgeT={"New"}
-          product={{ id: 41, title: "Basic Crew Neck Tee", price: 44, image: Cup }}
-        />
-        <Products
-          src={HeadPhone}
-          alt={"headPhone.png"}
-          product={{
-            id: 42,
-            title: "Basic Crew Neck Tee",
-            price: 44,
-            image: HeadPhone,
-          }}
-          isBadge
-          badgeT={"-10%"}
-        />
-        <Products
-          src={TeaTable}
-          alt={"teaTable.png"}
-          product={{ id: 43,title: "Basic Crew Neck Tee", price: 44, image: TeaTable }}
-        />
-        <Products src={Cap} alt={"cap.png"} product={{ id: 44, title: "Basic Crew Neck Tee", price: 44, image: Cap }}/>
-        <Products
-          src={WallClock}
-          alt={"wallClock.png"}
-          product={{ id: 45, title: "Basic Crew Neck Tee", price: 44, image: WallClock }}
-          isBadge
-          badgeT={"New"}
-        />
-        <Products
-          src={Bag}
-          alt={"productThree.png"}
-          product={{ id: 46, title: "Basic Crew Neck Tee", price: 44, image: Bag }}
-        />
-        <Products
-          src={SunGlass}
-          alt={"sunGlass.png"}
-          isBadge
-          badgeT={"-10%"}
-          product={{ id: 47, title: "Basic Crew Neck Tee", price: 44, image: SunGlass }}
-        />
-        <Products
-          src={TeaTable}
-          alt={"teaTable.png"}
-          isBadge
-          badgeT={"-15%"}
-          product={{ id: 48, title: "Basic Crew Neck Tee", price: 44, image: TeaTable }}
-        />
-        <Products
-          src={Cap}
-          alt={"cap.png"}
-          isBadge
-          badgeT={"-10%"}
-          product={{id: 49, title: "Basic Crew Neck Tee", price: 44, image: Cap }}
-        />
-        <Products
-          src={Dustbin}
-          alt={"dustbin.png"}
-          product={{ id: 50, title: "Basic Crew Neck Tee", price: 44, image: Dustbin }}
-        />
-        <Products
-          src={Clock}
-          alt={"alarmClock.png"}
-          product={{id: 51, title: "Basic Crew Neck Tee", price: 44, image: Clock }}
-        />
-        <Products
-          src={SunGlass}
-          alt={"sunGlass.png"}
-          product={{id: 52, title: "Basic Crew Neck Tee", price: 44, image: SunGlass }}
-        />
       </div>
+
       <Flex className={"justify-between"}>
         <Flex className={"gap-x-4"}>
           <Link to={"/shop"}>

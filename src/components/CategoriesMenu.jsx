@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { apiUrls } from "@/lib/productApi";
 
 const CategoriesMenu = ({ isOpen }) => {
   const [category, setCategory] = useState([]);
@@ -7,7 +8,7 @@ const CategoriesMenu = ({ isOpen }) => {
   useEffect(() => {
     axios
       .get(
-        "https://mern-ecommerce-91cv.onrender.com/api/v1/category/getallcategory",
+        apiUrls.categories,
       )
       .then((res) => setCategory(res.data.data));
   }, []);
