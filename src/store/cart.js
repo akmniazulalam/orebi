@@ -6,6 +6,7 @@ const useCart = create(
   persist(
     (set) => ({
       items: [],
+      clearCart: () => set({ items: [] }),
       addToCart: (lineItem, quantity = 1) =>
         set((state) => {
           const incoming = {

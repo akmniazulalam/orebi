@@ -28,6 +28,10 @@ import {
   Loader2,
 } from "lucide-react";
 import { apiUrls } from "@/lib/productApi";
+import apiClient from "@/lib/apiClient";
+import useCart from "@/store/cart";
+import { getCartLineImage, getCartLineName, getCartLinePrice } from "@/lib/cartUtils";
+import toast from "react-hot-toast";
 
 const Checkout = () => {
   // ----- Original feature: selected bank / payment method -----
@@ -64,17 +68,23 @@ const Checkout = () => {
     setForm((f) => ({ ...f, [k]: v }));
     setErrors((er) => ({ ...er, [k]: undefined }));
   };
-  // ----- Order summary (mock, matches original "Product Name x 1 / 389.99$") -----
-  const items = [{ id: 1, name: "Product Name", qty: 1, price: 389.99 }];
-  const subtotal = useMemo(
-    () => items.reduce((s, i) => s + i.price * i.qty, 0),
-    [],
-  );
+
+  const { items, clearCart } = useCart((state) => state);
+  const [discountAmount, setDiscountAmount] = useState(0);
+  const [submitError, setSubmitError] = useState("");
+
+  const subTotal = useMemo(() => {
+    return items.reduce(
+      (sum, item) => sum + getCartLinePrice(item) * (item.quantity || 1),
+      0,
+    );
+  }, [items]);
+
   const shippingCost =
-    shipping === "express" ? 19.99 : subtotal > 200 ? 0 : 9.99;
-  const discount = couponApplied ? subtotal * 0.1 : 0;
-  const tax = (subtotal - discount) * 0.05;
-  const total = subtotal - discount + shippingCost + tax;
+    shipping === "express" ? 19.99 : subTotal > 200 ? 0 : 9.99;
+  const discount = discountAmount;
+  const tax = Math.max(subTotal - discount, 0) * 0.05;
+  const total = subTotal - discount + shippingCost + tax;
   const applyCoupon = async () => {
     if (!coupon.trim()) return;
     setCouponMsg("");
@@ -84,24 +94,28 @@ const Checkout = () => {
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ code: coupon }),
+          body: JSON.stringify({ code: coupon, subtotal: subTotal }),
         },
       );
       const data = await res.json().catch(() => ({}));
       if (res.ok) {
         setCouponApplied(true);
-        setCouponMsg(data?.message || "Coupon applied — 10% off");
+        setDiscountAmount(Number(data?.discount) || 0);
+        setCouponMsg(data?.message || "Coupon applied");
       } else {
         setCouponApplied(false);
+        setDiscountAmount(0);
         setCouponMsg(data?.message || "Invalid coupon");
       }
     } catch {
-      setCouponApplied(true);
-      setCouponMsg("Coupon applied — 10% off");
+      setCouponApplied(false);
+      setDiscountAmount(0);
+      setCouponMsg("Unable to apply coupon. Please try again.");
     }
   };
   const validate = () => {
     const e = {};
+    if (!items?.length) e.cart = "Your cart is empty";
     if (!form.firstName.trim()) e.firstName = "Required";
     if (!form.lastName.trim()) e.lastName = "Required";
     if (!form.country) e.country = "Select a country";
@@ -122,13 +136,71 @@ const Checkout = () => {
       first?.scrollIntoView({ behavior: "smooth", block: "center" });
       return;
     }
+
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1200));
-    setSubmitting(false);
-    alert("Order placed successfully!");
+    setSubmitError("");
+
+    try {
+      const payload = {
+        customer: {
+          firstName: form.firstName,
+          lastName: form.lastName,
+          company: form.company,
+          country: form.country,
+          street: form.street,
+          apartment: form.apartment,
+          city: form.city,
+          county: form.county,
+          postcode: form.postcode,
+          phone: form.phone,
+          email: form.email,
+          notes: form.notes,
+        },
+        payment: {
+          method: selectedBank,
+          status: "Pending",
+          currency: "USD",
+          amount: Number(total.toFixed(2)),
+        },
+        shippingMethod: shipping,
+        pricing: {
+          currency: "USD",
+          discount: Number(discount.toFixed(2)),
+          tax: Number(tax.toFixed(2)),
+          shippingCost: Number(shippingCost.toFixed(2)),
+        },
+        items: items.map((it) => ({
+          productId: it.productId || it._id || it.id,
+          variantId: it.variantId,
+          sku: it.sku,
+          name: it.name || it.title,
+          image: it.image,
+          color: it.color,
+          size: it.size,
+          ram: it.ram,
+          storage: it.storage,
+          badge: it.badge,
+          quantity: it.quantity || 1,
+          price: getCartLinePrice(it),
+        })),
+      };
+
+      const res = await apiClient.post("/order/create", payload);
+      toast.success(res?.data?.message || "Order placed successfully");
+      clearCart();
+    } catch (error) {
+      const message =
+        error?.response?.data?.message ||
+        error?.message ||
+        "Failed to place order";
+      setSubmitError(message);
+      toast.error(message);
+    } finally {
+      setSubmitting(false);
+    }
   };
   const inputCls = (key) =>
-    `w-full rounded-lg border bg-white px-4 py-2.5 text-sm text-gray-900 outline-none transition focus:ring-2 focus:ring-gray-900/10 ${
+    `w-full rounded-lg border bg-white dark:bg-[#1a1414] px-4 py-2.5 text-sm text-menuHeading dark:text-[#e5e7eb] outline-none transition focus:ring-2 focus:ring-gray-900/10 ${
       errors[key] ? "border-red-500" : "border-gray-200 focus:border-gray-400"
     }`;
   return (
@@ -140,7 +212,7 @@ const Checkout = () => {
           <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
             <Link
               to="/cart"
-              className="inline-flex items-center gap-2 text-sm font-medium text-gray-600 hover:text-gray-900">
+              className="inline-flex items-center gap-2 text-sm font-medium text-menuHeading">
               <ArrowLeft className="h-4 w-4" /> Back to cart
             </Link>
             <ol className="flex items-center gap-2 text-xs sm:text-sm">
@@ -157,13 +229,13 @@ const Checkout = () => {
                         ? "bg-green-600 text-white"
                         : s.active
                           ? "bg-gray-900 text-white"
-                          : "bg-gray-200 text-gray-500"
+                          : "bg-gray-200 text-menuHeading"
                     }`}>
                     {s.done ? <Check className="h-3.5 w-3.5" /> : i + 1}
                   </span>
                   <span
                     className={`${
-                      s.active ? "font-semibold text-menuHeading" : "text-gray-500"
+                      s.active ? "font-semibold text-menuHeading" : "text-menuHeading"
                     }`}>
                     {s.label}
                   </span>
@@ -175,18 +247,18 @@ const Checkout = () => {
             </ol>
           </div>
           {/* Coupon notice (original) */}
-          <div className="mb-6 flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-gray-300 bg-white px-5 py-4 text-sm">
-            <Tag className="h-4 w-4 text-gray-700" />
-            <span className="text-gray-700">Have a coupon?</span>
+          <div className="mb-6 flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-gray-300 bg-white dark:bg-[#1a1414] px-5 py-4 text-sm">
+            <Tag className="h-4 w-4 text-menuHeading dark:text-gray-200" />
+            <span className="text-menuHeading dark:text-gray-200">Have a coupon?</span>
             <button
               type="button"
               onClick={() => setShowCoupon((v) => !v)}
-              className="font-semibold text-gray-900 underline-offset-4 hover:underline cursor-pointer">
+              className="font-semibold text-menuHeading underline-offset-4 hover:underline cursor-pointer">
               Click here to enter your code
             </button>
           </div>
           {showCoupon && (
-            <div className="mb-8 rounded-xl border border-gray-200 bg-white p-5">
+            <div className="mb-8 rounded-xl border border-gray-200 bg-white dark:bg-[#1a1414] p-5">
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Input
                   placeholder="Coupon code"
@@ -211,18 +283,27 @@ const Checkout = () => {
               )}
             </div>
           )}
+
+          {errors.cart ? (
+            <p
+              data-error="true"
+              className="mb-6 text-sm text-red-500 font-semibold"
+            >
+              {errors.cart}
+            </p>
+          ) : null}
           <form
             onSubmit={handlePlaceOrder}
             className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {/* LEFT: Billing details */}
             <div className="space-y-6 lg:col-span-2">
-              <div className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-sm">
-                <h2 className="mb-6 text-xl font-bold tracking-tight text-gray-900">
+              <div className="rounded-2xl border border-gray-200 bg-white dark:bg-[#1a1414] p-6 sm:p-8 shadow-sm">
+                <h2 className="mb-6 text-xl font-bold tracking-tight text-menuHeading">
                   Billing details
                 </h2>
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                    <label className="mb-1.5 block text-sm font-medium text-menuHeading">
                       First Name *
                     </label>
                     <input
@@ -238,7 +319,7 @@ const Checkout = () => {
                     )}
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                    <label className="mb-1.5 block text-sm font-medium text-menuHeading">
                       Last Name *
                     </label>
                     <input
@@ -255,7 +336,7 @@ const Checkout = () => {
                   </div>
                 </div>
                 <div className="mt-5">
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                  <label className="mb-1.5 block text-sm font-medium text-menuHeading">
                     Company Name (Optional)
                   </label>
                   <input
@@ -265,7 +346,7 @@ const Checkout = () => {
                   />
                 </div>
                 <div className="mt-5">
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                  <label className="mb-1.5 block text-sm font-medium text-menuHeading">
                     Country *
                   </label>
                   <Select
@@ -297,7 +378,7 @@ const Checkout = () => {
                   )}
                 </div>
                 <div className="mt-5">
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                  <label className="mb-1.5 block text-sm font-medium text-menuHeading">
                     Street Address *
                   </label>
                   <input
@@ -319,7 +400,7 @@ const Checkout = () => {
                 </div>
                 <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                    <label className="mb-1.5 block text-sm font-medium text-menuHeading">
                       Town/City *
                     </label>
                     <input
@@ -333,7 +414,7 @@ const Checkout = () => {
                     )}
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                    <label className="mb-1.5 block text-sm font-medium text-menuHeading">
                       County (optional)
                     </label>
                     <input
@@ -343,7 +424,7 @@ const Checkout = () => {
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                    <label className="mb-1.5 block text-sm font-medium text-menuHeading">
                       Post Code *
                     </label>
                     <input
@@ -359,7 +440,7 @@ const Checkout = () => {
                     )}
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                    <label className="mb-1.5 block text-sm font-medium text-menuHeading">
                       Phone *
                     </label>
                     <input
@@ -376,7 +457,7 @@ const Checkout = () => {
                   </div>
                 </div>
                 <div className="mt-5">
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                  <label className="mb-1.5 block text-sm font-medium text-menuHeading">
                     Email Address *
                   </label>
                   <input
@@ -390,17 +471,17 @@ const Checkout = () => {
                     <p className="mt-1 text-xs text-red-500">{errors.email}</p>
                   )}
                 </div>
-                <label className="mt-5 flex items-center gap-2 text-sm text-gray-700">
+                <label className="mt-5 flex items-center gap-2 text-sm text-menuHeading">
                   <input
                     type="checkbox"
-                    className="h-4 w-4 accent-gray-900 cursor-pointer"
+                    className="h-4 w-4 accent-menuHeading cursor-pointer"
                     checked={form.shipToDifferent}
                     onChange={update("shipToDifferent")}
                   />
                   Ship to a different address?
                 </label>
                 <div className="mt-5">
-                  <label className="mb-1.5 block text-sm font-medium text-gray-700">
+                  <label className="mb-1.5 block text-sm font-medium text-menuHeading">
                     Other Notes (optional)
                   </label>
                   <textarea
@@ -413,8 +494,8 @@ const Checkout = () => {
                 </div>
               </div>
               {/* Shipping options */}
-              <div className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-sm">
-                <h2 className="mb-5 flex items-center gap-2 text-xl font-bold tracking-tight text-gray-900">
+              <div className="rounded-2xl border border-gray-200 bg-white dark:bg-[#1a1414] p-6 sm:p-8 shadow-sm">
+                <h2 className="mb-5 flex items-center gap-2 text-xl font-bold tracking-tight text-menuHeading">
                   <Truck className="h-5 w-5" /> Shipping method
                 </h2>
                 <div className="space-y-3">
@@ -423,7 +504,7 @@ const Checkout = () => {
                       id: "standard",
                       title: "Standard delivery",
                       desc: "3–5 business days",
-                      cost: subtotal > 200 ? "Free" : "$9.99",
+                      cost: subTotal > 200 ? "Free" : "$9.99",
                     },
                     {
                       id: "express",
@@ -443,18 +524,18 @@ const Checkout = () => {
                         <input
                           type="radio"
                           name="shipping"
-                          className="h-4 w-4 accent-gray-900 cursor-pointer"
+                          className="h-4 w-4 accent-menuHeading cursor-pointer"
                           checked={shipping === opt.id}
                           onChange={() => setShipping(opt.id)}
                         />
                         <div>
-                          <p className="text-sm font-semibold text-gray-900">
+                          <p className={`text-sm font-semibold ${shipping === opt.id ? "text-black" : "text-menuHeading"}`}>
                             {opt.title}
                           </p>
-                          <p className="text-xs text-gray-500">{opt.desc}</p>
+                          <p className={`text-xs ${shipping === opt.id ? "text-black" : "text-menuHeading"}`}>{opt.desc}</p>
                         </div>
                       </div>
-                      <span className="text-sm font-semibold text-gray-900">
+                      <span className={`text-sm font-semibold ${shipping === opt.id ? "text-black" : "text-menuHeading"}`}>
                         {opt.cost}
                       </span>
                     </label>
@@ -462,8 +543,8 @@ const Checkout = () => {
                 </div>
               </div>
               {/* Payment */}
-              <div className="rounded-2xl border border-gray-200 bg-white p-6 sm:p-8 shadow-sm">
-                <h2 className="mb-5 flex items-center gap-2 text-xl font-bold tracking-tight text-gray-900">
+              <div className="rounded-2xl border border-gray-200 bg-white dark:bg-[#1a1414] p-6 sm:p-8 shadow-sm">
+                <h2 className="mb-5 flex items-center gap-2 text-xl font-bold tracking-tight text-menuHeading">
                   <Lock className="h-5 w-5" /> Payment method
                 </h2>
                 <div className="space-y-3">
@@ -516,15 +597,15 @@ const Checkout = () => {
                                 payment: undefined,
                               }));
                             }}
-                            className="h-4 w-4 accent-gray-900 cursor-pointer"
+                            className="h-4 w-4 accent-menuHeading cursor-pointer"
                           />
-                          <Icon className="h-5 w-5 text-gray-700" />
-                          <span className="text-sm font-semibold text-gray-900">
+                          <Icon className={`h-5 w-5 ${active ? "text-black" : "text-menuHeading"}`} />
+                          <span className={`text-sm font-semibold ${active ? "text-black" : "text-menuHeading"}`}>
                             {m.title}
                           </span>
                         </label>
                         {active && (
-                          <div className="border-t border-gray-200 px-4 py-3 text-xs text-gray-600">
+                          <div className={`border-t border-gray-200 px-4 py-3 text-xs ${active ? "text-black" : "text-menuHeading"}`}>
                             {m.desc}
                             {m.id === "card" && (
                               <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -560,31 +641,36 @@ const Checkout = () => {
             {/* RIGHT: Sticky order summary */}
             <aside className="lg:col-span-1">
               <div className="sticky top-6 space-y-4">
-                <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
-                  <h2 className="mb-5 flex items-center gap-2 text-lg font-bold text-gray-900">
+                <div className="rounded-2xl border border-gray-200 bg-white dark:bg-[#1a1414] p-6 shadow-sm">
+                  <h2 className="mb-5 flex items-center gap-2 text-lg font-bold text-menuHeading">
                     <ShoppingBag className="h-5 w-5" /> Your order
                   </h2>
                   <div className="divide-y divide-gray-100">
-                    <div className="flex items-center justify-between pb-3 text-xs font-semibold uppercase tracking-wider text-gray-500">
+                    <div className="flex items-center justify-between pb-3 text-xs font-semibold uppercase tracking-wider text-menuHeading">
                       <span>Product</span>
                       <span>Total</span>
                     </div>
-                    {items.map((it) => (
-                      <div
-                        key={it.id}
-                        className="flex items-center justify-between py-3 text-sm">
-                        <span className="text-gray-800">
-                          {it.name}{" "}
-                          <span className="text-gray-400">x {it.qty}</span>
-                        </span>
-                        <span className="font-medium text-gray-900">
-                          ${(it.price * it.qty).toFixed(2)}
-                        </span>
-                      </div>
-                    ))}
-                    <div className="flex items-center justify-between py-3 text-sm text-gray-600">
+                    {items.map((it, idx) => {
+                      const linePrice = getCartLinePrice(it);
+                      const qty = it.quantity || 1;
+                      const lineTotal = linePrice * qty;
+                      return (
+                        <div
+                          key={it.cartLineId || it.productId || idx}
+                          className="flex items-center justify-between py-3 text-sm">
+                          <span className="text-menuHeading">
+                            {getCartLineName(it)}{" "}
+                            <span className="text-menuHeading">x {qty}</span>
+                          </span>
+                          <span className="font-medium text-menuHeading">
+                            ${lineTotal.toFixed(2)}
+                          </span>
+                        </div>
+                      );
+                    })}
+                    <div className="flex items-center justify-between py-3 text-sm text-menuHeading">
                       <span>Subtotal</span>
-                      <span>${subtotal.toFixed(2)}</span>
+                      <span>${subTotal.toFixed(2)}</span>
                     </div>
                     {couponApplied && (
                       <div className="flex items-center justify-between py-3 text-sm text-green-600">
@@ -592,7 +678,7 @@ const Checkout = () => {
                         <span>-${discount.toFixed(2)}</span>
                       </div>
                     )}
-                    <div className="flex items-center justify-between py-3 text-sm text-gray-600">
+                    <div className="flex items-center justify-between py-3 text-sm text-menuHeading">
                       <span>Shipping</span>
                       <span>
                         {shippingCost === 0
@@ -600,21 +686,21 @@ const Checkout = () => {
                           : `$${shippingCost.toFixed(2)}`}
                       </span>
                     </div>
-                    <div className="flex items-center justify-between py-3 text-sm text-gray-600">
+                    <div className="flex items-center justify-between py-3 text-sm text-menuHeading">
                       <span>Tax (5%)</span>
                       <span>${tax.toFixed(2)}</span>
                     </div>
                     <div className="flex items-center justify-between pt-4 text-base">
-                      <span className="font-semibold text-gray-900">Total</span>
-                      <span className="text-xl font-bold text-gray-900">
+                      <span className="font-semibold text-menuHeading">Total</span>
+                      <span className="text-xl font-bold text-menuHeading">
                         ${total.toFixed(2)}
                       </span>
                     </div>
                   </div>
-                  <label className="mt-5 flex items-start gap-2 text-xs text-gray-600">
+                  <label className="mt-5 flex items-start gap-2 text-xs text-menuHeading">
                     <input
                       type="checkbox"
-                      className="mt-0.5 h-4 w-4 accent-gray-900 cursor-pointer"
+                      className="mt-0.5 h-4 w-4 accent-menuHeading cursor-pointer"
                       checked={form.terms}
                       onChange={update("terms")}
                       data-error={!!errors.terms}
@@ -625,13 +711,13 @@ const Checkout = () => {
                       other purposes described in our{" "}
                       <Link
                         to="/privacy"
-                        className="font-semibold text-gray-900 underline">
+                        className="font-semibold text-menuHeading underline">
                         privacy policy
                       </Link>
                       . I agree to the{" "}
                       <Link
                         to="/terms"
-                        className="font-semibold text-gray-900 underline">
+                        className="font-semibold text-menuHeading underline">
                         terms & conditions
                       </Link>
                       .
@@ -640,6 +726,11 @@ const Checkout = () => {
                   {errors.terms && (
                     <p className="mt-1 text-xs text-red-500">{errors.terms}</p>
                   )}
+                  {submitError ? (
+                    <p className="mt-2 text-sm text-red-500 font-semibold">
+                      {submitError}
+                    </p>
+                  ) : null}
                   <Button
                     type="submit"
                     disabled={submitting}
@@ -654,26 +745,26 @@ const Checkout = () => {
                       </>
                     )}
                   </Button>
-                  <div className="mt-4 flex items-center justify-center gap-2 text-xs text-gray-500">
+                  <div className="mt-4 flex items-center justify-center gap-2 text-xs text-menuHeading">
                     <ShieldCheck className="h-4 w-4 text-green-600" />
                     Secure SSL encrypted checkout
                   </div>
                 </div>
                 {/* Trust badges */}
-                <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
-                  <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-gray-500">
+                <div className="rounded-2xl border border-gray-200 bg-white dark:bg-[#1a1414] p-5 shadow-sm">
+                  <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-menuHeading">
                     We accept
                   </p>
                   <div className="flex flex-wrap items-center justify-center gap-2">
                     {["VISA", "MC", "AMEX", "PayPal", "Apple Pay"].map((b) => (
                       <span
                         key={b}
-                        className="rounded-md border border-gray-200 bg-gray-50 px-3 py-1.5 text-[11px] font-semibold text-gray-700">
+                        className="rounded-md border border-gray-200 bg-gray-50 px-3 py-1.5 text-[11px] font-semibold text-menuHeading dark:text-[#262626]">
                         {b}
                       </span>
                     ))}
                   </div>
-                  <div className="mt-4 grid grid-cols-3 gap-2 text-center text-[11px] text-gray-600">
+                  <div className="mt-4 grid grid-cols-3 gap-2 text-center text-[11px] text-menuHeading dark:text-[#262626]">
                     <div className="rounded-lg bg-gray-50 p-2">
                       <Truck className="mx-auto mb-1 h-4 w-4" /> Free returns
                     </div>
