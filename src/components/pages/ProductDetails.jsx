@@ -308,10 +308,10 @@ const ProductDetails = () => {
                   type="button"
                   title={color}
                   onClick={() => handleColorSelect(color)}
-                  className={`rounded-full p-0.5 transition-transform ${
+                  className={`rounded-full p-1 cursor-pointer transition-transform ${
                     selectedColor === color
                       ? "ring-2 ring-menuHeading scale-110"
-                      : "hover:scale-110"
+                      : "hover:scale-120 transition-all duration-300"
                   }`}>
                   <FaCircle
                     style={{ color }}
