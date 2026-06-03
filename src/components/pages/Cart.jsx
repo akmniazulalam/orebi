@@ -113,7 +113,7 @@ const Cart = () => {
             <div className="lg:col-span-2">
               <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
                 {/* Header (desktop) */}
-                <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-gray-50 border-b border-gray-200 text-xs uppercase tracking-wider font-semibold text-menuHeading">
+                <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-gray-50 border-b border-gray-200 text-xs uppercase tracking-wider font-semibold text-menuHeading dark:text-[#262626]">
                   <div className="col-span-6">Product</div>
                   <div className="col-span-2 text-center">Price</div>
                   <div className="col-span-2 text-center">Quantity</div>
