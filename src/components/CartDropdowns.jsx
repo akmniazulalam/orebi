@@ -18,7 +18,7 @@ const CartDropdowns = ({ items, onClick }) => {
   return (
     <div className="absolute top-10 right-0 w-89.5 z-10">
       {items.length === 0 ? (
-        <div className="p-4 bg-[#acaca1]">
+        <div className="p-4 bg-[#acaca1] dark:text-[#262626]">
           <p>There is no product.</p>
         </div>
       ) : (
