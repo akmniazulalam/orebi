@@ -161,7 +161,7 @@ const Cart = () => {
                         </div>
 
                         {/* Price */}
-                        <div className="hidden md:block col-span-2 text-center text-menuHeading font-medium">
+                        <div className="hidden md:block col-span-2 text-center text-menuHeading dark:text-[#262626] font-medium">
                           ${price}
                         </div>
 
