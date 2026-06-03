@@ -229,7 +229,7 @@ const Checkout = () => {
                         ? "bg-green-600 text-white"
                         : s.active
                           ? "bg-gray-900 text-white"
-                          : "bg-gray-200 text-menuHeading"
+                          : "bg-gray-200 text-menuHeading dark:text-[#262626]"
                     }`}>
                     {s.done ? <Check className="h-3.5 w-3.5" /> : i + 1}
                   </span>
@@ -247,7 +247,7 @@ const Checkout = () => {
             </ol>
           </div>
           {/* Coupon notice (original) */}
-          <div className="mb-6 flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-gray-300 bg-white dark:bg-[#1a1414] px-5 py-4 text-sm">
+          <div className="mb-6 flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-gray-300 bg-bHeaderBg dark:bg-[#1a1414] px-5 py-4 text-sm">
             <Tag className="h-4 w-4 text-menuHeading dark:text-gray-200" />
             <span className="text-menuHeading dark:text-gray-200">Have a coupon?</span>
             <button
@@ -258,7 +258,7 @@ const Checkout = () => {
             </button>
           </div>
           {showCoupon && (
-            <div className="mb-8 rounded-xl border border-gray-200 bg-white dark:bg-[#1a1414] p-5">
+            <div className="mb-8 rounded-xl border border-gray-200 bg-bHeaderBg dark:bg-[#1a1414] p-5">
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Input
                   placeholder="Coupon code"
@@ -297,7 +297,7 @@ const Checkout = () => {
             className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {/* LEFT: Billing details */}
             <div className="space-y-6 lg:col-span-2">
-              <div className="rounded-2xl border border-gray-200 bg-white dark:bg-[#1a1414] p-6 sm:p-8 shadow-sm">
+              <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-[#1a1414] p-6 sm:p-8 shadow-sm">
                 <h2 className="mb-6 text-xl font-bold tracking-tight text-menuHeading">
                   Billing details
                 </h2>
@@ -494,7 +494,7 @@ const Checkout = () => {
                 </div>
               </div>
               {/* Shipping options */}
-              <div className="rounded-2xl border border-gray-200 bg-white dark:bg-[#1a1414] p-6 sm:p-8 shadow-sm">
+              <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-[#1a1414] p-6 sm:p-8 shadow-sm">
                 <h2 className="mb-5 flex items-center gap-2 text-xl font-bold tracking-tight text-menuHeading">
                   <Truck className="h-5 w-5" /> Shipping method
                 </h2>
@@ -543,7 +543,7 @@ const Checkout = () => {
                 </div>
               </div>
               {/* Payment */}
-              <div className="rounded-2xl border border-gray-200 bg-white dark:bg-[#1a1414] p-6 sm:p-8 shadow-sm">
+              <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-[#1a1414] p-6 sm:p-8 shadow-sm">
                 <h2 className="mb-5 flex items-center gap-2 text-xl font-bold tracking-tight text-menuHeading">
                   <Lock className="h-5 w-5" /> Payment method
                 </h2>
@@ -641,7 +641,7 @@ const Checkout = () => {
             {/* RIGHT: Sticky order summary */}
             <aside className="lg:col-span-1">
               <div className="sticky top-6 space-y-4">
-                <div className="rounded-2xl border border-gray-200 bg-white dark:bg-[#1a1414] p-6 shadow-sm">
+                <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-[#1a1414] p-6 shadow-sm">
                   <h2 className="mb-5 flex items-center gap-2 text-lg font-bold text-menuHeading">
                     <ShoppingBag className="h-5 w-5" /> Your order
                   </h2>
@@ -751,7 +751,7 @@ const Checkout = () => {
                   </div>
                 </div>
                 {/* Trust badges */}
-                <div className="rounded-2xl border border-gray-200 bg-white dark:bg-[#1a1414] p-5 shadow-sm">
+                <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-[#1a1414] p-5 shadow-sm">
                   <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-menuHeading">
                     We accept
                   </p>
