@@ -199,7 +199,7 @@ const Cart = () => {
               {/* Coupon + size */}
               <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
                 <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
-                  <label className="block text-xs uppercase tracking-wider font-semibold text-menuHeading mb-3">
+                  <label className="block text-xs uppercase tracking-wider font-semibold text-menuHeading dark:text-[#262626] mb-3">
                     Select Size
                   </label>
                   <Select>
@@ -220,7 +220,7 @@ const Cart = () => {
                 </div>
 
                 <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
-                  <label className="block text-xs uppercase tracking-wider font-semibold text-menuHeading mb-3">
+                  <label className="block text-xs uppercase tracking-wider font-semibold text-menuHeading dark:text-[#262626] mb-3">
                     <Tag className="inline w-3.5 h-3.5 mr-1" />
                     Have a coupon?
                   </label>
@@ -257,13 +257,13 @@ const Cart = () => {
                 </h2>
 
                 <div className="space-y-3 py-5">
-                  <div className="flex justify-between text-menuHeading">
+                  <div className="flex justify-between text-menuHeading dark:text-[#262626]">
                     <span>Subtotal</span>
                     <span className="font-medium text-gray-900">
                       ${subTotal.toFixed(2)}
                     </span>
                   </div>
-                  <div className="flex justify-between text-menuHeading">
+                  <div className="flex justify-between text-menuHeading dark:text-[#262626]">
                     <span>
                       Discount
                       {discount > 0 && (
@@ -276,7 +276,7 @@ const Cart = () => {
                       -${discount.toFixed(2)}
                     </span>
                   </div>
-                  <div className="flex justify-between text-menuHeading">
+                  <div className="flex justify-between text-menuHeading dark:text-[#262626]">
                     <span>Shipping</span>
                     <span className="font-medium text-gray-900">Free</span>
                   </div>
@@ -288,7 +288,7 @@ const Cart = () => {
                     <div className="text-2xl font-bold text-gray-900">
                       ${total.toFixed(2)}
                     </div>
-                    <div className="text-xs text-menuHeading">USD, tax incl.</div>
+                    <div className="text-xs text-menuHeading dark:text-[#262626]">USD, tax incl.</div>
                   </div>
                 </div>
 
@@ -301,11 +301,11 @@ const Cart = () => {
 
                 <Link
                   to="/shop"
-                  className="block text-center mt-4 text-sm text-menuHeading hover:text-gray-900 transition-colors">
+                  className="block text-center mt-4 text-sm text-menuHeading dark:text-[#262626] hover:text-gray-900 transition-colors">
                   ← Continue Shopping
                 </Link>
 
-                <div className="mt-6 pt-5 border-t border-gray-100 flex items-center justify-center gap-2 text-xs text-menuHeading">
+                <div className="mt-6 pt-5 border-t border-gray-100 flex items-center justify-center gap-2 text-xs text-menuHeading dark:text-[#262626]">
                   <span>🔒</span>
                   <span>Secure checkout · SSL encrypted</span>
                 </div>
