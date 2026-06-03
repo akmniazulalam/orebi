@@ -134,7 +134,7 @@ const Cart = () => {
                         <div className="col-span-12 md:col-span-6 flex items-center gap-4">
                           <button
                             onClick={() => removeFromCart(lineId)}
-                            className="w-7 h-7 rounded-full bg-gray-100 hover:bg-red-500 hover:text-white text-menuHeading flex items-center justify-center transition-colors shrink-0 cursor-pointer"
+                            className="w-7 h-7 rounded-full bg-gray-100 hover:bg-red-500 hover:text-white text-menuHeading dark:text-[#262626] flex items-center justify-center transition-colors shrink-0 cursor-pointer"
                             aria-label="Remove item">
                             <ImCross className="w-2.5 h-2.5" />
                           </button>
