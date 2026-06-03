@@ -524,7 +524,7 @@ const Checkout = () => {
                         <input
                           type="radio"
                           name="shipping"
-                          className="h-4 w-4 accent-menuHeading cursor-pointer"
+                          className="h-4 w-4 accent-menuHeading dark:accent-[#262626] cursor-pointer"
                           checked={shipping === opt.id}
                           onChange={() => setShipping(opt.id)}
                         />
@@ -597,7 +597,7 @@ const Checkout = () => {
                                 payment: undefined,
                               }));
                             }}
-                            className="h-4 w-4 accent-menuHeading cursor-pointer"
+                            className="h-4 w-4 accent-menuHeading dark:accent-[#262626] cursor-pointer"
                           />
                           <Icon className={`h-5 w-5 ${active ? "text-black" : "text-menuHeading"}`} />
                           <span className={`text-sm font-semibold ${active ? "text-black" : "text-menuHeading"}`}>
