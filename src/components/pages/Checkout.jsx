@@ -30,7 +30,11 @@ import {
 import { apiUrls } from "@/lib/productApi";
 import apiClient from "@/lib/apiClient";
 import useCart from "@/store/cart";
-import { getCartLineImage, getCartLineName, getCartLinePrice } from "@/lib/cartUtils";
+import {
+  getCartLineImage,
+  getCartLineName,
+  getCartLinePrice,
+} from "@/lib/cartUtils";
 import toast from "react-hot-toast";
 
 const Checkout = () => {
@@ -89,14 +93,11 @@ const Checkout = () => {
     if (!coupon.trim()) return;
     setCouponMsg("");
     try {
-      const res = await fetch(
-        apiUrls.couponApply,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ code: coupon, subtotal: subTotal }),
-        },
-      );
+      const res = await fetch(apiUrls.couponApply, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ code: coupon, subtotal: subTotal }),
+      });
       const data = await res.json().catch(() => ({}));
       if (res.ok) {
         setCouponApplied(true);
@@ -205,7 +206,7 @@ const Checkout = () => {
     }`;
   return (
     <>
-      <Intro text={"Checkout"} pText={"Checkout"}/>
+      <Intro text={"Checkout"} pText={"Checkout"} />
       <section className="bg-background py-10">
         <Container>
           {/* Breadcrumb / Steps */}
@@ -235,7 +236,9 @@ const Checkout = () => {
                   </span>
                   <span
                     className={`${
-                      s.active ? "font-semibold text-menuHeading" : "text-menuHeading"
+                      s.active
+                        ? "font-semibold text-menuHeading"
+                        : "text-menuHeading"
                     }`}>
                     {s.label}
                   </span>
@@ -249,7 +252,9 @@ const Checkout = () => {
           {/* Coupon notice (original) */}
           <div className="mb-6 flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-gray-300 bg-bHeaderBg dark:bg-[#1a1414] px-5 py-4 text-sm">
             <Tag className="h-4 w-4 text-menuHeading dark:text-gray-200" />
-            <span className="text-menuHeading dark:text-gray-200">Have a coupon?</span>
+            <span className="text-menuHeading dark:text-gray-200">
+              Have a coupon?
+            </span>
             <button
               type="button"
               onClick={() => setShowCoupon((v) => !v)}
@@ -287,8 +292,7 @@ const Checkout = () => {
           {errors.cart ? (
             <p
               data-error="true"
-              className="mb-6 text-sm text-red-500 font-semibold"
-            >
+              className="mb-6 text-sm text-red-500 font-semibold">
               {errors.cart}
             </p>
           ) : null}
@@ -529,13 +533,18 @@ const Checkout = () => {
                           onChange={() => setShipping(opt.id)}
                         />
                         <div>
-                          <p className={`text-sm font-semibold ${shipping === opt.id ? "text-black" : "text-menuHeading"}`}>
+                          <p
+                            className={`text-sm font-semibold ${shipping === opt.id ? "text-black" : "text-menuHeading"}`}>
                             {opt.title}
                           </p>
-                          <p className={`text-xs ${shipping === opt.id ? "text-black" : "text-menuHeading"}`}>{opt.desc}</p>
+                          <p
+                            className={`text-xs ${shipping === opt.id ? "text-black" : "text-menuHeading"}`}>
+                            {opt.desc}
+                          </p>
                         </div>
                       </div>
-                      <span className={`text-sm font-semibold ${shipping === opt.id ? "text-black" : "text-menuHeading"}`}>
+                      <span
+                        className={`text-sm font-semibold ${shipping === opt.id ? "text-black" : "text-menuHeading"}`}>
                         {opt.cost}
                       </span>
                     </label>
@@ -599,13 +608,17 @@ const Checkout = () => {
                             }}
                             className="h-4 w-4 accent-menuHeading dark:accent-[#262626] cursor-pointer"
                           />
-                          <Icon className={`h-5 w-5 ${active ? "text-black" : "text-menuHeading"}`} />
-                          <span className={`text-sm font-semibold ${active ? "text-black" : "text-menuHeading"}`}>
+                          <Icon
+                            className={`h-5 w-5 ${active ? "text-black" : "text-menuHeading"}`}
+                          />
+                          <span
+                            className={`text-sm font-semibold ${active ? "text-black" : "text-menuHeading"}`}>
                             {m.title}
                           </span>
                         </label>
                         {active && (
-                          <div className={`border-t border-gray-200 px-4 py-3 text-xs ${active ? "text-black" : "text-menuHeading"}`}>
+                          <div
+                            className={`border-t border-gray-200 px-4 py-3 text-xs ${active ? "text-black" : "text-menuHeading"}`}>
                             {m.desc}
                             {m.id === "card" && (
                               <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -691,7 +704,9 @@ const Checkout = () => {
                       <span>${tax.toFixed(2)}</span>
                     </div>
                     <div className="flex items-center justify-between pt-4 text-base">
-                      <span className="font-semibold text-menuHeading">Total</span>
+                      <span className="font-semibold text-menuHeading">
+                        Total
+                      </span>
                       <span className="text-xl font-bold text-menuHeading">
                         ${total.toFixed(2)}
                       </span>
