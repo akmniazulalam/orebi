@@ -83,7 +83,10 @@ const NewArrivals = () => {
                     badgeT={badgeTexts[item.id] || "New"}
                     className="absolute top-4.75 left-4.75"
                   />
-                  <ActiveButtons product={item} className="absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400" />
+                  <ActiveButtons
+                    product={item}
+                    className="absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
+                  />
                 </div>
                 <ProductTexts />
               </div>
