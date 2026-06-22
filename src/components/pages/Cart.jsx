@@ -150,7 +150,9 @@ const Cart = () => {
                             </h3>
                             {(item.color || item.size) && (
                               <p className="text-xs text-menuHeading mt-0.5">
-                                {[item.color, item.size].filter(Boolean).join(" · ")}
+                                {[item.color, item.size]
+                                  .filter(Boolean)
+                                  .join(" · ")}
                               </p>
                             )}
                             <p className="text-sm text-menuHeading md:hidden mt-1">
@@ -287,7 +289,9 @@ const Cart = () => {
                     <div className="text-2xl font-bold text-gray-900">
                       ${total.toFixed(2)}
                     </div>
-                    <div className="text-xs text-menuHeading dark:text-[#262626]">USD, tax incl.</div>
+                    <div className="text-xs text-menuHeading dark:text-[#262626]">
+                      USD, tax incl.
+                    </div>
                   </div>
                 </div>
 
