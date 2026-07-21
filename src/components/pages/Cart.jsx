@@ -16,7 +16,6 @@ import {
 import { Link } from "react-router-dom";
 import useCart from "@/store/cart";
 import toast from "react-hot-toast";
-import axios from "axios";
 import { Minus, Plus, ShoppingBag, Tag, ArrowRight } from "lucide-react";
 import {
   getCartLineId,
@@ -24,7 +23,8 @@ import {
   getCartLineName,
   getCartLinePrice,
 } from "@/lib/cartUtils";
-import { apiUrls } from "@/lib/productApi";
+import apiClient from "@/lib/apiClient";
+import { apiPaths } from "@/lib/productApi";
 
 const Cart = () => {
   const { items, removeFromCart, increaseQuantity, decreaseQuantity } = useCart(
@@ -43,7 +43,7 @@ const Cart = () => {
   // apply coupon
   const handleCoupon = async () => {
     try {
-      const res = await axios.post(apiUrls.couponApply, {
+      const res = await apiClient.post(apiPaths.coupon.apply, {
         code: couponCode,
         subtotal: subTotal,
       });

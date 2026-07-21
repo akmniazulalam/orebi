@@ -7,16 +7,17 @@ import ActiveButtons from "../ActiveButtons";
 import ProductTexts from "../ProductTexts";
 import Flex from "../Flex";
 import Black from "../Black";
-import axios from "axios";
+import apiClient from "@/lib/apiClient";
+import { externalApiUrls } from "@/lib/productApi";
 
 const BestSellers = () => {
   const [bestProduct, setBestProduct] = useState([]);
 
   useEffect(() => {
     async function all() {
-      let res = await axios.get(
-        "https://akmniazulalam.github.io/orebiApi/data/index.json",
-      );
+      let res = await apiClient.get(externalApiUrls.bestSellers, {
+        withCredentials: false,
+      });
       setBestProduct(res.data.data);
     }
     all();

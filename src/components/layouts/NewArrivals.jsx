@@ -8,7 +8,8 @@ import ActiveButtons from "../ActiveButtons";
 import ProductTexts from "../ProductTexts";
 import NextArrow from "../NextArrow";
 import PrevArrow from "../PrevArrow";
-import axios from "axios";
+import apiClient from "@/lib/apiClient";
+import { externalApiUrls } from "@/lib/productApi";
 
 const NewArrivals = () => {
   const [myProduct, setMyProduct] = useState([]);
@@ -17,7 +18,9 @@ const NewArrivals = () => {
 
   useEffect(() => {
     async function fetchData() {
-      let res = await axios.get("https://dummyjson.com/products");
+      let res = await apiClient.get(externalApiUrls.newArrivals, {
+        withCredentials: false,
+      });
       let colors = ["#efefef", "#ececec", "#f9f9f9", "#eee"]; // prottek color
       let productsWithBg = res.data.products.map((item, idx) => ({
         ...item,

@@ -27,7 +27,7 @@ import {
   ArrowLeft,
   Loader2,
 } from "lucide-react";
-import { apiUrls } from "@/lib/productApi";
+import { apiPaths } from "@/lib/productApi";
 import apiClient from "@/lib/apiClient";
 import useCart from "@/store/cart";
 import {
@@ -93,25 +93,23 @@ const Checkout = () => {
     if (!coupon.trim()) return;
     setCouponMsg("");
     try {
-      const res = await fetch(apiUrls.couponApply, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ code: coupon, subtotal: subTotal }),
+      const res = await apiClient.post(apiPaths.coupon.apply, {
+        code: coupon,
+        subtotal: subTotal,
       });
-      const data = await res.json().catch(() => ({}));
-      if (res.ok) {
-        setCouponApplied(true);
-        setDiscountAmount(Number(data?.discount) || 0);
-        setCouponMsg(data?.message || "Coupon applied");
-      } else {
-        setCouponApplied(false);
-        setDiscountAmount(0);
-        setCouponMsg(data?.message || "Invalid coupon");
-      }
-    } catch {
+      const data = res.data;
+      setCouponApplied(true);
+      setDiscountAmount(Number(data?.discount) || 0);
+      setCouponMsg(data?.message || "Coupon applied");
+    } catch (error) {
       setCouponApplied(false);
       setDiscountAmount(0);
-      setCouponMsg("Unable to apply coupon. Please try again.");
+      setCouponMsg(
+        error.response?.data?.message ||
+          (error.response
+            ? "Invalid coupon"
+            : "Unable to apply coupon. Please try again."),
+      );
     }
   };
   const validate = () => {

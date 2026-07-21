@@ -1,15 +1,13 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { apiUrls } from "@/lib/productApi";
+import apiClient from "@/lib/apiClient";
+import { apiPaths } from "@/lib/productApi";
 
 const CategoriesMenu = ({ isOpen }) => {
   const [category, setCategory] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(
-        apiUrls.categories,
-      )
+    apiClient
+      .get(apiPaths.categories.list)
       .then((res) => setCategory(res.data.data));
   }, []);
   return (

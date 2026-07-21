@@ -7,16 +7,17 @@ import ProductTexts from "../ProductTexts";
 import Flex from "../Flex";
 import Black from "../Black";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import apiClient from "@/lib/apiClient";
+import { externalApiUrls } from "@/lib/productApi";
 
 const SpecialOffers = () => {
   const [mySpecial, setSpecial] = useState([]);
 
   useEffect(() => {
     async function all() {
-      let res = await axios.get(
-        "https://akmniazulalam.github.io/OrebiEcomApi/data/products.json",
-      );
+      let res = await apiClient.get(externalApiUrls.specialOffers, {
+        withCredentials: false,
+      });
       setSpecial(res.data.data);
     }
     all();
