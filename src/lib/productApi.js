@@ -33,6 +33,9 @@ export const apiPaths = {
   coupon: {
     apply: "/coupon/apply-coupon",
   },
+  orders: {
+    create: "/order/create",
+  },
 };
 
 export const externalApiUrls = {

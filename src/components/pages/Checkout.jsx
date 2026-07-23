@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from "react";
 import Intro from "../Intro";
 import Container from "../Container";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Select,
   SelectContent,
@@ -65,6 +65,7 @@ const Checkout = () => {
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [shipping, setShipping] = useState("standard");
+  const navigate = useNavigate();
   const update = (k) => (e) => {
     const v =
       e?.target?.type === "checkbox" ? e.target.checked : e.target.value;
@@ -188,9 +189,17 @@ const Checkout = () => {
         }),
       };
 
-      const res = await apiClient.post("/order/create", payload);
+      const res = await apiClient.post(apiPaths.orders.create, payload);
+      const order = res?.data?.data;
       toast.success(res?.data?.message || "Order placed successfully");
+      if (order) {
+        sessionStorage.setItem("last-successful-order", JSON.stringify(order));
+      }
       clearCart();
+      navigate("/order-success", {
+        replace: true,
+        state: { order },
+      });
     } catch (error) {
       const message =
         error?.response?.data?.message ||
