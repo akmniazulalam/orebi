@@ -31,7 +31,6 @@ import { apiPaths } from "@/lib/productApi";
 import apiClient from "@/lib/apiClient";
 import useCart from "@/store/cart";
 import {
-  getCartLineImage,
   getCartLineName,
   getCartLinePrice,
 } from "@/lib/cartUtils";

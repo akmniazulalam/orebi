@@ -59,10 +59,6 @@ const Cart = () => {
   const total = Math.max(subTotal - discount, 0);
   const savings = subTotal > 0 ? ((discount / subTotal) * 100).toFixed(0) : 0;
 
-  const [quantity, setQuantity] = useState(1);
-  const handleIncrement = () => setQuantity(quantity + 1);
-  const handleDecrement = () => quantity > 1 && setQuantity(quantity - 1);
-
   // Empty cart
   if (items.length === 0) {
     return (
