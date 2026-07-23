@@ -51,6 +51,7 @@ const OrderSuccess = () => {
   const items = Array.isArray(order?.items) ? order.items : [];
   const orderNumber = order?.orderNumber || "Order confirmed";
   const orderId = order?._id || "";
+  const canViewOrders = Boolean(order?.userId && order.userId !== "guest");
 
   return (
     <>
@@ -217,6 +218,13 @@ const OrderSuccess = () => {
                     className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-lg bg-gray-900 px-4 text-sm font-semibold text-white transition hover:bg-gray-800">
                     Continue Shopping <ArrowRight className="h-4 w-4" />
                   </Link>
+                  {canViewOrders ? (
+                    <Link
+                      to="/orders"
+                      className="inline-flex h-11 w-full items-center justify-center rounded-lg border border-gray-300 bg-white px-4 text-sm font-semibold text-menuHeading transition hover:bg-gray-50">
+                      View Orders
+                    </Link>
+                  ) : null}
                 </div>
               </aside>
             </div>

@@ -35,6 +35,8 @@ export const apiPaths = {
   },
   orders: {
     create: "/order/create",
+    mine: "/order/mine",
+    single: (id) => `/order/${id}`,
   },
 };
 

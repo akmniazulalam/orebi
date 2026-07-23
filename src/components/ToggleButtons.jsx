@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ToggleButtons = ({isOpen}) => {
   return (
@@ -8,6 +9,11 @@ const ToggleButtons = ({isOpen}) => {
       <button className="w-50 bg-similarBlack font-dmSans font-bold text-sm text-white text-center py-4 px-14 cursor-pointer">
         My Account
       </button>
+      <Link
+        to="/orders"
+        className="block w-50 bg-white font-dmSans text-sm text-menuHeading dark:text-[#262626] font-bold text-center border border-[#F0f0f0] py-4 px-14 cursor-pointer">
+        My Orders
+      </Link>
       <button className="w-50 bg-white font-dmSans text-sm text-menuHeading dark:text-[#262626] font-bold text-center border border-[#F0f0f0] py-4 px-14 cursor-pointer">
         Log Out
       </button>

@@ -12,6 +12,8 @@ import Journal from "./components/pages/Journal";
 import Cart from "./components/pages/Cart";
 import Checkout from "./components/pages/Checkout";
 import OrderSuccess from "./components/pages/OrderSuccess";
+import Orders from "./components/pages/Orders";
+import OrderDetails from "./components/pages/OrderDetails";
 import ScrollToTop from "./components/ScrollToTop";
 import ProductDetails from "./components/pages/ProductDetails";
 import Signup from "./components/pages/Signup";
@@ -41,6 +43,8 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order-success" element={<OrderSuccess />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/orders/:id" element={<OrderDetails />} />
           <Route path="/productdetails/:id" element={<ProductDetails />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
