@@ -130,7 +130,7 @@ const Orders = () => {
                     className="block rounded-2xl border border-gray-200 bg-bHeaderBg p-5 shadow-sm transition hover:border-gray-300 hover:bg-white dark:bg-[#1a1414]">
                     <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
                       <div className="flex gap-4">
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-menuHeading">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-menuHeading dark:text-[#262626]">
                           <ClipboardList className="h-6 w-6" />
                         </div>
                         <div>
