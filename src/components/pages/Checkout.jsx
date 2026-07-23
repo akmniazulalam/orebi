@@ -168,20 +168,25 @@ const Checkout = () => {
           tax: Number(tax.toFixed(2)),
           shippingCost: Number(shippingCost.toFixed(2)),
         },
-        items: items.map((it) => ({
-          productId: it.productId || it._id || it.id,
-          variantId: it.variantId,
-          sku: it.sku,
-          name: it.name || it.title,
-          image: it.image,
-          color: it.color,
-          size: it.size,
-          ram: it.ram,
-          storage: it.storage,
-          badge: it.badge,
-          quantity: it.quantity || 1,
-          price: getCartLinePrice(it),
-        })),
+        items: items.map((it) => {
+          const quantity = Math.max(1, Number(it.quantity) || 1);
+          const productId = it.productId || it._id || it.id;
+
+          return {
+            productId: productId ? String(productId) : "",
+            variantId: it.variantId,
+            sku: it.sku,
+            name: it.name || it.title,
+            image: it.image,
+            color: it.color,
+            size: it.size,
+            ram: it.ram,
+            storage: it.storage,
+            badge: it.badge,
+            quantity,
+            price: Number(getCartLinePrice(it)),
+          };
+        }),
       };
 
       const res = await apiClient.post("/order/create", payload);
