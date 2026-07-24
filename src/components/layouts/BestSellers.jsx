@@ -31,9 +31,9 @@ const BestSellers = () => {
           text={"Our Bestsellers"}
           as={"h3"}
         />
-        <Flex className={"gap-x-8"}>
+        <div className="flex flex-wrap gap-8 justify-center sm:justify-start">
           {bestProduct.map((item) => (
-            <div key={item.id}>
+            <div key={item.id} className="w-full sm:w-[calc(50%-16px)] lg:w-[calc(25%-24px)] shrink-0">
               <div className="relative w-full group/img">
                 <Image
                   src={item.image}
@@ -55,7 +55,7 @@ const BestSellers = () => {
               <Black />
             </div>
           ))}
-        </Flex>
+        </div>
       </Container>
     </section>
   );

@@ -10,10 +10,10 @@ const Shop = () => {
     <>
       <Intro text={"Products"} pText={"Products"} />
       <Container>
-        <Flex className={"gap-x-8 items-start"}>
+        <div className="flex flex-col md:flex-row gap-8 items-start">
           <Filter />
           <ShopProducts />
-        </Flex>
+        </div>
       </Container>
     </>
   );

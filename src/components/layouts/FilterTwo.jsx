@@ -5,7 +5,7 @@ import { FaCaretDown } from "react-icons/fa";
 const FilterTwo = () => {
   return (
     <div className="ml-auto mb-15">
-      <Flex className={"gap-x-5 justify-end"}>
+      <div className="flex flex-wrap gap-4 justify-start sm:justify-end items-center">
         <Flex className={"gap-x-3"}>
           <p className="font-dmSans text-base text-header">Sort by:</p>
           <div className="relative">
@@ -79,7 +79,7 @@ const FilterTwo = () => {
             </div>
           </div>
         </Flex>
-      </Flex>
+      </div>
     </div>
   );
 };

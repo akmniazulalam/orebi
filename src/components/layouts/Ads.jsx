@@ -8,9 +8,9 @@ import { Link } from "react-router-dom";
 
 const Ads = () => {
   return (
-    <section className="pt-40">
+    <section className="pt-12 md:pt-40">
       <Container>
-        <div className="grid grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
           <Link to={"/shop"}>
             <Image
               src={AdOne}
@@ -18,7 +18,7 @@ const Ads = () => {
               className={"w-full h-full object-cover"}
             />
           </Link>
-          <div className="grid grid-rows-2 gap-8">
+          <div className="grid grid-rows-2 gap-4 md:gap-8">
             <Link to={"/shop"}>
               <Image
                 src={AdTwo}

@@ -57,13 +57,33 @@ const NewArrivals = () => {
     afterChange: (index) => {
       setActiveDot(index % 4); // Always 0 to 3
     },
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 2,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   // Generate fake 4-dot array just to render them
   const fakeDotArray = [0, 1, 2, 3];
 
   return (
-    <section className="pt-33.75">
+    <section className="pt-10 md:pt-33.75">
       <Container>
         <Heading
           className={"font-dmSans font-bold text-[39px] text-menuHeading"}

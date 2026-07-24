@@ -130,7 +130,7 @@ const ShopProducts = () => {
         />
       )}
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-11 grid-rows-4 mb-14">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-11 mb-14">
         {staticDemoProducts.map((item) => (
           <Products
             key={item.id}
@@ -145,7 +145,7 @@ const ShopProducts = () => {
         ))}
       </div>
 
-      <Flex className={"justify-between"}>
+      <div className="flex flex-col sm:flex-row gap-y-4 sm:gap-y-0 items-center justify-between">
         <Flex className={"gap-x-4"}>
           <Link to={"/shop"}>
             <div className="w-10 h-10 flex justify-center items-center font-dmSans text-sm text-white dark:text-[#262626] bg-menuHeading">
@@ -177,7 +177,7 @@ const ShopProducts = () => {
         <p className="font-dmSans text-sm text-header">
           Products from 1 to 12 of 80
         </p>
-      </Flex>
+      </div>
     </div>
   );
 };

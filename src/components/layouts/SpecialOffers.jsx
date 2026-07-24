@@ -24,17 +24,17 @@ const SpecialOffers = () => {
   }, []);
 
   return (
-    <section className="pt-30">
+    <section className="pt-10 md:pt-30">
       <Container>
         <Heading
           className={"font-dmSans font-bold text-[39px] text-menuHeading pb-14"}
           text={"Special Offers"}
           as={"h3"}
         />
-        <Flex className={"gap-x-8"}>
+        <div className="flex flex-wrap gap-8 justify-center sm:justify-start">
           {mySpecial.map((item) => {
             return (
-              <div key={item.id}>
+              <div key={item.id} className="w-full sm:w-[calc(50%-16px)] lg:w-[calc(25%-24px)] shrink-0">
                 <div className="relative w-full group/img">
                   <Image
                     src={item.image}
@@ -57,7 +57,7 @@ const SpecialOffers = () => {
               </div>
             );
           })}
-        </Flex>
+        </div>
       </Container>
     </section>
   );

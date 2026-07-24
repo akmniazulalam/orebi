@@ -44,15 +44,15 @@ const Banner = () => {
     <div className="relative">
       <Link to={"/shop"}>
         <Slider ref={sliderRef} {...settings}>
-          <div className="bg-[url(/src/assets/bannerBg.png)] bg-no-repeat bg-cover bg-center py-[243.5px]"></div>
-          <div className="bg-[url(/src/assets/Frame.png)] bg-no-repeat bg-center bg-cover py-60 drop-shadow-[0px_4px_2px_#00000045]"></div>
-          <div className="bg-[url(/src/assets/bannerBg.png)] bg-no-repeat bg-cover bg-center py-[243.5px]"></div>
-          <div className="bg-[url(/src/assets/Frame.png)] bg-no-repeat bg-center bg-cover py-60 drop-shadow-[0px_4px_2px_#00000045]"></div>
+          <div className="bg-[url(/src/assets/bannerBg.png)] bg-no-repeat bg-cover bg-center py-20 md:py-[243.5px]"></div>
+          <div className="bg-[url(/src/assets/Frame.png)] bg-no-repeat bg-center bg-cover py-16 md:py-60 drop-shadow-[0px_4px_2px_#00000045]"></div>
+          <div className="bg-[url(/src/assets/bannerBg.png)] bg-no-repeat bg-cover bg-center py-20 md:py-[243.5px]"></div>
+          <div className="bg-[url(/src/assets/Frame.png)] bg-no-repeat bg-center bg-cover py-16 md:py-60 drop-shadow-[0px_4px_2px_#00000045]"></div>
         </Slider>
       </Link>
 
       {/* Custom Progress Bar container */}
-      <div className="absolute left-20 top-[40%] flex items-start">
+      <div className="absolute left-6 md:left-20 top-[40%] flex items-start">
         <span className="mr-3 w-6 text-lg font-semibold text-menuHeading dark:text-[#262626] font-dmSans">
           {currentSlide.toString().padStart(2, "0")}
         </span>

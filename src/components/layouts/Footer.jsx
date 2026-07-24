@@ -12,9 +12,9 @@ const Footer = () => {
     <>
       <section className="bg-bHeaderBg py-12 mt-25">
         <Container>
-          <div className="flex justify-between">
-            <div className="w-[58%]">
-              <div className="flex justify-between">
+          <div className="flex flex-col lg:flex-row justify-between gap-y-10 lg:gap-y-0">
+            <div className="w-full lg:w-[58%]">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 md:gap-0 justify-between">
                 <div className="menu">
                   <Heading
                     text={"Menu"}
@@ -142,7 +142,7 @@ const Footer = () => {
                 <BsInstagram className="text-menuHeading" />
               </Flex>
             </div>
-            <div className="flex flex-col justify-between">
+            <div className="flex flex-col justify-between gap-y-4 lg:gap-y-0">
               <Link to={"/"}>
                 <Image src={Logo} alt={Logo} className={"w-30 dark:invert"} />
               </Link>

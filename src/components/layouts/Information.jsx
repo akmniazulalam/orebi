@@ -9,7 +9,7 @@ const Information = () => {
   return (
     <div className="border-b-2 border-infoBg pt-5 pb-8">
       <Container>
-        <Flex className={"justify-between"}>
+        <div className="flex flex-col sm:flex-row gap-y-4 sm:gap-y-0 justify-between items-center">
           <Flex className={"gap-x-2"}>
             <PiNumberTwoBold className="text-[22px] text-menuHeading" />
             <Heading
@@ -34,7 +34,7 @@ const Information = () => {
               className={"font-dmSans text-base text-footerTexts"}
             />
           </Flex>
-        </Flex>
+        </div>
       </Container>
     </div>
   );

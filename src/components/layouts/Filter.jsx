@@ -18,7 +18,7 @@ const Filter = () => {
 
   return (
     <>
-      <div className="w-1/4">
+      <div className="w-full md:w-1/4">
         <Heading
           text={"Shop by Category"}
           className={"font-dmSans font-bold text-[20px] text-menuHeading mb-3"}

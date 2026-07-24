@@ -44,6 +44,7 @@ const Header = () => {
   const [showCart, setShowCart] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
   const [showButton, setShowButton] = useState(false);
+  const [showNav, setShowNav] = useState(false);
 
   const dropdownRef = useRef(null); // ekhane useRef sob somoy e ekta object return kore. jetar moddhe ekta property thake current naame. useRef direct ekta html element mane html tag ke access kore. jodi kono element er moddhe mane html tag e ei useRef take use kora hoy tahole useRef er object ta te current er moddhe sei html tag ta add hoy. kintu jokhon ekta page render hoy tokhon sathe sathe DOM element ta toiri hoye jayna. tokhon ei useRef tar moddhe current e oi element take payna. tai safe thakar jonno initially null rakha hoy. useRef ke html tag e directly use kora jayna tai ekta variable e niye tarpor oi variable take html tag e ref naame ekta prop niye use korte hoy.
   const cartRef = useRef(null);
@@ -95,13 +96,14 @@ const Header = () => {
 
   return (
     <>
-      <section className="py-7">
+      <section className="py-7 border-b border-gray-100 md:border-b-0">
         <Container>
-          <Flex>
+          <Flex className="justify-between md:justify-start">
             <Link to={"/"}>
               <Image src={Logo} alt={Logo} className={"dark:invert"} />
             </Link>
-            <div className="m-auto">
+            {/* Desktop Navigation */}
+            <div className="m-auto hidden md:block">
               <ul className="flex gap-x-11">
                 <Link to={"/"}>
                   <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
@@ -130,37 +132,129 @@ const Header = () => {
                 </Link>
               </ul>
             </div>
+            {/* Mobile Navigation Toggle */}
+            <button
+              className="md:hidden block text-menuHeading focus:outline-none cursor-pointer"
+              onClick={() => setShowNav(!showNav)}
+              aria-label="Toggle navigation">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                {showNav ? (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                ) : (
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                )}
+              </svg>
+            </button>
           </Flex>
+
+          {/* Mobile Navigation Dropdown */}
+          {showNav && (
+            <div className="md:hidden pt-4 pb-2 border-t border-gray-100 mt-4 animate-slide">
+              <ul className="flex flex-col gap-y-3">
+                <Link to={"/"} onClick={() => setShowNav(false)}>
+                  <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
+                    Home
+                  </li>
+                </Link>
+                <Link to={"/shop"} onClick={() => setShowNav(false)}>
+                  <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
+                    Shop
+                  </li>
+                </Link>
+                <Link to={"/about"} onClick={() => setShowNav(false)}>
+                  <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
+                    About
+                  </li>
+                </Link>
+                <Link to={"/contacts"} onClick={() => setShowNav(false)}>
+                  <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
+                    Contacts
+                  </li>
+                </Link>
+                <Link to={"/journal"} onClick={() => setShowNav(false)}>
+                  <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
+                    Journal
+                  </li>
+                </Link>
+              </ul>
+            </div>
+          )}
         </Container>
       </section>
       <section className="py-6 bg-bHeaderBg">
         <Container>
-          <Flex className={"justify-between"}>
-            <div className="relative" ref={dropdownRef}>
-              <div onClick={toggleMenu} className="cursor-pointer ">
-                <Flex>
-                  <MenuIcon />
+          <div className="flex flex-col md:flex-row md:items-center justify-between gap-y-4 md:gap-y-0">
+            <div className="flex items-center justify-between w-full md:w-auto">
+              <div className="relative" ref={dropdownRef}>
+                <div onClick={toggleMenu} className="cursor-pointer ">
+                  <Flex>
+                    <MenuIcon />
 
-                  <Heading
-                    className={"font-dmSans text-[14px] text-menuHeading pl-3"}
-                    text={"Shop by Category"}
-                    as={"h4"}
-                  />
-                </Flex>
+                    <Heading
+                      className={"font-dmSans text-[14px] text-menuHeading pl-3"}
+                      text={"Shop by Category"}
+                      as={"h4"}
+                    />
+                  </Flex>
+                </div>
+                {<CategoriesMenu isOpen={showMenu} />}
               </div>
-              {<CategoriesMenu isOpen={showMenu} />}
+
+              {/* Mobile Header Icons Group */}
+              <div className="flex items-center md:hidden">
+                {/* Dark Mode */}
+                <Button
+                  variant="ghost"
+                  onClick={toggleDarkMode}
+                  className="h-9 w-9 cursor-pointer mr-3">
+                  {darkMode ? (
+                    <Sun className="h-5 w-5 text-yellow-500" />
+                  ) : (
+                    <Moon className="h-5 w-5 text-menuHeading" />
+                  )}
+                </Button>
+                <div className="relative" ref={toggleRef}>
+                  <div
+                    className="flex items-center gap-x-1 cursor-pointer"
+                    onClick={toggleButtons}>
+                    <FaUser className="text-menuHeading" />
+                    {showButton ? (
+                      <FaCaretUp className="text-menuHeading" />
+                    ) : (
+                      <FaCaretDown className="text-menuHeading" />
+                    )}
+                  </div>
+                  {<ToggleButtons isOpen={showButton} />}
+                </div>
+                <div className="relative" ref={cartRef}>
+                  <FaShoppingCart
+                    className="text-menuHeading ml-4 cursor-pointer"
+                    onClick={() => setShowCart(!showCart)}
+                  />
+                  {showCart && (
+                    <CartDropdowns
+                      items={items}
+                      onClick={() => setShowCart(!showCart)}
+                    />
+                  )}
+                </div>
+              </div>
             </div>
-            <div className="relative">
+
+            {/* Search Box */}
+            <div className="relative w-full md:w-auto">
               <input
                 type="search"
                 placeholder="Search Products"
-                className="placeholder:text-[#C4C4C4] placeholder:font-dmSans placeholder:text-[14px] p-5 bg-white dark:bg-[#1F1F1F] w-150 focus:outline-0"
+                className="placeholder:text-[#C4C4C4] placeholder:font-dmSans placeholder:text-[14px] p-5 bg-white dark:bg-[#1F1F1F] w-full md:w-80 lg:w-150 focus:outline-0"
               />
               <span className="absolute top-1/2 right-4 -translate-y-1/2">
                 <FaSearch />
               </span>
             </div>
-            <Flex>
+
+            {/* Desktop Header Icons Group */}
+            <div className="hidden md:flex items-center">
               {/* Dark Mode */}
               <Button
                 variant="ghost"
@@ -197,8 +291,8 @@ const Header = () => {
                   />
                 )}
               </div>
-            </Flex>
-          </Flex>
+            </div>
+          </div>
         </Container>
       </section>
     </>
