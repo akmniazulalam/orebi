@@ -30,7 +30,7 @@ const Signup = () => {
           as={"h2"}
         />
         <div className="max-w-263.75 w-full gap-y-6 grid">
-          <Flex className={"gap-x-10"}>
+          <div className="flex flex-col sm:flex-row gap-y-6 sm:gap-y-0 gap-x-10">
             <div className="w-full">
               <h3 className="font-dmSans font-bold text-base text-menuHeading">
                 First Name
@@ -51,8 +51,8 @@ const Signup = () => {
                 className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
               />
             </div>
-          </Flex>
-          <Flex className={"gap-x-10"}>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-y-6 sm:gap-y-0 gap-x-10">
             <div className="w-full">
               <h3 className="font-dmSans font-bold text-base text-menuHeading">
                 Email address
@@ -73,7 +73,7 @@ const Signup = () => {
                 className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
               />
             </div>
-          </Flex>
+          </div>
         </div>
         <hr className="text-infoBg my-15" />
         <Heading
@@ -82,7 +82,7 @@ const Signup = () => {
           as={"h2"}
         />
         <div className="max-w-263.75 w-full gap-y-6 grid">
-          <Flex className={"gap-x-10"}>
+          <div className="flex flex-col sm:flex-row gap-y-6 sm:gap-y-0 gap-x-10">
             <div className="w-full">
               <h3 className="font-dmSans font-bold text-base text-menuHeading">
                 Address 1
@@ -103,8 +103,8 @@ const Signup = () => {
                 className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
               />
             </div>
-          </Flex>
-          <Flex className={"gap-x-10"}>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-y-6 sm:gap-y-0 gap-x-10">
             <div className="w-full">
               <h3 className="font-dmSans font-bold text-base text-menuHeading">
                 City
@@ -125,8 +125,8 @@ const Signup = () => {
                 className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
               />
             </div>
-          </Flex>
-          <Flex className={"gap-x-10"}>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-y-6 sm:gap-y-0 gap-x-10">
             <div className="w-full">
               <h3 className="font-dmSans font-bold text-base text-menuHeading">
                 Division
@@ -195,7 +195,7 @@ const Signup = () => {
                 </SelectContent>
               </Select>
             </div>
-          </Flex>
+          </div>
         </div>
         <hr className="text-infoBg my-15" />
         <Heading
@@ -204,7 +204,7 @@ const Signup = () => {
           as={"h2"}
         />
         <div className="max-w-263.75 w-full gap-y-6 grid">
-          <Flex className={"gap-x-10"}>
+          <div className="flex flex-col sm:flex-row gap-y-6 sm:gap-y-0 gap-x-10">
             <div className="w-full">
               <h3 className="font-dmSans font-bold text-base text-menuHeading">
                 Password
@@ -225,7 +225,7 @@ const Signup = () => {
                 className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
               />
             </div>
-          </Flex>
+          </div>
         </div>
         <hr className="text-infoBg my-15" />
         <div className="flex items-center gap-x-2">

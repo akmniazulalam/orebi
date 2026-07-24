@@ -6,18 +6,18 @@ import { FaSearch } from "react-icons/fa";
 const Error = () => {
   return (
     <Container>
-      <h1 className="font-dmSans font-bold text-[200px] text-menuHeading pt-[80px] leading-[240px]">
+      <h1 className="font-dmSans font-bold text-[100px] sm:text-[200px] text-menuHeading pt-10 sm:pt-[80px] leading-[120px] sm:leading-[240px]">
         404
       </h1>
-      <p className="w-[644px] font-dmSans text-base leading-7.5 text-[#767676]">
+      <p className="max-w-[644px] w-full font-dmSans text-base leading-7.5 text-[#767676]">
         The page you were looking for couldn't be found. The page could be
         removed or you misspelled the word while searching for it. Maybe try a
         search?
       </p>
-      <div className="relative inline">
+      <div className="relative block max-w-[643px] w-full">
         <input
         type="text"
-        className="w-[643px] p-5 border border-[#F0F0F0] placeholder:text-base placeholder:font-dmSans placeholder:text-[#767676] mt-14 mb-15 focus:outline-0 font-dmSans"
+        className="w-full p-5 border border-[#F0F0F0] placeholder:text-base placeholder:font-dmSans placeholder:text-[#767676] mt-14 mb-15 focus:outline-0 font-dmSans"
         placeholder="Type to search"
       />
       <FaSearch className="text-base text-menuHeading absolute top-1/2 right-[20px] -translate-y-1/2"/>

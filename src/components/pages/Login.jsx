@@ -21,7 +21,7 @@ const Login = () => {
           as={"h2"}
         />
         <div className="max-w-263.75 w-full gap-y-6 grid">
-          <Flex className={"gap-x-10"}>
+          <div className="flex flex-col sm:flex-row gap-y-6 sm:gap-y-0 gap-x-10">
             <div className="w-full">
               <h3 className="font-dmSans font-bold text-base text-menuHeading">
                 Email address
@@ -42,7 +42,7 @@ const Login = () => {
                 className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
               />
             </div>
-          </Flex>
+          </div>
         </div>
         <button className="py-3 px-18 mt-6 text-sm font-bold font-dmSans text-black hover:text-white hover:bg-menuHeading cursor-pointer border border-menuHeading transition-all duration-300">
               Log in

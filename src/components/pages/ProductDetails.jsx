@@ -262,7 +262,7 @@ const ProductDetails = () => {
     <>
       <Intro text={"Single Product"} pText={"Single Product"} />
       <Container>
-        <div className={"grid grid-cols-2 gap-9 mb-10"}>
+        <div className={"grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-9 mb-6 md:mb-10"}>
           {(galleryImages.length ? galleryImages : [selectedVariant?.images?.[0]]).map(
             (src, index) =>
               src ? (
@@ -270,7 +270,7 @@ const ProductDetails = () => {
               ) : null,
           )}
         </div>
-        <div className="w-1/2">
+        <div className="w-full lg:w-1/2">
           <Heading
             as={"h3"}
             className={"text-3xl font-bold font-dmSans"}
@@ -375,8 +375,7 @@ const ProductDetails = () => {
                 : "Out of stock"}
             </p>
           </Flex>
-          <hr className="text-[#d8d8d8]" />
-          <Flex className={"my-8 items-center gap-x-4"}>
+          <div className="flex flex-wrap items-center gap-4 my-8">
             <button className="py-3 px-10 text-menuHeading dark:hover:text-[#262626] text-base font-bold font-dmSans hover:bg-menuHeading hover:text-white transition-all duration-300 cursor-pointer border-2 border-menuHeading">
               Add to Wish List
             </button>
@@ -562,7 +561,7 @@ const ProductDetails = () => {
                 </motion.div>
               </motion.div>
             </button>
-          </Flex>
+          </div>
           <hr className="text-[#d8d8d8]" />
           <Flex className={"my-6 items-center justify-between gap-x-6"}>
             <Heading
