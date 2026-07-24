@@ -22,12 +22,16 @@ import { useEffect } from "react";
 
 function App() {
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
+    try {
+      const savedTheme = localStorage.getItem("theme");
 
-    if (savedTheme === "dark") {
-      document.documentElement.classList.add("dark"); //document.documentElement = <html> tag
-    } else {
-      document.documentElement.classList.remove("dark");
+      if (savedTheme === "dark") {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+    } catch (e) {
+      // Storage unavailable or disabled
     }
   }, []);
   return (

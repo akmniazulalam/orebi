@@ -13,22 +13,37 @@ import { externalApiUrls } from "@/lib/productApi";
 
 const NewArrivals = () => {
   const [myProduct, setMyProduct] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
   const [activeDot, setActiveDot] = useState(0);
   const sliderRef = useRef(null);
 
   useEffect(() => {
+    let isMounted = true;
     async function fetchData() {
-      let res = await apiClient.get(externalApiUrls.newArrivals, {
-        withCredentials: false,
-      });
-      let colors = ["#efefef", "#ececec", "#f9f9f9", "#eee"]; // prottek color
-      let productsWithBg = res.data.products.map((item, idx) => ({
-        ...item,
-        bgColor: colors[idx % colors.length], // cyclic bg color
-      }));
-      setMyProduct(productsWithBg);
+      try {
+        setLoading(true);
+        setError(false);
+        let res = await apiClient.get(externalApiUrls.newArrivals, {
+          withCredentials: false,
+        });
+        if (!isMounted) return;
+        let colors = ["#efefef", "#ececec", "#f9f9f9", "#eee"];
+        let productsWithBg = (res.data?.products || []).map((item, idx) => ({
+          ...item,
+          bgColor: colors[idx % colors.length],
+        }));
+        setMyProduct(productsWithBg);
+      } catch (err) {
+        if (isMounted) setError(true);
+      } finally {
+        if (isMounted) setLoading(false);
+      }
     }
     fetchData();
+    return () => {
+      isMounted = false;
+    };
   }, []);
   const badgeTexts = {
     1: "10%",
@@ -90,8 +105,23 @@ const NewArrivals = () => {
           text={"New Arrivals"}
           as={"h3"}
         />
-        <div className="-mx-4 mt-14 mb-6 group">
-          <Slider ref={sliderRef} {...settings}>
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-14 mb-6">
+            {[1, 2, 3, 4].map((n) => (
+              <div key={n} className="h-64 bg-gray-100 dark:bg-zinc-800 animate-pulse rounded-lg" />
+            ))}
+          </div>
+        ) : error ? (
+          <div className="mt-14 mb-6 text-sm text-menuHeading text-center py-8">
+            Unable to load new arrivals at this time.
+          </div>
+        ) : myProduct.length === 0 ? (
+          <div className="mt-14 mb-6 text-sm text-menuHeading text-center py-8">
+            No new arrivals available.
+          </div>
+        ) : (
+          <div className="-mx-4 mt-14 mb-6 group">
+            <Slider ref={sliderRef} {...settings}>
             {myProduct.map((item) => (
               <div key={item.id} className="px-4">
                 <div
@@ -136,7 +166,8 @@ const NewArrivals = () => {
               </div>
             ))}
           </div>
-        </div>
+          </div>
+        )}
       </Container>
     </section>
   );

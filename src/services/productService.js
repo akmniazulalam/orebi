@@ -7,12 +7,23 @@ function unwrapData(response) {
 }
 
 export async function fetchProducts() {
-  const response = await apiClient.get(apiPaths.products.list);
-  const products = unwrapData(response) ?? [];
-  return products.map(normalizeProductFromApi);
+  try {
+    const response = await apiClient.get(apiPaths.products.list);
+    const products = unwrapData(response) ?? [];
+    return products.map(normalizeProductFromApi);
+  } catch (error) {
+    console.error("fetchProducts failed:", error);
+    return [];
+  }
 }
 
 export async function fetchProductById(id) {
-  const response = await apiClient.get(apiPaths.products.single(id));
-  return normalizeProductFromApi(unwrapData(response));
+  try {
+    const response = await apiClient.get(apiPaths.products.single(id));
+    const data = unwrapData(response);
+    return data ? normalizeProductFromApi(data) : null;
+  } catch (error) {
+    console.error(`fetchProductById failed for id ${id}:`, error);
+    return null;
+  }
 }

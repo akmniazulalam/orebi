@@ -30,10 +30,14 @@ const Header = () => {
       const newMode = !prev;
       if (newMode) {
         document.documentElement.classList.add("dark");
-        localStorage.setItem("theme", "dark");
+        try {
+          localStorage.setItem("theme", "dark");
+        } catch (e) {}
       } else {
         document.documentElement.classList.remove("dark");
-        localStorage.setItem("theme", "light");
+        try {
+          localStorage.setItem("theme", "light");
+        } catch (e) {}
       }
       return newMode;
     });
