@@ -11,9 +11,13 @@ import {
 
 const CartDropdowns = ({ items, onClick }) => {
   const removeFromCart = useCart((state) => state.removeFromCart);
-  const subTotal = items.reduce(
-    (total, item) => total + getCartLinePrice(item) * (item.quantity || 1),
-    0,
+  const subTotal = React.useMemo(
+    () =>
+      (items || []).reduce(
+        (total, item) => total + getCartLinePrice(item) * (item.quantity || 1),
+        0,
+      ),
+    [items],
   );
   return (
     <div className="absolute top-10 right-0 max-w-[calc(100vw-32px)] w-89.5 z-10">

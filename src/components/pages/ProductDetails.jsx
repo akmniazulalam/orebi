@@ -59,102 +59,110 @@ const ProductDetails = () => {
 
     addToCart(buildCartLineItem(singleProduct, selectedVariant, quantity));
 
-    // HIDE TEXT
-    setShowText(false);
-    setAnimating(true);
+    try {
+      // HIDE TEXT
+      setShowText(false);
+      setAnimating(true);
 
-    // MOVE CART TO CENTER
-    await cartControls.start({
-      x: 56,
-      transition: {
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1],
-      },
-    });
+      // MOVE CART TO CENTER
+      await cartControls.start({
+        x: 56,
+        transition: {
+          duration: 0.7,
+          ease: [0.22, 1, 0.36, 1],
+        },
+      });
 
-    await sleep(120);
+      await sleep(120);
 
-    // BORDER STRETCH EFFECT
-    setShowPortal(true);
+      // BORDER STRETCH EFFECT
+      setShowPortal(true);
 
-    await sleep(80);
+      await sleep(80);
 
-    // SHIRT COMES OUT
-    setShowShirt(true);
+      // SHIRT COMES OUT
+      setShowShirt(true);
 
-    // SHIRT GOING UP
-    await sleep(320);
+      // SHIRT GOING UP
+      await sleep(320);
 
-    // BORDER NORMAL AGAIN
-    setShowPortal(false);
+      // BORDER NORMAL AGAIN
+      setShowPortal(false);
 
-    // SHIRT STAYS UP
-    await sleep(250);
+      // SHIRT STAYS UP
+      await sleep(250);
 
-    // SHIRT RETURNS TO CART
-    setShirtReturn(true);
+      // SHIRT RETURNS TO CART
+      setShirtReturn(true);
 
-    await sleep(350);
+      await sleep(350);
 
-    setFillColor(true);
+      setFillColor(true);
 
-    // HIDE SHIRT
-    setShowShirt(false);
-    setShirtReturn(false);
+      // HIDE SHIRT
+      setShowShirt(false);
+      setShirtReturn(false);
 
-    // SUCCESS TICK
-    setShowTick(true);
+      // SUCCESS TICK
+      setShowTick(true);
 
-    await sleep(650);
+      await sleep(650);
 
-    // CART DRIVE
-    setMoveCart(true);
+      // CART DRIVE
+      setMoveCart(true);
 
-    await cartControls.start({
-      x: 200,
-      transition: {
-        duration: 1.1,
-        ease: "easeInOut",
-      },
-    });
+      await cartControls.start({
+        x: 200,
+        transition: {
+          duration: 1.1,
+          ease: "easeInOut",
+        },
+      });
 
-    await sleep(50);
+      await sleep(50);
 
-    // START RESET
-    setMoveCart(false);
-    setShowTick(false);
-    setFillColor(false);
-    setResetting(true);
+      // START RESET
+      setMoveCart(false);
+      setShowTick(false);
+      setFillColor(false);
+      setResetting(true);
 
-    cartControls.set({
-      x: -64,
-    });
+      cartControls.set({
+        x: -64,
+      });
 
-    setTimeout(async () => {
-      // text first invisible obosthay left e ready thakbe
-      setShowText(true);
+      setTimeout(async () => {
+        setShowText(true);
 
-      await Promise.all([
-        cartControls.start({
-          x: 0,
-          transition: {
-            duration: 0.7,
-            ease: [0.22, 1, 0.36, 1],
-          },
-        }),
-      ]);
+        await Promise.all([
+          cartControls.start({
+            x: 0,
+            transition: {
+              duration: 0.7,
+              ease: [0.22, 1, 0.36, 1],
+            },
+          }),
+        ]);
 
-      setResetting(false);
+        setResetting(false);
+        setAnimating(false);
+      }, 50);
+    } catch (err) {
       setAnimating(false);
-    }, 50);
+      setShowText(true);
+      setShowShirt(false);
+      setShowTick(false);
+    }
   };
 
   useEffect(() => {
+    let isMounted = true;
     setIsLoading(true);
     setLoadError(null);
 
     fetchProductById(id)
       .then((product) => {
+        if (!isMounted) return;
         if (!product) {
           setLoadError("Product not found");
           return;
@@ -165,8 +173,16 @@ const ProductDetails = () => {
         setSelectedSize(primary?.size || "");
         setQuantity(1);
       })
-      .catch(() => setLoadError("Failed to load product"))
-      .finally(() => setIsLoading(false));
+      .catch(() => {
+        if (isMounted) setLoadError("Failed to load product");
+      })
+      .finally(() => {
+        if (isMounted) setIsLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
   }, [id]);
 
   const selectedVariant = useMemo(
