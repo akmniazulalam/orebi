@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <>
-      <section className="bg-bHeaderBg py-12 mt-25">
+      <footer className="bg-bHeaderBg py-12 mt-25">
         <Container>
           <div className="flex flex-col lg:flex-row justify-between gap-y-10 lg:gap-y-0">
             <div className="w-full lg:w-[58%]">
@@ -137,14 +137,20 @@ const Footer = () => {
                 </div>
               </div>
               <Flex className={"gap-x-5 pt-16"}>
-                <FaFacebookF className="text-menuHeading" />
-                <FaLinkedinIn className="text-[19px] text-menuHeading" />
-                <BsInstagram className="text-menuHeading" />
+                <a href="#" aria-label="Facebook">
+                  <FaFacebookF className="text-menuHeading" />
+                </a>
+                <a href="#" aria-label="LinkedIn">
+                  <FaLinkedinIn className="text-[19px] text-menuHeading" />
+                </a>
+                <a href="#" aria-label="Instagram">
+                  <BsInstagram className="text-menuHeading" />
+                </a>
               </Flex>
             </div>
             <div className="flex flex-col justify-between gap-y-4 lg:gap-y-0">
               <Link to={"/"}>
-                <Image src={Logo} alt={Logo} className={"w-30 dark:invert"} />
+                <Image src={Logo} alt="Orebi logo" className={"w-30 dark:invert"} />
               </Link>
               <p className="font-dmSans text-footerTexts text-[14px]">
                 2020 Orebi Minimal eCommerce Figma Template by Adveits
@@ -152,7 +158,7 @@ const Footer = () => {
             </div>
           </div>
         </Container>
-      </section>
+      </footer>
     </>
   );
 };

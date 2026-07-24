@@ -96,46 +96,49 @@ const Header = () => {
 
   return (
     <>
-      <section className="py-7 border-b border-gray-100 md:border-b-0">
+      <header className="py-7 border-b border-gray-100 md:border-b-0">
         <Container>
           <Flex className="justify-between md:justify-start">
             <Link to={"/"}>
-              <Image src={Logo} alt={Logo} className={"dark:invert"} />
+              <Image src={Logo} alt="Orebi logo" className={"dark:invert"} />
             </Link>
             {/* Desktop Navigation */}
             <div className="m-auto hidden md:block">
-              <ul className="flex gap-x-11">
-                <Link to={"/"}>
-                  <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                    Home
-                  </li>
-                </Link>
-                <Link to={"/shop"}>
-                  <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                    Shop
-                  </li>
-                </Link>
-                <Link to={"/about"}>
-                  <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                    About
-                  </li>
-                </Link>
-                <Link to={"/contacts"}>
-                  <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                    Contacts
-                  </li>
-                </Link>
-                <Link to={"/journal"}>
-                  <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                    Journal
-                  </li>
-                </Link>
-              </ul>
+              <nav aria-label="Primary Navigation">
+                <ul className="flex gap-x-11">
+                  <Link to={"/"}>
+                    <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                      Home
+                    </li>
+                  </Link>
+                  <Link to={"/shop"}>
+                    <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                      Shop
+                    </li>
+                  </Link>
+                  <Link to={"/about"}>
+                    <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                      About
+                    </li>
+                  </Link>
+                  <Link to={"/contacts"}>
+                    <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                      Contacts
+                    </li>
+                  </Link>
+                  <Link to={"/journal"}>
+                    <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                      Journal
+                    </li>
+                  </Link>
+                </ul>
+              </nav>
             </div>
             {/* Mobile Navigation Toggle */}
             <button
               className="md:hidden block text-menuHeading focus:outline-none cursor-pointer"
               onClick={() => setShowNav(!showNav)}
+              aria-expanded={showNav}
               aria-label="Toggle navigation">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 {showNav ? (
@@ -150,43 +153,50 @@ const Header = () => {
           {/* Mobile Navigation Dropdown */}
           {showNav && (
             <div className="md:hidden pt-4 pb-2 border-t border-gray-100 mt-4 animate-slide">
-              <ul className="flex flex-col gap-y-3">
-                <Link to={"/"} onClick={() => setShowNav(false)}>
-                  <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
-                    Home
-                  </li>
-                </Link>
-                <Link to={"/shop"} onClick={() => setShowNav(false)}>
-                  <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
-                    Shop
-                  </li>
-                </Link>
-                <Link to={"/about"} onClick={() => setShowNav(false)}>
-                  <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
-                    About
-                  </li>
-                </Link>
-                <Link to={"/contacts"} onClick={() => setShowNav(false)}>
-                  <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
-                    Contacts
-                  </li>
-                </Link>
-                <Link to={"/journal"} onClick={() => setShowNav(false)}>
-                  <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
-                    Journal
-                  </li>
-                </Link>
-              </ul>
+              <nav aria-label="Mobile Navigation">
+                <ul className="flex flex-col gap-y-3">
+                  <Link to={"/"} onClick={() => setShowNav(false)}>
+                    <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
+                      Home
+                    </li>
+                  </Link>
+                  <Link to={"/shop"} onClick={() => setShowNav(false)}>
+                    <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
+                      Shop
+                    </li>
+                  </Link>
+                  <Link to={"/about"} onClick={() => setShowNav(false)}>
+                    <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
+                      About
+                    </li>
+                  </Link>
+                  <Link to={"/contacts"} onClick={() => setShowNav(false)}>
+                    <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
+                      Contacts
+                    </li>
+                  </Link>
+                  <Link to={"/journal"} onClick={() => setShowNav(false)}>
+                    <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
+                      Journal
+                    </li>
+                  </Link>
+                </ul>
+              </nav>
             </div>
           )}
         </Container>
-      </section>
+      </header>
       <section className="py-6 bg-bHeaderBg">
         <Container>
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-y-4 md:gap-y-0">
             <div className="flex items-center justify-between w-full md:w-auto">
               <div className="relative" ref={dropdownRef}>
-                <div onClick={toggleMenu} className="cursor-pointer ">
+                <button
+                  type="button"
+                  onClick={toggleMenu}
+                  aria-expanded={showMenu}
+                  aria-label="Shop by Category"
+                  className="cursor-pointer text-left focus:outline-none">
                   <Flex>
                     <MenuIcon />
 
@@ -196,7 +206,7 @@ const Header = () => {
                       as={"h4"}
                     />
                   </Flex>
-                </div>
+                </button>
                 {<CategoriesMenu isOpen={showMenu} />}
               </div>
 
@@ -206,6 +216,7 @@ const Header = () => {
                 <Button
                   variant="ghost"
                   onClick={toggleDarkMode}
+                  aria-label="Toggle dark mode"
                   className="h-9 w-9 cursor-pointer mr-3">
                   {darkMode ? (
                     <Sun className="h-5 w-5 text-yellow-500" />
@@ -214,23 +225,30 @@ const Header = () => {
                   )}
                 </Button>
                 <div className="relative" ref={toggleRef}>
-                  <div
-                    className="flex items-center gap-x-1 cursor-pointer"
-                    onClick={toggleButtons}>
+                  <button
+                    type="button"
+                    className="flex items-center gap-x-1 cursor-pointer focus:outline-none"
+                    onClick={toggleButtons}
+                    aria-expanded={showButton}
+                    aria-label="Account menu">
                     <FaUser className="text-menuHeading" />
                     {showButton ? (
                       <FaCaretUp className="text-menuHeading" />
                     ) : (
                       <FaCaretDown className="text-menuHeading" />
                     )}
-                  </div>
+                  </button>
                   {<ToggleButtons isOpen={showButton} />}
                 </div>
                 <div className="relative" ref={cartRef}>
-                  <FaShoppingCart
-                    className="text-menuHeading ml-4 cursor-pointer"
+                  <button
+                    type="button"
+                    aria-label="Shopping cart"
+                    aria-expanded={showCart}
                     onClick={() => setShowCart(!showCart)}
-                  />
+                    className="cursor-pointer focus:outline-none ml-4 flex items-center">
+                    <FaShoppingCart className="text-menuHeading" />
+                  </button>
                   {showCart && (
                     <CartDropdowns
                       items={items}
@@ -246,9 +264,10 @@ const Header = () => {
               <input
                 type="search"
                 placeholder="Search Products"
+                aria-label="Search Products"
                 className="placeholder:text-[#C4C4C4] placeholder:font-dmSans placeholder:text-[14px] p-5 bg-white dark:bg-[#1F1F1F] w-full md:w-80 lg:w-150 focus:outline-0"
               />
-              <span className="absolute top-1/2 right-4 -translate-y-1/2">
+              <span className="absolute top-1/2 right-4 -translate-y-1/2" aria-hidden="true">
                 <FaSearch />
               </span>
             </div>
@@ -259,6 +278,7 @@ const Header = () => {
               <Button
                 variant="ghost"
                 onClick={toggleDarkMode}
+                aria-label="Toggle dark mode"
                 className="h-9 w-9 cursor-pointer mr-5">
                 {darkMode ? (
                   <Sun className="h-5 w-5 text-yellow-500" />
@@ -267,23 +287,30 @@ const Header = () => {
                 )}
               </Button>
               <div className="relative" ref={toggleRef}>
-                <div
-                  className="flex items-center gap-x-1 cursor-pointer"
-                  onClick={toggleButtons}>
+                <button
+                  type="button"
+                  className="flex items-center gap-x-1 cursor-pointer focus:outline-none"
+                  onClick={toggleButtons}
+                  aria-expanded={showButton}
+                  aria-label="Account menu">
                   <FaUser className="text-menuHeading" />
                   {showButton ? (
                     <FaCaretUp className="text-menuHeading" />
                   ) : (
                     <FaCaretDown className="text-menuHeading" />
                   )}
-                </div>
+                </button>
                 {<ToggleButtons isOpen={showButton} />}
               </div>
               <div className="relative" ref={cartRef}>
-                <FaShoppingCart
-                  className="text-menuHeading ml-6 cursor-pointer"
+                <button
+                  type="button"
+                  aria-label="Shopping cart"
+                  aria-expanded={showCart}
                   onClick={() => setShowCart(!showCart)}
-                />
+                  className="cursor-pointer focus:outline-none ml-6 flex items-center">
+                  <FaShoppingCart className="text-menuHeading" />
+                </button>
                 {showCart && (
                   <CartDropdowns
                     items={items}

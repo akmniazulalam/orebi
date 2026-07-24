@@ -20,33 +20,35 @@ const Login = () => {
           text={"Returning Customer"}
           as={"h2"}
         />
-        <div className="max-w-263.75 w-full gap-y-6 grid">
+        <form onSubmit={(e) => e.preventDefault()} className="max-w-263.75 w-full gap-y-6 grid">
           <div className="flex flex-col sm:flex-row gap-y-6 sm:gap-y-0 gap-x-10">
             <div className="w-full">
-              <h3 className="font-dmSans font-bold text-base text-menuHeading">
+              <label htmlFor="login-email" className="block font-dmSans font-bold text-base text-menuHeading mb-2">
                 Email address
-              </h3>
+              </label>
               <input
+                id="login-email"
                 type="email"
                 placeholder="company@domain.com"
                 className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
               />
             </div>
             <div className="w-full">
-              <h3 className="font-dmSans font-bold text-base text-menuHeading">
+              <label htmlFor="login-password" className="block font-dmSans font-bold text-base text-menuHeading mb-2">
                 Password
-              </h3>
+              </label>
               <input
+                id="login-password"
                 type="password"
                 placeholder="********"
                 className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
               />
             </div>
           </div>
-        </div>
-        <button className="py-3 px-18 mt-6 text-sm font-bold font-dmSans text-black hover:text-white hover:bg-menuHeading cursor-pointer border border-menuHeading transition-all duration-300">
-              Log in
-            </button>
+          <button type="submit" className="py-3 px-18 mt-6 text-sm font-bold font-dmSans text-black hover:text-white hover:bg-menuHeading cursor-pointer border border-menuHeading transition-all duration-300 justify-self-start">
+            Log in
+          </button>
+        </form>
         <hr className="text-infoBg my-15" />
         <Heading
           className={"font-dmSans font-bold text-[39px] text-menuHeading"}

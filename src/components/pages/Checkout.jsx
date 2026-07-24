@@ -315,10 +315,11 @@ const Checkout = () => {
                 </h2>
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-menuHeading">
+                    <label htmlFor="checkout-firstname" className="mb-1.5 block text-sm font-medium text-menuHeading">
                       First Name *
                     </label>
                     <input
+                      id="checkout-firstname"
                       data-error={!!errors.firstName}
                       className={inputCls("firstName")}
                       value={form.firstName}
@@ -331,10 +332,11 @@ const Checkout = () => {
                     )}
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-menuHeading">
+                    <label htmlFor="checkout-lastname" className="mb-1.5 block text-sm font-medium text-menuHeading">
                       Last Name *
                     </label>
                     <input
+                      id="checkout-lastname"
                       data-error={!!errors.lastName}
                       className={inputCls("lastName")}
                       value={form.lastName}
@@ -348,10 +350,11 @@ const Checkout = () => {
                   </div>
                 </div>
                 <div className="mt-5">
-                  <label className="mb-1.5 block text-sm font-medium text-menuHeading">
+                  <label htmlFor="checkout-company" className="mb-1.5 block text-sm font-medium text-menuHeading">
                     Company Name (Optional)
                   </label>
                   <input
+                    id="checkout-company"
                     className={inputCls("company")}
                     value={form.company}
                     onChange={update("company")}
@@ -412,10 +415,11 @@ const Checkout = () => {
                 </div>
                 <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-menuHeading">
+                    <label htmlFor="checkout-city" className="mb-1.5 block text-sm font-medium text-menuHeading">
                       Town/City *
                     </label>
                     <input
+                      id="checkout-city"
                       data-error={!!errors.city}
                       className={inputCls("city")}
                       value={form.city}
@@ -426,20 +430,22 @@ const Checkout = () => {
                     )}
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-menuHeading">
+                    <label htmlFor="checkout-county" className="mb-1.5 block text-sm font-medium text-menuHeading">
                       County (optional)
                     </label>
                     <input
+                      id="checkout-county"
                       className={inputCls("county")}
                       value={form.county}
                       onChange={update("county")}
                     />
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-menuHeading">
+                    <label htmlFor="checkout-postcode" className="mb-1.5 block text-sm font-medium text-menuHeading">
                       Post Code *
                     </label>
                     <input
+                      id="checkout-postcode"
                       data-error={!!errors.postcode}
                       className={inputCls("postcode")}
                       value={form.postcode}
@@ -452,10 +458,11 @@ const Checkout = () => {
                     )}
                   </div>
                   <div>
-                    <label className="mb-1.5 block text-sm font-medium text-menuHeading">
+                    <label htmlFor="checkout-phone" className="mb-1.5 block text-sm font-medium text-menuHeading">
                       Phone *
                     </label>
                     <input
+                      id="checkout-phone"
                       data-error={!!errors.phone}
                       className={inputCls("phone")}
                       value={form.phone}
@@ -469,10 +476,11 @@ const Checkout = () => {
                   </div>
                 </div>
                 <div className="mt-5">
-                  <label className="mb-1.5 block text-sm font-medium text-menuHeading">
+                  <label htmlFor="checkout-email" className="mb-1.5 block text-sm font-medium text-menuHeading">
                     Email Address *
                   </label>
                   <input
+                    id="checkout-email"
                     type="email"
                     data-error={!!errors.email}
                     className={inputCls("email")}

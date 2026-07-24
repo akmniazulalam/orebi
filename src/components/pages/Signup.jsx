@@ -32,20 +32,22 @@ const Signup = () => {
         <div className="max-w-263.75 w-full gap-y-6 grid">
           <div className="flex flex-col sm:flex-row gap-y-6 sm:gap-y-0 gap-x-10">
             <div className="w-full">
-              <h3 className="font-dmSans font-bold text-base text-menuHeading">
+              <label htmlFor="signup-firstname" className="block font-dmSans font-bold text-base text-menuHeading mb-2">
                 First Name
-              </h3>
+              </label>
               <input
+                id="signup-firstname"
                 type="text"
                 placeholder="First Name"
                 className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
               />
             </div>
             <div className="w-full">
-              <h3 className="font-dmSans font-bold text-base text-menuHeading">
+              <label htmlFor="signup-lastname" className="block font-dmSans font-bold text-base text-menuHeading mb-2">
                 Last Name
-              </h3>
+              </label>
               <input
+                id="signup-lastname"
                 type="text"
                 placeholder="Last Name"
                 className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
@@ -54,20 +56,22 @@ const Signup = () => {
           </div>
           <div className="flex flex-col sm:flex-row gap-y-6 sm:gap-y-0 gap-x-10">
             <div className="w-full">
-              <h3 className="font-dmSans font-bold text-base text-menuHeading">
+              <label htmlFor="signup-email" className="block font-dmSans font-bold text-base text-menuHeading mb-2">
                 Email address
-              </h3>
+              </label>
               <input
+                id="signup-email"
                 type="email"
                 placeholder="company@domain.com"
                 className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
               />
             </div>
             <div className="w-full">
-              <h3 className="font-dmSans font-bold text-base text-menuHeading">
+              <label htmlFor="signup-phone" className="block font-dmSans font-bold text-base text-menuHeading mb-2">
                 Telephone
-              </h3>
+              </label>
               <input
+                id="signup-phone"
                 type="text"
                 placeholder="Your phone number"
                 className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"

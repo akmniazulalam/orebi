@@ -14,7 +14,7 @@ const Ads = () => {
           <Link to={"/shop"}>
             <Image
               src={AdOne}
-              alt={AdOne}
+              alt="Featured collection promotion"
               className={"w-full h-full object-cover"}
             />
           </Link>
@@ -22,14 +22,14 @@ const Ads = () => {
             <Link to={"/shop"}>
               <Image
                 src={AdTwo}
-                alt={AdTwo}
+                alt="Electronics sale promotion"
                 className={"w-full h-full object-cover"}
               />
             </Link>
             <Link to={"/shop"}>
               <Image
                 src={AdThree}
-                alt={AdThree}
+                alt="Special offer promotion"
                 className={"w-full h-full object-cover"}
               />
             </Link>
