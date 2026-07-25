@@ -7,7 +7,7 @@ const Banner = () => {
   const totalSlides = 4;
   const sliderRef = useRef(null);
   const progressBarRef = useRef(null); // ✅ Progress bar-er reference
-
+  const isMobile = window.innerWidth < 768;
   const settings = {
     dots: false,
     slidesToScroll: 1,
@@ -29,7 +29,7 @@ const Banner = () => {
       const bar = progressBarRef.current;
       const totalHeight = bar.offsetHeight; // Total height of the progress bar div
       const clickY = event.clientY - bar.getBoundingClientRect().top; // Y-position of the click relative to the bar
-      
+
       // Calculate the slide index based on the click position
       const slideIndex = Math.floor((clickY / totalHeight) * totalSlides);
 
@@ -45,28 +45,31 @@ const Banner = () => {
       <Link to={"/shop"}>
         <Slider ref={sliderRef} {...settings}>
           <div className="bg-[url(/src/assets/bannerBg.png)] bg-no-repeat bg-cover bg-center py-20 md:py-[243.5px]"></div>
-          <div className="bg-[url(/src/assets/Frame.png)] bg-no-repeat bg-center bg-cover py-16 md:py-60 drop-shadow-[0px_4px_2px_#00000045]"></div>
+          <div className="bg-[url(/src/assets/Frame.png)] bg-no-repeat bg-center bg-cover py-[78.75px] md:py-60 drop-shadow-[0px_4px_2px_#00000045]"></div>
           <div className="bg-[url(/src/assets/bannerBg.png)] bg-no-repeat bg-cover bg-center py-20 md:py-[243.5px]"></div>
-          <div className="bg-[url(/src/assets/Frame.png)] bg-no-repeat bg-center bg-cover py-16 md:py-60 drop-shadow-[0px_4px_2px_#00000045]"></div>
+          <div className="bg-[url(/src/assets/Frame.png)] bg-no-repeat bg-center bg-cover py-[78.75px] md:py-60 drop-shadow-[0px_4px_2px_#00000045]"></div>
         </Slider>
       </Link>
 
       {/* Custom Progress Bar container */}
-      <div className="absolute left-6 md:left-20 top-[40%] flex items-start">
-        <span className="mr-3 w-6 text-lg font-semibold text-menuHeading dark:text-[#262626] font-dmSans">
+      <div className="absolute left-11.5 md:left-20 top-[76%] md:top-[40%] flex items-center md:items-start">
+        <span className="mr-1 md:mr-3 w-6 text-sm md:text-lg font-semibold text-menuHeading dark:text-[#262626] font-dmSans">
           {currentSlide.toString().padStart(2, "0")}
         </span>
-        
+
         {/* Clickable Progress Bar */}
         <div
           ref={progressBarRef} // Reference for the progress bar div
-          className="relative w-0.75 h-37.5 bg-white cursor-pointer" // Added cursor-pointer
+          className="relative w-34 h-0.75 md:w-0.75 md:h-37.5 bg-white cursor-pointer" // Added cursor-pointer
           onClick={handleProgressBarClick} // Added click handler
         >
           <div
-            className="absolute top-0 left-0 w-0.75 bg-menuHeading dark:bg-[#262626] transition-all duration-500"
-            style={{ height: `${percentage}%` }}
-          ></div>
+            className="absolute top-0 left-0 h-0.75 md:w-0.75 bg-menuHeading dark:bg-[#262626] transition-all duration-500"
+            style={
+              isMobile
+                ? { width: `${percentage}%` }
+                : { height: `${percentage}%` }
+            }></div>
         </div>
       </div>
     </div>
