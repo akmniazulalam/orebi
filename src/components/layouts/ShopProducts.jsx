@@ -694,7 +694,7 @@ const ShopProducts = () => {
                     setSearchInput("");
                     updateQuery({ search: "" });
                   }}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-header/50 transition hover:bg-infoBg hover:text-menuHeading">
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-header/50 transition hover:bg-infoBg hover:text-menuHeading dark:hover:text-[#262626]">
                   <X className="h-4 w-4" />
                 </button>
               ) : null}
