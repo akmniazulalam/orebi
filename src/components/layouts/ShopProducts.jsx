@@ -476,7 +476,7 @@ function ProductCard({ product }) {
           </Button>
           <Button
             type="button"
-            className="h-10"
+            className="h-10 cursor-pointer"
             disabled={isOutOfStock}
             onClick={handleAddToCart}>
             <ShoppingCart className="h-4 w-4" />
