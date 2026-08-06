@@ -177,7 +177,8 @@ function FilterPanel({
           type="button"
           variant="ghost"
           size="sm"
-          onClick={onClearFilters}>
+          onClick={onClearFilters}
+          className={"cursor-pointer"}>
           Clear
         </Button>
       </div>
@@ -813,7 +814,7 @@ const ShopProducts = () => {
                 Try adjusting your search, filters, or price range to see more
                 results.
               </p>
-              <Button type="button" className="mt-5" onClick={clearFilters}>
+              <Button type="button" className="mt-5 cursor-pointer" onClick={clearFilters}>
                 Clear Filters
               </Button>
             </div>
