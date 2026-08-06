@@ -694,7 +694,7 @@ const ShopProducts = () => {
                     setSearchInput("");
                     updateQuery({ search: "" });
                   }}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-header/50 transition hover:bg-infoBg hover:text-menuHeading dark:hover:text-[#262626]">
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-header/50 transition hover:bg-infoBg hover:text-menuHeading dark:hover:text-[#262626] cursor-pointer">
                   <X className="h-4 w-4" />
                 </button>
               ) : null}
@@ -703,7 +703,7 @@ const ShopProducts = () => {
             <Button
               type="button"
               variant="outline"
-              className="h-11 justify-center lg:hidden"
+              className="h-11 justify-center lg:hidden cursor-pointer"
               onClick={() => setMobileFiltersOpen(true)}>
               <SlidersHorizontal className="h-4 w-4" />
               Filters
