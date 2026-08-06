@@ -17,6 +17,21 @@ export async function fetchProducts() {
   }
 }
 
+export async function fetchProductsWithMeta(params = {}) {
+  const response = await apiClient.get(apiPaths.products.list, { params });
+  const products = unwrapData(response) ?? [];
+
+  return {
+    products: products.map(normalizeProductFromApi),
+    meta: response?.data?.meta ?? null,
+  };
+}
+
+export async function fetchCategories() {
+  const response = await apiClient.get(apiPaths.categories.list);
+  return unwrapData(response) ?? [];
+}
+
 export async function fetchProductById(id) {
   try {
     const response = await apiClient.get(apiPaths.products.single(id));
