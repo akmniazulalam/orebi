@@ -294,7 +294,7 @@ function FilterPanel({
                 key={option.value}
                 type="button"
                 onClick={() => onFilterChange({ stock: option.value })}
-                className={`rounded-xl border px-3 py-2.5 text-left font-dmSans text-sm transition ${
+                className={`rounded-xl border px-3 py-2.5 text-left font-dmSans text-sm cursor-pointer transition ${
                   selected
                     ? "border-menuHeading bg-menuHeading text-white dark:text-[#262626]"
                     : "border-infoBg text-header hover:border-menuHeading"
@@ -419,7 +419,7 @@ function ProductCard({ product }) {
           <p className="font-dmSans text-xs uppercase tracking-[0.12em] text-header/50">
             {display.category || "Uncategorized"}
           </p>
-          <h3 className="mt-1 line-clamp-2 min-h-[3rem] font-dmSans text-lg font-bold text-menuHeading">
+          <h3 className="mt-1 line-clamp-2 min-h-12 font-dmSans text-lg font-bold text-menuHeading">
             {display.name}
           </h3>
         </div>
