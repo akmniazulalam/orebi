@@ -469,7 +469,7 @@ function ProductCard({ product }) {
 
         <div className="mt-auto grid grid-cols-2 gap-2 pt-5">
           <Button asChild variant="outline" className="h-10">
-            <Link to={display.detailPath || `/productdetails/${display.id}`}>
+            <Link to={display.detailPath || `/productdetails/${display.id}`} className="flex items-center justify-center gap-2">
               <Eye className="h-4 w-4" />
               Details
             </Link>
