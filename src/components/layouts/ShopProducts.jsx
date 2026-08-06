@@ -273,7 +273,7 @@ function FilterPanel({
         <Button
           type="button"
           variant="outline"
-          className="mt-3 h-10 w-full"
+          className="mt-3 h-10 w-full cursor-pointer"
           onClick={onApplyPrice}>
           Apply price
         </Button>
@@ -356,7 +356,7 @@ function ActiveFilters({ query, onFilterChange, onClearFilters }) {
           <X className="h-3.5 w-3.5" />
         </button>
       ))}
-      <Button type="button" variant="ghost" size="sm" onClick={onClearFilters}>
+      <Button type="button" variant="ghost" size="sm" onClick={onClearFilters} className={"cursor-pointer"}>
         Clear all
       </Button>
     </div>
