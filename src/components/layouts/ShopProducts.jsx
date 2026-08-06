@@ -408,7 +408,7 @@ function ProductCard({ product }) {
           className={`absolute right-3 top-3 rounded-full px-3 py-1 font-dmSans text-xs font-bold ${
             isOutOfStock
               ? "bg-red-500 text-white"
-              : "bg-white/90 text-menuHeading shadow-sm"
+              : "bg-white/90 text-menuHeading dark:text-[#262626] shadow-sm"
           }`}>
           {isOutOfStock ? "Out of stock" : `${totalStock} in stock`}
         </span>
