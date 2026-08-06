@@ -193,7 +193,7 @@ function FilterPanel({
           <button
             type="button"
             onClick={() => onFilterChange({ category: "" })}
-            className={`flex w-full items-center justify-between rounded-xl border px-3 py-2.5 text-left font-dmSans text-sm transition ${
+            className={`flex w-full items-center justify-between rounded-xl border px-3 py-2.5 text-left font-dmSans text-sm cursor-pointer transition ${
               !query.category
                 ? "border-menuHeading bg-menuHeading text-white dark:text-[#262626]"
                 : "border-infoBg text-header hover:border-menuHeading"
@@ -209,7 +209,7 @@ function FilterPanel({
                 key={category.name}
                 type="button"
                 onClick={() => onFilterChange({ category: category.name })}
-                className={`flex w-full items-center justify-between rounded-xl border px-3 py-2.5 text-left font-dmSans text-sm transition ${
+                className={`flex w-full items-center justify-between cursor-pointer rounded-xl border px-3 py-2.5 text-left font-dmSans text-sm transition ${
                   selected
                     ? "border-menuHeading bg-menuHeading text-white dark:text-[#262626]"
                     : "border-infoBg text-header hover:border-menuHeading"
@@ -469,7 +469,7 @@ function ProductCard({ product }) {
         )}
 
         <div className="mt-auto grid grid-cols-2 gap-2 pt-5">
-          <Button asChild variant="outline" className="h-10">
+          <Button asChild variant="outline" className="h-10 cursor-pointer">
             <Link to={display.detailPath || `/productdetails/${display.id}`} className="flex items-center justify-center gap-2">
               <Eye className="h-4 w-4" />
               Details
