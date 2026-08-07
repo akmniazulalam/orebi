@@ -318,7 +318,7 @@ const Header = () => {
 
             {/* Search Box */}
             <form
-              className="relative w-full md:w-auto"
+              className="relative w-full min-w-0 md:w-80 lg:w-150"
               role="search"
               onSubmit={(event) => {
                 event.preventDefault();
@@ -330,25 +330,30 @@ const Header = () => {
                 value={searchInput}
                 placeholder="Search Products"
                 aria-label="Search Products"
-                className="placeholder:text-[#C4C4C4] placeholder:font-dmSans placeholder:text-[14px] p-5 pr-20 bg-white dark:bg-[#1F1F1F] w-full md:w-80 lg:w-150 focus:outline-0"
+                className="h-12 w-full rounded-xl border border-infoBg bg-white py-3 pl-11 pr-24 font-dmSans text-sm text-header shadow-sm outline-none transition-[border-color,box-shadow,background-color] duration-200 placeholder:text-header/55 hover:border-header/35 hover:shadow-md focus:border-menuHeading focus:ring-4 focus:ring-menuHeading/10 dark:border-white/10 dark:bg-[#1F1F1F] dark:text-white dark:placeholder:text-white/50 dark:hover:border-white/25 dark:focus:border-white/50 dark:focus:ring-white/10"
                 onChange={(event) => setSearchInput(event.target.value)}
               />
-              {searchInput ? (
-                <button
-                  type="button"
-                  aria-label="Clear product search"
-                  className="absolute top-1/2 right-11 -translate-y-1/2 cursor-pointer p-1 text-header/60 transition hover:text-menuHeading"
-                  onClick={() => {
-                    setSearchInput("");
-                    submitSearch("");
-                  }}>
-                  <FaTimes aria-hidden="true" />
-                </button>
-              ) : null}
+              <button
+                type="button"
+                aria-label="Clear product search"
+                aria-hidden={!searchInput}
+                disabled={!searchInput}
+                tabIndex={searchInput ? 0 : -1}
+                className={`absolute right-11 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg text-header/55 cursor-pointer transition-all duration-200 hover:bg-infoBg hover:text-menuHeading focus:outline-none focus-visible:ring-2 focus-visible:ring-menuHeading/30 dark:text-white/55 dark:hover:bg-white/10 dark:hover:text-white dark:focus-visible:ring-white/30 ${
+                  searchInput
+                    ? "scale-100 opacity-100"
+                    : "pointer-events-none scale-90 opacity-0"
+                }`}
+                onClick={() => {
+                  setSearchInput("");
+                  submitSearch("");
+                }}>
+                <FaTimes aria-hidden="true" />
+              </button>
               <button
                 type="submit"
                 aria-label="Search products"
-                className="absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer p-1 text-menuHeading transition hover:opacity-70">
+                className="absolute right-2 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-lg text-header/70 cursor-pointer transition-colors duration-200 hover:bg-infoBg hover:text-menuHeading focus:outline-none focus-visible:ring-2 focus-visible:ring-menuHeading/30 dark:text-white/70 dark:hover:bg-white/10 dark:hover:text-white dark:focus-visible:ring-white/30">
                 <FaSearch />
               </button>
             </form>
