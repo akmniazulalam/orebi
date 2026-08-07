@@ -857,7 +857,9 @@ const ShopProducts = () => {
                     aria-current={page === query.page ? "page" : undefined}
                     onClick={() =>
                       updateQuery({ page }, { resetPage: false })
-                    }>
+                    }
+                    className={"cursor-pointer"}
+                    >
                     {page}
                   </Button>
                 ))}
