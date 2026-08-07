@@ -124,7 +124,7 @@ const Cart = () => {
                     return (
                       <div
                         key={lineId}
-                        className="grid grid-cols-12 gap-4 px-4 md:px-6 py-5 items-center hover:bg-gray-50/50 transition-colors">
+                        className="grid grid-cols-12 gap-4 px-4 md:px-6 py-5 items-center transition-colors">
                         {/* Product */}
                         <div className="col-span-12 md:col-span-6 flex items-center gap-4">
                           <button
@@ -167,7 +167,7 @@ const Cart = () => {
                           <div className="inline-flex items-center border border-gray-200 rounded-full overflow-hidden">
                             <button
                               onClick={() => decreaseQuantity(lineId)}
-                              className="w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer"
+                              className="w-9 h-9 flex items-center justify-center transition-colors cursor-pointer"
                               aria-label="Decrease quantity">
                               <Minus className="w-3.5 h-3.5" />
                             </button>
@@ -176,7 +176,7 @@ const Cart = () => {
                             </span>
                             <button
                               onClick={() => increaseQuantity(lineId)}
-                              className="w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer"
+                              className="w-9 h-9 flex items-center justify-center transition-colors cursor-pointer"
                               aria-label="Increase quantity">
                               <Plus className="w-3.5 h-3.5" />
                             </button>
