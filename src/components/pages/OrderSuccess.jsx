@@ -59,7 +59,7 @@ const OrderSuccess = () => {
       <section className="bg-background py-10">
         <Container>
           <div className="mx-auto max-w-5xl">
-            <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-[#1a1414] sm:p-8">
+            <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-white/5 sm:p-8">
               <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
                 <div className="flex gap-4">
                   <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-700">
@@ -80,7 +80,7 @@ const OrderSuccess = () => {
                   </div>
                 </div>
 
-                <div className="rounded-xl border border-gray-200 bg-white p-4 dark:bg-[#201818]">
+                <div className="rounded-xl border border-gray-200 bg-white p-4 dark:bg-[#191E28]">
                   <p className="text-xs font-semibold uppercase tracking-wide text-menuHeading">
                     Order Number
                   </p>
@@ -101,7 +101,7 @@ const OrderSuccess = () => {
               </div>
 
               <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
-                <div className="rounded-xl border border-gray-200 bg-white p-4 dark:bg-[#201818]">
+                <div className="rounded-xl border border-gray-200 bg-white p-4 dark:bg-[#191E28]">
                   <ReceiptText className="mb-3 h-5 w-5 text-menuHeading" />
                   <p className="text-xs font-semibold uppercase tracking-wide text-menuHeading">
                     Total
@@ -110,7 +110,7 @@ const OrderSuccess = () => {
                     {formatMoney(pricing.total, currency)}
                   </p>
                 </div>
-                <div className="rounded-xl border border-gray-200 bg-white p-4 dark:bg-[#201818]">
+                <div className="rounded-xl border border-gray-200 bg-white p-4 dark:bg-[#191E28]">
                   <ShoppingBag className="mb-3 h-5 w-5 text-menuHeading" />
                   <p className="text-xs font-semibold uppercase tracking-wide text-menuHeading">
                     Items
@@ -122,7 +122,7 @@ const OrderSuccess = () => {
                     )}
                   </p>
                 </div>
-                <div className="rounded-xl border border-gray-200 bg-white p-4 dark:bg-[#201818]">
+                <div className="rounded-xl border border-gray-200 bg-white p-4 dark:bg-[#191E28]">
                   <PackageCheck className="mb-3 h-5 w-5 text-menuHeading" />
                   <p className="text-xs font-semibold uppercase tracking-wide text-menuHeading">
                     Status
@@ -135,7 +135,7 @@ const OrderSuccess = () => {
             </div>
 
             <div className="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-3">
-              <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-[#1a1414] lg:col-span-2">
+              <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-white/5 lg:col-span-2">
                 <div className="mb-4 flex items-center gap-2">
                   <ClipboardList className="h-5 w-5 text-menuHeading" />
                   <h2 className="text-xl font-bold text-menuHeading">
@@ -185,7 +185,7 @@ const OrderSuccess = () => {
                 )}
               </div>
 
-              <aside className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-[#1a1414]">
+              <aside className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-white/5">
                 <h2 className="text-xl font-bold text-menuHeading">
                   Receipt details
                 </h2>
