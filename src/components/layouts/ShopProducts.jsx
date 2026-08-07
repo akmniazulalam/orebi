@@ -838,6 +838,7 @@ const ShopProducts = () => {
                   type="button"
                   variant="outline"
                   disabled={!meta?.hasPrevPage}
+                  className={"cursor-pointer"}
                   onClick={() =>
                     updateQuery(
                       { page: Math.max(1, query.page - 1) },
