@@ -670,7 +670,7 @@ const Checkout = () => {
             {/* RIGHT: Sticky order summary */}
             <aside className="lg:col-span-1">
               <div className="sticky top-6 space-y-4">
-                <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-[#1a1414] p-6 shadow-sm">
+                <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-white/5 p-6 shadow-sm">
                   <h2 className="mb-5 flex items-center gap-2 text-lg font-bold text-menuHeading">
                     <ShoppingBag className="h-5 w-5" /> Your order
                   </h2>
