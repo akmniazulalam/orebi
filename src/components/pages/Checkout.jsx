@@ -685,7 +685,7 @@ const Checkout = () => {
                       const lineTotal = linePrice * qty;
                       return (
                         <div
-                          key={getCartLineId(it)}
+                          key={it.variant?._id || it._id || idx}
                           className="flex items-center justify-between py-3 text-sm">
                           <span className="text-menuHeading">
                             {getCartLineName(it)}{" "}
