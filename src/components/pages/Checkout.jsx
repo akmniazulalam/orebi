@@ -309,7 +309,7 @@ const Checkout = () => {
             className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             {/* LEFT: Billing details */}
             <div className="space-y-6 lg:col-span-2">
-              <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-[#1a1414] p-6 sm:p-8 shadow-sm">
+              <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-white/5 p-6 sm:p-8 shadow-sm">
                 <h2 className="mb-6 text-xl font-bold tracking-tight text-menuHeading">
                   Billing details
                 </h2>
@@ -514,7 +514,7 @@ const Checkout = () => {
                 </div>
               </div>
               {/* Shipping options */}
-              <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-[#1a1414] p-6 sm:p-8 shadow-sm">
+              <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-white/5 p-6 sm:p-8 shadow-sm">
                 <h2 className="mb-5 flex items-center gap-2 text-xl font-bold tracking-tight text-menuHeading">
                   <Truck className="h-5 w-5" /> Shipping method
                 </h2>
@@ -568,7 +568,7 @@ const Checkout = () => {
                 </div>
               </div>
               {/* Payment */}
-              <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-[#1a1414] p-6 sm:p-8 shadow-sm">
+              <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-white/5 p-6 sm:p-8 shadow-sm">
                 <h2 className="mb-5 flex items-center gap-2 text-xl font-bold tracking-tight text-menuHeading">
                   <Lock className="h-5 w-5" /> Payment method
                 </h2>
