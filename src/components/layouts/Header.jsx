@@ -325,7 +325,8 @@ const Header = () => {
                 submitSearch(searchInput);
               }}>
               <input
-                type="search"
+                type="text"
+                inputMode="search"
                 value={searchInput}
                 placeholder="Search Products"
                 aria-label="Search Products"
