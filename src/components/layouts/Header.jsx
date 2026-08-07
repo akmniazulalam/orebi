@@ -330,7 +330,7 @@ const Header = () => {
                 value={searchInput}
                 placeholder="Search Products"
                 aria-label="Search Products"
-                className="h-12 w-full rounded-xl border border-infoBg bg-white py-3 pl-11 pr-24 font-dmSans text-sm text-header shadow-sm outline-none transition-[border-color,box-shadow,background-color] duration-200 placeholder:text-header/55 hover:border-header/35 hover:shadow-md focus:border-menuHeading focus:ring-4 focus:ring-menuHeading/10 dark:border-white/10 dark:bg-[#1F1F1F] dark:text-white dark:placeholder:text-white/50 dark:hover:border-white/25 dark:focus:border-white/50 dark:focus:ring-white/10"
+                className="h-12 w-full rounded-xl border border-infoBg bg-white py-3 pl-5 pr-24 font-dmSans text-sm text-header shadow-sm outline-none transition-[border-color,box-shadow,background-color] duration-200 placeholder:text-header/55 hover:border-header/35 hover:shadow-md focus:border-menuHeading focus:ring-4 focus:ring-menuHeading/10 dark:border-white/10 dark:bg-[#1F1F1F] dark:text-white dark:placeholder:text-white/50 dark:hover:border-white/25 dark:focus:border-white/50 dark:focus:ring-white/10"
                 onChange={(event) => setSearchInput(event.target.value)}
               />
               <button
