@@ -67,7 +67,7 @@ const Cart = () => {
         <Container>
           <div className="flex flex-col items-center justify-center pb-24 px-4 text-center">
             <div className="w-24 h-24 rounded-full bg-gray-100 flex items-center justify-center mb-6">
-              <ShoppingBag className="w-12 h-12 text-menuHeading dark:text-[#262626]" />
+              <ShoppingBag className="w-12 h-12 text-menuHeading" />
             </div>
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
               Your cart is empty
@@ -106,9 +106,9 @@ const Cart = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* LEFT — Items */}
             <div className="lg:col-span-2">
-              <div className="bg-white border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+              <div className="bg-white dark:bg-white/5 border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
                 {/* Header (desktop) */}
-                <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-gray-50 border-b border-gray-200 text-xs uppercase tracking-wider font-semibold text-menuHeading dark:text-[#262626]">
+                <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-gray-50 dark:bg-white/5 border-b border-gray-200 text-xs uppercase tracking-wider font-semibold text-menuHeading">
                   <div className="col-span-6">Product</div>
                   <div className="col-span-2 text-center">Price</div>
                   <div className="col-span-2 text-center">Quantity</div>
@@ -129,7 +129,7 @@ const Cart = () => {
                         <div className="col-span-12 md:col-span-6 flex items-center gap-4">
                           <button
                             onClick={() => removeFromCart(lineId)}
-                            className="w-7 h-7 rounded-full bg-gray-100 hover:bg-red-500 hover:text-white text-menuHeading dark:text-[#262626] flex items-center justify-center transition-colors shrink-0 cursor-pointer"
+                            className="w-7 h-7 rounded-full bg-gray-100 dark:text-[#262625] hover:bg-red-500 hover:text-white dark:hover:text-white text-menuHeading flex items-center justify-center transition-colors shrink-0 cursor-pointer"
                             aria-label="Remove item">
                             <ImCross className="w-2.5 h-2.5" />
                           </button>
@@ -141,11 +141,11 @@ const Cart = () => {
                             />
                           </div>
                           <div className="min-w-0">
-                            <h3 className="font-semibold text-gray-900 truncate">
+                            <h3 className="font-semibold text-gray-900 dark:text-white truncate">
                               {getCartLineName(item)}
                             </h3>
                             {(item.color || item.size) && (
-                              <p className="text-xs text-menuHeading mt-0.5">
+                              <p className="text-xs text-menuHeading dark:text-white mt-0.5">
                                 {[item.color, item.size]
                                   .filter(Boolean)
                                   .join(" · ")}
@@ -158,7 +158,7 @@ const Cart = () => {
                         </div>
 
                         {/* Price */}
-                        <div className="hidden md:block col-span-2 text-center text-menuHeading dark:text-[#262626] font-medium">
+                        <div className="hidden md:block col-span-2 text-center text-menuHeading font-medium">
                           ${price}
                         </div>
 
@@ -169,22 +169,22 @@ const Cart = () => {
                               onClick={() => decreaseQuantity(lineId)}
                               className="w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer"
                               aria-label="Decrease quantity">
-                              <Minus className="w-3.5 h-3.5 dark:text-[#262626]" />
+                              <Minus className="w-3.5 h-3.5" />
                             </button>
-                            <span className="w-10 text-center font-semibold text-sm dark:text-[#262626]">
+                            <span className="w-10 text-center font-semibold text-sm">
                               {item.quantity}
                             </span>
                             <button
                               onClick={() => increaseQuantity(lineId)}
                               className="w-9 h-9 flex items-center justify-center hover:bg-gray-100 transition-colors cursor-pointer"
                               aria-label="Increase quantity">
-                              <Plus className="w-3.5 h-3.5 dark:text-[#262626]" />
+                              <Plus className="w-3.5 h-3.5" />
                             </button>
                           </div>
                         </div>
 
                         {/* Total */}
-                        <div className="col-span-6 md:col-span-2 text-right font-bold text-gray-900">
+                        <div className="col-span-6 md:col-span-2 text-right font-bold text-gray-900 dark:text-white">
                           ${lineTotal}
                         </div>
                       </div>
@@ -195,8 +195,8 @@ const Cart = () => {
 
               {/* Coupon + size */}
               <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
-                  <label className="block text-xs uppercase tracking-wider font-semibold text-menuHeading dark:text-[#262626] mb-3">
+                <div className="bg-white dark:bg-white/5 border border-gray-200 rounded-2xl p-5 shadow-sm">
+                  <label className="block text-xs uppercase tracking-wider font-semibold text-menuHeading mb-3">
                     Select Size
                   </label>
                   <Select>
@@ -216,8 +216,8 @@ const Cart = () => {
                   </Select>
                 </div>
 
-                <div className="bg-white border border-gray-200 rounded-2xl p-5 shadow-sm">
-                  <label className="block text-xs uppercase tracking-wider font-semibold text-menuHeading dark:text-[#262626] mb-3">
+                <div className="bg-white dark:bg-white/5 border border-gray-200 rounded-2xl p-5 shadow-sm">
+                  <label className="block text-xs uppercase tracking-wider font-semibold text-menuHeading mb-3">
                     <Tag className="inline w-3.5 h-3.5 mr-1" />
                     Have a coupon?
                   </label>
@@ -226,7 +226,7 @@ const Cart = () => {
                       placeholder="Enter code"
                       value={couponCode}
                       onChange={(e) => setCouponCode(e.target.value)}
-                      className="rounded-xl dark:text-[#262626] font-bold dark:border-[#E5E7EB]"
+                      className="rounded-xl font-bold dark:border-[#E5E7EB]"
                     />
                     <Button
                       onClick={handleCoupon}
@@ -248,19 +248,19 @@ const Cart = () => {
 
             {/* RIGHT — Summary */}
             <div className="lg:col-span-1">
-              <div className="bg-white border border-gray-200 rounded-2xl shadow-sm p-6 lg:sticky lg:top-6">
-                <h2 className="text-xl font-bold text-gray-900 pb-4 border-b border-gray-100">
+              <div className="bg-white dark:bg-white/5 border border-gray-200 rounded-2xl shadow-sm p-6 lg:sticky lg:top-6">
+                <h2 className="text-xl font-bold text-gray-900 dark:text-white pb-4 border-b border-gray-100">
                   Order Summary
                 </h2>
 
                 <div className="space-y-3 py-5">
-                  <div className="flex justify-between text-menuHeading dark:text-[#262626]">
+                  <div className="flex justify-between text-menuHeading">
                     <span>Subtotal</span>
-                    <span className="font-medium text-gray-900">
+                    <span className="font-medium text-gray-900 dark:text-white">
                       ${subTotal.toFixed(2)}
                     </span>
                   </div>
-                  <div className="flex justify-between text-menuHeading dark:text-[#262626]">
+                  <div className="flex justify-between text-menuHeading">
                     <span>
                       Discount
                       {discount > 0 && (
@@ -273,19 +273,19 @@ const Cart = () => {
                       -${discount.toFixed(2)}
                     </span>
                   </div>
-                  <div className="flex justify-between text-menuHeading dark:text-[#262626]">
+                  <div className="flex justify-between text-menuHeading">
                     <span>Shipping</span>
-                    <span className="font-medium text-gray-900">Free</span>
+                    <span className="font-medium text-gray-900 dark:text-white">Free</span>
                   </div>
                 </div>
 
                 <div className="flex justify-between items-end pt-4 border-t border-gray-100">
-                  <span className="font-semibold text-gray-900">Total</span>
+                  <span className="font-semibold text-gray-900 dark:text-white">Total</span>
                   <div className="text-right">
-                    <div className="text-2xl font-bold text-gray-900">
+                    <div className="text-2xl font-bold text-gray-900 dark:text-white">
                       ${total.toFixed(2)}
                     </div>
-                    <div className="text-xs text-menuHeading dark:text-[#262626]">
+                    <div className="text-xs text-menuHeading">
                       USD, tax incl.
                     </div>
                   </div>
@@ -300,11 +300,11 @@ const Cart = () => {
 
                 <Link
                   to="/shop"
-                  className="block text-center mt-4 text-sm text-menuHeading dark:text-[#262626] hover:text-gray-900 transition-colors">
+                  className="block text-center mt-4 text-sm text-menuHeading hover:text-gray-900 transition-colors">
                   ← Continue Shopping
                 </Link>
 
-                <div className="mt-6 pt-5 border-t border-gray-100 flex items-center justify-center gap-2 text-xs text-menuHeading dark:text-[#262626]">
+                <div className="mt-6 pt-5 border-t border-gray-100 flex items-center justify-center gap-2 text-xs text-menuHeading">
                   <span>🔒</span>
                   <span>Secure checkout · SSL encrypted</span>
                 </div>
