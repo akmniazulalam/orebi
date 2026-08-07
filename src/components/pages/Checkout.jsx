@@ -209,7 +209,7 @@ const Checkout = () => {
     }
   };
   const inputCls = (key) =>
-    `w-full rounded-lg border bg-white dark:bg-[#1a1414] px-4 py-2.5 text-sm text-menuHeading dark:text-[#e5e7eb] outline-none transition focus:ring-2 focus:ring-gray-900/10 ${
+    `w-full rounded-lg border bg-white dark:bg-white/5 px-4 py-2.5 text-sm text-menuHeading dark:text-[#e5e7eb] outline-none transition focus:ring-2 focus:ring-gray-900/10 ${
       errors[key] ? "border-red-500" : "border-gray-200 focus:border-gray-400"
     }`;
   return (
@@ -258,7 +258,7 @@ const Checkout = () => {
             </ol>
           </div>
           {/* Coupon notice (original) */}
-          <div className="mb-6 flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-gray-300 bg-bHeaderBg dark:bg-[#1a1414] px-5 py-4 text-sm">
+          <div className="mb-6 flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-gray-300 bg-bHeaderBg dark:bg-white/5 px-5 py-4 text-sm">
             <Tag className="h-4 w-4 text-menuHeading dark:text-gray-200" />
             <span className="text-menuHeading dark:text-gray-200">
               Have a coupon?
@@ -271,7 +271,7 @@ const Checkout = () => {
             </button>
           </div>
           {showCoupon && (
-            <div className="mb-8 rounded-xl border border-gray-200 bg-bHeaderBg dark:bg-[#1a1414] p-5">
+            <div className="mb-8 rounded-xl border border-gray-200 bg-bHeaderBg dark:bg-white/5 p-5">
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Input
                   placeholder="Coupon code"
@@ -782,7 +782,7 @@ const Checkout = () => {
                   </div>
                 </div>
                 {/* Trust badges */}
-                <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-[#1a1414] p-5 shadow-sm">
+                <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-white/5 p-5 shadow-sm">
                   <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-menuHeading">
                     We accept
                   </p>
