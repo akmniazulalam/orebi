@@ -8,7 +8,6 @@ import {
   Eye,
   Filter,
   PackageSearch,
-  Search,
   ShoppingCart,
   SlidersHorizontal,
   X,
@@ -519,7 +518,6 @@ function ProductSkeletonGrid({ count = 12 }) {
 const ShopProducts = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const query = useMemo(() => parseQuery(searchParams), [searchParams]);
-  const [searchInput, setSearchInput] = useState(query.search);
   const [priceDraft, setPriceDraft] = useState({
     minPrice: query.minPrice,
     maxPrice: query.maxPrice,
@@ -560,7 +558,6 @@ const ShopProducts = () => {
   );
 
   const clearFilters = useCallback(() => {
-    setSearchInput("");
     setPriceDraft({ minPrice: "", maxPrice: "" });
     setSearchParams(
       {
@@ -573,22 +570,11 @@ const ShopProducts = () => {
   }, [setSearchParams]);
 
   useEffect(() => {
-    setSearchInput(query.search);
     setPriceDraft({
       minPrice: query.minPrice,
       maxPrice: query.maxPrice,
     });
-  }, [query.search, query.minPrice, query.maxPrice]);
-
-  useEffect(() => {
-    const timer = window.setTimeout(() => {
-      if (searchInput !== query.search) {
-        updateQuery({ search: searchInput.trim() }, { replace: true });
-      }
-    }, 400);
-
-    return () => window.clearTimeout(timer);
-  }, [query.search, searchInput, updateQuery]);
+  }, [query.minPrice, query.maxPrice]);
 
   const loadProducts = useCallback(async () => {
     setIsLoading(true);
@@ -676,30 +662,7 @@ const ShopProducts = () => {
             </p>
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row lg:min-w-[560px]">
-            <div className="relative flex-1">
-              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-header/45" />
-              <Input
-                value={searchInput}
-                aria-label="Search products"
-                placeholder="Search products, categories, SKU..."
-                className="h-11 rounded-xl pl-10 pr-10 font-dmSans"
-                onChange={(event) => setSearchInput(event.target.value)}
-              />
-              {searchInput ? (
-                <button
-                  type="button"
-                  aria-label="Clear search"
-                  onClick={() => {
-                    setSearchInput("");
-                    updateQuery({ search: "" });
-                  }}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-header/50 transition hover:bg-infoBg hover:text-menuHeading dark:hover:text-[#262626] cursor-pointer">
-                  <X className="h-4 w-4" />
-                </button>
-              ) : null}
-            </div>
-
+          <div className="flex flex-col gap-3 sm:flex-row lg:min-w-[280px]">
             <Button
               type="button"
               variant="outline"

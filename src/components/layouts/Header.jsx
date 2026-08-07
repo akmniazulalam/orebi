@@ -7,10 +7,10 @@ import Heading from "../Heading";
 import { FaSearch } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
-import { FaCaretDown, FaCaretUp } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { FaCaretDown, FaCaretUp, FaTimes } from "react-icons/fa";
+import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import CategoriesMenu from "../CategoriesMenu";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import ToggleButtons from "../ToggleButtons";
 import CartDropdowns from "../CartDropdowns";
 import useCart from "@/store/cart";
@@ -18,7 +18,13 @@ import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
 
 const Header = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [darkMode, setDarkMode] = useState(false);
+  const [searchInput, setSearchInput] = useState(
+    searchParams.get("search") || "",
+  );
   // Dark mode sync
   useEffect(() => {
     const isDark = document.documentElement.classList.contains("dark");
@@ -32,12 +38,16 @@ const Header = () => {
         document.documentElement.classList.add("dark");
         try {
           localStorage.setItem("theme", "dark");
-        } catch (e) {}
+        } catch {
+          // Storage may be unavailable in restricted browser contexts.
+        }
       } else {
         document.documentElement.classList.remove("dark");
         try {
           localStorage.setItem("theme", "light");
-        } catch (e) {}
+        } catch {
+          // Storage may be unavailable in restricted browser contexts.
+        }
       }
       return newMode;
     });
@@ -49,6 +59,49 @@ const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
   const [showButton, setShowButton] = useState(false);
   const [showNav, setShowNav] = useState(false);
+
+  const searchQuery = searchParams.get("search") || "";
+
+  useEffect(() => {
+    setSearchInput(searchQuery);
+  }, [searchQuery]);
+
+  const submitSearch = useCallback(
+    (value) => {
+      const nextParams =
+        location.pathname === "/shop"
+          ? new URLSearchParams(location.search)
+          : new URLSearchParams();
+      const trimmedValue = value.trim();
+
+      if (trimmedValue) {
+        nextParams.set("search", trimmedValue);
+      } else {
+        nextParams.delete("search");
+      }
+
+      nextParams.set("page", "1");
+
+      navigate(
+        {
+          pathname: "/shop",
+          search: `?${nextParams.toString()}`,
+        },
+        { replace: true },
+      );
+    },
+    [location.pathname, location.search, navigate],
+  );
+
+  useEffect(() => {
+    if (searchInput.trim() === searchQuery) return undefined;
+
+    const timer = window.setTimeout(() => {
+      submitSearch(searchInput);
+    }, 400);
+
+    return () => window.clearTimeout(timer);
+  }, [searchInput, searchQuery, submitSearch]);
 
   const dropdownRef = useRef(null); // ekhane useRef sob somoy e ekta object return kore. jetar moddhe ekta property thake current naame. useRef direct ekta html element mane html tag ke access kore. jodi kono element er moddhe mane html tag e ei useRef take use kora hoy tahole useRef er object ta te current er moddhe sei html tag ta add hoy. kintu jokhon ekta page render hoy tokhon sathe sathe DOM element ta toiri hoye jayna. tokhon ei useRef tar moddhe current e oi element take payna. tai safe thakar jonno initially null rakha hoy. useRef ke html tag e directly use kora jayna tai ekta variable e niye tarpor oi variable take html tag e ref naame ekta prop niye use korte hoy.
   const cartRef = useRef(null);
@@ -264,17 +317,40 @@ const Header = () => {
             </div>
 
             {/* Search Box */}
-            <div className="relative w-full md:w-auto">
+            <form
+              className="relative w-full md:w-auto"
+              role="search"
+              onSubmit={(event) => {
+                event.preventDefault();
+                submitSearch(searchInput);
+              }}>
               <input
                 type="search"
+                value={searchInput}
                 placeholder="Search Products"
                 aria-label="Search Products"
-                className="placeholder:text-[#C4C4C4] placeholder:font-dmSans placeholder:text-[14px] p-5 bg-white dark:bg-[#1F1F1F] w-full md:w-80 lg:w-150 focus:outline-0"
+                className="placeholder:text-[#C4C4C4] placeholder:font-dmSans placeholder:text-[14px] p-5 pr-20 bg-white dark:bg-[#1F1F1F] w-full md:w-80 lg:w-150 focus:outline-0"
+                onChange={(event) => setSearchInput(event.target.value)}
               />
-              <span className="absolute top-1/2 right-4 -translate-y-1/2" aria-hidden="true">
+              {searchInput ? (
+                <button
+                  type="button"
+                  aria-label="Clear product search"
+                  className="absolute top-1/2 right-11 -translate-y-1/2 cursor-pointer p-1 text-header/60 transition hover:text-menuHeading"
+                  onClick={() => {
+                    setSearchInput("");
+                    submitSearch("");
+                  }}>
+                  <FaTimes aria-hidden="true" />
+                </button>
+              ) : null}
+              <button
+                type="submit"
+                aria-label="Search products"
+                className="absolute top-1/2 right-4 -translate-y-1/2 cursor-pointer p-1 text-menuHeading transition hover:opacity-70">
                 <FaSearch />
-              </span>
-            </div>
+              </button>
+            </form>
 
             {/* Desktop Header Icons Group */}
             <div className="hidden md:flex items-center">
