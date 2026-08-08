@@ -27,7 +27,7 @@ const CartDropdowns = ({ items, onClick }) => {
         </div>
       ) : (
         <div className="">
-          <div className="p-5 bg-bHeaderBg dark:bg-white/5 space-y-4">
+          <div className="p-5 bg-bHeaderBg dark:bg-[#191E28] space-y-4">
             {items.map((item) => {
               const lineId = getCartLineId(item);
 
