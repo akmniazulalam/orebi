@@ -221,7 +221,7 @@ const OrderSuccess = () => {
                   {canViewOrders ? (
                     <Link
                       to="/orders"
-                      className="inline-flex h-11 w-full items-center justify-center rounded-lg border border-gray-300 bg-white px-4 text-sm font-semibold text-menuHeading transition hover:bg-gray-50">
+                      className="inline-flex h-11 w-full items-center justify-center rounded-lg border border-gray-300 bg-white px-4 text-sm font-semibold text-menuHeading dark:text-[#262626] transition hover:bg-gray-50">
                       View Orders
                     </Link>
                   ) : null}
