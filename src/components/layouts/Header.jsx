@@ -8,7 +8,12 @@ import { FaSearch } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
 import { FaCaretDown, FaCaretUp, FaTimes } from "react-icons/fa";
-import { Link, useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import CategoriesMenu from "../CategoriesMenu";
 import { useCallback, useEffect, useRef, useState } from "react";
 import ToggleButtons from "../ToggleButtons";
@@ -120,8 +125,10 @@ const Header = () => {
   useEffect(() => {
     // event listener add ba remove korar kaaj take side effect bole. ar side effect er kaaj korte hole useEffect lage. etar moddhe na dile barbar event listener add ba remove hote thakbe. function multiple times run hobe. memory leak hobe. kintu ekhane useEffect e dependency array ta empty rakhay ei component ba page ta mount ba render hole ekbar e event listener add hobe. tai useEffect er moddhe rakha.
     const clickOutside = (event) => {
-      const isMobileCart = mobileCartRef.current && mobileCartRef.current.contains(event.target);
-      const isDesktopCart = desktopCartRef.current && desktopCartRef.current.contains(event.target);
+      const isMobileCart =
+        mobileCartRef.current && mobileCartRef.current.contains(event.target);
+      const isDesktopCart =
+        desktopCartRef.current && desktopCartRef.current.contains(event.target);
 
       if (!isMobileCart && !isDesktopCart) {
         // ekhane check kora hocche first e je ei useRef ta te ki kono html element ba tag ache kina. jodi thake tahole ei useRef er object property current er moddhe thakbe oi tag ta. ar ekhane event.target mane hocche jei tag e useRef ta ache sei tag ta te action hocche kina. cartRef.current.contains diye oi useRef er tag ta te action hocche kina seta dekhche. ekhane action mane hocche mousedown ta jeta pore use kora hoyeche function call korar somoy. to ekhane duita check hocche, prothome dekhche je useRef ta tag e ache kina abong mousedown jei action ta hocche seta ei useRef er baire hocche kina. karon ekhane ! ei sign use kora hoyeche jeta diye bujhano hocche je mousedown action ta ei ref er baire kothao hocche. jodi baire kothao hoy tahole showcart false kore dibe mane cart er dropdown ta off hoye jabe.
@@ -144,8 +151,12 @@ const Header = () => {
         setShowMenu(false);
       }
 
-      const isMobileToggle = mobileToggleRef.current && mobileToggleRef.current.contains(event.target);
-      const isDesktopToggle = desktopToggleRef.current && desktopToggleRef.current.contains(event.target);
+      const isMobileToggle =
+        mobileToggleRef.current &&
+        mobileToggleRef.current.contains(event.target);
+      const isDesktopToggle =
+        desktopToggleRef.current &&
+        desktopToggleRef.current.contains(event.target);
 
       if (!isMobileToggle && !isDesktopToggle) {
         setShowButton(false);
@@ -205,11 +216,25 @@ const Header = () => {
               onClick={() => setShowNav(!showNav)}
               aria-expanded={showNav}
               aria-label="Toggle navigation">
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24">
                 {showNav ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 )}
               </svg>
             </button>
@@ -266,7 +291,9 @@ const Header = () => {
                     <MenuIcon />
 
                     <Heading
-                      className={"font-dmSans text-[14px] text-menuHeading pl-3"}
+                      className={
+                        "font-dmSans text-[14px] text-menuHeading pl-3"
+                      }
                       text={"Shop by Category"}
                       as={"h4"}
                     />
