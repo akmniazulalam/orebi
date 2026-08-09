@@ -32,37 +32,35 @@ const CartDropdowns = ({ items, onClick }) => {
               const lineId = getCartLineId(item);
 
               return (
-              <div
-                key={lineId}
-                className="flex gap-x-5 items-center">
-                <img
-                  src={getCartLineImage(item)}
-                  alt={getCartLineName(item)}
-                  className="w-20 h-20 bg-[#D8D8D8] object-cover"
-                />
-                <div className="text-left space-y-2.5">
-                  <h3 className="text-[14px] font-dmSans font-bold text-menuHeading">
-                    {getCartLineName(item)}
-                  </h3>
-                  {(item.color || item.size) && (
-                    <p className="text-[11px] font-dmSans text-header/70">
-                      {[item.color, item.size].filter(Boolean).join(" · ")}
+                <div key={lineId} className="flex gap-x-5 items-center">
+                  <img
+                    src={getCartLineImage(item)}
+                    alt={getCartLineName(item)}
+                    className="w-20 h-20 bg-[#D8D8D8] object-cover"
+                  />
+                  <div className="text-left space-y-2.5">
+                    <h3 className="text-[14px] font-dmSans font-bold text-menuHeading">
+                      {getCartLineName(item)}
+                    </h3>
+                    {(item.color || item.size) && (
+                      <p className="text-[11px] font-dmSans text-header/70">
+                        {[item.color, item.size].filter(Boolean).join(" · ")}
+                      </p>
+                    )}
+                    <p className="text-[14px] font-dmSans font-bold text-menuHeading">
+                      ${getCartLinePrice(item).toFixed(2)}
                     </p>
-                  )}
-                  <p className="text-[14px] font-dmSans font-bold text-menuHeading">
-                    ${getCartLinePrice(item).toFixed(2)}
-                  </p>
+                  </div>
+                  <button
+                    className="cursor-pointer ml-auto"
+                    onClick={(e) => {
+                      removeFromCart(lineId);
+                      e.stopPropagation();
+                    }}>
+                    <ImCross />
+                  </button>
                 </div>
-                <button
-                  className="cursor-pointer ml-auto"
-                  onClick={(e) => {
-                    removeFromCart(lineId);
-                    e.stopPropagation();
-                  }}>
-                  <ImCross />
-                </button>
-              </div>
-            );
+              );
             })}
           </div>
 
