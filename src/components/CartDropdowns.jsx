@@ -20,7 +20,7 @@ const CartDropdowns = ({ items, onClick }) => {
     [items],
   );
   return (
-    <div className="absolute top-10 right-0 max-w-[calc(100vw-32px)] w-89.5 z-10">
+    <div className="absolute top-10 right-0 max-w-[calc(100vw-32px)] w-89.5 z-50">
       {items.length === 0 ? (
         <div className="p-4 bg-[#acaca1] dark:text-[#262626]">
           <p>There is no product.</p>
@@ -74,19 +74,17 @@ const CartDropdowns = ({ items, onClick }) => {
               </span>
             </h4>
             <div className="flex items-center justify-between">
-              <Link to={"/cart"}>
-                <button
-                  className="py-3.5 px-10 border-2 border-black font-dmSans text-sm text-menuHeading dark:text-[#262626] dark:hover:text-white font-bold  hover:text-white hover:bg-black transition-all duration-300 cursor-pointer"
-                  onClick={onClick}>
-                  View Cart
-                </button>
+              <Link
+                to="/cart"
+                className="py-3.5 px-10 border-2 border-black font-dmSans text-sm text-menuHeading dark:text-[#262626] dark:hover:text-white font-bold hover:text-white hover:bg-black transition-all duration-300 cursor-pointer text-center inline-block"
+                onClick={onClick}>
+                View Cart
               </Link>
-              <Link to={"/checkout"}>
-                <button
-                  className="py-3.5 px-10 border-2 border-black font-dmSans text-black font-bold text-sm hover:text-white hover:bg-black transition-all duration-300 cursor-pointer"
-                  onClick={onClick}>
-                  Checkout
-                </button>
+              <Link
+                to="/checkout"
+                className="py-3.5 px-10 border-2 border-black font-dmSans text-black font-bold text-sm hover:text-white hover:bg-black transition-all duration-300 cursor-pointer text-center inline-block"
+                onClick={onClick}>
+                Checkout
               </Link>
             </div>
           </div>
