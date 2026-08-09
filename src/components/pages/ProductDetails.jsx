@@ -408,7 +408,7 @@ const ProductDetails = () => {
             <div className="relative aspect-square md:aspect-[4/3] w-full rounded-2xl overflow-hidden bg-[#F5F5F3] dark:bg-[#1E232E] border border-gray-100 dark:border-white/10 flex items-center justify-center p-6 transition-all">
               {/* Badge overlay */}
               {selectedVariant?.badge && (
-                <span className="absolute top-4 left-4 z-10 uppercase px-3 py-1 bg-menuHeading text-white dark:bg-white dark:text-menuHeading font-dmSans font-bold text-xs tracking-wider rounded-lg shadow-sm">
+                <span className="absolute top-4 left-4 z-10 uppercase px-3 py-1 bg-menuHeading text-white dark:text-[#262626] font-dmSans font-bold text-xs tracking-wider rounded-lg shadow-sm">
                   {selectedVariant.badge}
                 </span>
               )}
