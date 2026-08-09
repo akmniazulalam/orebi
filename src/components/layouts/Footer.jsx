@@ -137,15 +137,15 @@ const Footer = () => {
                 </div>
               </div>
               <Flex className={"gap-x-5 pt-16"}>
-                <a href="#" aria-label="Facebook">
+                <Link to={"https://www.facebook.com"} aria-label="Facebook">
                   <FaFacebookF className="text-menuHeading" />
-                </a>
-                <a href="#" aria-label="LinkedIn">
+                </Link>
+                <Link to={"https://www.linkedin.com"} aria-label="LinkedIn">
                   <FaLinkedinIn className="text-[19px] text-menuHeading" />
-                </a>
-                <a href="#" aria-label="Instagram">
+                </Link>
+                <Link to={"https://www.instagram.com"} aria-label="Instagram">
                   <BsInstagram className="text-menuHeading" />
-                </a>
+                </Link>
               </Flex>
             </div>
             <div className="flex flex-col justify-between gap-y-4 lg:gap-y-0">
