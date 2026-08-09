@@ -1,24 +1,37 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const ToggleButtons = ({isOpen}) => {
+const ToggleButtons = ({ isOpen, onClose }) => {
+  const handleItemClick = (e) => {
+    if (onClose) {
+      onClose();
+    }
+  };
+
   return (
     <>
-    {isOpen && (
-      <div className={`z-10 absolute right-0 transition-all duration-300 top-8.75 animate-slide`}>
-      <button className="w-50 bg-similarBlack font-dmSans font-bold text-sm text-white text-center py-4 px-14 cursor-pointer">
-        My Account
-      </button>
-      <Link
-        to="/orders"
-        className="block w-50 bg-white font-dmSans text-sm text-menuHeading dark:text-[#262626] font-bold text-center border border-[#F0f0f0] py-4 px-14 cursor-pointer">
-        My Orders
-      </Link>
-      <button className="w-50 bg-white font-dmSans text-sm text-menuHeading dark:text-[#262626] font-bold text-center border border-[#F0f0f0] py-4 px-14 cursor-pointer">
-        Log Out
-      </button>
-    </div>
-    )}
+      {isOpen && (
+        <div className="z-50 absolute right-0 transition-all duration-300 top-8.75 animate-slide">
+          <button
+            type="button"
+            onClick={handleItemClick}
+            className="w-50 bg-similarBlack font-dmSans font-bold text-sm text-white text-center py-4 px-14 cursor-pointer">
+            My Account
+          </button>
+          <Link
+            to="/orders"
+            onClick={handleItemClick}
+            className="block w-50 bg-white font-dmSans text-sm text-menuHeading dark:text-[#262626] font-bold text-center border border-[#F0f0f0] py-4 px-14 cursor-pointer">
+            My Orders
+          </Link>
+          <button
+            type="button"
+            onClick={handleItemClick}
+            className="w-50 bg-white font-dmSans text-sm text-menuHeading dark:text-[#262626] font-bold text-center border border-[#F0f0f0] py-4 px-14 cursor-pointer">
+            Log Out
+          </button>
+        </div>
+      )}
     </>
   );
 };
