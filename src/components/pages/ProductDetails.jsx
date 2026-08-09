@@ -184,7 +184,9 @@ const ProductDetails = () => {
         setSelectedSize(primary?.size || "");
         setSelectedRam(primary?.ram || "");
         setSelectedStorage(primary?.storage || "");
-        setActiveImage(primary?.images?.[0] || product.image || product.thumbnail || "");
+        setActiveImage(
+          primary?.images?.[0] || product.image || product.thumbnail || "",
+        );
         setQuantity(1);
       })
       .catch(() => {
@@ -241,7 +243,13 @@ const ProductDetails = () => {
       }) ||
       singleProduct.variants[0]
     );
-  }, [singleProduct, selectedColor, selectedSize, selectedRam, selectedStorage]);
+  }, [
+    singleProduct,
+    selectedColor,
+    selectedSize,
+    selectedRam,
+    selectedStorage,
+  ]);
 
   // Sync image when variant changes
   useEffect(() => {
@@ -339,7 +347,9 @@ const ProductDetails = () => {
     return (
       <div className="flex flex-col items-center justify-center min-h-[50vh] py-20 font-dmSans">
         <Loader2 className="h-10 w-10 animate-spin text-menuHeading dark:text-white mb-4" />
-        <p className="text-base text-header font-medium">Loading product details...</p>
+        <p className="text-base text-header font-medium">
+          Loading product details...
+        </p>
       </div>
     );
   }
@@ -355,7 +365,8 @@ const ProductDetails = () => {
             {loadError || "Product Not Found"}
           </h2>
           <p className="text-sm text-header/70 mb-6">
-            The product you are looking for may have been removed or is temporarily unavailable.
+            The product you are looking for may have been removed or is
+            temporarily unavailable.
           </p>
           <Link
             to="/shop"
@@ -373,16 +384,20 @@ const ProductDetails = () => {
   const originalPrice = price > 0 ? (price * 1.25).toFixed(2) : null;
 
   return (
-    <div className="bg-white dark:bg-[#151921] transition-colors duration-300 pb-16">
+    <div className="bg-white dark:bg-[#151921] transition-colors duration-300">
       {/* Breadcrumb Header */}
       <div className="bg-bHeaderBg/40 dark:bg-[#191E28] py-4 border-b border-gray-100 dark:border-white/5 mb-8">
         <Container>
           <nav className="flex items-center gap-2 text-xs md:text-sm font-dmSans text-header/70 dark:text-white/60">
-            <Link to="/" className="hover:text-menuHeading dark:hover:text-white transition-colors">
+            <Link
+              to="/"
+              className="hover:text-menuHeading dark:hover:text-white transition-colors">
               Home
             </Link>
             <ChevronRight className="w-3.5 h-3.5" />
-            <Link to="/shop" className="hover:text-menuHeading dark:hover:text-white transition-colors">
+            <Link
+              to="/shop"
+              className="hover:text-menuHeading dark:hover:text-white transition-colors">
               Shop
             </Link>
             {singleProduct.category && (
@@ -461,11 +476,18 @@ const ProductDetails = () => {
               <div className="flex items-center gap-1.5 font-dmSans text-xs">
                 <div className="flex text-amber-400">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="w-4 h-4 fill-amber-400 stroke-amber-400" />
+                    <Star
+                      key={i}
+                      className="w-4 h-4 fill-amber-400 stroke-amber-400"
+                    />
                   ))}
                 </div>
-                <span className="font-bold text-menuHeading dark:text-white">4.9</span>
-                <span className="text-header/60 dark:text-white/60">(128 reviews)</span>
+                <span className="font-bold text-menuHeading dark:text-white">
+                  4.9
+                </span>
+                <span className="text-header/60 dark:text-white/60">
+                  (128 reviews)
+                </span>
               </div>
             </div>
 
@@ -516,7 +538,10 @@ const ProductDetails = () => {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <label className="text-xs uppercase tracking-wider font-bold font-dmSans text-menuHeading dark:text-white">
-                      Color: <span className="font-normal text-header/70">{selectedColor}</span>
+                      Color:{" "}
+                      <span className="font-normal text-header/70">
+                        {selectedColor}
+                      </span>
                     </label>
                   </div>
                   <div className="flex items-center gap-3 flex-wrap">
@@ -548,7 +573,10 @@ const ProductDetails = () => {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <label className="text-xs uppercase tracking-wider font-bold font-dmSans text-menuHeading dark:text-white">
-                      Size: <span className="font-normal text-header/70">{selectedSize}</span>
+                      Size:{" "}
+                      <span className="font-normal text-header/70">
+                        {selectedSize}
+                      </span>
                     </label>
                   </div>
                   <div className="flex items-center gap-2 flex-wrap">
@@ -561,7 +589,7 @@ const ProductDetails = () => {
                           onClick={() => handleSizeSelect(size)}
                           className={`px-4 py-2 text-xs font-bold font-dmSans rounded-xl border transition-all cursor-pointer ${
                             isSelected
-                              ? "border-menuHeading bg-menuHeading text-white dark:border-white dark:bg-white dark:text-menuHeading shadow-sm"
+                              ? "border-menuHeading bg-menuHeading text-white dark:border-white dark:bg-white dark:text-[#262626] shadow-sm"
                               : "border-gray-200 dark:border-white/10 bg-white dark:bg-[#1E232E] text-menuHeading dark:text-white hover:border-menuHeading/40"
                           }`}>
                           {size}
@@ -575,9 +603,14 @@ const ProductDetails = () => {
               {/* RAM Options (If present in variant schema) */}
               {ramOptions.length > 0 && (
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-wider font-bold font-dmSans text-menuHeading dark:text-white">
-                    Memory (RAM): <span className="font-normal text-header/70">{selectedRam}</span>
-                  </label>
+                  <div className="flex items-center justify-between">
+                    <label className="text-xs uppercase tracking-wider font-bold font-dmSans text-menuHeading dark:text-white">
+                      Memory (RAM):{" "}
+                      <span className="font-normal text-header/70">
+                        {selectedRam}
+                      </span>
+                    </label>
+                  </div>
                   <div className="flex items-center gap-2 flex-wrap">
                     {ramOptions.map((ram) => (
                       <button
@@ -586,7 +619,7 @@ const ProductDetails = () => {
                         onClick={() => handleRamSelect(ram)}
                         className={`px-4 py-2 text-xs font-bold font-dmSans rounded-xl border transition-all cursor-pointer ${
                           selectedRam === ram
-                            ? "border-menuHeading bg-menuHeading text-white dark:border-white dark:bg-white dark:text-menuHeading"
+                            ? "border-menuHeading bg-menuHeading text-white dark:border-white dark:bg-white dark:text-[#262626]"
                             : "border-gray-200 dark:border-white/10 text-menuHeading dark:text-white"
                         }`}>
                         {ram}
@@ -599,9 +632,14 @@ const ProductDetails = () => {
               {/* Storage Options (If present in variant schema) */}
               {storageOptions.length > 0 && (
                 <div className="space-y-2">
-                  <label className="text-xs uppercase tracking-wider font-bold font-dmSans text-menuHeading dark:text-white">
-                    Storage: <span className="font-normal text-header/70">{selectedStorage}</span>
-                  </label>
+                  <div className="flex items-center justify-between">
+                    <label className="text-xs uppercase tracking-wider font-bold font-dmSans text-menuHeading dark:text-white">
+                      Storage:{" "}
+                      <span className="font-normal text-header/70">
+                        {selectedStorage}
+                      </span>
+                    </label>
+                  </div>
                   <div className="flex items-center gap-2 flex-wrap">
                     {storageOptions.map((storage) => (
                       <button
@@ -610,7 +648,7 @@ const ProductDetails = () => {
                         onClick={() => handleStorageSelect(storage)}
                         className={`px-4 py-2 text-xs font-bold font-dmSans rounded-xl border transition-all cursor-pointer ${
                           selectedStorage === storage
-                            ? "border-menuHeading bg-menuHeading text-white dark:border-white dark:bg-white dark:text-menuHeading"
+                            ? "border-menuHeading bg-menuHeading text-white dark:border-white dark:bg-white dark:text-[#262626]"
                             : "border-gray-200 dark:border-white/10 text-menuHeading dark:text-white"
                         }`}>
                         {storage}
@@ -621,7 +659,7 @@ const ProductDetails = () => {
               )}
 
               {/* Quantity Counter */}
-              <div className="space-y-2">
+              <div className="space-x-3">
                 <label className="text-xs uppercase tracking-wider font-bold font-dmSans text-menuHeading dark:text-white">
                   Quantity:
                 </label>
@@ -655,9 +693,12 @@ const ProductDetails = () => {
                 onClick={handleClick}
                 disabled={isOutOfStock || animating}
                 className={`relative ${
-                  moveCart ? "overflow-hidden" : resetting ? "overflow-hidden" : "overflow-visible"
+                  moveCart
+                    ? "overflow-hidden"
+                    : resetting
+                      ? "overflow-hidden"
+                      : "overflow-visible"
                 } h-13 flex-1 rounded-xl text-white bg-menuHeading dark:bg-white dark:text-menuHeading text-base font-bold font-dmSans cursor-pointer transition-all duration-300 flex items-center justify-center shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-95`}>
-                
                 {/* TEXT */}
                 <motion.span
                   initial={false}
@@ -761,7 +802,9 @@ const ProductDetails = () => {
                 </AnimatePresence>
 
                 {/* CART */}
-                <motion.div animate={cartControls} className="absolute left-33.5">
+                <motion.div
+                  animate={cartControls}
+                  className="absolute left-33.5">
                   <motion.div
                     className="relative w-9 h-7"
                     animate={
@@ -787,7 +830,9 @@ const ProductDetails = () => {
                     <ShoppingCart
                       size={28}
                       className={`text-menuHeading ${
-                        fillColor ? "fill-white dark:fill-[#262626]" : "fill-none"
+                        fillColor
+                          ? "fill-white dark:fill-[#262626]"
+                          : "fill-none"
                       } transition-colors duration-300 text-white dark:text-[#262626]`}
                       strokeWidth={2.2}
                     />
@@ -799,7 +844,10 @@ const ProductDetails = () => {
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ duration: 0.35 }}
                         className="absolute left-2.5 top-2 z-20">
-                        <Check size={11} className="text-emerald-500 stroke-[4]" />
+                        <Check
+                          size={11}
+                          className="text-emerald-500 stroke-[4]"
+                        />
                       </motion.div>
                     )}
                   </motion.div>
@@ -815,7 +863,9 @@ const ProductDetails = () => {
                     ? "border-red-500 bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400"
                     : "border-gray-200 dark:border-white/15 bg-white dark:bg-[#1E232E] text-menuHeading dark:text-white hover:border-menuHeading/40"
                 }`}>
-                <Heart className={`w-5 h-5 ${isWishlisted ? "fill-red-500 text-red-500" : ""}`} />
+                <Heart
+                  className={`w-5 h-5 ${isWishlisted ? "fill-red-500 text-red-500" : ""}`}
+                />
                 <span className="hidden sm:inline">Wishlist</span>
               </button>
             </div>
@@ -825,22 +875,34 @@ const ProductDetails = () => {
               <div className="flex items-center gap-2.5 p-3 rounded-xl bg-gray-50 dark:bg-[#1E232E]/60">
                 <Truck className="w-5 h-5 text-menuHeading dark:text-white flex-shrink-0" />
                 <div>
-                  <h4 className="text-xs font-bold text-menuHeading dark:text-white">Free Express Shipping</h4>
-                  <p className="text-[11px] text-header/60 dark:text-white/50">On orders over $50</p>
+                  <h4 className="text-xs font-bold text-menuHeading dark:text-white">
+                    Free Express Shipping
+                  </h4>
+                  <p className="text-[11px] text-header/60 dark:text-white/50">
+                    On orders over $50
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-2.5 p-3 rounded-xl bg-gray-50 dark:bg-[#1E232E]/60">
                 <RotateCcw className="w-5 h-5 text-menuHeading dark:text-white flex-shrink-0" />
                 <div>
-                  <h4 className="text-xs font-bold text-menuHeading dark:text-white">30-Day Easy Returns</h4>
-                  <p className="text-[11px] text-header/60 dark:text-white/50">Hassle-free guarantee</p>
+                  <h4 className="text-xs font-bold text-menuHeading dark:text-white">
+                    30-Day Easy Returns
+                  </h4>
+                  <p className="text-[11px] text-header/60 dark:text-white/50">
+                    Hassle-free guarantee
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-2.5 p-3 rounded-xl bg-gray-50 dark:bg-[#1E232E]/60">
                 <ShieldCheck className="w-5 h-5 text-menuHeading dark:text-white flex-shrink-0" />
                 <div>
-                  <h4 className="text-xs font-bold text-menuHeading dark:text-white">100% Secure Checkout</h4>
-                  <p className="text-[11px] text-header/60 dark:text-white/50">Encrypted payment</p>
+                  <h4 className="text-xs font-bold text-menuHeading dark:text-white">
+                    100% Secure Checkout
+                  </h4>
+                  <p className="text-[11px] text-header/60 dark:text-white/50">
+                    Encrypted payment
+                  </p>
                 </div>
               </div>
             </div>
@@ -860,7 +922,10 @@ const ProductDetails = () => {
               }`}>
               Overview & Details
               {activeTab === "overview" && (
-                <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-menuHeading dark:bg-white" />
+                <motion.div
+                  layoutId="tab-underline"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-menuHeading dark:bg-white"
+                />
               )}
             </button>
 
@@ -874,7 +939,10 @@ const ProductDetails = () => {
               }`}>
               Specifications
               {activeTab === "specifications" && (
-                <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-menuHeading dark:bg-white" />
+                <motion.div
+                  layoutId="tab-underline"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-menuHeading dark:bg-white"
+                />
               )}
             </button>
 
@@ -888,7 +956,10 @@ const ProductDetails = () => {
               }`}>
               Shipping & Returns
               {activeTab === "shipping" && (
-                <motion.div layoutId="tab-underline" className="absolute bottom-0 left-0 right-0 h-0.5 bg-menuHeading dark:bg-white" />
+                <motion.div
+                  layoutId="tab-underline"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-menuHeading dark:bg-white"
+                />
               )}
             </button>
           </div>
@@ -905,15 +976,25 @@ const ProductDetails = () => {
                   <div className="flex items-start gap-3 p-4 rounded-xl bg-gray-50 dark:bg-[#1E232E]">
                     <Sparkles className="w-5 h-5 text-menuHeading dark:text-white flex-shrink-0 mt-0.5" />
                     <div>
-                      <h4 className="font-bold text-menuHeading dark:text-white text-sm mb-1">Premium Craftsmanship</h4>
-                      <p className="text-xs text-header/70 dark:text-white/60">Built using sustainable, high-grade materials for optimal durability.</p>
+                      <h4 className="font-bold text-menuHeading dark:text-white text-sm mb-1">
+                        Premium Craftsmanship
+                      </h4>
+                      <p className="text-xs text-header/70 dark:text-white/60">
+                        Built using sustainable, high-grade materials for
+                        optimal durability.
+                      </p>
                     </div>
                   </div>
                   <div className="flex items-start gap-3 p-4 rounded-xl bg-gray-50 dark:bg-[#1E232E]">
                     <Layers className="w-5 h-5 text-menuHeading dark:text-white flex-shrink-0 mt-0.5" />
                     <div>
-                      <h4 className="font-bold text-menuHeading dark:text-white text-sm mb-1">Versatile Design</h4>
-                      <p className="text-xs text-header/70 dark:text-white/60">Seamlessly fits into modern lifestyles with clean aesthetics.</p>
+                      <h4 className="font-bold text-menuHeading dark:text-white text-sm mb-1">
+                        Versatile Design
+                      </h4>
+                      <p className="text-xs text-header/70 dark:text-white/60">
+                        Seamlessly fits into modern lifestyles with clean
+                        aesthetics.
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -926,48 +1007,70 @@ const ProductDetails = () => {
                   <table className="w-full text-left border-collapse text-sm">
                     <tbody>
                       <tr className="border-b border-gray-100 dark:border-white/5">
-                        <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">Product Name</td>
+                        <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">
+                          Product Name
+                        </td>
                         <td className="py-3 px-4">{singleProduct.name}</td>
                       </tr>
                       {singleProduct.category && (
                         <tr className="border-b border-gray-100 dark:border-white/5">
-                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">Category</td>
-                          <td className="py-3 px-4 capitalize">{singleProduct.category}</td>
+                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">
+                            Category
+                          </td>
+                          <td className="py-3 px-4 capitalize">
+                            {singleProduct.category}
+                          </td>
                         </tr>
                       )}
                       {selectedVariant?.sku && (
                         <tr className="border-b border-gray-100 dark:border-white/5">
-                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">SKU</td>
+                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">
+                            SKU
+                          </td>
                           <td className="py-3 px-4">{selectedVariant.sku}</td>
                         </tr>
                       )}
                       {selectedColor && (
                         <tr className="border-b border-gray-100 dark:border-white/5">
-                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">Selected Color</td>
+                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">
+                            Selected Color
+                          </td>
                           <td className="py-3 px-4">{selectedColor}</td>
                         </tr>
                       )}
                       {selectedSize && (
                         <tr className="border-b border-gray-100 dark:border-white/5">
-                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">Selected Size</td>
+                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">
+                            Selected Size
+                          </td>
                           <td className="py-3 px-4">{selectedSize}</td>
                         </tr>
                       )}
                       {selectedRam && (
                         <tr className="border-b border-gray-100 dark:border-white/5">
-                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">Memory (RAM)</td>
+                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">
+                            Memory (RAM)
+                          </td>
                           <td className="py-3 px-4">{selectedRam}</td>
                         </tr>
                       )}
                       {selectedStorage && (
                         <tr className="border-b border-gray-100 dark:border-white/5">
-                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">Storage</td>
+                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">
+                            Storage
+                          </td>
                           <td className="py-3 px-4">{selectedStorage}</td>
                         </tr>
                       )}
                       <tr>
-                        <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">Stock Availability</td>
-                        <td className="py-3 px-4">{currentStock > 0 ? `${currentStock} items in stock` : "Out of stock"}</td>
+                        <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">
+                          Stock Availability
+                        </td>
+                        <td className="py-3 px-4">
+                          {currentStock > 0
+                            ? `${currentStock} items in stock`
+                            : "Out of stock"}
+                        </td>
                       </tr>
                     </tbody>
                   </table>
@@ -978,19 +1081,29 @@ const ProductDetails = () => {
             {activeTab === "shipping" && (
               <div className="space-y-4 animate-fade-in">
                 <p>
-                  We strive to process and dispatch all orders within 24 hours. Enjoy fast, reliable delivery right to your doorstep.
+                  We strive to process and dispatch all orders within 24 hours.
+                  Enjoy fast, reliable delivery right to your doorstep.
                 </p>
                 <div className="space-y-2">
-                  <h4 className="font-bold text-menuHeading dark:text-white">Shipping Options:</h4>
+                  <h4 className="font-bold text-menuHeading dark:text-white">
+                    Shipping Options:
+                  </h4>
                   <ul className="list-disc list-inside space-y-1 text-sm text-header/80 dark:text-white/70">
-                    <li>Standard Delivery (3-5 business days): $5.00 or FREE on orders over $50</li>
+                    <li>
+                      Standard Delivery (3-5 business days): $5.00 or FREE on
+                      orders over $50
+                    </li>
                     <li>Express Delivery (1-2 business days): $15.00</li>
                   </ul>
                 </div>
                 <div className="space-y-2 pt-2">
-                  <h4 className="font-bold text-menuHeading dark:text-white">Return & Refund Policy:</h4>
+                  <h4 className="font-bold text-menuHeading dark:text-white">
+                    Return & Refund Policy:
+                  </h4>
                   <p className="text-sm">
-                    Not satisfied with your purchase? Return any item within 30 days of delivery in original condition for a full refund or exchange.
+                    Not satisfied with your purchase? Return any item within 30
+                    days of delivery in original condition for a full refund or
+                    exchange.
                   </p>
                 </div>
               </div>
