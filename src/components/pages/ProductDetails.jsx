@@ -18,6 +18,7 @@ import {
 import { motion, AnimatePresence, useAnimation } from "framer-motion";
 import { Link, useParams } from "react-router-dom";
 import useCart from "@/store/cart";
+import useWishlist from "@/store/wishlist";
 import { FaTshirt } from "react-icons/fa";
 import { fetchProductById } from "@/services/productService";
 import { buildCartLineItem, findVariantByOptions } from "@/lib/cartUtils";
@@ -27,6 +28,8 @@ import toast from "react-hot-toast";
 const ProductDetails = () => {
   const { id } = useParams();
   const addToCart = useCart((state) => state.addToCart);
+  const toggleWishlistStore = useWishlist((state) => state.toggleWishlist);
+  const isInWishlist = useWishlist((state) => state.isInWishlist);
 
   const [quantity, setQuantity] = useState(1);
   const [singleProduct, setSingleProduct] = useState(null);
@@ -35,7 +38,6 @@ const ProductDetails = () => {
   const [selectedRam, setSelectedRam] = useState("");
   const [selectedStorage, setSelectedStorage] = useState("");
   const [activeImage, setActiveImage] = useState("");
-  const [isWishlisted, setIsWishlisted] = useState(false);
   const [activeTab, setActiveTab] = useState("overview");
 
   const [isLoading, setIsLoading] = useState(true);
@@ -114,8 +116,9 @@ const ProductDetails = () => {
       setShowShirt(false);
       setShirtReturn(false);
 
-      // SUCCESS TICK
+      // SUCCESS TICK + SINGLE SUCCESS TOAST
       setShowTick(true);
+      toast.success("Added to cart!", { id: "add-to-cart" });
 
       await sleep(650);
 
@@ -335,12 +338,17 @@ const ProductDetails = () => {
     }
   };
 
+  // Derive live wishlist state from the persisted store
+  const isWishlisted = singleProduct ? isInWishlist(singleProduct._id) : false;
+
   const toggleWishlist = () => {
-    setIsWishlisted((prev) => {
-      const next = !prev;
-      toast.success(next ? "Added to Wishlist" : "Removed from Wishlist");
-      return next;
-    });
+    if (!singleProduct?._id) return;
+    const added = toggleWishlistStore(singleProduct);
+    if (added) {
+      toast.success("Added to Wishlist", { icon: "❤️", id: `wl-add-${singleProduct._id}` });
+    } else {
+      toast("Removed from Wishlist", { icon: "🤍", id: `wl-remove-${singleProduct._id}` });
+    }
   };
 
   if (isLoading) {
@@ -698,7 +706,7 @@ const ProductDetails = () => {
                     : resetting
                       ? "overflow-hidden"
                       : "overflow-visible"
-                } h-13 flex-1 rounded-xl text-white bg-menuHeading dark:bg-white dark:text-menuHeading text-base font-bold font-dmSans cursor-pointer transition-all duration-300 flex items-center justify-center shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-95`}>
+                } min-h-[52px] flex-1 rounded-xl text-white bg-menuHeading dark:bg-white dark:text-menuHeading text-base font-bold font-dmSans cursor-pointer transition-all duration-300 flex items-center justify-center shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-95`}>
                 {/* TEXT */}
                 <motion.span
                   initial={false}
@@ -804,7 +812,7 @@ const ProductDetails = () => {
                 {/* CART */}
                 <motion.div
                   animate={cartControls}
-                  className="absolute left-33.5">
+                  className="absolute left-24 md:left-33.5">
                   <motion.div
                     className="relative w-9 h-7"
                     animate={
@@ -858,15 +866,21 @@ const ProductDetails = () => {
               <button
                 type="button"
                 onClick={toggleWishlist}
-                className={`h-13 px-5 rounded-xl border-2 font-dmSans font-bold text-sm flex items-center justify-center gap-2 transition-all cursor-pointer ${
+                aria-label={isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
+                aria-pressed={isWishlisted}
+                className={`min-h-[52px] sm:w-auto w-full px-5 rounded-xl border-2 font-dmSans font-bold text-sm flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer flex-shrink-0 ${
                   isWishlisted
-                    ? "border-red-500 bg-red-50 dark:bg-red-950/40 text-red-600 dark:text-red-400"
-                    : "border-gray-200 dark:border-white/15 bg-white dark:bg-[#1E232E] text-menuHeading dark:text-white hover:border-menuHeading/40"
+                    ? "border-rose-400 bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400"
+                    : "border-gray-200 dark:border-white/15 bg-white dark:bg-[#1E232E] text-menuHeading dark:text-white hover:border-rose-300 hover:bg-rose-50 hover:text-rose-600 dark:hover:border-rose-400 dark:hover:bg-rose-950/20 dark:hover:text-rose-400"
                 }`}>
                 <Heart
-                  className={`w-5 h-5 ${isWishlisted ? "fill-red-500 text-red-500" : ""}`}
+                  className={`w-5 h-5 flex-shrink-0 transition-colors duration-200 ${
+                    isWishlisted ? "fill-rose-500 text-rose-500" : ""
+                  }`}
                 />
-                <span className="hidden sm:inline">Wishlist</span>
+                <span className="whitespace-nowrap">
+                  {isWishlisted ? "Wishlisted" : "Wishlist"}
+                </span>
               </button>
             </div>
 
