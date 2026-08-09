@@ -68,6 +68,12 @@ const Header = () => {
   const searchQuery = searchParams.get("search") || "";
 
   useEffect(() => {
+    setShowMenu(false);
+    setShowButton(false);
+    setShowCart(false);
+  }, [location.pathname]);
+
+  useEffect(() => {
     setSearchInput(searchQuery);
   }, [searchQuery]);
 
@@ -330,7 +336,12 @@ const Header = () => {
                       <FaCaretDown className="text-menuHeading" />
                     )}
                   </button>
-                  {<ToggleButtons isOpen={showButton} />}
+                  {
+                    <ToggleButtons
+                      isOpen={showButton}
+                      onClose={() => setShowButton(false)}
+                    />
+                  }
                 </div>
                 <div className="relative" ref={mobileCartRef}>
                   <button
@@ -421,7 +432,12 @@ const Header = () => {
                     <FaCaretDown className="text-menuHeading" />
                   )}
                 </button>
-                {<ToggleButtons isOpen={showButton} />}
+                {
+                  <ToggleButtons
+                    isOpen={showButton}
+                    onClose={() => setShowButton(false)}
+                  />
+                }
               </div>
               <div className="relative" ref={desktopCartRef}>
                 <button
