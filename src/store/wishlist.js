@@ -1,12 +1,36 @@
 import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { persist, createJSONStorage } from "zustand/middleware";
+
+// Safe storage wrapper to prevent crashes in private/incognito modes
+const safeStorage = {
+  getItem: (name) => {
+    try {
+      return localStorage.getItem(name);
+    } catch (e) {
+      return null;
+    }
+  },
+  setItem: (name, value) => {
+    try {
+      localStorage.setItem(name, value);
+    } catch (e) {
+      // Storage unavailable or quota exceeded
+    }
+  },
+  removeItem: (name) => {
+    try {
+      localStorage.removeItem(name);
+    } catch (e) {
+      // Storage unavailable
+    }
+  },
+};
 
 /**
  * Wishlist store — persisted to localStorage under the key "wishlist-storage".
  * Follows the same pattern as the cart store (cart.js).
  *
  * An item in the wishlist is identified by its product `_id`.
- * We store the full product object so we can display it on a wishlist page in the future.
  */
 const useWishlist = create(
   persist(
@@ -29,6 +53,7 @@ const useWishlist = create(
        * Remove a product from the wishlist by its _id.
        */
       removeFromWishlist: (productId) => {
+        if (!productId) return;
         set((state) => ({
           items: state.items.filter((item) => item._id !== productId),
         }));
@@ -38,6 +63,7 @@ const useWishlist = create(
        * Return true if a product (by _id) is currently in the wishlist.
        */
       isInWishlist: (productId) => {
+        if (!productId) return false;
         return get().items.some((item) => item._id === productId);
       },
 
@@ -57,7 +83,10 @@ const useWishlist = create(
         }
       },
     }),
-    { name: "wishlist-storage" },
+    {
+      name: "wishlist-storage",
+      storage: createJSONStorage(() => safeStorage),
+    },
   ),
 );
 

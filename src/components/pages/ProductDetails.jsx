@@ -29,7 +29,7 @@ const ProductDetails = () => {
   const { id } = useParams();
   const addToCart = useCart((state) => state.addToCart);
   const toggleWishlistStore = useWishlist((state) => state.toggleWishlist);
-  const isInWishlist = useWishlist((state) => state.isInWishlist);
+  const wishlistItems = useWishlist((state) => state.items);
 
   const [quantity, setQuantity] = useState(1);
   const [singleProduct, setSingleProduct] = useState(null);
@@ -38,6 +38,7 @@ const ProductDetails = () => {
   const [selectedRam, setSelectedRam] = useState("");
   const [selectedStorage, setSelectedStorage] = useState("");
   const [activeImage, setActiveImage] = useState("");
+  const [isWishlisted, setIsWishlisted] = useState(false);
   const [activeTab, setActiveTab] = useState("overview");
 
   const [isLoading, setIsLoading] = useState(true);
@@ -338,16 +339,29 @@ const ProductDetails = () => {
     }
   };
 
-  // Derive live wishlist state from the persisted store
-  const isWishlisted = singleProduct ? isInWishlist(singleProduct._id) : false;
+  // Synchronize local wishlist state whenever product or wishlist store items change
+  useEffect(() => {
+    if (singleProduct?._id) {
+      const exists = wishlistItems.some((item) => item._id === singleProduct._id);
+      setIsWishlisted(exists);
+    }
+  }, [singleProduct, wishlistItems]);
 
   const toggleWishlist = () => {
     if (!singleProduct?._id) return;
-    const added = toggleWishlistStore(singleProduct);
-    if (added) {
-      toast.success("Added to Wishlist", { icon: "❤️", id: `wl-add-${singleProduct._id}` });
+    
+    const nextState = !isWishlisted;
+    // 1. Immediate React UI update
+    setIsWishlisted(nextState);
+
+    // 2. Persist to store / localStorage
+    toggleWishlistStore(singleProduct);
+
+    // 3. Exactly one toast notification per click
+    if (nextState) {
+      toast.success("Added to Wishlist", { icon: "❤️", id: `wl-toast-${singleProduct._id}` });
     } else {
-      toast("Removed from Wishlist", { icon: "🤍", id: `wl-remove-${singleProduct._id}` });
+      toast("Removed from Wishlist", { icon: "🤍", id: `wl-toast-${singleProduct._id}` });
     }
   };
 
