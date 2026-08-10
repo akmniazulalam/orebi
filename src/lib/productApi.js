@@ -19,6 +19,10 @@ if (missingEnvVars.length > 0) {
 export const API_BASE_URL = apiBaseUrl;
 
 export const apiPaths = {
+  auth: {
+    login: "/auth/login",
+    currentUser: "/auth/currentuser",
+  },
   products: {
     list: "/product/getproduct",
     single: (id) => `/product/singleproduct/${id}`,
