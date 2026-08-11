@@ -64,8 +64,37 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const signup = async (firstName, lastName, email, password) => {
+    try {
+      const response = await apiClient.post(apiPaths.auth.signup, {
+        firstName,
+        lastName,
+        email,
+        password,
+      });
+
+      return {
+        success: true,
+        message:
+          response?.data?.message ||
+          "Account created successfully. You can now log in.",
+      };
+    } catch (error) {
+      const errorMessage =
+        error?.response?.data?.message ||
+        error?.message ||
+        "Registration failed. Please check your information and try again.";
+
+      return {
+        success: false,
+        message: errorMessage,
+      };
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, setUser, loading, login, checkAuth }}>
+    <AuthContext.Provider
+      value={{ user, setUser, loading, login, signup, checkAuth }}>
       {children}
     </AuthContext.Provider>
   );
