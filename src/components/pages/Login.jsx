@@ -73,6 +73,12 @@ const Login = () => {
           as={"h2"}
         />
 
+        {location.state?.successMessage && !errorMsg && (
+          <div className="max-w-263.75 mb-6 p-4 rounded-xl border border-emerald-200 bg-emerald-50 text-emerald-800 font-dmSans text-sm font-semibold">
+            {location.state.successMessage}
+          </div>
+        )}
+
         {errorMsg && (
           <div className="max-w-263.75 mb-6 p-4 rounded-xl border border-red-200 bg-red-50 text-red-700 font-dmSans text-sm">
             {errorMsg}
