@@ -21,7 +21,7 @@ export const API_BASE_URL = apiBaseUrl;
 export const apiPaths = {
   auth: {
     login: "/auth/login",
-    signup: "/auth/signup",
+    signup: "/auth/customer-signup",
     currentUser: "/auth/currentuser",
   },
   products: {
