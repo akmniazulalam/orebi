@@ -23,6 +23,7 @@ export const apiPaths = {
     login: "/auth/login",
     signup: "/auth/customer-signup",
     currentUser: "/auth/currentuser",
+    logout: "/auth/logout",
   },
   products: {
     list: "/product/getproduct",
