@@ -18,6 +18,8 @@ import ScrollToTop from "./components/ScrollToTop";
 import ProductDetails from "./components/pages/ProductDetails";
 import Signup from "./components/pages/Signup";
 import Login from "./components/pages/Login";
+import Account from "./components/pages/Account";
+import { ProtectedRoute, GuestRoute } from "./components/ProtectedRoute";
 import { useEffect } from "react";
 
 function App() {
@@ -36,7 +38,7 @@ function App() {
   }, []);
   return (
     <>
-    <ScrollToTop/>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<RootLayout />}>
           <Route path="/" element={<Home />} />
@@ -47,11 +49,47 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order-success" element={<OrderSuccess />} />
-          <Route path="/orders" element={<Orders />} />
-          <Route path="/orders/:id" element={<OrderDetails />} />
+          <Route
+            path="/account"
+            element={
+              <ProtectedRoute>
+                <Account />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/orders"
+            element={
+              <ProtectedRoute>
+                <Orders />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/orders/:id"
+            element={
+              <ProtectedRoute>
+                <OrderDetails />
+              </ProtectedRoute>
+            }
+          />
           <Route path="/productdetails/:id" element={<ProductDetails />} />
-          <Route path="/signup" element={<Signup />} />
-          <Route path="/login" element={<Login />} />
+          <Route
+            path="/signup"
+            element={
+              <GuestRoute>
+                <Signup />
+              </GuestRoute>
+            }
+          />
+          <Route
+            path="/login"
+            element={
+              <GuestRoute>
+                <Login />
+              </GuestRoute>
+            }
+          />
           <Route path="*" element={<Error />} />
         </Route>
       </Routes>
