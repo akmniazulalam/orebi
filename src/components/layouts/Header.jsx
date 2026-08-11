@@ -21,8 +21,10 @@ import CartDropdowns from "../CartDropdowns";
 import useCart from "@/store/cart";
 import { Button } from "@/components/ui/button";
 import { Moon, Sun } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
 
 const Header = () => {
+  const { user } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -325,11 +327,16 @@ const Header = () => {
                 <div className="relative" ref={mobileToggleRef}>
                   <button
                     type="button"
-                    className="flex items-center gap-x-1 cursor-pointer focus:outline-none"
+                    className="flex items-center gap-x-1.5 cursor-pointer focus:outline-none"
                     onClick={toggleButtons}
                     aria-expanded={showButton}
                     aria-label="Account menu">
                     <FaUser className="text-menuHeading" />
+                    {user && (
+                      <span className="text-xs font-bold text-menuHeading dark:text-white max-w-[80px] truncate font-dmSans">
+                        {user.firstName ? user.firstName : user.email?.split("@")[0]}
+                      </span>
+                    )}
                     {showButton ? (
                       <FaCaretUp className="text-menuHeading" />
                     ) : (
@@ -340,6 +347,7 @@ const Header = () => {
                     <ToggleButtons
                       isOpen={showButton}
                       onClose={() => setShowButton(false)}
+                      closeMobileNav={() => setShowNav(false)}
                     />
                   }
                 </div>
@@ -421,11 +429,18 @@ const Header = () => {
               <div className="relative" ref={desktopToggleRef}>
                 <button
                   type="button"
-                  className="flex items-center gap-x-1 cursor-pointer focus:outline-none"
+                  className="flex items-center gap-x-2 cursor-pointer focus:outline-none"
                   onClick={toggleButtons}
                   aria-expanded={showButton}
                   aria-label="Account menu">
                   <FaUser className="text-menuHeading" />
+                  {user && (
+                    <span className="text-xs font-bold text-menuHeading dark:text-white max-w-[120px] truncate font-dmSans">
+                      {user.firstName
+                        ? `${user.firstName} ${user.lastName || ""}`.trim()
+                        : user.email?.split("@")[0]}
+                    </span>
+                  )}
                   {showButton ? (
                     <FaCaretUp className="text-menuHeading" />
                   ) : (
@@ -436,6 +451,7 @@ const Header = () => {
                   <ToggleButtons
                     isOpen={showButton}
                     onClose={() => setShowButton(false)}
+                    closeMobileNav={() => setShowNav(false)}
                   />
                 }
               </div>
