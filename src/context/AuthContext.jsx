@@ -92,9 +92,19 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const logout = async () => {
+    try {
+      await apiClient.post(apiPaths.auth.logout);
+    } catch (error) {
+      // Silently catch error on logout
+    } finally {
+      setUser(null);
+    }
+  };
+
   return (
     <AuthContext.Provider
-      value={{ user, setUser, loading, login, signup, checkAuth }}>
+      value={{ user, setUser, loading, login, signup, logout, checkAuth }}>
       {children}
     </AuthContext.Provider>
   );
