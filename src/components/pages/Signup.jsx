@@ -254,7 +254,7 @@ const Signup = () => {
             <button
               type="submit"
               disabled={isSubmitting}
-              className="py-3 px-18 mt-6 text-white text-sm font-bold font-dmSans bg-menuHeading cursor-pointer border border-menuHeading disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+              className="py-3 px-18 mt-6 text-white dark:text-[#262626] text-sm font-bold font-dmSans bg-menuHeading cursor-pointer border border-menuHeading disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
               {isSubmitting ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" />
