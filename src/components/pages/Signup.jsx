@@ -23,7 +23,8 @@ const Signup = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const fromLocation = location.state?.from?.pathname || location.state?.from || null;
+  const fromLocation =
+    location.state?.from?.pathname || location.state?.from || null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -105,7 +106,8 @@ const Signup = () => {
       <Intro text={"Signup"} pText={"Signup"} />
       <Container>
         <p className="font-dmSans text-base leading-7.5 text-header max-w-161">
-          Create an account with Orebi to manage your orders, track shipments, and enjoy a seamless checkout experience.
+          Create an account with Orebi to manage your orders, track shipments,
+          and enjoy a seamless checkout experience.
         </p>
         <hr className="text-infoBg my-15" />
 
@@ -117,7 +119,9 @@ const Signup = () => {
 
         <form onSubmit={handleSubmit} className="w-full">
           <Heading
-            className={"pb-10 font-dmSans font-bold text-[39px] text-menuHeading"}
+            className={
+              "pb-10 font-dmSans font-bold text-[39px] text-menuHeading"
+            }
             text={"Your Personal Details"}
             as={"h2"}
           />
@@ -194,7 +198,9 @@ const Signup = () => {
           <hr className="text-infoBg my-15" />
 
           <Heading
-            className={"pb-10 font-dmSans font-bold text-[39px] text-menuHeading"}
+            className={
+              "pb-10 font-dmSans font-bold text-[39px] text-menuHeading"
+            }
             text={"Your Password"}
             as={"h2"}
           />
