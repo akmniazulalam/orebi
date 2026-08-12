@@ -32,8 +32,10 @@ import apiClient from "@/lib/apiClient";
 import useCart from "@/store/cart";
 import { getCartLineName, getCartLinePrice } from "@/lib/cartUtils";
 import toast from "react-hot-toast";
+import { useAuth } from "@/context/AuthContext";
 
 const Checkout = () => {
+  const { user } = useAuth();
   // ----- Original feature: selected bank / payment method -----
   const [selectedBank, setSelectedBank] = useState("");
   // ----- Original feature: coupon toggle -----
@@ -69,6 +71,17 @@ const Checkout = () => {
     setForm((f) => ({ ...f, [k]: v }));
     setErrors((er) => ({ ...er, [k]: undefined }));
   };
+
+  React.useEffect(() => {
+    if (user) {
+      setForm((f) => ({
+        ...f,
+        firstName: f.firstName || user.firstName || "",
+        lastName: f.lastName || user.lastName || "",
+        email: f.email || user.email || "",
+      }));
+    }
+  }, [user]);
 
   const { items, clearCart } = useCart((state) => state);
   const [discountAmount, setDiscountAmount] = useState(0);
@@ -127,6 +140,13 @@ const Checkout = () => {
   };
   const handlePlaceOrder = async (ev) => {
     ev.preventDefault();
+    if (!user) {
+      const msg = "Please log in or create an account to complete your order.";
+      setSubmitError(msg);
+      toast.error(msg);
+      return;
+    }
+
     if (!validate()) {
       const first = document.querySelector("[data-error='true']");
       first?.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -257,6 +277,40 @@ const Checkout = () => {
               ))}
             </ol>
           </div>
+
+          {!user && (
+            <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50 dark:bg-amber-950/40 dark:border-amber-800 p-5 sm:p-6 shadow-sm">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+                <div className="flex items-start sm:items-center gap-3">
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-100 dark:bg-amber-900/60 text-amber-800 dark:text-amber-200">
+                    <Lock className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h2 className="text-base font-bold text-amber-900 dark:text-amber-200">
+                      Sign in to complete your order
+                    </h2>
+                    <p className="text-xs text-amber-800 dark:text-amber-300 mt-0.5">
+                      Log in or create a new account. Your shopping cart items will be saved.
+                    </p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3">
+                  <Link
+                    to="/login"
+                    state={{ from: { pathname: "/checkout" } }}
+                    className="inline-flex h-10 items-center justify-center rounded-xl bg-gray-900 px-5 text-xs font-semibold text-white transition hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100">
+                    Log In
+                  </Link>
+                  <Link
+                    to="/signup"
+                    state={{ from: { pathname: "/checkout" } }}
+                    className="inline-flex h-10 items-center justify-center rounded-xl border border-gray-900 bg-white px-5 text-xs font-semibold text-gray-900 transition hover:bg-gray-50 dark:bg-transparent dark:border-white dark:text-white">
+                    Create Account
+                  </Link>
+                </div>
+              </div>
+            </div>
+          )}
           {/* Coupon notice (original) */}
           <div className="mb-6 flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-gray-300 bg-bHeaderBg dark:bg-white/5 px-5 py-4 text-sm">
             <Tag className="h-4 w-4 text-menuHeading dark:text-gray-200" />
@@ -762,20 +816,48 @@ const Checkout = () => {
                       {submitError}
                     </p>
                   ) : null}
-                  <Button
-                    type="submit"
-                    disabled={submitting}
-                    className="mt-5 h-12 w-full bg-gray-900 text-base font-semibold text-white hover:bg-gray-800 cursor-pointer">
-                    {submitting ? (
-                      <>
-                        <Loader2 className="h-5 w-5 animate-spin" /> Processing…
-                      </>
-                    ) : (
-                      <>
-                        Place order <ChevronRight className="h-5 w-5" />
-                      </>
-                    )}
-                  </Button>
+
+                  {user ? (
+                    <Button
+                      type="submit"
+                      disabled={submitting}
+                      className="mt-5 h-12 w-full bg-gray-900 text-base font-semibold text-white hover:bg-gray-800 cursor-pointer">
+                      {submitting ? (
+                        <>
+                          <Loader2 className="h-5 w-5 animate-spin" /> Processing…
+                        </>
+                      ) : (
+                        <>
+                          Place order <ChevronRight className="h-5 w-5" />
+                        </>
+                      )}
+                    </Button>
+                  ) : (
+                    <div className="mt-5 space-y-3">
+                      <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-xs dark:bg-amber-950/40 dark:border-amber-800">
+                        <p className="font-bold text-amber-900 dark:text-amber-200 flex items-center gap-1.5 mb-1">
+                          <Lock className="h-4 w-4" /> Account Required
+                        </p>
+                        <p className="text-amber-800 dark:text-amber-300">
+                          Please sign in or create an account to complete your purchase.
+                        </p>
+                      </div>
+                      <div className="grid grid-cols-2 gap-2">
+                        <Link
+                          to="/login"
+                          state={{ from: { pathname: "/checkout" } }}
+                          className="inline-flex h-11 items-center justify-center rounded-xl bg-gray-900 px-3 text-xs font-semibold text-white transition hover:bg-gray-800 text-center">
+                          Log In
+                        </Link>
+                        <Link
+                          to="/signup"
+                          state={{ from: { pathname: "/checkout" } }}
+                          className="inline-flex h-11 items-center justify-center rounded-xl border border-gray-900 bg-white px-3 text-xs font-semibold text-gray-900 transition hover:bg-gray-50 dark:bg-transparent dark:border-white dark:text-white text-center">
+                          Create Account
+                        </Link>
+                      </div>
+                    </div>
+                  )}
                   <div className="mt-4 flex items-center justify-center gap-2 text-xs text-menuHeading">
                     <ShieldCheck className="h-4 w-4 text-green-600" />
                     Secure SSL encrypted checkout
