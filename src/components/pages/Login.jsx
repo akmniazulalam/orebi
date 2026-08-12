@@ -123,7 +123,7 @@ const Login = () => {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="py-3 px-18 mt-6 text-sm font-bold font-dmSans text-black hover:text-white hover:bg-menuHeading cursor-pointer border border-menuHeading transition-all duration-300 justify-self-start disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+            className="py-3 px-18 mt-6 text-sm font-bold font-dmSans text-menuHeading dark:text-white dark:hover:text-[#262626] hover:text-white hover:bg-menuHeading cursor-pointer border border-menuHeading transition-all duration-300 justify-self-start disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
             {isSubmitting ? (
               <>
                 <Loader2 className="w-4 h-4 animate-spin" />
@@ -145,7 +145,7 @@ const Login = () => {
         </p>
         <Link
           to="/signup"
-          className="inline-block py-3 px-18 mt-6 text-white text-sm font-bold font-dmSans bg-menuHeading cursor-pointer border border-menuHeading text-center">
+          className="inline-block py-3 px-18 mt-6 text-white dark:text-[#262626] text-sm font-bold font-dmSans bg-menuHeading cursor-pointer border border-menuHeading text-center">
           Continue
         </Link>
       </Container>
