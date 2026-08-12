@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import Intro from "../Intro";
 import Container from "../Container";
 import Heading from "../Heading";
@@ -21,6 +21,9 @@ const Signup = () => {
 
   const { signup } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const fromLocation = location.state?.from?.pathname || location.state?.from || null;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -77,13 +80,12 @@ const Signup = () => {
       );
 
       if (result.success) {
-        toast.success("Account created successfully. Please sign in.");
-        navigate("/login", {
-          replace: true,
-          state: {
-            successMessage: "Account created successfully. Please sign in.",
-          },
-        });
+        toast.success("Account created successfully!");
+        if (fromLocation) {
+          navigate(fromLocation, { replace: true });
+        } else {
+          navigate("/account", { replace: true });
+        }
       } else {
         const msg = result.message || "Registration failed. Please try again.";
         setErrorMsg(msg);
