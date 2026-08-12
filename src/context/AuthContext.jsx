@@ -73,11 +73,19 @@ export const AuthProvider = ({ children }) => {
         password,
       });
 
+      const registeredUser = response?.data?.user || null;
+      if (registeredUser) {
+        setUser(registeredUser);
+      } else {
+        await checkAuth();
+      }
+
       return {
         success: true,
+        user: registeredUser,
         message:
           response?.data?.message ||
-          "Account created successfully. You can now log in.",
+          "Account created successfully.",
       };
     } catch (error) {
       const errorMessage =
