@@ -290,7 +290,8 @@ const Checkout = () => {
                       Sign in to complete your order
                     </h2>
                     <p className="text-xs text-amber-800 dark:text-amber-300 mt-0.5">
-                      Log in or create a new account. Your shopping cart items will be saved.
+                      Log in or create a new account. Your shopping cart items
+                      will be saved.
                     </p>
                   </div>
                 </div>
@@ -369,7 +370,9 @@ const Checkout = () => {
                 </h2>
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <div>
-                    <label htmlFor="checkout-firstname" className="mb-1.5 block text-sm font-medium text-menuHeading">
+                    <label
+                      htmlFor="checkout-firstname"
+                      className="mb-1.5 block text-sm font-medium text-menuHeading">
                       First Name *
                     </label>
                     <input
@@ -386,7 +389,9 @@ const Checkout = () => {
                     )}
                   </div>
                   <div>
-                    <label htmlFor="checkout-lastname" className="mb-1.5 block text-sm font-medium text-menuHeading">
+                    <label
+                      htmlFor="checkout-lastname"
+                      className="mb-1.5 block text-sm font-medium text-menuHeading">
                       Last Name *
                     </label>
                     <input
@@ -404,7 +409,9 @@ const Checkout = () => {
                   </div>
                 </div>
                 <div className="mt-5">
-                  <label htmlFor="checkout-company" className="mb-1.5 block text-sm font-medium text-menuHeading">
+                  <label
+                    htmlFor="checkout-company"
+                    className="mb-1.5 block text-sm font-medium text-menuHeading">
                     Company Name (Optional)
                   </label>
                   <input
@@ -469,7 +476,9 @@ const Checkout = () => {
                 </div>
                 <div className="mt-5 grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <div>
-                    <label htmlFor="checkout-city" className="mb-1.5 block text-sm font-medium text-menuHeading">
+                    <label
+                      htmlFor="checkout-city"
+                      className="mb-1.5 block text-sm font-medium text-menuHeading">
                       Town/City *
                     </label>
                     <input
@@ -484,7 +493,9 @@ const Checkout = () => {
                     )}
                   </div>
                   <div>
-                    <label htmlFor="checkout-county" className="mb-1.5 block text-sm font-medium text-menuHeading">
+                    <label
+                      htmlFor="checkout-county"
+                      className="mb-1.5 block text-sm font-medium text-menuHeading">
                       County (optional)
                     </label>
                     <input
@@ -495,7 +506,9 @@ const Checkout = () => {
                     />
                   </div>
                   <div>
-                    <label htmlFor="checkout-postcode" className="mb-1.5 block text-sm font-medium text-menuHeading">
+                    <label
+                      htmlFor="checkout-postcode"
+                      className="mb-1.5 block text-sm font-medium text-menuHeading">
                       Post Code *
                     </label>
                     <input
@@ -512,7 +525,9 @@ const Checkout = () => {
                     )}
                   </div>
                   <div>
-                    <label htmlFor="checkout-phone" className="mb-1.5 block text-sm font-medium text-menuHeading">
+                    <label
+                      htmlFor="checkout-phone"
+                      className="mb-1.5 block text-sm font-medium text-menuHeading">
                       Phone *
                     </label>
                     <input
@@ -530,7 +545,9 @@ const Checkout = () => {
                   </div>
                 </div>
                 <div className="mt-5">
-                  <label htmlFor="checkout-email" className="mb-1.5 block text-sm font-medium text-menuHeading">
+                  <label
+                    htmlFor="checkout-email"
+                    className="mb-1.5 block text-sm font-medium text-menuHeading">
                     Email Address *
                   </label>
                   <input
@@ -824,7 +841,8 @@ const Checkout = () => {
                       className="mt-5 h-12 w-full bg-gray-900 text-base font-semibold text-white hover:bg-gray-800 cursor-pointer">
                       {submitting ? (
                         <>
-                          <Loader2 className="h-5 w-5 animate-spin" /> Processing…
+                          <Loader2 className="h-5 w-5 animate-spin" />{" "}
+                          Processing…
                         </>
                       ) : (
                         <>
@@ -839,7 +857,8 @@ const Checkout = () => {
                           <Lock className="h-4 w-4" /> Account Required
                         </p>
                         <p className="text-amber-800 dark:text-amber-300">
-                          Please sign in or create an account to complete your purchase.
+                          Please sign in or create an account to complete your
+                          purchase.
                         </p>
                       </div>
                       <div className="grid grid-cols-2 gap-2">
