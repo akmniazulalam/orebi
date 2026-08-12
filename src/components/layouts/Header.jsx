@@ -307,7 +307,10 @@ const Header = () => {
                     />
                   </Flex>
                 </button>
-                {<CategoriesMenu isOpen={showMenu} />}
+                {<CategoriesMenu
+                  isOpen={showMenu}
+                  onClose={() => { setShowMenu(false); setShowNav(false); }}
+                />}
               </div>
 
               {/* Mobile Header Icons Group */}
