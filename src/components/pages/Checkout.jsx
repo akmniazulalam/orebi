@@ -229,7 +229,7 @@ const Checkout = () => {
     }
   };
   const inputCls = (key) =>
-    `w-full rounded-lg border bg-white dark:bg-white/5 px-4 py-2.5 text-sm text-menuHeading dark:text-[#e5e7eb] outline-none transition focus:ring-2 focus:ring-gray-900/10 ${
+    `w-full rounded-lg border bg-white dark:bg-white/5 px-4 py-2.5 text-sm text-menuHeading dark:text-gray-900 outline-none transition focus:ring-2 focus:ring-gray-900/10 ${
       errors[key] ? "border-red-500" : "border-gray-200 focus:border-gray-400"
     }`;
   return (
