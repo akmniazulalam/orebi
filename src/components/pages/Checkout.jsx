@@ -914,8 +914,8 @@ const Checkout = () => {
                                   <div className="mt-4 space-y-3 rounded-xl border border-gray-200 bg-white p-4 dark:bg-[#191E28]">
                                     <div className="flex items-center justify-between text-xs text-amber-800 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800 p-2.5 rounded-lg">
                                       <span className="flex items-center gap-1.5 font-semibold">
-                                        <AlertTriangle className="h-4 w-4" /> Demo
-                                        Payment Mode
+                                        <AlertTriangle className="h-4 w-4" />{" "}
+                                        Demo Payment Mode
                                       </span>
                                       <span className="text-[11px]">
                                         No real card is charged
@@ -1125,9 +1125,7 @@ const Checkout = () => {
                               Creating Order…
                             </>
                           ) : (
-                            <>
-                              Confirm Payment & Place Order
-                            </>
+                            <>Confirm Payment & Place Order</>
                           )}
                         </Button>
                         <button
