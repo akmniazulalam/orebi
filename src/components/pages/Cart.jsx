@@ -300,7 +300,7 @@ const Cart = () => {
 
                 <Link
                   to="/shop"
-                  className="block text-center mt-4 text-sm text-menuHeading hover:text-gray-900 transition-colors">
+                  className="block text-center mt-4 text-sm text-menuHeading hover:text-gray-400 transition-colors">
                   ← Continue Shopping
                 </Link>
 
