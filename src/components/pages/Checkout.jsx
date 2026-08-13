@@ -256,12 +256,6 @@ const Checkout = () => {
     setSubmitting(true);
     setSubmitError("");
 
-    const methodLabels = {
-      cod: "Cash on Delivery",
-      bank: "Direct Bank Transfer",
-      card: "Credit / Debit Card (Simulated)",
-    };
-
     try {
       const payload = {
         customer: {
@@ -279,8 +273,8 @@ const Checkout = () => {
           notes: form.notes,
         },
         payment: {
-          method: methodLabels[selectedBank] || "Cash on Delivery",
-          status: selectedBank === "cod" ? "Pending" : "Completed",
+          method: selectedBank,
+          status: selectedBank === "cod" ? "Pending" : "Paid",
           currency: "USD",
           amount: Number(total.toFixed(2)),
         },
