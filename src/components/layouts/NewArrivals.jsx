@@ -108,7 +108,10 @@ const NewArrivals = () => {
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-14 mb-6">
             {[1, 2, 3, 4].map((n) => (
-              <div key={n} className="h-64 bg-gray-100 dark:bg-zinc-800 animate-pulse rounded-lg" />
+              <div
+                key={n}
+                className="h-64 bg-gray-100 dark:bg-zinc-800 animate-pulse rounded-lg"
+              />
             ))}
           </div>
         ) : error ? (
@@ -122,50 +125,50 @@ const NewArrivals = () => {
         ) : (
           <div className="-mx-4 mt-14 mb-6 group">
             <Slider ref={sliderRef} {...settings}>
-            {myProduct.map((item) => (
-              <div key={item.id} className="px-4">
-                <div
-                  className="relative w-full group/img"
-                  style={{ backgroundColor: item.bgColor }}>
-                  <Image
-                    src={item.thumbnail}
-                    alt={item.title}
-                    className="w-full h-full object-cover"
-                  />
-                  <Badge
-                    badgeT={badgeTexts[item.id] || "New"}
-                    className="absolute top-4.75 left-4.75"
-                  />
-                  <ActiveButtons
-                    product={item}
-                    className="absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
-                  />
-                </div>
-                <ProductTexts />
-              </div>
-            ))}
-          </Slider>
-
-          {/* Custom Dot Renderer - Fixed 4 Dots */}
-          <div className="flex justify-center mt-6">
-            {fakeDotArray.map((i) => (
-              <div
-                key={i}
-                className="w-6 h-6 mx-2 flex items-center justify-center cursor-pointer"
-                onClick={() => {
-                  sliderRef.current.slickGoTo(i);
-                  setActiveDot(i); // instant change, no late effect
-                }}>
-                {i === activeDot ? (
-                  <div className="w-6 h-6 border-2 border-black dark:border-white rounded-full flex items-center justify-center cursor-pointer">
-                    <div className="w-2 h-2 bg-black rounded-full dark:bg-white" />
+              {myProduct.map((item) => (
+                <div key={item.id} className="px-4">
+                  <div
+                    className="relative w-full group/img"
+                    style={{ backgroundColor: item.bgColor }}>
+                    <Image
+                      src={item.thumbnail}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <Badge
+                      badgeT={badgeTexts[item.id] || "New"}
+                      className="absolute top-4.75 left-4.75"
+                    />
+                    <ActiveButtons
+                      product={item}
+                      className="absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
+                    />
                   </div>
-                ) : (
-                  <div className="w-2 h-2 bg-black dark:bg-white rounded-full cursor-pointer" />
-                )}
-              </div>
-            ))}
-          </div>
+                  <ProductTexts />
+                </div>
+              ))}
+            </Slider>
+
+            {/* Custom Dot Renderer - Fixed 4 Dots */}
+            <div className="flex justify-center mt-6">
+              {fakeDotArray.map((i) => (
+                <div
+                  key={i}
+                  className="w-6 h-6 mx-2 flex items-center justify-center cursor-pointer"
+                  onClick={() => {
+                    sliderRef.current.slickGoTo(i);
+                    setActiveDot(i); // instant change, no late effect
+                  }}>
+                  {i === activeDot ? (
+                    <div className="w-6 h-6 border-2 border-black dark:border-white rounded-full flex items-center justify-center cursor-pointer">
+                      <div className="w-2 h-2 bg-black rounded-full dark:bg-white" />
+                    </div>
+                  ) : (
+                    <div className="w-2 h-2 bg-black dark:bg-white rounded-full cursor-pointer" />
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </Container>
