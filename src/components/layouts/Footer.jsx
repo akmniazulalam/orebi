@@ -153,7 +153,7 @@ const Footer = () => {
                 <Image src={Logo} alt="Orebi logo" className={"w-30 dark:invert"} />
               </Link>
               <p className="font-dmSans text-footerTexts text-[14px]">
-                2020 Orebi Minimal eCommerce Figma Template by Adveits
+                2026 Orebi Minimal eCommerce Figma Template by Adveits
               </p>
             </div>
           </div>
