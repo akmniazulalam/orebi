@@ -62,7 +62,7 @@ const Footer = () => {
                   <ul className="flex flex-col gap-y-2">
                     <Link to={"/"}>
                       <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                        Category 1
+                        Audio
                       </li>
                     </Link>
                     <Link to={"/"}>
