@@ -77,12 +77,12 @@ const Footer = () => {
                     </Link>
                     <Link to={"/"}>
                       <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                        	Accessories
+                        Accessories
                       </li>
                     </Link>
                     <Link to={"/"}>
                       <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                        	Smartwatches
+                        Smartwatches
                       </li>
                     </Link>
                   </ul>
@@ -150,7 +150,11 @@ const Footer = () => {
             </div>
             <div className="flex flex-col justify-between gap-y-4 lg:gap-y-0">
               <Link to={"/"}>
-                <Image src={Logo} alt="Orebi logo" className={"w-30 dark:invert"} />
+                <Image
+                  src={Logo}
+                  alt="Orebi logo"
+                  className={"w-30 dark:invert"}
+                />
               </Link>
               <p className="font-dmSans text-footerTexts text-[14px]">
                 © 2026 Niazul Alam. All rights reserved. Built with React.
