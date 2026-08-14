@@ -72,7 +72,7 @@ const Footer = () => {
                     </Link>
                     <Link to={"/"}>
                       <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                        Category 3
+                        Smartphones
                       </li>
                     </Link>
                     <Link to={"/"}>
