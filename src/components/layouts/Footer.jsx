@@ -7,14 +7,12 @@ import { BsInstagram } from "react-icons/bs";
 import Flex from "../Flex";
 import { Link } from "react-router-dom";
 import { useMemo, useState } from "react";
-import {
-  fetchCategories,
-  fetchProducts,
-  fetchProductsWithMeta,
-} from "@/services/productService";
+import { fetchCategories, fetchProducts } from "@/services/productService";
+
 const Footer = () => {
   const [categories, setCategories] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
+
   useEffect(() => {
     let mounted = true;
 
@@ -38,6 +36,7 @@ const Footer = () => {
       mounted = false;
     };
   }, []);
+
   function getProductCategories(categories, products) {
     const counts = new Map();
 
@@ -69,10 +68,12 @@ const Footer = () => {
       a.name.localeCompare(b.name),
     );
   }
+
   const categoryOptions = useMemo(
     () => getProductCategories(categories, allProducts),
     [categories, allProducts],
   );
+
   return (
     <>
       <footer className="bg-bHeaderBg py-12 mt-25">
