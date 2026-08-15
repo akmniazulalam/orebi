@@ -7,10 +7,37 @@ import { BsInstagram } from "react-icons/bs";
 import Flex from "../Flex";
 import { Link } from "react-router-dom";
 import { useMemo, useState } from "react";
-
+import {
+  fetchCategories,
+  fetchProducts,
+  fetchProductsWithMeta,
+} from "@/services/productService";
 const Footer = () => {
   const [categories, setCategories] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
+  useEffect(() => {
+    let mounted = true;
+
+    Promise.all([fetchCategories(), fetchProducts()])
+      .then(([categoryList, productList]) => {
+        if (!mounted) return;
+        setCategories(Array.isArray(categoryList) ? categoryList : []);
+        setAllProducts(Array.isArray(productList) ? productList : []);
+      })
+      .catch(() => {
+        if (mounted) {
+          setCategories([]);
+          setAllProducts([]);
+        }
+      })
+      .finally(() => {
+        if (mounted) setIsMetaLoading(false);
+      });
+
+    return () => {
+      mounted = false;
+    };
+  }, []);
   function getProductCategories(categories, products) {
     const counts = new Map();
 
