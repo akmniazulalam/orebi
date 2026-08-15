@@ -6,7 +6,7 @@ import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { BsInstagram } from "react-icons/bs";
 import Flex from "../Flex";
 import { Link } from "react-router-dom";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { fetchCategories, fetchProducts } from "@/services/productService";
 
 const Footer = () => {
