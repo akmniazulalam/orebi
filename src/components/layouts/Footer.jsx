@@ -96,6 +96,13 @@ const Footer = () => {
                     }
                   />
                   <ul className="flex flex-col gap-y-2">
+                    {categoryOptions.map((category) => (
+                      <Link to={`/category/${category.name.toLowerCase()}`} key={category.name}>
+                        <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                          {category.name}
+                        </li>
+                      </Link>
+                    ))}
                     <Link to={"/"}>
                       <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
                         Audio
