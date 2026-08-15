@@ -9,10 +9,41 @@ import { Link } from "react-router-dom";
 import { useMemo } from "react";
 
 const Footer = () => {
-  const categoryOptions = useMemo(
-      () => getProductCategories(categories, allProducts),
-      [categories, allProducts],
+  function getProductCategories(categories, products) {
+    const counts = new Map();
+
+    for (const product of products) {
+      const category = product?.category?.trim();
+      if (!category) continue;
+
+      const key = category.toLowerCase();
+      const existing = counts.get(key);
+      counts.set(key, {
+        name: existing?.name || category,
+        count: (existing?.count || 0) + 1,
+      });
+    }
+
+    for (const category of categories) {
+      const name = category?.name?.trim();
+      if (!name) continue;
+
+      const key = name.toLowerCase();
+      const existing = counts.get(key);
+      counts.set(key, {
+        name,
+        count: existing?.count || 0,
+      });
+    }
+
+    return Array.from(counts.values()).sort((a, b) =>
+      a.name.localeCompare(b.name),
     );
+  }
+  const categoryOptions = useMemo(
+    () => getProductCategories(categories, allProducts),
+    [categories, allProducts],
+  );
   return (
     <>
       <footer className="bg-bHeaderBg py-12 mt-25">
