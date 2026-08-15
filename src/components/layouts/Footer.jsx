@@ -9,6 +9,8 @@ import { Link } from "react-router-dom";
 import { useMemo } from "react";
 
 const Footer = () => {
+  const [categories, setCategories] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
   function getProductCategories(categories, products) {
     const counts = new Map();
 
@@ -97,7 +99,9 @@ const Footer = () => {
                   />
                   <ul className="flex flex-col gap-y-2">
                     {categoryOptions.map((category) => (
-                      <Link to={`/category/${category.name.toLowerCase()}`} key={category.name}>
+                      <Link
+                        to={`/category/${category.name.toLowerCase()}`}
+                        key={category.name}>
                         <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
                           {category.name}
                         </li>
