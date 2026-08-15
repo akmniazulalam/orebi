@@ -8,6 +8,10 @@ import Flex from "../Flex";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const categoryOptions = useMemo(
+      () => getProductCategories(categories, allProducts),
+      [categories, allProducts],
+    );
   return (
     <>
       <footer className="bg-bHeaderBg py-12 mt-25">
