@@ -7,17 +7,18 @@ import { BsInstagram } from "react-icons/bs";
 import Flex from "../Flex";
 import { Link } from "react-router-dom";
 import { useEffect, useMemo, useState } from "react";
-import { fetchCategories, fetchProducts } from "@/services/productService";
+import { fetchCategories, fetchProducts, fetchProductsWithMeta } from "@/services/productService";
 
 const Footer = () => {
   const [categories, setCategories] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
+  const [isMetaLoading, setIsMetaLoading] = useState(true);
 
   useEffect(() => {
     let mounted = true;
 
-    Promise.all([fetchCategories(), fetchProducts()])
-      .then(([categoryList, productList]) => {
+    Promise.all([fetchCategories(), fetchProducts(), fetchProductsWithMeta()])
+      .then(([categoryList, productList, metaList]) => {
         if (!mounted) return;
         setCategories(Array.isArray(categoryList) ? categoryList : []);
         setAllProducts(Array.isArray(productList) ? productList : []);
@@ -130,7 +131,7 @@ const Footer = () => {
                       <Link
                         to={`/category/${category.name.toLowerCase()}`}
                         key={category.name}>
-                        <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
+                        <li className="font-dmSans text-footerTexts text-[14px] font-normal capitalize hover:text-menuHeading hover:font-bold transition-all duration-300">
                           {category.name}
                         </li>
                       </Link>
