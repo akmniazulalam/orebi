@@ -5,7 +5,7 @@ import Logo from "../../assets/logo_two.png";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { BsInstagram } from "react-icons/bs";
 import Flex from "../Flex";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import {
   fetchCategories,
@@ -18,36 +18,7 @@ const Footer = () => {
   const [allProducts, setAllProducts] = useState([]);
   const [isMetaLoading, setIsMetaLoading] = useState(true);
   const [searchParams, setSearchParams] = useSearchParams();
-  const LIMIT_OPTIONS = [12, 24, 36, 48];
-  const DEFAULT_QUERY = {
-    search: "",
-    category: "",
-    sort: "latest",
-    page: 1,
-    limit: 12,
-    minPrice: "",
-    maxPrice: "",
-    stock: "all",
-  };
-  function toPositiveInt(value, fallback) {
-    const parsed = Number(value);
-    return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback;
-  }
-  function parseQuery(searchParams) {
-    return {
-      search: searchParams.get("search") || DEFAULT_QUERY.search,
-      category: searchParams.get("category") || DEFAULT_QUERY.category,
-      sort: searchParams.get("sort") || DEFAULT_QUERY.sort,
-      page: toPositiveInt(searchParams.get("page"), DEFAULT_QUERY.page),
-      limit: LIMIT_OPTIONS.includes(Number(searchParams.get("limit")))
-        ? Number(searchParams.get("limit"))
-        : DEFAULT_QUERY.limit,
-      minPrice: searchParams.get("minPrice") || DEFAULT_QUERY.minPrice,
-      maxPrice: searchParams.get("maxPrice") || DEFAULT_QUERY.maxPrice,
-      stock: searchParams.get("stock") || DEFAULT_QUERY.stock,
-    };
-  }
-  const query = useMemo(() => parseQuery(searchParams), [searchParams]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     let mounted = true;
@@ -111,7 +82,6 @@ const Footer = () => {
   );
 
   const handleCategoryClick = (categoryName) => {
-    if (onClose) onClose();
     navigate(`/shop?category=${encodeURIComponent(categoryName)}&page=1`);
   };
 
