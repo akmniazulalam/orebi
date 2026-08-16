@@ -138,14 +138,13 @@ const Footer = () => {
                   />
                   <ul className="flex flex-col gap-y-2">
                     {categoryOptions.map((category) => (
-                        <Link
-                          to={`/category/${category.name.toLowerCase()}`}
+                        <button
                           onClick={() => handleCategoryClick(category.name)}
                           key={category.name}>
                           <li className="font-dmSans text-footerTexts text-[14px] font-normal capitalize hover:text-menuHeading hover:font-bold transition-all duration-300">
                             {category.name}
                           </li>
-                        </Link>
+                        </button>
                       )
                     )}
                   </ul>
