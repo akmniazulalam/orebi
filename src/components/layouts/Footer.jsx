@@ -5,81 +5,21 @@ import Logo from "../../assets/logo_two.png";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { BsInstagram } from "react-icons/bs";
 import Flex from "../Flex";
-import { Link, useNavigate, useSearchParams } from "react-router-dom";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import {
-  fetchCategories,
-  fetchProducts,
-  fetchProductsWithMeta,
-} from "@/services/productService";
+import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import apiClient from "@/lib/apiClient";
+import { apiPaths } from "@/lib/productApi";
 
 const Footer = () => {
   const [categories, setCategories] = useState([]);
-  const [allProducts, setAllProducts] = useState([]);
-  const [isMetaLoading, setIsMetaLoading] = useState(true);
-  const [searchParams, setSearchParams] = useSearchParams();
   const navigate = useNavigate();
 
   useEffect(() => {
-    let mounted = true;
-
-    Promise.all([fetchCategories(), fetchProducts(), fetchProductsWithMeta()])
-      .then(([categoryList, productList, metaList]) => {
-        if (!mounted) return;
-        setCategories(Array.isArray(categoryList) ? categoryList : []);
-        setAllProducts(Array.isArray(productList) ? productList : []);
-      })
-      .catch(() => {
-        if (mounted) {
-          setCategories([]);
-          setAllProducts([]);
-        }
-      })
-      .finally(() => {
-        if (mounted) setIsMetaLoading(false);
-      });
-
-    return () => {
-      mounted = false;
-    };
+    apiClient
+      .get(apiPaths.categories.list)
+      .then((res) => setCategories(res.data.data))
+      .catch(() => setCategories([]));
   }, []);
-
-  function getProductCategories(categories, products) {
-    const counts = new Map();
-
-    for (const product of products) {
-      const category = product?.category?.trim();
-      if (!category) continue;
-
-      const key = category.toLowerCase();
-      const existing = counts.get(key);
-      counts.set(key, {
-        name: existing?.name || category,
-        count: (existing?.count || 0) + 1,
-      });
-    }
-
-    for (const category of categories) {
-      const name = category?.name?.trim();
-      if (!name) continue;
-
-      const key = name.toLowerCase();
-      const existing = counts.get(key);
-      counts.set(key, {
-        name,
-        count: existing?.count || 0,
-      });
-    }
-
-    return Array.from(counts.values()).sort((a, b) =>
-      a.name.localeCompare(b.name),
-    );
-  }
-
-  const categoryOptions = useMemo(
-    () => getProductCategories(categories, allProducts),
-    [categories, allProducts],
-  );
 
   const handleCategoryClick = (categoryName) => {
     navigate(`/shop?category=${encodeURIComponent(categoryName)}&page=1`);
@@ -136,17 +76,18 @@ const Footer = () => {
                       "uppercase font-dmSans font-bold text-base text-menuHeading pb-5"
                     }
                   />
-                  <div className="flex flex-col gap-y-2">
-                    {categoryOptions.map((category) => (
-                      <button
-                        onClick={() => handleCategoryClick(category.name)}
-                        type="button"
+                  <ul className="flex flex-col gap-y-2">
+                    {categories.map((category) => (
+                      <Link
                         key={category.name}
-                        className="font-dmSans text-footerTexts text-[14px] font-normal capitalize hover:text-menuHeading hover:font-bold transition-all duration-300 cursor-pointer text-left">
-                        {category.name}
-                      </button>
+                        to={`/shop?category=${encodeURIComponent(category.name)}&page=1`}
+                        onClick={() => handleCategoryClick(category.name)}>
+                        <li className="text-left font-dmSans text-footerTexts text-[14px] font-normal capitalize hover:text-menuHeading hover:font-bold transition-all duration-300">
+                          {category.name}
+                        </li>
+                      </Link>
                     ))}
-                  </div>
+                  </ul>
                 </div>
                 <div className="help">
                   <Heading
