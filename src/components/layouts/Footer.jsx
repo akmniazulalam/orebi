@@ -142,7 +142,7 @@ const Footer = () => {
                         onClick={() => handleCategoryClick(category.name)}
                         type="button"
                         key={category.name}
-                        className="font-dmSans text-footerTexts text-[14px] font-normal capitalize hover:text-menuHeading hover:font-bold transition-all duration-300 cursor-pointer">
+                        className="font-dmSans text-footerTexts text-[14px] font-normal capitalize hover:text-menuHeading hover:font-bold transition-all duration-300 cursor-pointer text-left">
                         {category.name}
                       </button>
                     ))}
