@@ -29,7 +29,7 @@ const NewArrivals = () => {
         });
         if (!isMounted) return;
         let colors = ["#efefef", "#ececec", "#f9f9f9", "#eee"];
-        let productsWithBg = (res.data?.products || []).map((item, idx) => ({
+        let productsWithBg = (res.data?.data || []).map((item, idx) => ({
           ...item,
           bgColor: colors[idx % colors.length],
         }));
@@ -131,12 +131,12 @@ const NewArrivals = () => {
                     className="relative w-full group/img"
                     style={{ backgroundColor: item.bgColor }}>
                     <Image
-                      src={item.thumbnail}
+                      src={item.variants[0]?.images[0] || item.image}
                       alt={item.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-[331px] object-cover"
                     />
                     <Badge
-                      badgeT={badgeTexts[item.id] || "New"}
+                      badgeT={item.variants[0]?.badge || "New"}
                       className="absolute top-4.75 left-4.75"
                     />
                     <ActiveButtons
@@ -144,7 +144,7 @@ const NewArrivals = () => {
                       className="absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
                     />
                   </div>
-                  <ProductTexts />
+                  <ProductTexts text={item.title || item.name} price={item.variants[0]?.price || item.price} />
                 </div>
               ))}
             </Slider>

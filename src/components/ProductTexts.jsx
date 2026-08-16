@@ -4,13 +4,13 @@ import Flex from "./Flex";
 
 const ProductTexts = ({text, price}) => {
   return (
-      <Flex className={"justify-between pt-6"}>
+      <Flex className={"justify-between items-start pt-6"}>
         <Heading
-          text={text || "Basic Crew Neck Tee"}
-          className={"font-dmSans font-bold text-[20px] text-menuHeading"}
+          text={text}
+          className={"font-dmSans font-bold text-base text-menuHeading"}
           as={"h4"}
         />
-        <p className="font-dmSans text-base text-header">{price || "$44.00"}</p>
+        <p className="font-dmSans text-base text-header">${price}</p>
       </Flex>
   );
 };
