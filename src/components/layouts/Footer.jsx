@@ -5,14 +5,49 @@ import Logo from "../../assets/logo_two.png";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { BsInstagram } from "react-icons/bs";
 import Flex from "../Flex";
-import { Link } from "react-router-dom";
-import { useEffect, useMemo, useState } from "react";
-import { fetchCategories, fetchProducts, fetchProductsWithMeta } from "@/services/productService";
+import { Link, useSearchParams } from "react-router-dom";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import {
+  fetchCategories,
+  fetchProducts,
+  fetchProductsWithMeta,
+} from "@/services/productService";
 
 const Footer = () => {
   const [categories, setCategories] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
   const [isMetaLoading, setIsMetaLoading] = useState(true);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const LIMIT_OPTIONS = [12, 24, 36, 48];
+  const DEFAULT_QUERY = {
+    search: "",
+    category: "",
+    sort: "latest",
+    page: 1,
+    limit: 12,
+    minPrice: "",
+    maxPrice: "",
+    stock: "all",
+  };
+  function toPositiveInt(value, fallback) {
+    const parsed = Number(value);
+    return Number.isInteger(parsed) && parsed > 0 ? parsed : fallback;
+  }
+  function parseQuery(searchParams) {
+    return {
+      search: searchParams.get("search") || DEFAULT_QUERY.search,
+      category: searchParams.get("category") || DEFAULT_QUERY.category,
+      sort: searchParams.get("sort") || DEFAULT_QUERY.sort,
+      page: toPositiveInt(searchParams.get("page"), DEFAULT_QUERY.page),
+      limit: LIMIT_OPTIONS.includes(Number(searchParams.get("limit")))
+        ? Number(searchParams.get("limit"))
+        : DEFAULT_QUERY.limit,
+      minPrice: searchParams.get("minPrice") || DEFAULT_QUERY.minPrice,
+      maxPrice: searchParams.get("maxPrice") || DEFAULT_QUERY.maxPrice,
+      stock: searchParams.get("stock") || DEFAULT_QUERY.stock,
+    };
+  }
+  const query = useMemo(() => parseQuery(searchParams), [searchParams]);
 
   useEffect(() => {
     let mounted = true;
@@ -75,6 +110,38 @@ const Footer = () => {
     [categories, allProducts],
   );
 
+  const updateQuery = useCallback(
+    (updates, { resetPage = true, replace = false } = {}) => {
+      const next = new URLSearchParams(searchParams);
+      const merged = { ...query, ...updates };
+
+      for (const [key, value] of Object.entries(updates)) {
+        const normalized =
+          value === undefined || value === null ? "" : String(value);
+        if (!normalized || (key === "stock" && normalized === "all")) {
+          next.delete(key);
+        } else {
+          next.set(key, normalized);
+        }
+      }
+
+      if (resetPage) {
+        next.set("page", "1");
+      }
+
+      next.set("limit", String(merged.limit || DEFAULT_QUERY.limit));
+      next.set("sort", merged.sort || DEFAULT_QUERY.sort);
+
+      setSearchParams(next, { replace });
+    },
+    [query, searchParams, setSearchParams],
+  );
+
+  const handleCategoryClick = (categoryName) => {
+    if (onClose) onClose();
+    navigate(`/shop?category=${encodeURIComponent(categoryName)}&page=1`);
+  };
+
   return (
     <>
       <footer className="bg-bHeaderBg py-12 mt-25">
@@ -128,14 +195,18 @@ const Footer = () => {
                   />
                   <ul className="flex flex-col gap-y-2">
                     {categoryOptions.map((category) => (
-                      <Link
-                        to={`/category/${category.name.toLowerCase()}`}
-                        key={category.name}>
-                        <li className="font-dmSans text-footerTexts text-[14px] font-normal capitalize hover:text-menuHeading hover:font-bold transition-all duration-300">
-                          {category.name}
-                        </li>
-                      </Link>
-                    ))}
+                        <Link
+                          to={`/category/${category.name.toLowerCase()}`}
+                          onClick={() =>
+                            updateQuery({ category: category.name })
+                          }
+                          key={category.name}>
+                          <li className="font-dmSans text-footerTexts text-[14px] font-normal capitalize hover:text-menuHeading hover:font-bold transition-all duration-300">
+                            {category.name}
+                          </li>
+                        </Link>
+                      )
+                    )}
                   </ul>
                 </div>
                 <div className="help">
