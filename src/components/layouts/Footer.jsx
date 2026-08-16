@@ -110,33 +110,6 @@ const Footer = () => {
     [categories, allProducts],
   );
 
-  const updateQuery = useCallback(
-    (updates, { resetPage = true, replace = false } = {}) => {
-      const next = new URLSearchParams(searchParams);
-      const merged = { ...query, ...updates };
-
-      for (const [key, value] of Object.entries(updates)) {
-        const normalized =
-          value === undefined || value === null ? "" : String(value);
-        if (!normalized || (key === "stock" && normalized === "all")) {
-          next.delete(key);
-        } else {
-          next.set(key, normalized);
-        }
-      }
-
-      if (resetPage) {
-        next.set("page", "1");
-      }
-
-      next.set("limit", String(merged.limit || DEFAULT_QUERY.limit));
-      next.set("sort", merged.sort || DEFAULT_QUERY.sort);
-
-      setSearchParams(next, { replace });
-    },
-    [query, searchParams, setSearchParams],
-  );
-
   const handleCategoryClick = (categoryName) => {
     if (onClose) onClose();
     navigate(`/shop?category=${encodeURIComponent(categoryName)}&page=1`);
@@ -197,9 +170,7 @@ const Footer = () => {
                     {categoryOptions.map((category) => (
                         <Link
                           to={`/category/${category.name.toLowerCase()}`}
-                          onClick={() =>
-                            updateQuery({ category: category.name })
-                          }
+                          onClick={() => handleCategoryClick(category.name)}
                           key={category.name}>
                           <li className="font-dmSans text-footerTexts text-[14px] font-normal capitalize hover:text-menuHeading hover:font-bold transition-all duration-300">
                             {category.name}
