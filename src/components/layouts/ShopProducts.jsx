@@ -495,7 +495,7 @@ function ProductSkeletonGrid({ count = 12 }) {
         <div
           key={index}
           className="overflow-hidden rounded-2xl border border-infoBg bg-white shadow-sm dark:bg-white/5">
-          <div className="aspect-[4/5] animate-pulse bg-infoBg" />
+          <div className="aspect-4/5 animate-pulse bg-infoBg" />
           <div className="space-y-3 p-4">
             <div className="h-3 w-24 animate-pulse rounded bg-infoBg" />
             <div className="h-5 w-4/5 animate-pulse rounded bg-infoBg" />
