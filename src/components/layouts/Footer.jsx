@@ -136,18 +136,17 @@ const Footer = () => {
                       "uppercase font-dmSans font-bold text-base text-menuHeading pb-5"
                     }
                   />
-                  <ul className="flex flex-col gap-y-2">
+                  <div className="flex flex-col gap-y-2">
                     {categoryOptions.map((category) => (
-                        <button
-                          onClick={() => handleCategoryClick(category.name)}
-                          key={category.name}>
-                          <li className="font-dmSans text-footerTexts text-[14px] font-normal capitalize hover:text-menuHeading hover:font-bold transition-all duration-300">
-                            {category.name}
-                          </li>
-                        </button>
-                      )
-                    )}
-                  </ul>
+                      <button
+                        onClick={() => handleCategoryClick(category.name)}
+                        type="button"
+                        key={category.name}
+                        className="font-dmSans text-footerTexts text-[14px] font-normal capitalize hover:text-menuHeading hover:font-bold transition-all duration-300 cursor-pointer">
+                        {category.name}
+                      </button>
+                    ))}
+                  </div>
                 </div>
                 <div className="help">
                   <Heading
