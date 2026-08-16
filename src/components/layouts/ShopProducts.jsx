@@ -384,7 +384,7 @@ function ProductCard({ product }) {
 
   return (
     <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-infoBg bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-white/5">
-      <div className="relative aspect-[4/5] overflow-hidden bg-infoBg">
+      <div className="relative aspect-4/5 overflow-hidden bg-infoBg">
         {display.image ? (
           <img
             src={display.image}
@@ -662,7 +662,7 @@ const ShopProducts = () => {
             </p>
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row lg:min-w-[280px]">
+          <div className="flex flex-col gap-3 sm:flex-row lg:min-w-70">
             <Button
               type="button"
               variant="outline"
@@ -711,7 +711,7 @@ const ShopProducts = () => {
                 <Select
                   value={query.sort}
                   onValueChange={(value) => updateQuery({ sort: value })}>
-                  <SelectTrigger className="h-10 w-full min-w-[180px] sm:w-[190px]">
+                  <SelectTrigger className="h-10 w-full min-w-45 sm:w-47.5">
                     <SelectValue placeholder="Sort products" />
                   </SelectTrigger>
                   <SelectContent>
@@ -731,7 +731,7 @@ const ShopProducts = () => {
                   onValueChange={(value) =>
                     updateQuery({ limit: value }, { resetPage: true })
                   }>
-                  <SelectTrigger className="h-10 w-full min-w-[110px] sm:w-[120px]">
+                  <SelectTrigger className="h-10 w-full min-w-27.5 sm:w-30">
                     <SelectValue placeholder="Show" />
                   </SelectTrigger>
                   <SelectContent>
