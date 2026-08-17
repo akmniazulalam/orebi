@@ -71,12 +71,12 @@ const BestSellers = () => {
                 className="w-full sm:w-[calc(50%-16px)] lg:w-[calc(25%-24px)] shrink-0">
                 <div className="relative w-full group/img">
                   <Image
-                    src={item.image}
-                    alt={item.title}
+                    src={item.variants[0]?.images[0] || item.image}
+                    alt={item.name || item.title}
                     className={"w-full h-full object-cover"}
                   />
                   <Badge
-                    badgeT={"New"}
+                    badgeT={item.variants[0]?.badge || "New"}
                     className={"absolute top-4.75 left-4.75"}
                   />
                   <ActiveButtons
@@ -86,8 +86,7 @@ const BestSellers = () => {
                     }
                   />
                 </div>
-                <ProductTexts />
-                <Black />
+                <ProductTexts text={item.title || item.name} price={item.variants[0]?.price || item.price} />
               </div>
             ))}
           </div>
