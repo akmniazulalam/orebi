@@ -86,7 +86,6 @@ const SpecialOffers = () => {
                     />
                   </div>
                   <ProductTexts />
-                  <Black />
                 </div>
               );
             })}
