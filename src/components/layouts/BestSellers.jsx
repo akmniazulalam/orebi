@@ -73,7 +73,7 @@ const BestSellers = () => {
                   <Image
                     src={item.variants[0]?.images[0] || item.image}
                     alt={item.name || item.title}
-                    className={"w-full h-full object-cover"}
+                    className={"w-full h-82.75 object-cover"}
                   />
                   <Badge
                     badgeT={item.variants[0]?.badge || "New"}
