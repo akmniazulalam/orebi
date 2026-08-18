@@ -133,7 +133,7 @@ const NewArrivals = () => {
                     <Image
                       src={item.variants[0]?.images[0] || item.image}
                       alt={item.title}
-                      className="w-full h-[331px] object-cover"
+                      className="w-full h-82.75 object-cover"
                     />
                     <Badge
                       badgeT={item.variants[0]?.badge || "New"}
