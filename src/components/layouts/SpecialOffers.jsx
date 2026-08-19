@@ -66,25 +66,39 @@ const SpecialOffers = () => {
         ) : (
           <div className="flex flex-wrap gap-8 justify-center sm:justify-start">
             {mySpecial.map((item) => {
+              const variant = item.variants?.find(
+                (variant) =>
+                  variant.salePrice && variant.salePrice < variant.price,
+              );
+
+              if (!variant) return null;
+
+              const discount = Math.round(
+                ((variant.price - variant.salePrice) / variant.price) * 100,
+              );
+
               return (
-                <div key={item.id} className="w-full sm:w-[calc(50%-16px)] lg:w-[calc(25%-24px)] shrink-0">
+                <div
+                  key={item._id}
+                  className="w-full sm:w-[calc(50%-16px)] lg:w-[calc(25%-24px)] shrink-0">
                   <div className="relative w-full group/img">
                     <Image
-                      src={item.image}
-                      alt={item.title}
-                      className={"w-full h-full object-cover"}
+                      src={variant.images?.[0]}
+                      alt={item.name}
+                      className="w-full h-full object-cover"
                     />
+
                     <Badge
-                      badgeT={"New"}
-                      className={"absolute top-4.75 left-4.75"}
+                      badgeT={`-${discount}%`}
+                      className="absolute top-4.75 left-4.75"
                     />
+
                     <ActiveButtons
                       product={item}
-                      className={
-                        "absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
-                      }
+                      className="absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
                     />
                   </div>
+
                   <ProductTexts />
                 </div>
               );
