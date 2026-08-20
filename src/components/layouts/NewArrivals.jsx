@@ -10,6 +10,8 @@ import NextArrow from "../NextArrow";
 import PrevArrow from "../PrevArrow";
 import apiClient from "@/lib/apiClient";
 import { externalApiUrls } from "@/lib/productApi";
+import { Link } from "react-router-dom";
+import { normalizeProductForDisplay } from "@/lib/productUtils";
 
 const NewArrivals = () => {
   const [myProduct, setMyProduct] = useState([]);
@@ -125,28 +127,34 @@ const NewArrivals = () => {
         ) : (
           <div className="-mx-4 mt-14 mb-6 group">
             <Slider ref={sliderRef} {...settings}>
-              {myProduct.map((item) => (
-                <div key={item.id} className="px-4">
-                  <div
-                    className="relative w-full group/img"
-                    style={{ backgroundColor: item.bgColor }}>
-                    <Image
-                      src={item.variants[0]?.images[0] || item.image}
-                      alt={item.title}
-                      className="w-full h-82.75 object-cover"
+              {myProduct.map((item) => {
+                const display = normalizeProductForDisplay(item);
+                return (
+                  <Link key={item._id} to={display.detailPath} className="px-4">
+                    <div
+                      className="relative w-full group/img"
+                      style={{ backgroundColor: item.bgColor }}>
+                      <Image
+                        src={item.variants[0]?.images[0] || item.image}
+                        alt={item.title}
+                        className="w-full h-82.75 object-cover"
+                      />
+                      <Badge
+                        badgeT={item.variants[0]?.badge || "New"}
+                        className="absolute top-4.75 left-4.75"
+                      />
+                      <ActiveButtons
+                        product={item}
+                        className="absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
+                      />
+                    </div>
+                    <ProductTexts
+                      text={item.title || item.name}
+                      price={item.variants[0]?.price || item.price}
                     />
-                    <Badge
-                      badgeT={item.variants[0]?.badge || "New"}
-                      className="absolute top-4.75 left-4.75"
-                    />
-                    <ActiveButtons
-                      product={item}
-                      className="absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
-                    />
-                  </div>
-                  <ProductTexts text={item.title || item.name} price={item.variants[0]?.price || item.price} />
-                </div>
-              ))}
+                  </Link>
+                );
+              })}
             </Slider>
 
             {/* Custom Dot Renderer - Fixed 4 Dots */}
