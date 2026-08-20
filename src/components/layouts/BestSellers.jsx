@@ -9,6 +9,8 @@ import Flex from "../Flex";
 import Black from "../Black";
 import apiClient from "@/lib/apiClient";
 import { externalApiUrls } from "@/lib/productApi";
+import { Link } from "react-router-dom";
+import { normalizeProductForDisplay } from "@/lib/productUtils";
 
 const BestSellers = () => {
   const [bestProduct, setBestProduct] = useState([]);
@@ -65,30 +67,37 @@ const BestSellers = () => {
           </div>
         ) : (
           <div className="flex flex-wrap gap-8 justify-center sm:justify-start">
-            {bestProduct.map((item) => (
-              <div
-                key={item._id}
-                className="w-full sm:w-[calc(50%-16px)] lg:w-[calc(25%-24px)] shrink-0">
-                <div className="relative w-full group/img">
-                  <Image
-                    src={item.variants[0]?.images[0] || item.image}
-                    alt={item.name || item.title}
-                    className={"w-full h-82.75 object-cover"}
+            {bestProduct.map((item) => {
+              const display = normalizeProductForDisplay(item);
+              return (
+                <Link
+                  key={item._id}
+                  to={display.detailPath}
+                  className="w-full sm:w-[calc(50%-16px)] lg:w-[calc(25%-24px)] shrink-0">
+                  <div className="relative w-full group/img">
+                    <Image
+                      src={item.variants[0]?.images[0] || item.image}
+                      alt={item.name || item.title}
+                      className={"w-full h-82.75 object-cover"}
+                    />
+                    <Badge
+                      badgeT={item.variants[0]?.badge || "New"}
+                      className={"absolute top-4.75 left-4.75"}
+                    />
+                    <ActiveButtons
+                      product={item}
+                      className={
+                        "absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
+                      }
+                    />
+                  </div>
+                  <ProductTexts
+                    text={item.title || item.name}
+                    price={item.variants[0]?.price || item.price}
                   />
-                  <Badge
-                    badgeT={item.variants[0]?.badge || "New"}
-                    className={"absolute top-4.75 left-4.75"}
-                  />
-                  <ActiveButtons
-                    product={item}
-                    className={
-                      "absolute bottom-0 left-0 w-full group-hover/img:opacity-100 transition-all duration-400"
-                    }
-                  />
-                </div>
-                <ProductTexts text={item.title || item.name} price={item.variants[0]?.price || item.price} />
-              </div>
-            ))}
+                </Link>
+              );
+            })}
           </div>
         )}
       </Container>
