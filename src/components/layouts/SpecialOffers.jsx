@@ -7,6 +7,8 @@ import Flex from "../Flex";
 import { useEffect, useState } from "react";
 import apiClient from "@/lib/apiClient";
 import { externalApiUrls } from "@/lib/productApi";
+import { Link } from "react-router-dom";
+import { normalizeProductForDisplay } from "@/lib/productUtils";
 
 const SpecialOffers = () => {
   const [mySpecial, setSpecial] = useState([]);
@@ -75,8 +77,11 @@ const SpecialOffers = () => {
                 ((variant.price - variant.salePrice) / variant.price) * 100,
               );
 
+              const display = normalizeProductForDisplay(item);
+
               return (
-                <div
+                <Link
+                  to={display.detailPath}
                   key={item._id}
                   className="w-full sm:w-[calc(50%-16px)] lg:w-[calc(25%-24px)] shrink-0">
                   <div className="relative w-full group/img">
@@ -106,15 +111,15 @@ const SpecialOffers = () => {
                       as={"h4"}
                     />
                     <Flex className={"gap-1.5 items-center"}>
-                    <p className="font-dmSans text-sm text-[#707070] line-through">
-                      ${variant.price}
-                    </p>
+                      <p className="font-dmSans text-sm text-[#707070] line-through">
+                        ${variant.price}
+                      </p>
                       <p className="font-dmSans text-base text-header">
-                      ${variant.salePrice}
-                    </p>
+                        ${variant.salePrice}
+                      </p>
                     </Flex>
                   </Flex>
-                </div>
+                </Link>
               );
             })}
           </div>
