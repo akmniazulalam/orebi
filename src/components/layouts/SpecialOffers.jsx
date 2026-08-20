@@ -85,7 +85,7 @@ const SpecialOffers = () => {
                     <Image
                       src={variant.images?.[0]}
                       alt={item.name}
-                      className="w-full h-full object-cover"
+                      className="w-full h-82.75 object-cover bg-current"
                     />
 
                     <Badge
@@ -99,7 +99,7 @@ const SpecialOffers = () => {
                     />
                   </div>
 
-                  <ProductTexts />
+                  <ProductTexts text={item.name} price={variant.price} />
                 </div>
               );
             })}
