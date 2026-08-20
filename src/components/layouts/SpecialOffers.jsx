@@ -3,9 +3,7 @@ import Heading from "../Heading";
 import Image from "../Image";
 import Badge from "../Badge";
 import ActiveButtons from "../ActiveButtons";
-import ProductTexts from "../ProductTexts";
 import Flex from "../Flex";
-import Black from "../Black";
 import { useEffect, useState } from "react";
 import apiClient from "@/lib/apiClient";
 import { externalApiUrls } from "@/lib/productApi";
@@ -99,7 +97,23 @@ const SpecialOffers = () => {
                     />
                   </div>
 
-                  <ProductTexts text={item.name} price={variant.price} />
+                  <Flex className={"justify-between items-start pt-6"}>
+                    <Heading
+                      text={item.name}
+                      className={
+                        "font-dmSans font-bold text-base text-menuHeading"
+                      }
+                      as={"h4"}
+                    />
+                    <Flex className={"gap-1.5 items-center"}>
+                    <p className="font-dmSans text-sm text-[#707070] line-through">
+                      ${variant.price}
+                    </p>
+                      <p className="font-dmSans text-base text-header">
+                      ${variant.salePrice}
+                    </p>
+                    </Flex>
+                  </Flex>
                 </div>
               );
             })}
