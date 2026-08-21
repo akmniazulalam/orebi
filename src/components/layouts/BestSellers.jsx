@@ -81,7 +81,7 @@ const BestSellers = () => {
                       className={"w-full h-82.75 object-cover"}
                     />
                     <Badge
-                      badgeT={item.variants[0]?.badge || "New"}
+                      badgeT={"Best Seller"}
                       className={"absolute top-4.75 left-4.75"}
                     />
                     <ActiveButtons
