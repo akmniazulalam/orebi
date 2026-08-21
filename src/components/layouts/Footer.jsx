@@ -110,12 +110,12 @@ const Footer = () => {
                     </Link>
                     <Link to={"/"}>
                       <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                        Special E-shop
+                        Shipping & Delivery
                       </li>
                     </Link>
                     <Link to={"/"}>
                       <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                        Shipping
+                        Returns & Refunds
                       </li>
                     </Link>
                     <Link to={"/"}>
