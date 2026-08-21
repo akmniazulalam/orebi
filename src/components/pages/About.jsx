@@ -12,31 +12,27 @@ import {
   Sparkles,
   ShoppingBag,
   ShieldCheck,
-  CheckCircle2,
+  UserCheck,
   ChevronRight,
   PackageSearch,
 } from "lucide-react";
 import Container from "../Container";
 import Intro from "../Intro";
-import { Button } from "@/components/ui/button";
-import { fetchCategories, fetchProducts } from "@/services/productService";
+import { fetchProducts } from "@/services/productService";
 import { normalizeProductForDisplay } from "@/lib/productUtils";
 
 // Reusing existing local asset images
 import headPhoneImg from "@/assets/headPhone.png";
 import smartWatchImg from "@/assets/smartWatch.png";
-import adOneImg from "@/assets/adOne.png";
 
-const CATEGORY_ITEMS = [
+const CATEGORY_CARDS = [
   {
     num: "01",
     id: "audio",
     name: "Audio",
     icon: Headphones,
     query: "audio",
-    subtitle: "Headphones, Earbuds & Wireless Sound",
-    description:
-      "High-fidelity headphones, wireless earbuds, and acoustic gear engineered for clear sound everywhere you go.",
+    description: "Headphones, earbuds & wireless sound for every moment.",
   },
   {
     num: "02",
@@ -44,9 +40,7 @@ const CATEGORY_ITEMS = [
     name: "Laptops",
     icon: Laptop,
     query: "laptops",
-    subtitle: "Workstations & Portable Performance",
-    description:
-      "Powerful portable laptops designed for creative workflows, study, remote productivity, and gaming.",
+    description: "Powerful laptops for work, study, creativity & gaming.",
   },
   {
     num: "03",
@@ -54,19 +48,15 @@ const CATEGORY_ITEMS = [
     name: "Smartphones",
     icon: Smartphone,
     query: "smartphones",
-    subtitle: "Next-Gen Mobile Devices",
-    description:
-      "Modern mobile devices featuring crisp displays, fast processors, multi-lens cameras, and seamless connectivity.",
+    description: "Modern devices with advanced cameras & seamless connectivity.",
   },
   {
     num: "04",
     id: "accessories",
     name: "Accessories",
-    icon: Keyboard,
+    icon: Mouse,
     query: "accessories",
-    subtitle: "Wireless Mouse • Wireless Keyboard • Power Bank",
-    description:
-      "Essential digital peripherals designed for modern desk setups, including Wireless Mouse, Wireless Keyboards, and high-capacity Power Banks.",
+    description: "Wireless Mouse, Wireless Keyboard, Power Bank & more.",
     isAccessory: true,
   },
   {
@@ -75,13 +65,11 @@ const CATEGORY_ITEMS = [
     name: "Smartwatches",
     icon: Watch,
     query: "smartwatches",
-    subtitle: "Fitness Tracking & Smart Wearables",
-    description:
-      "Smart wearables to track daily health metrics, workouts, notifications, and complement active digital routines.",
+    description: "Track your health, stay active & live smarter every day.",
   },
 ];
 
-const WHY_CHOOSE_ITEMS = [
+const WHY_CHOOSE_CARDS = [
   {
     icon: Sparkles,
     title: "Curated Products",
@@ -101,7 +89,7 @@ const WHY_CHOOSE_ITEMS = [
       "Protected checkout pathways and session authentication for peace of mind.",
   },
   {
-    icon: CheckCircle2,
+    icon: UserCheck,
     title: "Customer Focused",
     description:
       "Clear product information, straightforward details, and dependable service come first.",
@@ -156,79 +144,74 @@ const About = () => {
     <>
       <Intro text="About Us" pText="About" />
 
-      <div className="bg-background font-dmSans space-y-24 sm:space-y-32 pb-24">
+      <div className="bg-[#0B0D17] text-white font-dmSans space-y-20 sm:space-y-28 pb-20 pt-4">
         <Container>
-          {/* ================= 1. PAGE HERO (EDITORIAL & SPACIOUS) ================= */}
-          <section className="pt-4 sm:pt-8">
-            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12">
-              {/* Left: Editorial Hero Copy */}
+          {/* ================= 1. HERO SECTION (REFERENCE MATCH) ================= */}
+          <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-[#121429] p-8 sm:p-12 lg:p-16 shadow-2xl">
+            {/* Ambient Purple Glow */}
+            <div className="pointer-events-none absolute -right-16 -top-16 h-96 w-96 rounded-full bg-purple-600/20 blur-[120px]" />
+            <div className="pointer-events-none absolute right-1/4 bottom-0 h-64 w-64 rounded-full bg-indigo-600/15 blur-[90px]" />
+
+            <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 relative z-10">
+              {/* Left Column */}
               <div className="space-y-6 lg:col-span-7">
-                <span className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400 dark:text-gray-400">
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400">
                   ABOUT OREBI
                 </span>
 
-                <h1 className="text-4xl font-bold tracking-tight text-menuHeading dark:text-white sm:text-5xl lg:text-6xl leading-[1.1]">
-                  Technology That Fits Your Everyday Life
+                <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl leading-[1.15]">
+                  Technology That <br className="hidden sm:inline" />
+                  Fits Your Everyday Life
                 </h1>
 
-                <p className="max-w-xl text-base text-gray-600 dark:text-gray-300 sm:text-lg leading-relaxed">
+                <p className="max-w-xl text-xs sm:text-sm text-slate-300 leading-relaxed">
                   Discover thoughtfully selected technology and accessories
                   designed to make work, entertainment, and everyday life
-                  simpler and more enjoyable.
+                  simpler, more efficient, and enjoyable.
                 </p>
 
                 <div className="pt-2">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="h-12 px-8 bg-gray-900 text-white font-medium hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 cursor-pointer rounded-xl transition duration-300">
-                    <Link to="/shop" className="inline-flex items-center gap-2">
-                      Explore Our Collection <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </Button>
+                  <Link
+                    to="/shop"
+                    className="inline-flex items-center gap-2 rounded-full bg-[#5B50E6] px-6 py-3 text-xs font-semibold text-white shadow-lg shadow-indigo-600/30 transition hover:bg-[#4F46E5]">
+                    Explore Our Collection <ArrowRight className="h-4 w-4" />
+                  </Link>
                 </div>
               </div>
 
-              {/* Right: Clean Single Visual Composition */}
-              <div className="lg:col-span-5">
-                <div className="relative overflow-hidden rounded-3xl border border-gray-200 bg-gradient-to-br from-gray-50 via-gray-100/50 to-gray-200/30 p-8 sm:p-12 dark:border-white/10 dark:from-white/5 dark:via-white/5 dark:to-transparent flex items-center justify-center">
-                  {/* Backdrop Radial Decor */}
-                  <div className="absolute -right-12 -top-12 h-48 w-48 rounded-full bg-gray-300/40 blur-3xl dark:bg-white/10" />
-
-                  <div className="relative z-10 text-center space-y-6">
-                    <img
-                      src={headPhoneImg}
-                      alt="Orebi Featured Tech"
-                      className="mx-auto h-48 sm:h-56 w-auto object-contain transition duration-500 hover:scale-105"
-                    />
-                    <div className="pt-2 border-t border-gray-200 dark:border-white/10">
-                      <p className="text-xs font-bold uppercase tracking-wider text-menuHeading dark:text-white">
-                        Curated Tech & Peripherals
-                      </p>
-                      <p className="text-[11px] text-gray-500 dark:text-gray-400 mt-0.5">
-                        Audio • Laptops • Smartphones • Accessories • Smartwatches
-                      </p>
-                    </div>
-                  </div>
+              {/* Right Column: Visual Product Showcase */}
+              <div className="lg:col-span-5 relative flex items-center justify-center">
+                <div className="relative w-full max-w-md flex items-center justify-center">
+                  <img
+                    src={headPhoneImg}
+                    alt="Orebi Headphone Tech"
+                    className="relative z-20 h-52 sm:h-64 w-auto object-contain transition duration-500 hover:scale-105 filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
+                  />
+                  <img
+                    src={smartWatchImg}
+                    alt="Smartwatch Tech"
+                    className="absolute -left-4 bottom-2 z-30 h-24 sm:h-28 w-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]"
+                  />
                 </div>
               </div>
             </div>
           </section>
 
-          {/* ================= 2. OUR STORY (EDITORIAL & FLOWING) ================= */}
-          <section className="py-8 border-t border-gray-200 dark:border-white/10">
+          {/* ================= 2. OUR STORY (REFERENCE MATCH) ================= */}
+          <section className="py-4">
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-12 items-start">
-              <div className="lg:col-span-4">
-                <span className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400">
+              <div className="lg:col-span-5 space-y-2">
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400">
                   OUR STORY
                 </span>
-                <h2 className="mt-2 text-2xl font-bold tracking-tight text-menuHeading dark:text-white sm:text-3xl">
-                  A Modern Destination for Everyday Technology
+                <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                  A Modern Destination <br className="hidden sm:inline" />
+                  for Everyday Technology
                 </h2>
               </div>
 
-              <div className="lg:col-span-8 space-y-6">
-                <p className="text-base sm:text-lg leading-relaxed text-gray-600 dark:text-gray-300">
+              <div className="lg:col-span-7 space-y-6">
+                <p className="text-xs sm:text-sm leading-relaxed text-slate-300">
                   Orebi is a modern e-commerce destination for everyday
                   technology — bringing together useful, reliable, and stylish
                   products in one place. We focus on providing a seamless
@@ -236,88 +219,112 @@ const About = () => {
                   categories:
                 </p>
 
-                {/* Horizontal Flowing Category List */}
-                <div className="pt-4 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm font-semibold text-menuHeading dark:text-white">
+                {/* Horizontal Category Nav Bar */}
+                <div className="pt-2 flex flex-wrap items-center gap-x-5 gap-y-3 text-xs font-semibold text-white">
                   {[
-                    "Audio",
-                    "Laptops",
-                    "Smartphones",
-                    "Accessories",
-                    "Smartwatches",
-                  ].map((cat, idx, arr) => (
-                    <React.Fragment key={cat}>
-                      <Link
-                        to={`/shop?category=${encodeURIComponent(cat.toLowerCase())}`}
-                        className="hover:underline hover:text-gray-600 dark:hover:text-gray-300 transition">
-                        {cat}
-                      </Link>
-                      {idx < arr.length - 1 && (
-                        <span className="text-gray-300 dark:text-gray-600">•</span>
-                      )}
-                    </React.Fragment>
-                  ))}
+                    { label: "Audio", icon: Headphones, query: "audio" },
+                    { label: "Laptops", icon: Laptop, query: "laptops" },
+                    { label: "Smartphones", icon: Smartphone, query: "smartphones" },
+                    { label: "Accessories", icon: Mouse, query: "accessories" },
+                    { label: "Smartwatches", icon: Watch, query: "smartwatches" },
+                  ].map((cat, idx, arr) => {
+                    const CatIcon = cat.icon;
+                    return (
+                      <React.Fragment key={cat.label}>
+                        <Link
+                          to={`/shop?category=${encodeURIComponent(cat.query)}`}
+                          className="inline-flex items-center gap-1.5 text-slate-300 hover:text-indigo-400 transition">
+                          <CatIcon className="h-3.5 w-3.5 text-indigo-400" />
+                          <span>{cat.label}</span>
+                        </Link>
+                        {idx < arr.length - 1 && (
+                          <span className="text-slate-600">•</span>
+                        )}
+                      </React.Fragment>
+                    );
+                  })}
                 </div>
               </div>
             </div>
           </section>
 
-          {/* ================= 3. WHAT WE OFFER (ELEGANT EDITORIAL ROWS) ================= */}
-          <section className="space-y-12">
-            <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between border-b border-gray-200 dark:border-white/10 pb-6">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400">
-                  WHAT WE OFFER
-                </span>
-                <h2 className="mt-2 text-2xl font-bold tracking-tight text-menuHeading dark:text-white sm:text-3xl">
-                  Technology for Work, Entertainment & Life
-                </h2>
-              </div>
-              <p className="text-xs text-gray-500 dark:text-gray-400 max-w-xs">
-                Explore our five specialized categories designed for your
-                digital workflow.
-              </p>
+          {/* ================= 3. OUR CATEGORIES / WHAT WE OFFER (5 CARDS GRID) ================= */}
+          <section className="space-y-8">
+            <div className="space-y-1">
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400">
+                OUR CATEGORIES
+              </span>
+              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                Technology for Work, Entertainment & Life
+              </h2>
             </div>
 
-            {/* List Rows */}
-            <div className="divide-y divide-gray-200 dark:divide-white/10">
-              {CATEGORY_ITEMS.map((cat) => {
+            {/* 5-Column Desktop Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+              {CATEGORY_CARDS.map((cat) => {
                 const IconComp = cat.icon;
                 return (
                   <div
                     key={cat.id}
-                    className="group py-8 transition duration-300 hover:bg-gray-50/50 dark:hover:bg-white/[0.02] sm:px-4 rounded-xl">
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-12 sm:items-center">
-                      {/* Number & Icon */}
-                      <div className="sm:col-span-3 flex items-center gap-4">
-                        <span className="text-xs font-bold text-gray-400 tracking-wider">
-                          {cat.num}
-                        </span>
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-gray-100 text-menuHeading dark:bg-white/10 dark:text-white">
-                          <IconComp className="h-5 w-5" />
-                        </div>
-                        <h3 className="text-xl font-bold text-menuHeading dark:text-white">
-                          {cat.name}
-                        </h3>
+                    className="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-[#121429] p-5 shadow-lg transition duration-300 hover:border-indigo-500/50 hover:bg-[#161833]">
+                    <div>
+                      {/* Top Lucide Icon */}
+                      <div className="mb-4">
+                        <IconComp className="h-7 w-7 text-indigo-400" />
                       </div>
 
-                      {/* Description */}
-                      <div className="sm:col-span-7 space-y-1">
-                        <p className="text-xs font-bold text-gray-500 dark:text-gray-400">
-                          {cat.subtitle}
-                        </p>
-                        <p className="text-xs text-gray-600 dark:text-gray-300 leading-relaxed">
-                          {cat.description}
-                        </p>
-                      </div>
+                      <p className="text-[10px] font-bold text-slate-500 mb-1">
+                        {cat.num}
+                      </p>
+                      <h3 className="text-base font-bold text-white mb-2">
+                        {cat.name}
+                      </h3>
+                      <p className="text-[11px] text-slate-400 leading-relaxed mb-6">
+                        {cat.description}
+                      </p>
+                    </div>
 
-                      {/* Link Action */}
-                      <div className="sm:col-span-2 text-left sm:text-right pt-2 sm:pt-0">
-                        <Link
-                          to={`/shop?category=${encodeURIComponent(cat.query)}`}
-                          className="inline-flex items-center gap-1 text-xs font-bold text-menuHeading dark:text-white transition-transform duration-300 group-hover:translate-x-1 hover:underline">
-                          Explore <ChevronRight className="h-4 w-4" />
-                        </Link>
+                    <Link
+                      to={`/shop?category=${encodeURIComponent(cat.query)}`}
+                      className="inline-flex items-center gap-1 text-[11px] font-semibold text-indigo-400 transition-transform duration-300 group-hover:translate-x-1 hover:text-indigo-300">
+                      Explore {cat.name} <ChevronRight className="h-3.5 w-3.5" />
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
+          </section>
+
+          {/* ================= 4. WHY CHOOSE OREBI (4 CARDS GRID) ================= */}
+          <section className="space-y-8">
+            <div className="space-y-1">
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400">
+                WHY CHOOSE OREBI
+              </span>
+              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
+                Designed for Clarity & Simplicity
+              </h2>
+            </div>
+
+            {/* 4-Column Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+              {WHY_CHOOSE_CARDS.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div
+                    key={item.title}
+                    className="group rounded-2xl border border-white/10 bg-[#121429] p-6 shadow-lg transition duration-300 hover:border-indigo-500/50 hover:bg-[#161833] flex flex-col justify-between">
+                    <div>
+                      {/* Circular Icon Badge */}
+                      <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-full bg-indigo-600/20 border border-indigo-500/30 text-indigo-400">
+                        <Icon className="h-5 w-5" />
                       </div>
+                      <h3 className="text-base font-bold text-white mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-[11px] text-slate-400 leading-relaxed">
+                        {item.description}
+                      </p>
                     </div>
                   </div>
                 );
@@ -325,135 +332,112 @@ const About = () => {
             </div>
           </section>
 
-          {/* ================= 4. WHY CHOOSE OREBI (MINIMAL HORIZONTAL FEATURES) ================= */}
-          <section className="py-12 border-t border-b border-gray-200 dark:border-white/10">
-            <div className="space-y-10">
-              <div className="space-y-1">
-                <span className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400">
-                  WHY OREBI
-                </span>
-                <h2 className="text-2xl font-bold tracking-tight text-menuHeading dark:text-white sm:text-3xl">
-                  Designed for Clarity & Simplicity
-                </h2>
-              </div>
-
-              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-                {WHY_CHOOSE_ITEMS.map((item) => {
-                  const Icon = item.icon;
-                  return (
-                    <div key={item.title} className="space-y-3">
-                      <Icon className="h-6 w-6 text-menuHeading dark:text-white" />
-                      <h3 className="text-base font-bold text-menuHeading dark:text-white">
-                        {item.title}
-                      </h3>
-                      <p className="text-xs text-gray-500 dark:text-gray-400 leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-          </section>
-
-          {/* ================= 5. CURATED STORE HIGHLIGHT (MINIMAL SHOWCASE) ================= */}
+          {/* ================= 5. CURATED COLLECTION / FEATURED PRODUCTS ================= */}
           <section className="space-y-8">
             <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <span className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400">
+              <div className="space-y-1">
+                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400">
                   CURATED COLLECTION
                 </span>
-                <h2 className="mt-1 text-2xl font-bold tracking-tight text-menuHeading dark:text-white sm:text-3xl">
+                <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                   Explore Popular Selections
                 </h2>
               </div>
               <Link
                 to="/shop"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-menuHeading dark:text-white hover:underline">
-                View Entire Catalog <ArrowRight className="h-4 w-4" />
+                className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-400 hover:text-indigo-300">
+                View Entire Catalog <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
 
             {isLoadingStore ? (
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {Array.from({ length: 3 }).map((_, i) => (
                   <div
                     key={i}
-                    className="h-56 animate-pulse rounded-2xl bg-gray-100 dark:bg-white/5"
+                    className="h-64 animate-pulse rounded-2xl border border-white/10 bg-[#121429]"
                   />
                 ))}
               </div>
             ) : featuredProducts.length > 0 ? (
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-3">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {featuredProducts.map((prod) => {
                   const display = normalizeProductForDisplay(prod);
                   return (
-                    <Link
+                    <div
                       key={prod._id || prod.id}
-                      to={`/productdetails/${display.id}`}
-                      className="group flex flex-col justify-between rounded-2xl border border-gray-200 bg-white p-5 transition duration-300 hover:border-gray-900 dark:border-white/10 dark:bg-white/5 dark:hover:border-white">
-                      <div className="aspect-[4/3] w-full overflow-hidden rounded-xl bg-gray-50 dark:bg-white/5 flex items-center justify-center p-4">
-                        {display.image ? (
-                          <img
-                            src={display.image}
-                            alt={display.name}
-                            className="h-full w-full object-contain transition duration-300 group-hover:scale-105"
-                          />
-                        ) : (
-                          <PackageSearch className="h-8 w-8 text-gray-400" />
-                        )}
-                      </div>
-                      <div className="mt-4 flex items-center justify-between">
-                        <div>
-                          <p className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
-                            {display.category || "General"}
-                          </p>
-                          <h3 className="text-sm font-bold text-menuHeading dark:text-white line-clamp-1">
-                            {display.name}
-                          </h3>
+                      className="group flex flex-col justify-between rounded-2xl border border-white/10 bg-[#121429] p-5 shadow-lg transition duration-300 hover:border-indigo-500/50">
+                      <div>
+                        {/* Image Box */}
+                        <div className="aspect-[16/10] w-full overflow-hidden rounded-xl bg-white p-4 flex items-center justify-center mb-4">
+                          {display.image ? (
+                            <img
+                              src={display.image}
+                              alt={display.name}
+                              className="h-full w-full object-contain transition duration-300 group-hover:scale-105"
+                            />
+                          ) : (
+                            <PackageSearch className="h-8 w-8 text-gray-400" />
+                          )}
                         </div>
-                        <span className="text-sm font-bold text-menuHeading dark:text-white">
+
+                        <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">
+                          {display.category || "General"}
+                        </p>
+                        <h3 className="text-sm font-bold text-white line-clamp-2 min-h-[40px]">
+                          {display.name}
+                        </h3>
+                        <p className="mt-2 text-sm font-bold text-white">
                           {display.price}
-                        </span>
+                        </p>
                       </div>
-                    </Link>
+
+                      <div className="pt-4 mt-2">
+                        <Link
+                          to={`/productdetails/${display.id}`}
+                          className="inline-flex items-center gap-1 text-xs font-semibold text-indigo-400 hover:text-indigo-300">
+                          View Details <ChevronRight className="h-3.5 w-3.5" />
+                        </Link>
+                      </div>
+                    </div>
                   );
                 })}
               </div>
             ) : (
-              <div className="py-8 text-center border border-gray-200 dark:border-white/10 rounded-2xl">
+              <div className="py-8 text-center border border-white/10 rounded-2xl bg-[#121429]">
                 <Link
                   to="/shop"
-                  className="text-xs font-bold text-menuHeading dark:text-white underline">
+                  className="text-xs font-bold text-indigo-400 hover:underline">
                   Explore our full catalog on the Shop page →
                 </Link>
               </div>
             )}
           </section>
 
-          {/* ================= 6. BRAND VALUES (MINIMAL EDITORIAL COLUMNS) ================= */}
-          <section className="space-y-10 border-t border-gray-200 dark:border-white/10 pt-12">
+          {/* ================= 6. OUR VALUES (INTERNAL COLUMNS CONTAINER) ================= */}
+          <section className="space-y-8">
             <div className="space-y-1">
-              <span className="text-xs font-bold uppercase tracking-[0.25em] text-gray-400">
+              <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400">
                 OUR VALUES
               </span>
-              <h2 className="text-2xl font-bold tracking-tight text-menuHeading dark:text-white sm:text-3xl">
+              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
                 Built on Essential Principles
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+            {/* Container Box with 3 Internal Columns */}
+            <div className="rounded-2xl border border-white/10 bg-[#121429] p-8 lg:p-10 shadow-lg grid grid-cols-1 md:grid-cols-3 gap-8 divide-y md:divide-y-0 md:divide-x divide-white/10">
               {BRAND_VALUES.map((val) => (
                 <div
                   key={val.title}
-                  className="space-y-3 border-t border-gray-200 dark:border-white/10 pt-6">
-                  <span className="text-2xl font-extrabold text-gray-300 dark:text-white/20">
+                  className="pt-6 md:pt-0 md:px-6 first:pl-0 last:pr-0 space-y-3">
+                  <span className="text-3xl font-extrabold text-indigo-400">
                     {val.number}
                   </span>
-                  <h3 className="text-lg font-bold text-menuHeading dark:text-white">
+                  <h3 className="text-lg font-bold text-white">
                     {val.title}
                   </h3>
-                  <p className="text-xs leading-relaxed text-gray-500 dark:text-gray-400">
+                  <p className="text-xs text-slate-400 leading-relaxed">
                     {val.description}
                   </p>
                 </div>
@@ -461,26 +445,35 @@ const About = () => {
             </div>
           </section>
 
-          {/* ================= 7. FINAL CTA (CLEAN & REFINED) ================= */}
-          <section className="pt-8">
-            <div className="rounded-3xl border border-gray-200 bg-gradient-to-br from-bHeaderBg via-white to-gray-100 p-10 sm:p-16 text-center shadow-sm dark:border-white/10 dark:from-white/5 dark:via-white/5 dark:to-transparent">
-              <div className="mx-auto max-w-2xl space-y-4">
-                <h2 className="text-3xl font-bold sm:text-4xl text-menuHeading dark:text-white tracking-tight">
-                  Find the Right Tech for Your Everyday
-                </h2>
-                <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 leading-relaxed max-w-xl mx-auto">
-                  Explore our collection of smartphones, laptops, audio products,
-                  smartwatches, and everyday accessories.
-                </p>
-                <div className="pt-4">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="h-12 px-8 bg-gray-900 text-white font-medium hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100 cursor-pointer rounded-xl transition duration-300">
-                    <Link to="/shop">Shop Now</Link>
-                  </Button>
-                </div>
+          {/* ================= 7. FINAL CTA (REFERENCE MATCH) ================= */}
+          <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-[#121429] via-[#1B1F3B] to-[#0E1020] p-8 sm:p-12 lg:p-16 shadow-2xl flex flex-col md:flex-row items-center justify-between gap-8">
+            {/* Ambient Purple Glow */}
+            <div className="pointer-events-none absolute -right-12 -top-12 h-80 w-80 rounded-full bg-purple-600/20 blur-[100px]" />
+
+            <div className="space-y-4 max-w-xl relative z-10">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white tracking-tight">
+                Find the Right Tech for Your Everyday
+              </h2>
+              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+                Explore our collection of smartphones, laptops, audio products,
+                smartwatches, and everyday accessories.
+              </p>
+              <div className="pt-2">
+                <Link
+                  to="/shop"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 text-xs font-bold text-gray-900 shadow-xl transition hover:bg-gray-100">
+                  Shop Now <ArrowRight className="h-4 w-4" />
+                </Link>
               </div>
+            </div>
+
+            {/* Right side graphic/headphone preview */}
+            <div className="relative z-10 shrink-0">
+              <img
+                src={headPhoneImg}
+                alt="Orebi Products"
+                className="h-40 sm:h-48 w-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.6)]"
+              />
             </div>
           </section>
         </Container>
