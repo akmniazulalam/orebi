@@ -147,51 +147,33 @@ const About = () => {
       <div className="bg-[#0B0D17] text-white font-dmSans space-y-24 sm:space-y-36 lg:space-y-40 pb-28 sm:pb-36 lg:pb-44 pt-6">
         <Container>
           {/* ================= 1. HERO SECTION ================= */}
-          <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-[#121429] via-[#161936] to-[#0D0F1F] p-8 sm:p-14 lg:p-20 shadow-2xl">
-            {/* Ambient Purple Glow */}
-            <div className="pointer-events-none absolute -right-16 -top-16 h-96 w-96 rounded-full bg-purple-600/20 blur-[120px]" />
-            <div className="pointer-events-none absolute right-1/3 bottom-0 h-64 w-64 rounded-full bg-indigo-600/15 blur-[90px]" />
+          <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-[url('src/assets/about_hero.png')] bg-no-repeat bg-cover bg-center shadow-2xl">
+            <div className="p-8 sm:p-14 lg:p-20 bg-black/50">
+              <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 relative z-10">
+                {/* Left Column */}
+                <div className="space-y-7 lg:col-span-7">
+                  <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400">
+                    ABOUT OREBI
+                  </span>
 
-            <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 relative z-10">
-              {/* Left Column */}
-              <div className="space-y-7 lg:col-span-7">
-                <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400">
-                  ABOUT OREBI
-                </span>
+                  <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.15]">
+                    Technology That <br className="hidden sm:inline" />
+                    Fits Your Everyday Life
+                  </h1>
 
-                <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.15]">
-                  Technology That <br className="hidden sm:inline" />
-                  Fits Your Everyday Life
-                </h1>
+                  <p className="max-w-xl text-xs sm:text-sm lg:text-base text-slate-300 leading-relaxed">
+                    Discover thoughtfully selected technology and accessories
+                    designed to make work, entertainment, and everyday life
+                    simpler, more efficient, and enjoyable.
+                  </p>
 
-                <p className="max-w-xl text-xs sm:text-sm lg:text-base text-slate-300 leading-relaxed">
-                  Discover thoughtfully selected technology and accessories
-                  designed to make work, entertainment, and everyday life
-                  simpler, more efficient, and enjoyable.
-                </p>
-
-                <div className="pt-3">
-                  <Link
-                    to="/shop"
-                    className="inline-flex items-center gap-2 rounded-full bg-[#5B50E6] px-7 py-3.5 text-xs font-semibold text-white shadow-lg shadow-indigo-600/30 transition hover:bg-[#4F46E5]">
-                    Explore Our Collection <ArrowRight className="h-4 w-4" />
-                  </Link>
-                </div>
-              </div>
-
-              {/* Right Column: Visual Showcase */}
-              <div className="lg:col-span-5 relative flex items-center justify-center">
-                <div className="relative w-full max-w-md flex items-center justify-center">
-                  <img
-                    src={headPhoneImg}
-                    alt="Orebi Headphone Tech"
-                    className="relative z-20 h-52 sm:h-64 w-auto object-contain transition duration-500 hover:scale-105 filter drop-shadow-[0_20px_30px_rgba(0,0,0,0.5)]"
-                  />
-                  <img
-                    src={smartWatchImg}
-                    alt="Smartwatch Tech"
-                    className="absolute -left-4 bottom-2 z-30 h-24 sm:h-28 w-auto object-contain filter drop-shadow-[0_10px_20px_rgba(0,0,0,0.6)]"
-                  />
+                  <div className="pt-3">
+                    <Link
+                      to="/shop"
+                      className="inline-flex items-center gap-2 rounded-full bg-[#5B50E6] px-7 py-3.5 text-xs font-semibold text-white shadow-lg shadow-indigo-600/30 transition hover:bg-[#4F46E5]">
+                      Explore Our Collection <ArrowRight className="h-4 w-4" />
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -455,12 +437,9 @@ const About = () => {
           </section>
 
           {/* ================= 7. FINAL CTA ================= */}
-          <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-r from-[#121429] via-[#1B1F3B] to-[#0E1020] shadow-2xl">
-            {/* Ambient Purple Glow */}
-            <div className="pointer-events-none absolute -right-12 -top-12 h-80 w-80 rounded-full bg-purple-600/20 blur-[100px]" />
-
-            <div className="p-10 sm:p-16 lg:p-20 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
-              <div className="space-y-5 max-w-xl">
+          <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-[url('src/assets/about_cta.png')] bg-no-repeat bg-cover bg-center shadow-2xl">
+            <div className="bg-[#01092a]/50 p-10 sm:p-16 lg:p-20 flex flex-col md:flex-row items-center justify-between gap-8">
+              <div className="space-y-5 max-w-xl relative z-10">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white tracking-tight">
                   Find the Right Tech for Your Everyday
                 </h2>
@@ -475,15 +454,6 @@ const About = () => {
                     Shop Now <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
-              </div>
-
-              {/* Right side graphic */}
-              <div className="shrink-0">
-                <img
-                  src={headPhoneImg}
-                  alt="Orebi Products"
-                  className="h-40 sm:h-48 w-auto object-contain filter drop-shadow-[0_15px_25px_rgba(0,0,0,0.6)]"
-                />
               </div>
             </div>
           </section>
