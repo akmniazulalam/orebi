@@ -146,8 +146,8 @@ const About = () => {
     <>
       <Intro text="About Us" pText="About" />
 
-      <div className="bg-[#0B0D17] text-white font-dmSans space-y-28 sm:space-y-36 lg:space-y-44 pb-32 sm:pb-40 lg:pb-48 pt-8">
-        <Container>
+      <div className="bg-[#0B0D17] text-white font-dmSans pb-10 pt-8">
+        <Container className="space-y-16 sm:space-y-20 lg:space-y-24">
           {/* ================= 1. HERO SECTION ================= */}
           <section
             className="relative overflow-hidden rounded-3xl border border-white/10 bg-no-repeat bg-cover bg-center shadow-2xl"
@@ -184,7 +184,7 @@ const About = () => {
           </section>
 
           {/* ================= 2. OUR STORY ================= */}
-          <section className="pt-4">
+          <section>
             <div className="grid grid-cols-1 gap-10 lg:gap-16 lg:grid-cols-12 items-start">
               <div className="lg:col-span-5 space-y-3">
                 <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400 block">
@@ -243,7 +243,7 @@ const About = () => {
           </section>
 
           {/* ================= 3. OUR CATEGORIES / WHAT WE OFFER ================= */}
-          <section className="space-y-10 sm:space-y-12">
+          <section className="space-y-8 sm:space-y-10">
             <div className="space-y-2">
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400 block">
                 OUR CATEGORIES
@@ -292,7 +292,7 @@ const About = () => {
           </section>
 
           {/* ================= 4. WHY CHOOSE OREBI ================= */}
-          <section className="space-y-10 sm:space-y-12">
+          <section className="space-y-8 sm:space-y-10">
             <div className="space-y-2">
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400 block">
                 WHY CHOOSE OREBI
@@ -328,7 +328,7 @@ const About = () => {
           </section>
 
           {/* ================= 5. CURATED COLLECTION ================= */}
-          <section className="space-y-10 sm:space-y-12">
+          <section className="space-y-8 sm:space-y-10">
             <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
               <div className="space-y-2">
                 <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400 block">
@@ -410,7 +410,7 @@ const About = () => {
           </section>
 
           {/* ================= 6. OUR VALUES ================= */}
-          <section className="space-y-10 sm:space-y-12">
+          <section className="space-y-8 sm:space-y-10">
             <div className="space-y-2">
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400 block">
                 OUR VALUES
