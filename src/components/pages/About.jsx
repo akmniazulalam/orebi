@@ -115,7 +115,7 @@ const BRAND_VALUES = [
     number: "03",
     title: "Modern Living",
     description:
-      "From desk accessories to smart wearables, Orebi is built around today’s connected and active digital lifestyle.",
+      "From desk accessories to smart wearables, Orebi is built around today's connected and active digital lifestyle.",
   },
 ];
 
@@ -146,11 +146,14 @@ const About = () => {
     <>
       <Intro text="About Us" pText="About" />
 
-      <div className="bg-[#0B0D17] text-white font-dmSans pb-10 pt-8">
+      {/* Outer wrapper: bg-background (white in light, #0B0D17 in dark) */}
+      <div className="bg-background text-foreground font-dmSans pb-10 pt-8">
         <Container className="space-y-16 sm:space-y-20 lg:space-y-24">
+
           {/* ================= 1. HERO SECTION ================= */}
+          {/* Hero uses a background image + overlay — text is always white over the image */}
           <section
-            className="relative overflow-hidden rounded-3xl border border-white/10 bg-no-repeat bg-cover bg-center shadow-2xl"
+            className="relative overflow-hidden rounded-3xl border border-gray-200 dark:border-white/10 bg-no-repeat bg-cover bg-center shadow-sm dark:shadow-2xl"
             style={{ backgroundImage: `url(${aboutHeroImg})` }}>
             <div className="p-8 sm:p-14 lg:p-20 xl:p-24 bg-black/50">
               <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 relative z-10">
@@ -160,6 +163,7 @@ const About = () => {
                     ABOUT OREBI
                   </span>
 
+                  {/* Text is always white — it sits over the dark image overlay */}
                   <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.15] max-w-2xl">
                     Technology That <br className="hidden sm:inline" />
                     Fits Your Everyday Life
@@ -190,14 +194,16 @@ const About = () => {
                 <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400 block">
                   OUR STORY
                 </span>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white leading-snug">
+                {/* text-menuHeading: #262626 light / #ffffff dark */}
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-menuHeading leading-snug">
                   A Modern Destination <br className="hidden sm:inline" />
                   for Everyday Technology
                 </h2>
               </div>
 
               <div className="lg:col-span-7 space-y-8">
-                <p className="text-xs sm:text-sm lg:text-base leading-relaxed text-slate-300 font-normal">
+                {/* text-header: #767676 light / #A1A1AA dark */}
+                <p className="text-xs sm:text-sm lg:text-base leading-relaxed text-header dark:text-slate-300 font-normal">
                   Orebi is a modern e-commerce destination for everyday
                   technology — bringing together useful, reliable, and stylish
                   products in one place. We focus on providing a seamless
@@ -206,7 +212,7 @@ const About = () => {
                 </p>
 
                 {/* Horizontal Category Nav Bar */}
-                <div className="pt-4 border-t border-white/10 flex flex-wrap items-center gap-x-6 gap-y-4 text-xs sm:text-sm font-semibold text-white">
+                <div className="pt-4 border-t border-gray-200 dark:border-white/10 flex flex-wrap items-center gap-x-6 gap-y-4 text-xs sm:text-sm font-semibold">
                   {[
                     { label: "Audio", icon: Headphones, query: "audio" },
                     { label: "Laptops", icon: Laptop, query: "laptops" },
@@ -227,12 +233,12 @@ const About = () => {
                       <React.Fragment key={cat.label}>
                         <Link
                           to={`/shop?category=${encodeURIComponent(cat.query)}`}
-                          className="inline-flex items-center gap-2 text-slate-300 hover:text-indigo-400 transition">
+                          className="inline-flex items-center gap-2 text-header dark:text-slate-300 hover:text-indigo-400 transition">
                           <CatIcon className="h-4 w-4 text-indigo-400" />
                           <span>{cat.label}</span>
                         </Link>
                         {idx < arr.length - 1 && (
-                          <span className="text-slate-600">•</span>
+                          <span className="text-gray-300 dark:text-slate-600">•</span>
                         )}
                       </React.Fragment>
                     );
@@ -248,7 +254,7 @@ const About = () => {
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400 block">
                 OUR CATEGORIES
               </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-menuHeading">
                 Technology for Work, Entertainment & Life
               </h2>
             </div>
@@ -260,24 +266,24 @@ const About = () => {
                 return (
                   <div
                     key={cat.id}
-                    className="group relative flex flex-col justify-between rounded-2xl border border-white/10 bg-[#121429] p-6 lg:p-7 shadow-xl transition duration-300 hover:border-indigo-500/50 hover:bg-[#161833] h-full">
+                    className="group relative flex flex-col justify-between rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#121429] p-6 lg:p-7 shadow-sm dark:shadow-xl transition duration-300 hover:border-indigo-500/50 hover:bg-gray-50 dark:hover:bg-[#161833] h-full">
                     <div>
                       <div className="mb-6">
                         <IconComp className="h-8 w-8 text-indigo-400" />
                       </div>
 
-                      <p className="text-[10px] font-bold text-slate-500 tracking-wider mb-1.5">
+                      <p className="text-[10px] font-bold text-header/70 dark:text-slate-500 tracking-wider mb-1.5">
                         {cat.num}
                       </p>
-                      <h3 className="text-base sm:text-lg font-bold text-white mb-2.5">
+                      <h3 className="text-base sm:text-lg font-bold text-menuHeading mb-2.5">
                         {cat.name}
                       </h3>
-                      <p className="text-xs text-slate-400 leading-relaxed mb-8">
+                      <p className="text-xs text-header dark:text-slate-400 leading-relaxed mb-8">
                         {cat.description}
                       </p>
                     </div>
 
-                    <div className="pt-4 border-t border-white/5">
+                    <div className="pt-4 border-t border-gray-100 dark:border-white/5">
                       <Link
                         to={`/shop?category=${encodeURIComponent(cat.query)}`}
                         className="inline-flex items-center gap-1.5 text-xs font-semibold text-indigo-400 transition-transform duration-300 group-hover:translate-x-1 hover:text-indigo-300">
@@ -297,7 +303,7 @@ const About = () => {
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400 block">
                 WHY CHOOSE OREBI
               </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-menuHeading">
                 Designed for Clarity & Simplicity
               </h2>
             </div>
@@ -309,15 +315,15 @@ const About = () => {
                 return (
                   <div
                     key={item.title}
-                    className="group rounded-2xl border border-white/10 bg-[#121429] p-7 sm:p-8 lg:p-9 shadow-xl transition duration-300 hover:border-indigo-500/50 hover:bg-[#161833] flex flex-col justify-between h-full">
+                    className="group rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#121429] p-7 sm:p-8 lg:p-9 shadow-sm dark:shadow-xl transition duration-300 hover:border-indigo-500/50 hover:bg-gray-50 dark:hover:bg-[#161833] flex flex-col justify-between h-full">
                     <div>
                       <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-full bg-indigo-600/20 border border-indigo-500/30 text-indigo-400">
                         <Icon className="h-5 w-5" />
                       </div>
-                      <h3 className="text-base sm:text-lg font-bold text-white mb-2.5">
+                      <h3 className="text-base sm:text-lg font-bold text-menuHeading mb-2.5">
                         {item.title}
                       </h3>
-                      <p className="text-xs sm:text-[13px] text-slate-400 leading-relaxed">
+                      <p className="text-xs sm:text-[13px] text-header dark:text-slate-400 leading-relaxed">
                         {item.description}
                       </p>
                     </div>
@@ -334,7 +340,7 @@ const About = () => {
                 <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400 block">
                   CURATED COLLECTION
                 </span>
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-menuHeading">
                   Explore Popular Selections
                 </h2>
               </div>
@@ -350,7 +356,7 @@ const About = () => {
                 {Array.from({ length: 3 }).map((_, i) => (
                   <div
                     key={i}
-                    className="h-64 animate-pulse rounded-2xl border border-white/10 bg-[#121429]"
+                    className="h-64 animate-pulse rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-100 dark:bg-[#121429]"
                   />
                 ))}
               </div>
@@ -361,9 +367,9 @@ const About = () => {
                   return (
                     <div
                       key={prod._id || prod.id}
-                      className="group flex flex-col justify-between rounded-2xl border border-white/10 bg-[#121429] p-6 shadow-xl transition duration-300 hover:border-indigo-500/50 h-full">
+                      className="group flex flex-col justify-between rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#121429] p-6 shadow-sm dark:shadow-xl transition duration-300 hover:border-indigo-500/50 h-full">
                       <div>
-                        {/* Image Box */}
+                        {/* Image Box — bg-white works fine in both modes */}
                         <div className="aspect-[16/10] w-full overflow-hidden rounded-xl bg-white p-5 flex items-center justify-center mb-5">
                           {display.image ? (
                             <img
@@ -376,18 +382,18 @@ const About = () => {
                           )}
                         </div>
 
-                        <p className="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">
+                        <p className="text-[10px] font-bold uppercase tracking-wider text-header dark:text-slate-400 mb-1.5">
                           {display.category || "General"}
                         </p>
-                        <h3 className="text-sm sm:text-base font-bold text-white line-clamp-2 min-h-[44px]">
+                        <h3 className="text-sm sm:text-base font-bold text-menuHeading line-clamp-2 min-h-[44px]">
                           {display.name}
                         </h3>
-                        <p className="mt-3 text-sm sm:text-base font-bold text-white">
+                        <p className="mt-3 text-sm sm:text-base font-bold text-menuHeading">
                           {display.price}
                         </p>
                       </div>
 
-                      <div className="pt-4 mt-4 border-t border-white/10">
+                      <div className="pt-4 mt-4 border-t border-gray-100 dark:border-white/10">
                         <Link
                           to={`/productdetails/${display.id}`}
                           className="inline-flex items-center gap-1 text-xs font-semibold text-indigo-400 hover:text-indigo-300">
@@ -399,7 +405,7 @@ const About = () => {
                 })}
               </div>
             ) : (
-              <div className="py-10 text-center border border-white/10 rounded-2xl bg-[#121429]">
+              <div className="py-10 text-center border border-gray-200 dark:border-white/10 rounded-2xl bg-white dark:bg-[#121429]">
                 <Link
                   to="/shop"
                   className="text-xs font-bold text-indigo-400 hover:underline">
@@ -415,13 +421,13 @@ const About = () => {
               <span className="text-[11px] font-bold uppercase tracking-[0.2em] text-indigo-400 block">
                 OUR VALUES
               </span>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-menuHeading">
                 Built on Essential Principles
               </h2>
             </div>
 
             {/* Container Box */}
-            <div className="rounded-3xl border border-white/10 bg-[#121429] p-8 sm:p-12 lg:p-16 shadow-xl grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-white/10">
+            <div className="rounded-3xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#121429] p-8 sm:p-12 lg:p-16 shadow-sm dark:shadow-xl grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-0 divide-y md:divide-y-0 md:divide-x divide-gray-200 dark:divide-white/10">
               {BRAND_VALUES.map((val) => (
                 <div
                   key={val.title}
@@ -429,10 +435,10 @@ const About = () => {
                   <span className="text-3xl lg:text-4xl font-extrabold text-indigo-400 mb-2 block">
                     {val.number}
                   </span>
-                  <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
+                  <h3 className="text-lg sm:text-xl font-bold text-menuHeading mb-2">
                     {val.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-400 leading-relaxed">
+                  <p className="text-xs sm:text-sm text-header dark:text-slate-400 leading-relaxed">
                     {val.description}
                   </p>
                 </div>
@@ -441,11 +447,13 @@ const About = () => {
           </section>
 
           {/* ================= 7. FINAL CTA ================= */}
+          {/* CTA uses a background image + dark overlay — text is intentionally always white over the image */}
           <section
-            className="relative overflow-hidden rounded-3xl border border-white/10 bg-no-repeat bg-cover bg-center shadow-2xl"
+            className="relative overflow-hidden rounded-3xl border border-gray-200 dark:border-white/10 bg-no-repeat bg-cover bg-center shadow-sm dark:shadow-2xl"
             style={{ backgroundImage: `url(${aboutCtaImg})` }}>
-            <div className="p-10 sm:p-16 lg:p-20 bg-[#01092a]/50 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+            <div className="p-10 sm:p-16 bg-[#01092a]/50 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
               <div className="space-y-5 max-w-xl">
+                {/* Text is always white — it sits over the dark image overlay */}
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white tracking-tight">
                   Find the Right Tech for Your Everyday
                 </h2>
@@ -463,6 +471,7 @@ const About = () => {
               </div>
             </div>
           </section>
+
         </Container>
       </div>
     </>
