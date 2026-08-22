@@ -152,7 +152,7 @@ const About = () => {
           <section
             className="relative overflow-hidden rounded-3xl border border-white/10 bg-no-repeat bg-cover bg-center shadow-2xl"
             style={{ backgroundImage: `url(${aboutHeroImg})` }}>
-            <div className="p-8 sm:p-14 lg:p-20 xl:p-24 bg-black/50 backdrop-blur-[2px]">
+            <div className="p-8 sm:p-14 lg:p-20 xl:p-24 bg-black/50">
               <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 relative z-10">
                 {/* Left Column */}
                 <div className="space-y-7 lg:col-span-8">
@@ -444,7 +444,7 @@ const About = () => {
           <section
             className="relative overflow-hidden rounded-3xl border border-white/10 bg-no-repeat bg-cover bg-center shadow-2xl"
             style={{ backgroundImage: `url(${aboutCtaImg})` }}>
-            <div className="p-10 sm:p-16 lg:p-20 bg-[#01092a]/50 backdrop-blur-[2px] flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+            <div className="p-10 sm:p-16 lg:p-20 bg-[#01092a]/50 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
               <div className="space-y-5 max-w-xl">
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white tracking-tight">
                   Find the Right Tech for Your Everyday
