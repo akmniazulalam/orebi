@@ -50,7 +50,7 @@ const VariantDisplay = ({ variants = [], className = "" }) => {
             {sizes.map((size) => (
               <span
                 key={size}
-                className="rounded border border-infoBg px-1.5 py-0.5 text-[10px] font-dmSans text-header bg-white/80 dark:bg-[#262626]/80">
+                className="rounded border border-infoBg dark:border-white/10 px-1.5 py-0.5 text-[10px] font-dmSans text-header bg-white/80 dark:bg-[#262626]/80">
                 {size}
               </span>
             ))}

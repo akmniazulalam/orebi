@@ -57,23 +57,23 @@ const Filter = () => {
         </Flex>
         {isOpen && (
           <div className="">
-            <Flex className={"border-b-2 border-infoBg pb-5"}>
+            <Flex className={"border-b-2 border-infoBg dark:border-white/10 pb-5"}>
               <div className="bg-black h-2.75 w-2.75 rounded-full mr-3"></div>
               <p className="font-dmSans text-base text-header">Color 1</p>
             </Flex>
-            <Flex className={"border-b-2 border-infoBg py-5"}>
+            <Flex className={"border-b-2 border-infoBg dark:border-white/10 py-5"}>
               <div className="bg-[#FF8686] h-2.75 w-2.75 rounded-full mr-3"></div>
               <p className="font-dmSans text-base text-header">Color 2</p>
             </Flex>
-            <Flex className={"border-b-2 border-infoBg py-5"}>
+            <Flex className={"border-b-2 border-infoBg dark:border-white/10 py-5"}>
               <div className="bg-[#7ED321] h-2.75 w-2.75 rounded-full mr-3"></div>
               <p className="font-dmSans text-base text-header">Color 3</p>
             </Flex>
-            <Flex className={"border-b-2 border-infoBg py-5"}>
+            <Flex className={"border-b-2 border-infoBg dark:border-white/10 py-5"}>
               <div className="bg-[#B6B6B6] h-2.75 w-2.75 rounded-full mr-3"></div>
               <p className="font-dmSans text-base text-header">Color 4</p>
             </Flex>
-            <Flex className={"border-b-2 border-infoBg py-5"}>
+            <Flex className={"border-b-2 border-infoBg dark:border-white/10 py-5"}>
               <div className="bg-[#15CBA5] h-2.75 w-2.75 rounded-full mr-3"></div>
               <p className="font-dmSans text-base text-header">Color 5</p>
             </Flex>
@@ -94,23 +94,23 @@ const Filter = () => {
         </Flex>
         {isBrand && (
           <div className="">
-            <p className="font-dmSans text-base text-header border-b-2 border-infoBg pb-5">
+            <p className="font-dmSans text-base text-header border-b-2 border-infoBg dark:border-white/10 pb-5">
               Brand 1
             </p>
 
-            <p className="font-dmSans text-base text-header border-b-2 border-infoBg py-5">
+            <p className="font-dmSans text-base text-header border-b-2 border-infoBg dark:border-white/10 py-5">
               Brand 2
             </p>
 
-            <p className="font-dmSans text-base text-header border-b-2 border-infoBg py-5">
+            <p className="font-dmSans text-base text-header border-b-2 border-infoBg dark:border-white/10 py-5">
               Brand 3
             </p>
 
-            <p className="font-dmSans text-base text-header border-b-2 border-infoBg py-5">
+            <p className="font-dmSans text-base text-header border-b-2 border-infoBg dark:border-white/10 py-5">
               Brand 4
             </p>
 
-            <p className="font-dmSans text-base text-header border-b-2 border-infoBg py-5">
+            <p className="font-dmSans text-base text-header border-b-2 border-infoBg dark:border-white/10 py-5">
               Brand 5
             </p>
           </div>
@@ -127,23 +127,23 @@ const Filter = () => {
           />
         </Flex>
         <div className="">
-          <p className="font-dmSans text-base text-header border-b-2 border-infoBg pb-5">
+          <p className="font-dmSans text-base text-header border-b-2 border-infoBg dark:border-white/10 pb-5">
             $0.00 - $9.99
           </p>
 
-          <p className="font-dmSans text-base text-header border-b-2 border-infoBg py-5">
+          <p className="font-dmSans text-base text-header border-b-2 border-infoBg dark:border-white/10 py-5">
             $10.00 - $19.99
           </p>
 
-          <p className="font-dmSans text-base text-header border-b-2 border-infoBg py-5">
+          <p className="font-dmSans text-base text-header border-b-2 border-infoBg dark:border-white/10 py-5">
             $20.00 - $29.99
           </p>
 
-          <p className="font-dmSans text-base text-header border-b-2 border-infoBg py-5">
+          <p className="font-dmSans text-base text-header border-b-2 border-infoBg dark:border-white/10 py-5">
             $30.00 - $39.99
           </p>
 
-          <p className="font-dmSans text-base text-header border-b-2 border-infoBg py-5">
+          <p className="font-dmSans text-base text-header border-b-2 border-infoBg dark:border-white/10 py-5">
             $40.00 - $69.99
           </p>
         </div>

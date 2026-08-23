@@ -195,7 +195,7 @@ function FilterPanel({
             className={`flex w-full items-center justify-between rounded-xl border px-3 py-2.5 text-left font-dmSans text-sm cursor-pointer transition ${
               !query.category
                 ? "border-menuHeading bg-menuHeading text-white dark:text-[#262626]"
-                : "border-infoBg text-header hover:border-menuHeading"
+                : "border-infoBg dark:border-white/10 text-header hover:border-menuHeading"
             }`}>
             <span>All categories</span>
           </button>
@@ -211,7 +211,7 @@ function FilterPanel({
                 className={`flex w-full items-center justify-between cursor-pointer rounded-xl border px-3 py-2.5 text-left font-dmSans text-sm transition ${
                   selected
                     ? "border-menuHeading bg-menuHeading text-white dark:text-[#262626]"
-                    : "border-infoBg text-header hover:border-menuHeading"
+                    : "border-infoBg dark:border-white/10 text-header hover:border-menuHeading"
                 }`}>
                 <span className="truncate">{category.name}</span>
                 <span
@@ -297,7 +297,7 @@ function FilterPanel({
                 className={`rounded-xl border px-3 py-2.5 text-left font-dmSans text-sm cursor-pointer transition ${
                   selected
                     ? "border-menuHeading bg-menuHeading text-white dark:text-[#262626]"
-                    : "border-infoBg text-header hover:border-menuHeading"
+                    : "border-infoBg dark:border-white/10 text-header hover:border-menuHeading"
                 }`}>
                 {option.label}
               </button>
@@ -351,7 +351,7 @@ function ActiveFilters({ query, onFilterChange, onClearFilters }) {
           key={filter.key}
           type="button"
           onClick={() => clearFilter(filter.key)}
-          className="inline-flex items-center gap-1.5 rounded-full border border-infoBg bg-white px-3 py-1.5 font-dmSans text-xs text-header shadow-sm transition hover:border-menuHeading dark:bg-[#121429]">
+          className="inline-flex items-center gap-1.5 rounded-full border border-infoBg dark:border-white/10 bg-white px-3 py-1.5 font-dmSans text-xs text-header shadow-sm transition hover:border-menuHeading dark:bg-[#121429]">
           {filter.label}
           <X className="h-3.5 w-3.5" />
         </button>
@@ -383,7 +383,7 @@ function ProductCard({ product }) {
   };
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-infoBg bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-[#121429]">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-infoBg dark:border-white/10 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-[#121429]">
       <div className="relative aspect-4/5 overflow-hidden bg-infoBg">
         {display.image ? (
           <img
@@ -442,7 +442,7 @@ function ProductCard({ product }) {
                 {colors.map((color) => (
                   <span
                     key={color}
-                    className="rounded-full border border-infoBg px-2 py-1 font-dmSans text-[11px] text-header/70">
+                    className="rounded-full border border-infoBg dark:border-white/10 px-2 py-1 font-dmSans text-[11px] text-header/70">
                     {color}
                   </span>
                 ))}
@@ -494,7 +494,7 @@ function ProductSkeletonGrid({ count = 12 }) {
       {Array.from({ length: count }).map((_, index) => (
         <div
           key={index}
-          className="overflow-hidden rounded-2xl border border-infoBg bg-white shadow-sm dark:bg-[#121429]">
+          className="overflow-hidden rounded-2xl border border-infoBg dark:border-white/10 bg-white shadow-sm dark:bg-[#121429]">
           <div className="aspect-4/5 animate-pulse bg-infoBg" />
           <div className="space-y-3 p-4">
             <div className="h-3 w-24 animate-pulse rounded bg-infoBg" />
@@ -648,7 +648,7 @@ const ShopProducts = () => {
 
   return (
     <div className="space-y-8">
-      <section className="rounded-3xl border border-infoBg bg-white p-4 shadow-sm sm:p-5 lg:p-6 dark:bg-[#121429]">
+      <section className="rounded-3xl border border-infoBg dark:border-white/10 bg-white p-4 shadow-sm sm:p-5 lg:p-6 dark:bg-[#121429]">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <p className="font-dmSans text-sm font-bold uppercase tracking-[0.18em] text-header/50">
@@ -677,7 +677,7 @@ const ShopProducts = () => {
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[280px_minmax(0,1fr)]">
         <aside className="hidden lg:block">
-          <div className="sticky top-6 rounded-3xl border border-infoBg bg-white p-5 shadow-sm dark:bg-[#121429]">
+          <div className="sticky top-6 rounded-3xl border border-infoBg dark:border-white/10 bg-white p-5 shadow-sm dark:bg-[#121429]">
             <FilterPanel
               categories={categoryOptions}
               query={query}
@@ -691,7 +691,7 @@ const ShopProducts = () => {
         </aside>
 
         <section className="min-w-0 space-y-5" aria-label="Product results">
-          <div className="flex flex-col gap-4 rounded-2xl border border-infoBg bg-white p-4 shadow-sm md:flex-row md:items-center md:justify-between dark:bg-[#121429]">
+          <div className="flex flex-col gap-4 rounded-2xl border border-infoBg dark:border-white/10 bg-white p-4 shadow-sm md:flex-row md:items-center md:justify-between dark:bg-[#121429]">
             <div className="min-w-0">
               <p className="font-dmSans text-sm font-bold text-menuHeading">
                 {isLoading
@@ -768,7 +768,7 @@ const ShopProducts = () => {
           ) : isLoading || isMetaLoading ? (
             <ProductSkeletonGrid count={Math.min(query.limit, 12)} />
           ) : products.length === 0 ? (
-            <div className="rounded-3xl border border-infoBg bg-white p-10 text-center shadow-sm dark:bg-[#121429]">
+            <div className="rounded-3xl border border-infoBg dark:border-white/10 bg-white p-10 text-center shadow-sm dark:bg-[#121429]">
               <PackageSearch className="mx-auto h-12 w-12 text-header/35" />
               <h2 className="mt-4 font-dmSans text-xl font-bold text-menuHeading">
                 No products found
@@ -791,7 +791,7 @@ const ShopProducts = () => {
 
           {!isLoading && !error && totalPages > 1 ? (
             <nav
-              className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-infoBg bg-white p-4 shadow-sm sm:flex-row dark:bg-[#121429]"
+              className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-infoBg dark:border-white/10 bg-white p-4 shadow-sm sm:flex-row dark:bg-[#121429]"
               aria-label="Product pagination">
               <p className="font-dmSans text-sm text-header/60">
                 Page {query.page} of {totalPages}

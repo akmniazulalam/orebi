@@ -140,7 +140,7 @@ const Signup = () => {
                   value={firstName}
                   onChange={(e) => setFirstName(e.target.value)}
                   placeholder="First Name"
-                  className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
+                  className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg dark:border-white/10 focus:outline-0 w-full"
                 />
               </div>
               <div className="w-full">
@@ -156,7 +156,7 @@ const Signup = () => {
                   value={lastName}
                   onChange={(e) => setLastName(e.target.value)}
                   placeholder="Last Name"
-                  className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
+                  className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg dark:border-white/10 focus:outline-0 w-full"
                 />
               </div>
             </div>
@@ -174,7 +174,7 @@ const Signup = () => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="company@domain.com"
-                  className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
+                  className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg dark:border-white/10 focus:outline-0 w-full"
                 />
               </div>
               <div className="w-full">
@@ -189,7 +189,7 @@ const Signup = () => {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="Your phone number"
-                  className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
+                  className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg dark:border-white/10 focus:outline-0 w-full"
                 />
               </div>
             </div>
@@ -219,7 +219,7 @@ const Signup = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
-                  className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
+                  className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg dark:border-white/10 focus:outline-0 w-full"
                 />
               </div>
               <div className="w-full">
@@ -235,7 +235,7 @@ const Signup = () => {
                   value={repeatPassword}
                   onChange={(e) => setRepeatPassword(e.target.value)}
                   placeholder="Repeat Password"
-                  className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
+                  className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg dark:border-white/10 focus:outline-0 w-full"
                 />
               </div>
             </div>

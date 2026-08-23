@@ -23,7 +23,7 @@ const Contacts = () => {
             <input
               type="text"
               placeholder="Your name here"
-              className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
+              className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg dark:border-white/10 focus:outline-0 w-full"
             />
           </div>
           <div className="w-full">
@@ -33,7 +33,7 @@ const Contacts = () => {
             <input
               type="text"
               placeholder="Your email here"
-              className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg focus:outline-0 w-full"
+              className="font-dmSans text-base placeholder:text-sm placeholder:text-header text-menuHeading pt-2 pb-4 border-b border-infoBg dark:border-white/10 focus:outline-0 w-full"
             />
           </div>
           <div className="w-full">
@@ -45,7 +45,7 @@ const Contacts = () => {
               id="message"
               rows={"4"}
               placeholder="Your message here"
-              className="border-b border-infoBg w-full resize-none pt-2 focus:outline-0 placeholder:font-dmSans placeholder:text-sm placeholder:text-header"></textarea>
+              className="border-b border-infoBg dark:border-white/10 w-full resize-none pt-2 focus:outline-0 placeholder:font-dmSans placeholder:text-sm placeholder:text-header"></textarea>
           </div>
         </div>
         <button className="py-3 px-18 mt-6 text-white dark:text-[#262626] text-sm font-bold font-dmSans bg-menuHeading cursor-pointer border border-menuHeading">
