@@ -129,7 +129,7 @@ const About = () => {
       .then((products) => {
         if (!isMounted) return;
         if (Array.isArray(products) && products.length > 0) {
-          setFeaturedProducts(products.slice(0, 3));
+          setFeaturedProducts(products.slice(4, 7));
         }
       })
       .catch(() => {})
@@ -370,7 +370,7 @@ const About = () => {
                       className="group flex flex-col justify-between rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#121429] p-6 shadow-sm dark:shadow-xl transition duration-300 hover:border-indigo-500/50 h-full">
                       <div>
                         {/* Image Box — bg-white works fine in both modes */}
-                        <div className="aspect-[16/10] w-full overflow-hidden rounded-xl bg-white p-5 flex items-center justify-center mb-5">
+                        <div className="aspect-16/10 w-full overflow-hidden rounded-xl bg-white p-5 flex items-center justify-center mb-5">
                           {display.image ? (
                             <img
                               src={display.image}
@@ -385,7 +385,7 @@ const About = () => {
                         <p className="text-[10px] font-bold uppercase tracking-wider text-header dark:text-slate-400 mb-1.5">
                           {display.category || "General"}
                         </p>
-                        <h3 className="text-sm sm:text-base font-bold text-menuHeading line-clamp-2 min-h-[44px]">
+                        <h3 className="text-sm sm:text-base font-bold text-menuHeading line-clamp-2 min-h-11">
                           {display.name}
                         </h3>
                         <p className="mt-3 text-sm sm:text-base font-bold text-menuHeading">
@@ -451,7 +451,7 @@ const About = () => {
           <section
             className="relative overflow-hidden rounded-3xl border border-gray-200 dark:border-white/10 bg-no-repeat bg-cover bg-center shadow-sm dark:shadow-2xl"
             style={{ backgroundImage: `url(${aboutCtaImg})` }}>
-            <div className="p-10 sm:p-16 bg-[#01092a]/50 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+            <div className="p-10 sm:p-16 bg-black/50 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
               <div className="space-y-5 max-w-xl">
                 {/* Text is always white — it sits over the dark image overlay */}
                 <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white tracking-tight">
