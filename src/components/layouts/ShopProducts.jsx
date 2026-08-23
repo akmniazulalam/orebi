@@ -351,7 +351,7 @@ function ActiveFilters({ query, onFilterChange, onClearFilters }) {
           key={filter.key}
           type="button"
           onClick={() => clearFilter(filter.key)}
-          className="inline-flex items-center gap-1.5 rounded-full border border-infoBg bg-white px-3 py-1.5 font-dmSans text-xs text-header shadow-sm transition hover:border-menuHeading dark:bg-white/5">
+          className="inline-flex items-center gap-1.5 rounded-full border border-infoBg bg-white px-3 py-1.5 font-dmSans text-xs text-header shadow-sm transition hover:border-menuHeading dark:bg-[#121429]">
           {filter.label}
           <X className="h-3.5 w-3.5" />
         </button>
