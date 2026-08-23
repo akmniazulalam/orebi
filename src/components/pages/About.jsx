@@ -22,8 +22,6 @@ import { fetchProducts } from "@/services/productService";
 import { normalizeProductForDisplay } from "@/lib/productUtils";
 
 // Reusing existing local asset images directly
-import headPhoneImg from "@/assets/headPhone.png";
-import smartWatchImg from "@/assets/smartWatch.png";
 import aboutHeroImg from "@/assets/about_hero.png";
 import aboutCtaImg from "@/assets/about_cta.png";
 
