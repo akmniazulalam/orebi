@@ -490,7 +490,7 @@ const ProductDetails = () => {
             {/* Category & Rating */}
             <div className="flex flex-wrap items-center justify-between gap-2">
               {singleProduct.category && (
-                <span className="inline-block uppercase tracking-wider font-dmSans font-bold text-[11px] py-1 px-2.5 rounded-lg border border-gray-200 dark:border-white/15 text-menuHeading dark:text-white bg-gray-50 dark:bg-white/5">
+                <span className="inline-block uppercase tracking-wider font-dmSans font-bold text-[11px] py-1 px-2.5 rounded-lg border border-gray-200 dark:border-white/15 text-menuHeading dark:text-white bg-gray-50 dark:bg-[#121429]">
                   {singleProduct.category}
                 </span>
               )}
@@ -1035,14 +1035,14 @@ const ProductDetails = () => {
                   <table className="w-full text-left border-collapse text-sm">
                     <tbody>
                       <tr className="border-b border-gray-100 dark:border-white/5">
-                        <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">
+                        <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-[#121429]">
                           Product Name
                         </td>
                         <td className="py-3 px-4">{singleProduct.name}</td>
                       </tr>
                       {singleProduct.category && (
                         <tr className="border-b border-gray-100 dark:border-white/5">
-                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">
+                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-[#121429]">
                             Category
                           </td>
                           <td className="py-3 px-4 capitalize">
@@ -1052,7 +1052,7 @@ const ProductDetails = () => {
                       )}
                       {selectedVariant?.sku && (
                         <tr className="border-b border-gray-100 dark:border-white/5">
-                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">
+                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-[#121429]">
                             SKU
                           </td>
                           <td className="py-3 px-4">{selectedVariant.sku}</td>
@@ -1060,7 +1060,7 @@ const ProductDetails = () => {
                       )}
                       {selectedColor && (
                         <tr className="border-b border-gray-100 dark:border-white/5">
-                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">
+                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-[#121429]">
                             Selected Color
                           </td>
                           <td className="py-3 px-4">{selectedColor}</td>
@@ -1068,7 +1068,7 @@ const ProductDetails = () => {
                       )}
                       {selectedSize && (
                         <tr className="border-b border-gray-100 dark:border-white/5">
-                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">
+                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-[#121429]">
                             Selected Size
                           </td>
                           <td className="py-3 px-4">{selectedSize}</td>
@@ -1076,7 +1076,7 @@ const ProductDetails = () => {
                       )}
                       {selectedRam && (
                         <tr className="border-b border-gray-100 dark:border-white/5">
-                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">
+                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-[#121429]">
                             Memory (RAM)
                           </td>
                           <td className="py-3 px-4">{selectedRam}</td>
@@ -1084,14 +1084,14 @@ const ProductDetails = () => {
                       )}
                       {selectedStorage && (
                         <tr className="border-b border-gray-100 dark:border-white/5">
-                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">
+                          <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-[#121429]">
                             Storage
                           </td>
                           <td className="py-3 px-4">{selectedStorage}</td>
                         </tr>
                       )}
                       <tr>
-                        <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-white/5">
+                        <td className="py-3 px-4 font-bold text-menuHeading dark:text-white w-1/3 bg-gray-50 dark:bg-[#121429]">
                           Stock Availability
                         </td>
                         <td className="py-3 px-4">

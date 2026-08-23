@@ -182,7 +182,7 @@ const Journal = () => {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Search guides, topics & keywords..."
-                    className="h-11 w-full rounded-full border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 pl-11 pr-10 text-xs sm:text-sm text-menuHeading placeholder:text-header/60 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition"
+                    className="h-11 w-full rounded-full border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-[#121429] pl-11 pr-10 text-xs sm:text-sm text-menuHeading placeholder:text-header/60 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition"
                   />
                   {searchQuery && (
                     <button
@@ -228,7 +228,7 @@ const Journal = () => {
                 className="group relative cursor-pointer overflow-hidden rounded-3xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#121429] shadow-sm dark:shadow-xl transition duration-300 hover:border-indigo-500/50 hover:shadow-md dark:hover:shadow-2xl">
                 <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
                   {/* Left/Image Area */}
-                  <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-auto lg:col-span-7 overflow-hidden bg-gray-100 dark:bg-white/5">
+                  <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-auto lg:col-span-7 overflow-hidden bg-gray-100 dark:bg-[#121429]">
                     <img
                       src={featuredArticle.image}
                       alt={featuredArticle.title}
@@ -271,7 +271,7 @@ const Journal = () => {
                         {featuredArticle.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="rounded-full bg-gray-100 dark:bg-white/5 px-2.5 py-0.5 text-[11px] font-medium text-header dark:text-slate-400">
+                            className="rounded-full bg-gray-100 dark:bg-[#121429] px-2.5 py-0.5 text-[11px] font-medium text-header dark:text-slate-400">
                             #{tag}
                           </span>
                         ))}
@@ -356,7 +356,7 @@ const Journal = () => {
                     className={`inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-semibold transition-all shrink-0 cursor-pointer ${
                       isSelected
                         ? "bg-menuHeading text-white dark:bg-white dark:text-[#262626] shadow-sm"
-                        : "bg-gray-100 dark:bg-white/5 text-header dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-white/10 hover:text-menuHeading"
+                        : "bg-gray-100 dark:bg-[#121429] text-header dark:text-slate-300 hover:bg-gray-200 dark:hover:bg-white/10 hover:text-menuHeading"
                     }`}>
                     <Icon
                       className={`h-3.5 w-3.5 ${
@@ -389,7 +389,7 @@ const Journal = () => {
                     className="group flex flex-col justify-between rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#121429] p-5 sm:p-6 shadow-sm dark:shadow-xl transition duration-300 hover:border-indigo-500/50 hover:shadow-md dark:hover:shadow-2xl cursor-pointer">
                     <div className="space-y-4">
                       {/* Image container */}
-                      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-gray-100 dark:bg-white/5">
+                      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-gray-100 dark:bg-[#121429]">
                         <img
                           src={article.image}
                           alt={article.title}
@@ -493,7 +493,7 @@ const Journal = () => {
                     value={newsletterEmail}
                     onChange={(e) => setNewsletterEmail(e.target.value)}
                     placeholder="Enter your email address"
-                    className="h-12 w-full rounded-full border border-gray-200 dark:border-white/10 bg-white dark:bg-white/5 px-5 text-xs sm:text-sm text-menuHeading placeholder:text-header/60 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition"
+                    className="h-12 w-full rounded-full border border-gray-200 dark:border-white/10 bg-white dark:bg-[#121429] px-5 text-xs sm:text-sm text-menuHeading placeholder:text-header/60 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 transition"
                   />
                   <button
                     type="submit"
@@ -564,7 +564,7 @@ const Journal = () => {
             </div>
 
             {/* Hero Image */}
-            <div className="my-8 aspect-[16/9] w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-white/5">
+            <div className="my-8 aspect-[16/9] w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-[#121429]">
               <img
                 src={activeArticle.image}
                 alt={activeArticle.title}

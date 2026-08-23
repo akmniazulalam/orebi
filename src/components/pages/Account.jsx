@@ -46,7 +46,7 @@ const Account = () => {
       <section className="bg-background py-10 font-dmSans">
         <Container className="px-4 xl:px-0">
           {/* Profile Overview Card */}
-          <div className="mb-8 rounded-2xl border border-gray-200 bg-bHeaderBg p-6 sm:p-8 shadow-sm dark:bg-white/5 dark:border-white/10">
+          <div className="mb-8 rounded-2xl border border-gray-200 bg-bHeaderBg p-6 sm:p-8 shadow-sm dark:bg-[#121429] dark:border-white/10">
             <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
               <div className="flex items-center gap-5">
                 <div className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gray-900 text-xl font-bold text-white shadow-md dark:bg-white dark:text-gray-900">
@@ -86,7 +86,7 @@ const Account = () => {
           {/* Account Details Grid */}
           <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {/* Personal Info Card */}
-            <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-white/5 dark:border-white/10">
+            <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-[#121429] dark:border-white/10">
               <div className="flex items-center gap-3 pb-4 border-b border-gray-200 dark:border-white/10">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 dark:bg-white/10 text-menuHeading dark:text-white">
                   <User className="h-5 w-5" />
@@ -133,7 +133,7 @@ const Account = () => {
             </div>
 
             {/* Account Status Card */}
-            <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-white/5 dark:border-white/10">
+            <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-[#121429] dark:border-white/10">
               <div className="flex items-center gap-3 pb-4 border-b border-gray-200 dark:border-white/10">
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gray-100 dark:bg-white/10 text-menuHeading dark:text-white">
                   <ShieldCheck className="h-5 w-5" />

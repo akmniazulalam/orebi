@@ -114,7 +114,7 @@ const OrderSuccess = () => {
             <div className="flex justify-end">{renderProgressBar()}</div>
 
             {/* Header Banner */}
-            <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-white/5 sm:p-8">
+            <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-[#121429] sm:p-8">
               <div className="flex flex-col gap-6 md:flex-row md:items-start md:justify-between">
                 <div className="flex gap-4">
                   <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-700 dark:bg-green-950/60 dark:text-green-400">
@@ -204,7 +204,7 @@ const OrderSuccess = () => {
             {/* Content Details */}
             <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
               {/* Order Items */}
-              <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-white/5 lg:col-span-2">
+              <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-[#121429] lg:col-span-2">
                 <div className="mb-4 flex items-center gap-2">
                   <ClipboardList className="h-5 w-5 text-menuHeading dark:text-white" />
                   <h2 className="text-xl font-bold text-menuHeading dark:text-white">
@@ -255,7 +255,7 @@ const OrderSuccess = () => {
               </div>
 
               {/* Receipt Summary & Actions */}
-              <aside className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-white/5 space-y-6">
+              <aside className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-[#121429] space-y-6">
                 <div>
                   <h2 className="text-xl font-bold text-menuHeading dark:text-white">
                     Payment Breakdown

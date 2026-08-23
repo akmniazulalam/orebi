@@ -106,9 +106,9 @@ const Cart = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* LEFT — Items */}
             <div className="lg:col-span-2">
-              <div className="bg-white dark:bg-white/5 border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
+              <div className="bg-white dark:bg-[#121429] border border-gray-200 rounded-2xl overflow-hidden shadow-sm">
                 {/* Header (desktop) */}
-                <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-gray-50 dark:bg-white/5 border-b border-gray-200 text-xs uppercase tracking-wider font-semibold text-menuHeading">
+                <div className="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-gray-50 dark:bg-[#121429] border-b border-gray-200 text-xs uppercase tracking-wider font-semibold text-menuHeading">
                   <div className="col-span-6">Product</div>
                   <div className="col-span-2 text-center">Price</div>
                   <div className="col-span-2 text-center">Quantity</div>
@@ -195,7 +195,7 @@ const Cart = () => {
 
               {/* Coupon + size */}
               <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-white dark:bg-white/5 border border-gray-200 rounded-2xl p-5 shadow-sm">
+                <div className="bg-white dark:bg-[#121429] border border-gray-200 rounded-2xl p-5 shadow-sm">
                   <label className="block text-xs uppercase tracking-wider font-semibold text-menuHeading mb-3">
                     Select Size
                   </label>
@@ -216,7 +216,7 @@ const Cart = () => {
                   </Select>
                 </div>
 
-                <div className="bg-white dark:bg-white/5 border border-gray-200 rounded-2xl p-5 shadow-sm">
+                <div className="bg-white dark:bg-[#121429] border border-gray-200 rounded-2xl p-5 shadow-sm">
                   <label className="block text-xs uppercase tracking-wider font-semibold text-menuHeading mb-3">
                     <Tag className="inline w-3.5 h-3.5 mr-1" />
                     Have a coupon?
@@ -248,7 +248,7 @@ const Cart = () => {
 
             {/* RIGHT — Summary */}
             <div className="lg:col-span-1">
-              <div className="bg-white dark:bg-white/5 border border-gray-200 rounded-2xl shadow-sm p-6 lg:sticky lg:top-6">
+              <div className="bg-white dark:bg-[#121429] border border-gray-200 rounded-2xl shadow-sm p-6 lg:sticky lg:top-6">
                 <h2 className="text-xl font-bold text-gray-900 dark:text-white pb-4 border-b border-gray-100">
                   Order Summary
                 </h2>

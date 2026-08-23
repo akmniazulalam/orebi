@@ -83,7 +83,7 @@ const Orders = () => {
           </div>
 
           {isLoading ? (
-            <div className="flex min-h-72 flex-col items-center justify-center rounded-2xl border border-gray-200 bg-bHeaderBg p-8 text-center shadow-sm dark:bg-white/5">
+            <div className="flex min-h-72 flex-col items-center justify-center rounded-2xl border border-gray-200 bg-bHeaderBg p-8 text-center shadow-sm dark:bg-[#121429]">
               <Loader2 className="h-9 w-9 animate-spin text-menuHeading" />
               <p className="mt-4 text-sm font-semibold text-menuHeading">
                 Loading your orders...
@@ -99,7 +99,7 @@ const Orders = () => {
           ) : null}
 
           {!isLoading && !loadError && orders.length === 0 ? (
-            <div className="flex min-h-72 flex-col items-center justify-center rounded-2xl border border-gray-200 bg-bHeaderBg p-8 text-center shadow-sm dark:bg-white/5">
+            <div className="flex min-h-72 flex-col items-center justify-center rounded-2xl border border-gray-200 bg-bHeaderBg p-8 text-center shadow-sm dark:bg-[#121429]">
               <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white text-menuHeading">
                 <PackageSearch className="h-10 w-10" />
               </div>
@@ -127,7 +127,7 @@ const Orders = () => {
                   <Link
                     key={order._id}
                     to={`/orders/${order._id}`}
-                    className="block rounded-2xl border border-gray-200 bg-bHeaderBg p-5 shadow-sm transition hover:border-gray-300 hover:bg-white dark:bg-white/5">
+                    className="block rounded-2xl border border-gray-200 bg-bHeaderBg p-5 shadow-sm transition hover:border-gray-300 hover:bg-white dark:bg-[#121429]">
                     <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
                       <div className="flex gap-4">
                         <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-menuHeading dark:text-[#262626]">

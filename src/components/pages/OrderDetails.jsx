@@ -76,7 +76,7 @@ const OrderDetails = () => {
           </Link>
 
           {isLoading ? (
-            <div className="flex min-h-72 flex-col items-center justify-center rounded-2xl border border-gray-200 bg-bHeaderBg p-8 text-center shadow-sm dark:bg-white/5">
+            <div className="flex min-h-72 flex-col items-center justify-center rounded-2xl border border-gray-200 bg-bHeaderBg p-8 text-center shadow-sm dark:bg-[#121429]">
               <Loader2 className="h-9 w-9 animate-spin text-menuHeading" />
               <p className="mt-4 text-sm font-semibold text-menuHeading">
                 Loading order details...
@@ -93,7 +93,7 @@ const OrderDetails = () => {
 
           {!isLoading && !loadError && order ? (
             <div className="space-y-6">
-              <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-white/5 sm:p-8">
+              <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-[#121429] sm:p-8">
                 <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                   <div className="flex gap-4">
                     <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white text-menuHeading dark:text-[#262626]">
@@ -151,7 +151,7 @@ const OrderDetails = () => {
               </div>
 
               <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
-                <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-white/5 lg:col-span-2">
+                <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-[#121429] lg:col-span-2">
                   <h2 className="text-xl font-bold text-menuHeading">
                     Items in this order
                   </h2>
@@ -192,7 +192,7 @@ const OrderDetails = () => {
                 </div>
 
                 <aside className="space-y-6">
-                  <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-white/5">
+                  <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-[#121429]">
                     <h2 className="text-xl font-bold text-menuHeading">
                       Receipt
                     </h2>
@@ -226,7 +226,7 @@ const OrderDetails = () => {
                     </div>
                   </div>
 
-                  <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-white/5">
+                  <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-[#121429]">
                     <div className="mb-3 flex items-center gap-2">
                       <MapPin className="h-5 w-5 text-menuHeading" />
                       <h2 className="text-xl font-bold text-menuHeading">

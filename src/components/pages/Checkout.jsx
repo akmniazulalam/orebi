@@ -334,7 +334,7 @@ const Checkout = () => {
   };
 
   const inputCls = (key) =>
-    `w-full rounded-lg border bg-white dark:bg-white/5 px-4 py-2.5 text-sm text-menuHeading dark:text-white outline-none transition focus:ring-2 focus:ring-gray-900/10 ${
+    `w-full rounded-lg border bg-white dark:bg-[#121429] px-4 py-2.5 text-sm text-menuHeading dark:text-white outline-none transition focus:ring-2 focus:ring-gray-900/10 ${
       errors[key] ? "border-red-500" : "border-gray-200 focus:border-gray-400"
     }`;
 
@@ -443,7 +443,7 @@ const Checkout = () => {
 
           {/* Coupon notice */}
           {activeStep === 2 && (
-            <div className="mb-6 flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-gray-300 bg-bHeaderBg dark:bg-white/5 px-5 py-4 text-sm">
+            <div className="mb-6 flex flex-wrap items-center gap-2 rounded-xl border border-dashed border-gray-300 bg-bHeaderBg dark:bg-[#121429] px-5 py-4 text-sm">
               <Tag className="h-4 w-4 text-menuHeading dark:text-gray-200" />
               <span className="text-menuHeading dark:text-gray-200">
                 Have a coupon?
@@ -458,7 +458,7 @@ const Checkout = () => {
           )}
 
           {showCoupon && activeStep === 2 && (
-            <div className="mb-8 rounded-xl border border-gray-200 bg-bHeaderBg dark:bg-white/5 p-5">
+            <div className="mb-8 rounded-xl border border-gray-200 bg-bHeaderBg dark:bg-[#121429] p-5">
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Input
                   placeholder="Coupon code"
@@ -502,7 +502,7 @@ const Checkout = () => {
               {/* STEP 2: CHECKOUT DETAILS FORM */}
               {activeStep === 2 && (
                 <>
-                  <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-white/5 p-6 sm:p-8 shadow-sm">
+                  <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-[#121429] p-6 sm:p-8 shadow-sm">
                     <h2 className="mb-6 text-xl font-bold tracking-tight text-menuHeading dark:text-white">
                       Billing & Shipping details
                     </h2>
@@ -731,7 +731,7 @@ const Checkout = () => {
                   </div>
 
                   {/* Shipping Method Selection */}
-                  <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-white/5 p-6 sm:p-8 shadow-sm">
+                  <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-[#121429] p-6 sm:p-8 shadow-sm">
                     <h2 className="mb-5 flex items-center gap-2 text-xl font-bold tracking-tight text-menuHeading dark:text-white">
                       <Truck className="h-5 w-5" /> Shipping method
                     </h2>
@@ -788,7 +788,7 @@ const Checkout = () => {
               {activeStep === 3 && (
                 <>
                   {/* Delivery Address Review Summary */}
-                  <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-white/5 p-6 shadow-sm">
+                  <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-[#121429] p-6 shadow-sm">
                     <div className="flex items-center justify-between pb-4 border-b border-gray-200 dark:border-white/10">
                       <div className="flex items-center gap-2">
                         <CheckCircle2 className="h-5 w-5 text-green-600" />
@@ -833,7 +833,7 @@ const Checkout = () => {
                   </div>
 
                   {/* Payment Methods */}
-                  <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-white/5 p-6 sm:p-8 shadow-sm">
+                  <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-[#121429] p-6 sm:p-8 shadow-sm">
                     <h2 className="mb-5 flex items-center gap-2 text-xl font-bold tracking-tight text-menuHeading dark:text-white">
                       <Lock className="h-5 w-5" /> Payment Method
                     </h2>
@@ -1014,7 +1014,7 @@ const Checkout = () => {
             {/* RIGHT COLUMN: Sticky Order Summary */}
             <aside className="lg:col-span-1">
               <div className="sticky top-6 space-y-4">
-                <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-white/5 p-6 shadow-sm">
+                <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-[#121429] p-6 shadow-sm">
                   <h2 className="mb-5 flex items-center gap-2 text-lg font-bold text-menuHeading dark:text-white">
                     <ShoppingBag className="h-5 w-5" /> Your order
                   </h2>
@@ -1171,7 +1171,7 @@ const Checkout = () => {
                 </div>
 
                 {/* Trust badges */}
-                <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-white/5 p-5 shadow-sm">
+                <div className="rounded-2xl border border-gray-200 bg-bHeaderBg dark:bg-[#121429] p-5 shadow-sm">
                   <p className="mb-3 text-center text-xs font-semibold uppercase tracking-wider text-menuHeading dark:text-white">
                     We accept
                   </p>

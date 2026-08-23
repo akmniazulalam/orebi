@@ -383,7 +383,7 @@ function ProductCard({ product }) {
   };
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-infoBg bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-white/5">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-infoBg bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-[#121429]">
       <div className="relative aspect-4/5 overflow-hidden bg-infoBg">
         {display.image ? (
           <img
@@ -494,7 +494,7 @@ function ProductSkeletonGrid({ count = 12 }) {
       {Array.from({ length: count }).map((_, index) => (
         <div
           key={index}
-          className="overflow-hidden rounded-2xl border border-infoBg bg-white shadow-sm dark:bg-white/5">
+          className="overflow-hidden rounded-2xl border border-infoBg bg-white shadow-sm dark:bg-[#121429]">
           <div className="aspect-4/5 animate-pulse bg-infoBg" />
           <div className="space-y-3 p-4">
             <div className="h-3 w-24 animate-pulse rounded bg-infoBg" />
@@ -648,7 +648,7 @@ const ShopProducts = () => {
 
   return (
     <div className="space-y-8">
-      <section className="rounded-3xl border border-infoBg bg-white p-4 shadow-sm sm:p-5 lg:p-6 dark:bg-white/5">
+      <section className="rounded-3xl border border-infoBg bg-white p-4 shadow-sm sm:p-5 lg:p-6 dark:bg-[#121429]">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
             <p className="font-dmSans text-sm font-bold uppercase tracking-[0.18em] text-header/50">
@@ -677,7 +677,7 @@ const ShopProducts = () => {
 
       <div className="grid grid-cols-1 gap-8 lg:grid-cols-[280px_minmax(0,1fr)]">
         <aside className="hidden lg:block">
-          <div className="sticky top-6 rounded-3xl border border-infoBg bg-white p-5 shadow-sm dark:bg-white/5">
+          <div className="sticky top-6 rounded-3xl border border-infoBg bg-white p-5 shadow-sm dark:bg-[#121429]">
             <FilterPanel
               categories={categoryOptions}
               query={query}
@@ -691,7 +691,7 @@ const ShopProducts = () => {
         </aside>
 
         <section className="min-w-0 space-y-5" aria-label="Product results">
-          <div className="flex flex-col gap-4 rounded-2xl border border-infoBg bg-white p-4 shadow-sm md:flex-row md:items-center md:justify-between dark:bg-white/5">
+          <div className="flex flex-col gap-4 rounded-2xl border border-infoBg bg-white p-4 shadow-sm md:flex-row md:items-center md:justify-between dark:bg-[#121429]">
             <div className="min-w-0">
               <p className="font-dmSans text-sm font-bold text-menuHeading">
                 {isLoading
@@ -768,7 +768,7 @@ const ShopProducts = () => {
           ) : isLoading || isMetaLoading ? (
             <ProductSkeletonGrid count={Math.min(query.limit, 12)} />
           ) : products.length === 0 ? (
-            <div className="rounded-3xl border border-infoBg bg-white p-10 text-center shadow-sm dark:bg-white/5">
+            <div className="rounded-3xl border border-infoBg bg-white p-10 text-center shadow-sm dark:bg-[#121429]">
               <PackageSearch className="mx-auto h-12 w-12 text-header/35" />
               <h2 className="mt-4 font-dmSans text-xl font-bold text-menuHeading">
                 No products found
@@ -791,7 +791,7 @@ const ShopProducts = () => {
 
           {!isLoading && !error && totalPages > 1 ? (
             <nav
-              className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-infoBg bg-white p-4 shadow-sm sm:flex-row dark:bg-white/5"
+              className="flex flex-col items-center justify-between gap-4 rounded-2xl border border-infoBg bg-white p-4 shadow-sm sm:flex-row dark:bg-[#121429]"
               aria-label="Product pagination">
               <p className="font-dmSans text-sm text-header/60">
                 Page {query.page} of {totalPages}
