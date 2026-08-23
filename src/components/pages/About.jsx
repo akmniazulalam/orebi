@@ -24,6 +24,8 @@ import { normalizeProductForDisplay } from "@/lib/productUtils";
 // Reusing existing local asset images directly
 import aboutHeroImg from "@/assets/about_hero.png";
 import aboutCtaImg from "@/assets/about_cta.png";
+import aboutHeroLightImg from "@/assets/about_hero_light.png";
+import aboutCtaLightImg from "@/assets/about_cta_light.png";
 
 const CATEGORY_CARDS = [
   {
@@ -120,6 +122,34 @@ const BRAND_VALUES = [
 const About = () => {
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [isLoadingStore, setIsLoadingStore] = useState(true);
+  const [isDark, setIsDark] = useState(() =>
+    typeof document !== "undefined"
+      ? document.documentElement.classList.contains("dark")
+      : false
+  );
+
+  useEffect(() => {
+    const checkTheme = () => {
+      setIsDark(document.documentElement.classList.contains("dark"));
+    };
+
+    checkTheme();
+
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.attributeName === "class") {
+          checkTheme();
+        }
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   useEffect(() => {
     let isMounted = true;
@@ -149,25 +179,26 @@ const About = () => {
         <Container className="space-y-16 sm:space-y-20 lg:space-y-24">
 
           {/* ================= 1. HERO SECTION ================= */}
-          {/* Hero uses a background image + overlay — text is always white over the image */}
+          {/* Hero uses theme-responsive background image */}
           <section
             className="relative overflow-hidden rounded-3xl border border-gray-200 dark:border-white/10 bg-no-repeat bg-cover bg-center shadow-sm dark:shadow-2xl"
-            style={{ backgroundImage: `url(${aboutHeroImg})` }}>
-            <div className="p-8 sm:p-14 lg:p-20 xl:p-24 bg-black/50">
+            style={{
+              backgroundImage: `url(${isDark ? aboutHeroImg : aboutHeroLightImg})`,
+            }}>
+            <div className="p-8 sm:p-14 lg:p-20 xl:p-24 dark:bg-black/50">
               <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-12 relative z-10">
                 {/* Left Column */}
                 <div className="space-y-7 lg:col-span-8">
-                  <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-indigo-400">
+                  <span className="text-[11px] sm:text-xs font-bold uppercase tracking-[0.25em] text-indigo-600 dark:text-indigo-400">
                     ABOUT OREBI
                   </span>
 
-                  {/* Text is always white — it sits over the dark image overlay */}
-                  <h1 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.15] max-w-2xl">
+                  <h1 className="text-3xl font-bold text-menuHeading dark:text-white sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.15] max-w-2xl">
                     Technology That <br className="hidden sm:inline" />
                     Fits Your Everyday Life
                   </h1>
 
-                  <p className="max-w-xl text-xs sm:text-sm lg:text-base text-slate-300 leading-relaxed font-normal">
+                  <p className="max-w-xl text-xs sm:text-sm lg:text-base text-header dark:text-slate-300 leading-relaxed font-normal">
                     Discover thoughtfully selected technology and accessories
                     designed to make work, entertainment, and everyday life
                     simpler, more efficient, and enjoyable.
@@ -445,24 +476,25 @@ const About = () => {
           </section>
 
           {/* ================= 7. FINAL CTA ================= */}
-          {/* CTA uses a background image + dark overlay — text is intentionally always white over the image */}
+          {/* CTA uses theme-responsive background image */}
           <section
             className="relative overflow-hidden rounded-3xl border border-gray-200 dark:border-white/10 bg-no-repeat bg-cover bg-center shadow-sm dark:shadow-2xl"
-            style={{ backgroundImage: `url(${aboutCtaImg})` }}>
-            <div className="p-10 sm:p-16 bg-black/50 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
+            style={{
+              backgroundImage: `url(${isDark ? aboutCtaImg : aboutCtaLightImg})`,
+            }}>
+            <div className="p-10 sm:p-16 dark:bg-black/50 flex flex-col md:flex-row items-center justify-between gap-8 relative z-10">
               <div className="space-y-5 max-w-xl">
-                {/* Text is always white — it sits over the dark image overlay */}
-                <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-white tracking-tight">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-menuHeading dark:text-white tracking-tight">
                   Find the Right Tech for Your Everyday
                 </h2>
-                <p className="text-xs sm:text-sm lg:text-base text-slate-200 leading-relaxed">
+                <p className="text-xs sm:text-sm lg:text-base text-header dark:text-slate-200 leading-relaxed">
                   Explore our collection of smartphones, laptops, audio
                   products, smartwatches, and everyday accessories.
                 </p>
                 <div className="pt-4">
                   <Link
                     to="/shop"
-                    className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3.5 text-xs font-bold text-gray-900 shadow-xl transition duration-300 hover:bg-gray-100">
+                    className="inline-flex items-center gap-2 rounded-full bg-menuHeading text-white dark:bg-white dark:text-gray-900 px-8 py-3.5 text-xs font-bold shadow-xl transition duration-300 hover:opacity-90 dark:hover:bg-gray-100">
                     Shop Now <ArrowRight className="h-4 w-4" />
                   </Link>
                 </div>
