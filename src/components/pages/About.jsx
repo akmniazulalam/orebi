@@ -164,7 +164,7 @@ const About = () => {
                   </span>
 
                   {/* Text is always white — it sits over the dark image overlay */}
-                  <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.15] max-w-2xl">
+                  <h1 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl xl:text-6xl leading-[1.15] max-w-2xl">
                     Technology That <br className="hidden sm:inline" />
                     Fits Your Everyday Life
                   </h1>
