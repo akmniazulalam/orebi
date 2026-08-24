@@ -157,7 +157,7 @@ const About = () => {
       .then((products) => {
         if (!isMounted) return;
         if (Array.isArray(products) && products.length > 0) {
-          setFeaturedProducts(products.slice(4, 7));
+          setFeaturedProducts(products.slice(0, 3));
         }
       })
       .catch(() => {})
