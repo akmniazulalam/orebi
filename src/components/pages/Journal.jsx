@@ -228,14 +228,14 @@ const Journal = () => {
                 className="group relative cursor-pointer overflow-hidden rounded-3xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#121429] shadow-sm dark:shadow-xl transition duration-300 hover:border-indigo-500/50 hover:shadow-md dark:hover:shadow-2xl">
                 <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
                   {/* Left/Image Area */}
-                  <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:aspect-auto lg:col-span-7 overflow-hidden bg-gray-100 dark:bg-[#121429]">
+                  <div className="relative aspect-16/10 sm:aspect-video lg:aspect-auto lg:col-span-7 overflow-hidden bg-gray-100 dark:bg-[#121429]">
                     <img
                       src={featuredArticle.image}
                       alt={featuredArticle.title}
                       className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                       loading="lazy"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent lg:hidden" />
+                    <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent lg:hidden" />
                     <div className="absolute top-4 left-4">
                       <span className="rounded-full bg-black/70 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white backdrop-blur-md">
                         {featuredArticle.category} • Featured
@@ -564,7 +564,7 @@ const Journal = () => {
             </div>
 
             {/* Hero Image */}
-            <div className="my-8 aspect-[16/9] w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-[#121429]">
+            <div className="my-8 aspect-video w-full overflow-hidden rounded-2xl bg-gray-100 dark:bg-[#121429]">
               <img
                 src={activeArticle.image}
                 alt={activeArticle.title}
