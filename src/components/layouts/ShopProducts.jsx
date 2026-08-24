@@ -442,7 +442,7 @@ function ProductCard({ product }) {
                 {colors.map((color) => (
                   <span
                     key={color}
-                    className="rounded-full border border-infoBg dark:border-white/10 px-2 py-1 font-dmSans text-[11px] text-header/70">
+                    className="rounded-full border bg-white dark:bg-white/10 dark:border-white/10 px-2 py-1 font-dmSans text-[11px] text-header/70">
                     {color}
                   </span>
                 ))}
@@ -453,12 +453,12 @@ function ProductCard({ product }) {
                 {sizes.map((size) => (
                   <span
                     key={size}
-                    className="rounded-full bg-infoBg px-2 py-1 font-dmSans text-[11px] text-header/70 dark:bg-white/10">
+                    className="rounded-full bg-white px-2 py-1 font-dmSans text-[11px] text-header/70 dark:bg-white/10">
                     {size}
                   </span>
                 ))}
                 {hasMore ? (
-                  <span className="rounded-full bg-infoBg px-2 py-1 font-dmSans text-[11px] text-header/70 dark:bg-white/10">
+                  <span className="rounded-full bg-white px-2 py-1 font-dmSans text-[11px] text-header/70 dark:bg-white/10">
                     More
                   </span>
                 ) : null}
