@@ -5,6 +5,7 @@ export const JOURNAL_CATEGORIES = [
   { id: "smartphones", name: "Smartphones", query: "smartphones" },
   { id: "accessories", name: "Accessories", query: "accessories" },
   { id: "smartwatches", name: "Smartwatches", query: "smartwatches" },
+  { id: "monitors", name: "Monitors", query: "monitors" },
 ];
 
 export const JOURNAL_ARTICLES = [
@@ -25,7 +26,7 @@ export const JOURNAL_ARTICLES = [
     image:
       "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?q=80&w=1200&auto=format&fit=crop",
     excerpt:
-      "From Bluetooth LE Audio and Snapdragon Sound to true lossless streaming over low-latency connections, wireless headphones have finally closed the gap with wired studio monitors.",
+      "From Bluetooth LE Audio and Snapdragon Sound to true lossless streaming over low-latency connections, wireless headphones have finally closed the gap with wired studio setups.",
     tags: ["Audio", "Noise Cancellation", "Buying Guide", "Wireless"],
     content: {
       intro:
@@ -44,7 +45,7 @@ export const JOURNAL_ARTICLES = [
         {
           heading: "3. Spatial Audio with Dynamic Head Tracking",
           body:
-            "Spatial sound uses gyroscope and accelerometer data to pin the soundstage in 3D space around your head. Whether watching 4K HDR cinema or gaming on ultra-wide monitors, dynamic head tracking creates an acoustic depth that feels as though audio is emanating from discrete physical speakers in the room.",
+            "Spatial sound uses gyroscope and accelerometer data to pin the soundstage in 3D space around your head. Whether watching 4K HDR cinema or gaming on ultra-wide screens, dynamic head tracking creates an acoustic depth that feels as though audio is emanating from discrete physical speakers in the room.",
         },
       ],
       keyTakeaways: [
@@ -398,6 +399,49 @@ export const JOURNAL_ARTICLES = [
       ],
       conclusion:
         "Once you experience the crisp feel and customized sound of a tuned mechanical keyboard, returning to a standard office keyboard is almost impossible.",
+    },
+  },
+  {
+    id: "monitor-buying-guide",
+    featured: false,
+    title: "Monitor Buying Guide: Resolution, Refresh Rate, and Response Time",
+    slug: "monitor-buying-guide",
+    category: "Monitors",
+    categoryQuery: "monitors",
+    readTime: "6 min read",
+    date: "Aug 15, 2026",
+    author: {
+      name: "Alex Johnson",
+      role: "Tech Reviewer",
+      avatar: "AJ",
+    },
+    image:
+      "https://images.unsplash.com/photo-1593640408182-31c70c8268f5?q=80&w=1200&auto=format&fit=crop",
+    excerpt:
+      "Navigate the world of displays with confidence. Understand resolution, refresh rate, and response time to find the perfect monitor for your needs.",
+    tags: ["Monitors", "Display", "Technology", "Buying Guide"],
+    content: {
+      intro:
+        "Choosing the right monitor can significantly impact your productivity and entertainment experience. With a wide array of options available, understanding the key specifications is crucial.",
+      sections: [
+        {
+          heading: "Resolution Matters",
+          body:
+            "Higher resolutions like 4K (3840x2160) provide sharper images and more screen real estate, ideal for multitasking and detailed work.",
+        },
+        {
+          heading: "Refresh Rate and Response Time",
+          body:
+            "A higher refresh rate (e.g., 144Hz or 240Hz) ensures smoother motion in fast-paced games, while a lower response time (e.g., 1ms) reduces motion blur.",
+        },
+      ],
+      keyTakeaways: [
+        "Consider your primary use case when selecting resolution—4K for detailed work or gaming.",
+        "For competitive gaming, prioritize a high refresh rate and low response time.",
+        "Ensure the monitor's connectivity options match your setup (HDMI, DisplayPort).",
+      ],
+      conclusion:
+        "Investing in a quality monitor pays off in terms of visual comfort and performance. Take the time to research and compare options to find the best fit for your lifestyle.",
     },
   },
 ];

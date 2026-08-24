@@ -19,6 +19,7 @@ import {
   ShoppingBag,
   ArrowUpRight,
   Filter,
+  Monitor,
 } from "lucide-react";
 import toast from "react-hot-toast";
 import Container from "../Container";
@@ -32,6 +33,7 @@ const CATEGORY_ICONS = {
   smartphones: Smartphone,
   accessories: Mouse,
   smartwatches: Watch,
+  monitors: Monitor,
 };
 
 const Journal = () => {
