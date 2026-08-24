@@ -425,11 +425,13 @@ const ProductDetails = () => {
             {singleProduct.category && (
               <>
                 <ChevronRight className="w-3.5 h-3.5" />
-                <span className="capitalize">{singleProduct.category}</span>
+                <Link to={`/shop?category=${encodeURIComponent(singleProduct.category)}&page=1`} className="capitalize">
+                  {singleProduct.category}
+                </Link>
               </>
             )}
             <ChevronRight className="w-3.5 h-3.5" />
-            <span className="font-semibold text-menuHeading dark:text-white truncate max-w-[200px] md:max-w-[400px]">
+            <span className="font-semibold text-menuHeading dark:text-white truncate max-w-50 md:max-w-100">
               {singleProduct.name}
             </span>
           </nav>
