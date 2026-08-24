@@ -383,7 +383,7 @@ function ProductCard({ product }) {
   };
 
   return (
-    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-infoBg dark:border-white/10 bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-[#121429]">
+    <article className="group flex h-full flex-col overflow-hidden rounded-2xl border border-infoBg dark:border-white/10 bg-infoBg shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl dark:bg-[#121429]">
       <div className="relative aspect-4/5 overflow-hidden bg-infoBg">
         {display.image ? (
           <img
@@ -429,7 +429,7 @@ function ProductCard({ product }) {
             {display.price}
           </p>
           {display.variantCount > 0 ? (
-            <span className="rounded-full bg-infoBg px-2.5 py-1 font-dmSans text-xs text-header/70 dark:bg-white/10">
+            <span className="rounded-full bg-white px-2.5 py-1 font-dmSans text-xs text-header/70 dark:bg-white/10">
               {display.variantCount} variant{display.variantCount === 1 ? "" : "s"}
             </span>
           ) : null}
