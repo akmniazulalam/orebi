@@ -8,6 +8,7 @@ import {
   Watch,
   Keyboard,
   Mouse,
+  Monitor,
   BatteryCharging,
   Sparkles,
   ShoppingBag,
@@ -69,6 +70,14 @@ const CATEGORY_CARDS = [
     icon: Watch,
     query: "smartwatches",
     description: "Track your health, stay active & live smarter every day.",
+  },
+  {
+    num: "06",
+    id: "monitors",
+    name: "Monitors",
+    icon: Monitor,
+    query: "monitors",
+    description: "High-quality displays for work, gaming, and entertainment.",
   },
 ];
 
@@ -241,7 +250,7 @@ const About = () => {
                 </p>
 
                 {/* Horizontal Category Nav Bar */}
-                <div className="pt-4 border-t border-gray-200 dark:border-white/10 flex flex-wrap items-center gap-x-6 gap-y-4 text-xs sm:text-sm font-semibold">
+                <div className="pt-4 border-t border-gray-200 dark:border-white/10 flex flex-wrap items-center gap-x-5 gap-y-4 text-xs sm:text-sm font-semibold">
                   {[
                     { label: "Audio", icon: Headphones, query: "audio" },
                     { label: "Laptops", icon: Laptop, query: "laptops" },
@@ -255,6 +264,11 @@ const About = () => {
                       label: "Smartwatches",
                       icon: Watch,
                       query: "smartwatches",
+                    },
+                    {
+                      label: "Monitors",
+                      icon: Monitor,
+                      query: "monitors",
                     },
                   ].map((cat, idx, arr) => {
                     const CatIcon = cat.icon;
@@ -290,8 +304,8 @@ const About = () => {
               </h2>
             </div>
 
-            {/* 5-Column Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 lg:gap-6">
+            {/* 4-Column Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
               {CATEGORY_CARDS.map((cat) => {
                 const IconComp = cat.icon;
                 return (
