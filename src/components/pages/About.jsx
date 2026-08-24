@@ -50,7 +50,8 @@ const CATEGORY_CARDS = [
     name: "Smartphones",
     icon: Smartphone,
     query: "smartphones",
-    description: "Modern devices with advanced cameras & seamless connectivity.",
+    description:
+      "Modern devices with advanced cameras & seamless connectivity.",
   },
   {
     num: "04",
@@ -125,7 +126,7 @@ const About = () => {
   const [isDark, setIsDark] = useState(() =>
     typeof document !== "undefined"
       ? document.documentElement.classList.contains("dark")
-      : false
+      : false,
   );
 
   useEffect(() => {
@@ -177,7 +178,6 @@ const About = () => {
       {/* Outer wrapper: bg-background (white in light, #0B0D17 in dark) */}
       <div className="bg-background text-foreground font-dmSans pb-10 pt-8">
         <Container className="space-y-16 sm:space-y-20 lg:space-y-24">
-
           {/* ================= 1. HERO SECTION ================= */}
           {/* Hero uses theme-responsive background image */}
           <section
@@ -267,7 +267,9 @@ const About = () => {
                           <span>{cat.label}</span>
                         </Link>
                         {idx < arr.length - 1 && (
-                          <span className="text-gray-300 dark:text-slate-600">•</span>
+                          <span className="text-gray-300 dark:text-slate-600">
+                            •
+                          </span>
                         )}
                       </React.Fragment>
                     );
@@ -501,7 +503,6 @@ const About = () => {
               </div>
             </div>
           </section>
-
         </Container>
       </div>
     </>
