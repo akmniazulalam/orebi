@@ -342,14 +342,16 @@ const ProductDetails = () => {
   // Synchronize local wishlist state whenever product or wishlist store items change
   useEffect(() => {
     if (singleProduct?._id) {
-      const exists = wishlistItems.some((item) => item._id === singleProduct._id);
+      const exists = wishlistItems.some(
+        (item) => item._id === singleProduct._id,
+      );
       setIsWishlisted(exists);
     }
   }, [singleProduct, wishlistItems]);
 
   const toggleWishlist = () => {
     if (!singleProduct?._id) return;
-    
+
     const nextState = !isWishlisted;
     // 1. Immediate React UI update
     setIsWishlisted(nextState);
@@ -359,9 +361,15 @@ const ProductDetails = () => {
 
     // 3. Exactly one toast notification per click
     if (nextState) {
-      toast.success("Added to Wishlist", { icon: "❤️", id: `wl-toast-${singleProduct._id}` });
+      toast.success("Added to Wishlist", {
+        icon: "❤️",
+        id: `wl-toast-${singleProduct._id}`,
+      });
     } else {
-      toast("Removed from Wishlist", { icon: "🤍", id: `wl-toast-${singleProduct._id}` });
+      toast("Removed from Wishlist", {
+        icon: "🤍",
+        id: `wl-toast-${singleProduct._id}`,
+      });
     }
   };
 
@@ -401,9 +409,9 @@ const ProductDetails = () => {
   }
 
   const price = Number(selectedVariant?.price ?? 0);
+  const salePrice = Number(selectedVariant?.salePrice ?? 0);
   const formattedPrice = `$${price.toFixed(2)}`;
-  // Comparison price for discount badge preview
-  const originalPrice = price > 0 ? (price * 1.25).toFixed(2) : null;
+  const formattedSalePrice = `$${salePrice.toFixed(2)}`;
 
   return (
     <div className="bg-white dark:bg-[#151921] transition-colors duration-300">
@@ -425,7 +433,9 @@ const ProductDetails = () => {
             {singleProduct.category && (
               <>
                 <ChevronRight className="w-3.5 h-3.5" />
-                <Link to={`/shop?category=${encodeURIComponent(singleProduct.category)}&page=1`} className="capitalize">
+                <Link
+                  to={`/shop?category=${encodeURIComponent(singleProduct.category)}&page=1`}
+                  className="capitalize">
                   {singleProduct.category}
                 </Link>
               </>
@@ -523,12 +533,12 @@ const ProductDetails = () => {
             {/* Price & Stock Pill */}
             <div className="flex items-baseline gap-4 py-2 border-y border-gray-100 dark:border-white/10">
               <span className="text-3xl font-bold font-dmSans text-menuHeading dark:text-white">
-                {formattedPrice}
+                {salePrice > 0 ? formattedSalePrice : formattedPrice}
               </span>
 
-              {originalPrice && (
+              {salePrice > 0 && (
                 <span className="text-lg font-dmSans text-header/50 line-through">
-                  ${originalPrice}
+                  ${price.toFixed(2)}
                 </span>
               )}
 
@@ -882,7 +892,9 @@ const ProductDetails = () => {
               <button
                 type="button"
                 onClick={toggleWishlist}
-                aria-label={isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
+                aria-label={
+                  isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"
+                }
                 aria-pressed={isWishlisted}
                 className={`min-h-13 sm:w-auto w-full px-5 rounded-xl border-2 font-dmSans font-bold text-sm flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shrink-0 ${
                   isWishlisted
