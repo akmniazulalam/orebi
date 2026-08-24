@@ -444,7 +444,7 @@ const ProductDetails = () => {
           {/* LEFT COLUMN: Gallery (7 Cols) */}
           <div className="lg:col-span-7 space-y-4">
             {/* Primary Main Image Frame */}
-            <div className="relative aspect-square md:aspect-[4/3] w-full rounded-2xl overflow-hidden bg-[#F5F5F3] dark:bg-[#1E232E] border border-gray-100 dark:border-white/10 flex items-center justify-center p-6 transition-all">
+            <div className="relative aspect-square md:aspect-4/3 w-full rounded-2xl overflow-hidden bg-[#F5F5F3] dark:bg-[#1E232E] border border-gray-100 dark:border-white/10 flex items-center justify-center p-6 transition-all">
               {/* Badge overlay */}
               {selectedVariant?.badge && (
                 <span className="absolute top-4 left-4 z-10 uppercase px-3 py-1 bg-menuHeading text-white dark:text-[#262626] font-dmSans font-bold text-xs tracking-wider rounded-lg shadow-sm">
@@ -456,7 +456,7 @@ const ProductDetails = () => {
                 <img
                   src={activeImage}
                   alt={singleProduct.name}
-                  className="w-full h-full object-contain max-h-[480px] hover:scale-105 transition-transform duration-500 ease-out"
+                  className="w-full h-full object-contain max-h-120 hover:scale-105 transition-transform duration-500 ease-out"
                 />
               ) : (
                 <Package className="w-24 h-24 text-gray-300 dark:text-gray-600" />
@@ -471,7 +471,7 @@ const ProductDetails = () => {
                     key={`${img}-${idx}`}
                     type="button"
                     onClick={() => setActiveImage(img)}
-                    className={`relative w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden bg-[#F5F5F3] dark:bg-[#1E232E] border-2 transition-all flex-shrink-0 cursor-pointer ${
+                    className={`relative w-20 h-20 md:w-24 md:h-24 rounded-xl overflow-hidden bg-[#F5F5F3] dark:bg-[#1E232E] border-2 transition-all shrink-0 cursor-pointer ${
                       activeImage === img
                         ? "border-menuHeading dark:border-white shadow-md scale-95"
                         : "border-transparent opacity-70 hover:opacity-100"
@@ -722,7 +722,7 @@ const ProductDetails = () => {
                     : resetting
                       ? "overflow-hidden"
                       : "overflow-visible"
-                } min-h-[52px] flex-1 rounded-xl text-white bg-menuHeading dark:bg-white dark:text-menuHeading text-base font-bold font-dmSans cursor-pointer transition-all duration-300 flex items-center justify-center shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-95`}>
+                } min-h-13 flex-1 rounded-xl text-white bg-menuHeading dark:bg-white dark:text-menuHeading text-base font-bold font-dmSans cursor-pointer transition-all duration-300 flex items-center justify-center shadow-lg disabled:opacity-50 disabled:cursor-not-allowed hover:opacity-95`}>
                 {/* TEXT */}
                 <motion.span
                   initial={false}
@@ -762,7 +762,7 @@ const ProductDetails = () => {
                       animate={{ opacity: 1, scaleX: 1 }}
                       exit={{ opacity: 0, scaleX: 0.8 }}
                       transition={{ duration: 0.18, ease: "easeOut" }}
-                      className="absolute left-1/2 top-[-19px] -translate-x-1/2 z-40 pointer-events-none">
+                      className="absolute left-1/2 -top-4.75 -translate-x-1/2 z-40 pointer-events-none">
                       <div className="relative w-32 h-6">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -870,7 +870,7 @@ const ProductDetails = () => {
                         className="absolute left-2.5 top-2 z-20">
                         <Check
                           size={11}
-                          className="text-emerald-500 stroke-[4]"
+                          className="text-emerald-500 stroke-4"
                         />
                       </motion.div>
                     )}
@@ -884,13 +884,13 @@ const ProductDetails = () => {
                 onClick={toggleWishlist}
                 aria-label={isWishlisted ? "Remove from Wishlist" : "Add to Wishlist"}
                 aria-pressed={isWishlisted}
-                className={`min-h-[52px] sm:w-auto w-full px-5 rounded-xl border-2 font-dmSans font-bold text-sm flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer flex-shrink-0 ${
+                className={`min-h-13 sm:w-auto w-full px-5 rounded-xl border-2 font-dmSans font-bold text-sm flex items-center justify-center gap-2 transition-all duration-200 cursor-pointer shrink-0 ${
                   isWishlisted
                     ? "border-rose-400 bg-rose-50 dark:bg-rose-950/40 text-rose-600 dark:text-rose-400"
                     : "border-gray-200 dark:border-white/15 bg-white dark:bg-[#1E232E] text-menuHeading dark:text-white hover:border-rose-300 hover:bg-rose-50 hover:text-rose-600 dark:hover:border-rose-400 dark:hover:bg-rose-950/20 dark:hover:text-rose-400"
                 }`}>
                 <Heart
-                  className={`w-5 h-5 flex-shrink-0 transition-colors duration-200 ${
+                  className={`w-5 h-5 shrink-0 transition-colors duration-200 ${
                     isWishlisted ? "fill-rose-500 text-rose-500" : ""
                   }`}
                 />
@@ -903,7 +903,7 @@ const ProductDetails = () => {
             {/* TRUST & SERVICE PROMISES */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-6 border-t border-gray-100 dark:border-white/10 font-dmSans">
               <div className="flex items-center gap-2.5 p-3 rounded-xl bg-gray-50 dark:bg-[#1E232E]/60">
-                <Truck className="w-5 h-5 text-menuHeading dark:text-white flex-shrink-0" />
+                <Truck className="w-5 h-5 text-menuHeading dark:text-white shrink-0" />
                 <div>
                   <h4 className="text-xs font-bold text-menuHeading dark:text-white">
                     Free Express Shipping
@@ -914,7 +914,7 @@ const ProductDetails = () => {
                 </div>
               </div>
               <div className="flex items-center gap-2.5 p-3 rounded-xl bg-gray-50 dark:bg-[#1E232E]/60">
-                <RotateCcw className="w-5 h-5 text-menuHeading dark:text-white flex-shrink-0" />
+                <RotateCcw className="w-5 h-5 text-menuHeading dark:text-white shrink-0" />
                 <div>
                   <h4 className="text-xs font-bold text-menuHeading dark:text-white">
                     30-Day Easy Returns
@@ -925,7 +925,7 @@ const ProductDetails = () => {
                 </div>
               </div>
               <div className="flex items-center gap-2.5 p-3 rounded-xl bg-gray-50 dark:bg-[#1E232E]/60">
-                <ShieldCheck className="w-5 h-5 text-menuHeading dark:text-white flex-shrink-0" />
+                <ShieldCheck className="w-5 h-5 text-menuHeading dark:text-white shrink-0" />
                 <div>
                   <h4 className="text-xs font-bold text-menuHeading dark:text-white">
                     100% Secure Checkout
@@ -1004,7 +1004,7 @@ const ProductDetails = () => {
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
                   <div className="flex items-start gap-3 p-4 rounded-xl bg-gray-50 dark:bg-[#1E232E]">
-                    <Sparkles className="w-5 h-5 text-menuHeading dark:text-white flex-shrink-0 mt-0.5" />
+                    <Sparkles className="w-5 h-5 text-menuHeading dark:text-white shrink-0 mt-0.5" />
                     <div>
                       <h4 className="font-bold text-menuHeading dark:text-white text-sm mb-1">
                         Premium Craftsmanship
@@ -1016,7 +1016,7 @@ const ProductDetails = () => {
                     </div>
                   </div>
                   <div className="flex items-start gap-3 p-4 rounded-xl bg-gray-50 dark:bg-[#1E232E]">
-                    <Layers className="w-5 h-5 text-menuHeading dark:text-white flex-shrink-0 mt-0.5" />
+                    <Layers className="w-5 h-5 text-menuHeading dark:text-white shrink-0 mt-0.5" />
                     <div>
                       <h4 className="font-bold text-menuHeading dark:text-white text-sm mb-1">
                         Versatile Design
