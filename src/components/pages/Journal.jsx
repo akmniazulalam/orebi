@@ -389,7 +389,7 @@ const Journal = () => {
                     className="group flex flex-col justify-between rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#121429] p-5 sm:p-6 shadow-sm dark:shadow-xl transition duration-300 hover:border-indigo-500/50 hover:shadow-md dark:hover:shadow-2xl cursor-pointer">
                     <div className="space-y-4">
                       {/* Image container */}
-                      <div className="relative aspect-[16/10] w-full overflow-hidden rounded-xl bg-gray-100 dark:bg-[#121429]">
+                      <div className="relative aspect-16/10 w-full overflow-hidden rounded-xl bg-gray-100 dark:bg-[#121429]">
                         <img
                           src={article.image}
                           alt={article.title}
