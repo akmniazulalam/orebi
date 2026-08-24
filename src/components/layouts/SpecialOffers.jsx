@@ -106,7 +106,7 @@ const SpecialOffers = () => {
                     <Heading
                       text={item.name}
                       className={
-                        "font-dmSans font-bold text-base text-menuHeading"
+                        "font-dmSans font-bold text-base text-menuHeading truncate sm:w-80.5 lg:w-73"
                       }
                       as={"h4"}
                     />
