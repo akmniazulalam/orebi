@@ -466,7 +466,7 @@ const Journal = () => {
           </section>
 
           {/* ================= 6. NEWSLETTER / CTA SECTION ================= */}
-          <section className="relative overflow-hidden rounded-3xl border border-gray-200 dark:border-white/10 bg-gradient-to-br from-gray-50 via-white to-gray-100 dark:from-[#121429] dark:via-[#161833] dark:to-[#0D0F1F] p-8 sm:p-12 lg:p-16 shadow-sm dark:shadow-2xl">
+          <section className="relative overflow-hidden rounded-3xl border border-gray-200 dark:border-white/10 bg-linear-to-br from-gray-50 via-white to-gray-100 dark:from-[#121429] dark:via-[#161833] dark:to-[#0D0F1F] p-8 sm:p-12 lg:p-16 shadow-sm dark:shadow-2xl">
             <div className="pointer-events-none absolute right-0 top-0 h-72 w-72 rounded-full bg-indigo-500/10 blur-[100px]" />
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
