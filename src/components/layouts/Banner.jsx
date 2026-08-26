@@ -148,7 +148,7 @@ const Banner = () => {
                 className="relative w-full bg-cover bg-right md:bg-center bg-no-repeat flex items-center transition-[background-image] duration-300"
                 style={{ backgroundImage: `url(${bgImage})` }}>
                 {/* Subtle mobile readability gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-r from-bHeaderBg/90 via-bHeaderBg/55 to-transparent dark:from-[#0B0D17]/90 dark:via-[#0B0D17]/55 dark:to-transparent md:hidden pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-r from-bHeaderBg/90 via-bHeaderBg/55 to-transparent dark:from-[#0B0D17]/90 dark:via-[#0B0D17]/55 dark:to-transparent md:hidden pointer-events-none" />
 
                 {/* Content Container positioned on clean negative space (left side) */}
                 <div className="w-full max-w-7xl mx-auto px-6 sm:px-10 md:px-16 lg:px-20 xl:px-24">
