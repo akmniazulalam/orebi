@@ -145,7 +145,7 @@ const Banner = () => {
           return (
             <div key={slide.id} className="outline-none focus:outline-none">
               <div
-                className="relative w-full bg-cover bg-right md:bg-center bg-no-repeat min-h-[420px] sm:min-h-[480px] md:min-h-[540px] lg:min-h-[600px] xl:min-h-[660px] flex items-center transition-[background-image] duration-300"
+                className="relative w-full bg-cover bg-right md:bg-center bg-no-repeat flex items-center transition-[background-image] duration-300"
                 style={{ backgroundImage: `url(${bgImage})` }}>
                 {/* Subtle mobile readability gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-r from-bHeaderBg/90 via-bHeaderBg/55 to-transparent dark:from-[#0B0D17]/90 dark:via-[#0B0D17]/55 dark:to-transparent md:hidden pointer-events-none" />
