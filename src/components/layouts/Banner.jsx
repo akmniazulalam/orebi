@@ -163,7 +163,7 @@ const Banner = () => {
                       {slide.title}
                     </h2>
 
-                    <p className="text-xs sm:text-sm md:text-base text-menuHeading dark:text-slate-300 leading-relaxed font-normal font-dmSans max-w-xs sm:max-w-sm md:max-w-md">
+                    <p className="text-xs sm:text-sm md:text-base text-menuHeading dark:text-slate-300 leading-relaxed font-medium font-dmSans max-w-xs sm:max-w-sm md:max-w-md">
                       {slide.description}
                     </p>
 
