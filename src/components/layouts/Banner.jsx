@@ -137,7 +137,9 @@ const Banner = () => {
   };
 
   return (
-    <section aria-label="Hero Showcase Slider" className="relative overflow-hidden">
+    <section
+      aria-label="Hero Showcase Slider"
+      className="relative overflow-hidden">
       <Slider ref={sliderRef} {...settings}>
         {SLIDES.map((slide) => {
           const bgImage = isDark ? slide.darkImage : slide.lightImage;
