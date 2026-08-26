@@ -155,7 +155,7 @@ const Banner = () => {
                 {/* Content Container positioned on clean negative space (left side) */}
                 <div className="w-full max-w-7xl mx-auto">
                   <div className="max-w-[85%] sm:max-w-md md:max-w-lg lg:max-w-138 py-12 sm:py-16 md:py-20 space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 relative z-10">
-                    <span className="text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.22em] text-header dark:text-gray-300 font-dmSans block">
+                    <span className="text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.22em] text-menuHeading dark:text-gray-300 font-dmSans block">
                       {slide.eyebrow}
                     </span>
 
@@ -163,7 +163,7 @@ const Banner = () => {
                       {slide.title}
                     </h2>
 
-                    <p className="text-xs sm:text-sm md:text-base text-header dark:text-slate-300 leading-relaxed font-normal font-dmSans max-w-xs sm:max-w-sm md:max-w-md">
+                    <p className="text-xs sm:text-sm md:text-base text-menuHeading dark:text-slate-300 leading-relaxed font-normal font-dmSans max-w-xs sm:max-w-sm md:max-w-md">
                       {slide.description}
                     </p>
 
