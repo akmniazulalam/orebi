@@ -1,6 +1,13 @@
-import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import { useState, useRef } from "react";
+import { Link } from "react-router-dom";
+import bannerOneLight from "/src/assets/home_hero_one_light.png";
+import bannerTwoLight from "/src/assets/home_hero_two_light.png";
+import bannerThreeLight from "/src/assets/home_hero_three_light.png";
+import bannerOneDark from "/src/assets/home_hero_one_dark.png";
+import bannerTwoDark from "/src/assets/home_hero_two_dark.png";
+import bannerThreeDark from "/src/assets/home_hero_three_dark.png";
+
 
 const Banner = () => {
   const [currentSlide, setCurrentSlide] = useState(1);
