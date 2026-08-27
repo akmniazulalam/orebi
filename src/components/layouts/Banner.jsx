@@ -170,7 +170,6 @@ const Banner = () => {
               <div
                 className="relative w-full min-h-115 md:min-h-0 2xl:h-119 xl:h-101 lg:h-81 md:h-61 sm:h-57.5 xs:h-50 bg-cover bg-center bg-no-repeat flex items-center transition-[background-image] duration-300"
                 style={{ backgroundImage: `url(${bgImage})` }}>
-
                 {/* Content Container positioned on clean negative space */}
                 <div className="relative w-full 2xl:max-w-315 xl:max-w-5xl lg:max-w-3xl md:max-w-xl sm:max-w-xl xs:max-w-xs 2xs:max-w-sm mx-auto">
                   <div className="max-w-[85%] sm:max-w-md md:max-w-lg lg:max-w-138 py-12 sm:py-16 md:py-20 xs:space-y-2.5 md:space-y-2.5 lg:space-y-5 relative z-10">
