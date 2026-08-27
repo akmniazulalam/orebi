@@ -11,6 +11,14 @@ import bannerOneDark from "@/assets/home_hero_one_dark.png";
 import bannerTwoDark from "@/assets/home_hero_two_dark.png";
 import bannerThreeDark from "@/assets/home_hero_three_dark.png";
 
+import bannerOneMobileLight from "@/assets/home_hero_one_mobile_light.png";
+import bannerTwoMobileLight from "@/assets/home_hero_two_mobile_light.png";
+import bannerThreeMobileLight from "@/assets/home_hero_three_mobile_light.png";
+
+import bannerOneMobileDark from "@/assets/home_hero_one_mobile_dark.png";
+import bannerTwoMobileDark from "@/assets/home_hero_two_mobile_dark.png";
+import bannerThreeMobileDark from "@/assets/home_hero_three_mobile_dark.png";
+
 const SLIDES = [
   {
     id: 1,
