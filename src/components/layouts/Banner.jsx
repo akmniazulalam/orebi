@@ -147,32 +147,32 @@ const Banner = () => {
           return (
             <div key={slide.id} className="outline-none focus:outline-none">
               <div
-                className="relative w-full bg-cover bg-right md:bg-center bg-no-repeat flex items-center transition-[background-image] duration-300"
+                className="relative w-full 2xl:h-119 xl:h-100 lg:h-80 md:h-60 sm:h-40 xs:h-50 bg-cover bg-center bg-no-repeat flex items-center transition-[background-image] duration-300"
                 style={{ backgroundImage: `url(${bgImage})` }}>
                 {/* Subtle mobile readability gradient overlay */}
-                <div className="absolute inset-0 bg-linear-to-r from-bHeaderBg/90 via-bHeaderBg/55 to-transparent dark:from-[#0B0D17]/90 dark:via-[#0B0D17]/55 dark:to-transparent md:hidden pointer-events-none" />
+                {/* <div className="absolute inset-0 bg-linear-to-r from-bHeaderBg/90 via-bHeaderBg/55 to-transparent dark:from-[#0B0D17]/90 dark:via-[#0B0D17]/55 dark:to-transparent md:hidden pointer-events-none" /> */}
 
                 {/* Content Container positioned on clean negative space (left side) */}
-                <div className="w-full max-w-7xl mx-auto">
-                  <div className="max-w-[85%] sm:max-w-md md:max-w-lg lg:max-w-138 py-12 sm:py-16 md:py-20 space-y-3 sm:space-y-4 md:space-y-5 lg:space-y-6 relative z-10">
-                    <span className="text-[11px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.22em] text-menuHeading dark:text-gray-300 font-dmSans block">
+                <div className="w-full 2xl:max-w-7xl xl:max-w-5xl lg:max-w-3xl md:max-w-xl sm:max-w-md xs:max-w-xs mx-auto">
+                  <div className="max-w-[85%] sm:max-w-md md:max-w-lg lg:max-w-138 py-12 sm:py-16 md:py-20 space-y-1 sm:space-y-4 md:space-y-5 lg:space-y-6 relative z-10">
+                    <span className="xs:text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.22em] text-menuHeading dark:text-gray-300 font-dmSans block">
                       {slide.eyebrow}
                     </span>
 
-                    <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-menuHeading dark:text-white leading-[1.14] font-dmSans">
+                    <h2 className="xs:text-base sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight text-menuHeading dark:text-white leading-[1.14] font-dmSans">
                       {slide.title}
                     </h2>
 
-                    <p className="text-xs sm:text-sm md:text-base text-menuHeading dark:text-slate-300 leading-relaxed font-medium font-dmSans max-w-xs sm:max-w-sm md:max-w-md">
+                    <p className="xs:text-[10px] sm:text-sm md:text-base text-menuHeading dark:text-slate-300 sm:leading-relaxed font-medium font-dmSans max-w-xs sm:max-w-sm md:max-w-111.5">
                       {slide.description}
                     </p>
 
-                    <div className="pt-2 sm:pt-3">
+                    <div className="sm:pt-3">
                       <Link
                         to={slide.link}
-                        className="inline-flex items-center gap-2 rounded-full bg-menuHeading text-white dark:bg-white dark:text-[#262626] px-6 sm:px-8 py-3 sm:py-3.5 text-xs sm:text-sm font-bold font-dmSans shadow-md hover:bg-black/85 dark:hover:bg-white/90 hover:shadow-lg transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2">
+                        className="inline-flex items-center gap-1 md:gap-2 rounded-full bg-menuHeading text-white dark:bg-white dark:text-[#262626] px-2 sm:px-8 py-1 sm:py-3.5 xs:text-[8px] sm:text-sm font-bold font-dmSans shadow-md hover:bg-black/85 dark:hover:bg-white/90 hover:shadow-lg transition-all duration-300 group focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2">
                         <span>{slide.buttonText}</span>
-                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                        <ArrowRight className="h-2 w-2 md:h-4 md:w-4 transition-transform duration-300 group-hover:translate-x-1" />
                       </Link>
                     </div>
                   </div>
