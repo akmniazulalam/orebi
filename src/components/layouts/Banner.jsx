@@ -24,6 +24,8 @@ const SLIDES = [
     id: 1,
     lightImage: bannerOneLight,
     darkImage: bannerOneDark,
+    mobileLightImage: bannerOneMobileLight,
+    mobileDarkImage: bannerOneMobileDark,
     eyebrow: "WORKSPACE ESSENTIALS",
     title: "Build Your Perfect Workspace",
     description:
@@ -35,6 +37,8 @@ const SLIDES = [
     id: 2,
     lightImage: bannerTwoLight,
     darkImage: bannerTwoDark,
+    mobileLightImage: bannerTwoMobileLight,
+    mobileDarkImage: bannerTwoMobileDark,
     eyebrow: "GAMING COLLECTION",
     title: "Level Up Your Gaming Setup",
     description:
@@ -46,6 +50,8 @@ const SLIDES = [
     id: 3,
     lightImage: bannerThreeLight,
     darkImage: bannerThreeDark,
+    mobileLightImage: bannerThreeMobileLight,
+    mobileDarkImage: bannerThreeMobileDark,
     eyebrow: "PREMIUM TECH",
     title: "Upgrade Your Everyday Setup",
     description:
@@ -91,7 +97,7 @@ const Banner = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Responsive state for progress bar orientation
+  // Responsive state for progress bar orientation & mobile image selection (< 768px)
   const [isMobile, setIsMobile] = useState(() =>
     typeof window !== "undefined" ? window.innerWidth < 768 : false,
   );
@@ -150,17 +156,22 @@ const Banner = () => {
       className="relative overflow-hidden">
       <Slider ref={sliderRef} {...settings}>
         {SLIDES.map((slide) => {
-          const bgImage = isDark ? slide.darkImage : slide.lightImage;
+          // Select mobile images on < 768px and desktop images on >= 768px with theme support
+          const bgImage = isMobile
+            ? isDark
+              ? slide.mobileDarkImage
+              : slide.mobileLightImage
+            : isDark
+              ? slide.darkImage
+              : slide.lightImage;
 
           return (
             <div key={slide.id} className="outline-none focus:outline-none">
               <div
-                className="relative w-full 2xl:h-119 xl:h-101 lg:h-81 md:h-61 sm:h-57.5 xs:h-50 bg-cover bg-center bg-no-repeat flex items-center transition-[background-image] duration-300"
+                className="relative w-full min-h-[460px] md:min-h-0 2xl:h-119 xl:h-101 lg:h-81 md:h-61 sm:h-57.5 xs:h-50 bg-cover bg-center bg-no-repeat flex items-center transition-[background-image] duration-300"
                 style={{ backgroundImage: `url(${bgImage})` }}>
-                {/* Subtle mobile readability gradient overlay */}
-                {/* <div className="absolute inset-0 bg-linear-to-r from-bHeaderBg/90 via-bHeaderBg/55 to-transparent dark:from-[#0B0D17]/90 dark:via-[#0B0D17]/55 dark:to-transparent md:hidden pointer-events-none" /> */}
 
-                {/* Content Container positioned on clean negative space (left side) */}
+                {/* Content Container positioned on clean negative space */}
                 <div className="relative w-full 2xl:max-w-315 xl:max-w-5xl lg:max-w-3xl md:max-w-xl sm:max-w-xl xs:max-w-xs 2xs:max-w-sm mx-auto">
                   <div className="max-w-[85%] sm:max-w-md md:max-w-lg lg:max-w-138 py-12 sm:py-16 md:py-20 xs:space-y-2.5 md:space-y-2.5 lg:space-y-5 relative z-10">
                     <span className="xs:text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.22em] text-menuHeading dark:text-gray-300 font-dmSans block">
