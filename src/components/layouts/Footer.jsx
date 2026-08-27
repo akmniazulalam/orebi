@@ -31,7 +31,7 @@ const Footer = () => {
         <Container>
           <div className="flex flex-col lg:flex-row justify-between gap-y-10 lg:gap-y-0">
             <div className="w-full lg:w-[58%]">
-              <div className="grid grid-cols-1 sm:grid-cols-4 gap-8 md:gap-0 justify-between">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-0 justify-between">
                 <div className="menu">
                   <Heading
                     text={"Menu"}
