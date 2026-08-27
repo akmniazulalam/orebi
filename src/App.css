@@ -17,6 +17,7 @@
   --font-dmSans: "DM Sans", "sans-serif"; 
 
   --breakpoint-xs: 360px;
+  --breakpoint-2xs: 480px;
 }
 
 @theme inline {
