@@ -19,7 +19,7 @@ const SLIDES = [
     eyebrow: "WORKSPACE ESSENTIALS",
     title: "Build Your Perfect Workspace",
     description:
-      "Upgrade your setup with premium monitors, ergonomic mounts, and essentials designed for productivity and comfort.",
+      "Upgrade with premium monitors, ergonomic mounts, and essentials for productivity and comfort.",
     buttonText: "Shop Monitors",
     link: "/shop?category=laptops",
   },
@@ -101,7 +101,7 @@ const Banner = () => {
     slidesToScroll: 1,
     slidesToShow: 1,
     infinite: true,
-    autoplay: true,
+    autoplay: false,
     speed: 800,
     autoplaySpeed: 5000,
     arrows: false,
@@ -154,7 +154,7 @@ const Banner = () => {
 
                 {/* Content Container positioned on clean negative space (left side) */}
                 <div className="w-full 2xl:max-w-7xl xl:max-w-5xl lg:max-w-3xl md:max-w-xl sm:max-w-md xs:max-w-xs mx-auto">
-                  <div className="max-w-[85%] sm:max-w-md md:max-w-lg lg:max-w-138 py-12 sm:py-16 md:py-20 space-y-1 sm:space-y-4 md:space-y-5 lg:space-y-6 relative z-10">
+                  <div className="max-w-[85%] sm:max-w-md md:max-w-lg lg:max-w-138 py-12 sm:py-16 md:py-20 xs:space-y-2 sm:space-y-4 md:space-y-5 lg:space-y-6 relative z-10">
                     <span className="xs:text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.22em] text-menuHeading dark:text-gray-300 font-dmSans block">
                       {slide.eyebrow}
                     </span>
