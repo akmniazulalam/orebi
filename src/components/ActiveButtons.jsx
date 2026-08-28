@@ -6,7 +6,7 @@ import useCart from "@/store/cart";
 import { buildCartLineItem } from "@/lib/cartUtils";
 import { getPrimaryVariant } from "@/lib/productUtils";
 
-const ActiveButtons = ({ className, product }) => {
+const ActiveButtons = ({ className = "", product }) => {
   const addToCart = useCart((state) => state.addToCart);
 
   const handleAddToCart = () => {
@@ -19,27 +19,32 @@ const ActiveButtons = ({ className, product }) => {
 
   return (
     <div
-      className={`py-5 px-4.5 bg-white opacity-0 ${className}`}
+      className={`py-4 px-4 bg-white/95 dark:bg-[#121429]/95 backdrop-blur-sm opacity-0 ${className}`}
       onClick={(e) => e.preventDefault()}>
-      <Flex className={"justify-end"}>
-        <button className="font-dmSans text-base text-header dark:hover:text-[#262626] hover:text-menuHeading transition-all duration-300 hover:font-bold cursor-pointer">
+      <Flex className="justify-end items-center">
+        <button
+          type="button"
+          className="font-dmSans text-xs sm:text-sm text-header dark:text-gray-300 hover:text-menuHeading dark:hover:text-white transition-colors duration-200 hover:font-bold cursor-pointer">
           Add to Wish List
         </button>
-        <FaHeart className="text-menuHeading ml-3 dark:text-[#262626]" />
+        <FaHeart className="text-menuHeading dark:text-white ml-2.5 text-xs sm:text-sm" />
       </Flex>
-      <Flex className={"pt-4 justify-end"}>
-        <button className="font-dmSans text-base text-header pr-3 dark:hover:text-[#262626] hover:text-menuHeading transition-all duration-300 hover:font-bold cursor-pointer">
+      <Flex className="pt-3 justify-end items-center">
+        <button
+          type="button"
+          className="font-dmSans text-xs sm:text-sm text-header dark:text-gray-300 pr-2.5 hover:text-menuHeading dark:hover:text-white transition-colors duration-200 hover:font-bold cursor-pointer">
           Compare
         </button>
-        <CompareIcon />
+        <CompareIcon className="dark:text-white" />
       </Flex>
-      <Flex className={"pt-4 justify-end"}>
+      <Flex className="pt-3 justify-end items-center">
         <button
-          className="font-dmSans text-base text-header dark:hover:text-[#262626] hover:text-menuHeading transition-all duration-300 hover:font-bold cursor-pointer"
+          type="button"
+          className="font-dmSans text-xs sm:text-sm text-header dark:text-gray-300 hover:text-menuHeading dark:hover:text-white transition-colors duration-200 hover:font-bold cursor-pointer"
           onClick={handleAddToCart}>
           Add to Cart
         </button>
-        <FaShoppingCart className="text-menuHeading ml-3 dark:text-[#262626]" />
+        <FaShoppingCart className="text-menuHeading dark:text-white ml-2.5 text-xs sm:text-sm" />
       </Flex>
     </div>
   );
