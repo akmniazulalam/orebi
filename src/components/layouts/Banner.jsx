@@ -115,7 +115,7 @@ const Banner = () => {
     slidesToScroll: 1,
     slidesToShow: 1,
     infinite: true,
-    autoplay: false,
+    autoplay: true,
     speed: 800,
     autoplaySpeed: 5000,
     arrows: false,
@@ -170,7 +170,6 @@ const Banner = () => {
               <div
                 className="relative w-full h-125 xs:h-132.5 sm:h-145 md:h-61 lg:h-81 xl:h-101 2xl:h-119 bg-cover bg-bottom md:bg-center bg-no-repeat flex items-start md:items-center transition-[background-image] duration-300"
                 style={{ backgroundImage: `url(${bgImage})` }}>
-
                 {/* Content Container positioned on clean negative space */}
                 <div className="relative w-full 2xl:max-w-315 xl:max-w-5xl lg:max-w-3xl md:max-w-xl sm:max-w-xl mx-auto px-5 xs:px-6 sm:px-8 md:px-0">
                   <div className="max-w-[320px] xs:max-w-85 sm:max-w-md md:max-w-lg lg:max-w-138 pt-7 xs:pt-8 sm:pt-10 md:py-20 space-y-2 xs:space-y-2.5 sm:space-y-3 md:space-y-2.5 lg:space-y-5 relative z-10">
