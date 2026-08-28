@@ -250,31 +250,31 @@ const Header = () => {
 
           {/* Mobile Navigation Dropdown */}
           {showNav && (
-            <div className="md:hidden pt-4 pb-2 border-t border-gray-100 mt-4 animate-slide">
+            <div className="md:hidden pt-4 pb-2 border-t border-gray-100 dark:border-white/10 mt-4 animate-slide">
               <nav aria-label="Mobile Navigation">
                 <ul className="flex flex-col gap-y-3">
                   <Link to={"/"} onClick={() => setShowNav(false)}>
-                    <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
+                    <li className="font-dmSans text-header dark:text-gray-300 text-[14px] font-normal hover:text-menuHeading dark:hover:text-white hover:font-bold transition-all duration-200 py-1">
                       Home
                     </li>
                   </Link>
                   <Link to={"/shop"} onClick={() => setShowNav(false)}>
-                    <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
+                    <li className="font-dmSans text-header dark:text-gray-300 text-[14px] font-normal hover:text-menuHeading dark:hover:text-white hover:font-bold transition-all duration-200 py-1">
                       Shop
                     </li>
                   </Link>
                   <Link to={"/about"} onClick={() => setShowNav(false)}>
-                    <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
+                    <li className="font-dmSans text-header dark:text-gray-300 text-[14px] font-normal hover:text-menuHeading dark:hover:text-white hover:font-bold transition-all duration-200 py-1">
                       About
                     </li>
                   </Link>
                   <Link to={"/contacts"} onClick={() => setShowNav(false)}>
-                    <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
+                    <li className="font-dmSans text-header dark:text-gray-300 text-[14px] font-normal hover:text-menuHeading dark:hover:text-white hover:font-bold transition-all duration-200 py-1">
                       Contacts
                     </li>
                   </Link>
                   <Link to={"/journal"} onClick={() => setShowNav(false)}>
-                    <li className="font-dmSans text-header text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300 py-1">
+                    <li className="font-dmSans text-header dark:text-gray-300 text-[14px] font-normal hover:text-menuHeading dark:hover:text-white hover:font-bold transition-all duration-200 py-1">
                       Journal
                     </li>
                   </Link>
