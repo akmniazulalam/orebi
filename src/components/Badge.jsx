@@ -1,16 +1,25 @@
-import React from 'react'
+import React from "react";
 
-const Badge = ({className, badgeT}) => {
-  let bgClass = "bg-menuHeading text-white dark:bg-[#262626]"; // default
+const Badge = ({ className = "", badgeT = "" }) => {
+  if (!badgeT) return null;
 
-  if (badgeT.includes("%")) {
-    bgClass = "bg-[#778899] text-white";
-  } else if (badgeT.toLowerCase() === "sale") {
-    bgClass = "bg-[#ff9901] text-black";
+  let bgClass = "bg-menuHeading text-white dark:bg-white dark:text-[#262626]"; // default / New
+
+  const lower = String(badgeT).toLowerCase();
+  if (lower.includes("%") || lower.includes("off")) {
+    bgClass = "bg-rose-600 text-white dark:bg-rose-500";
+  } else if (lower === "sale" || lower === "hot deal") {
+    bgClass = "bg-amber-500 text-white dark:bg-amber-600";
+  } else if (lower.includes("bestseller") || lower.includes("best seller")) {
+    bgClass = "bg-menuHeading text-white dark:bg-white dark:text-[#262626]";
   }
-  return (
-    <div className={`py-2.5 px-8 ${bgClass} text-sm font-dmSans font-bold  ${className}`}>{badgeT}</div>
-  )
-}
 
-export default Badge
+  return (
+    <span
+      className={`inline-flex items-center justify-center rounded-full px-3.5 py-1 text-xs font-bold font-dmSans tracking-wide shadow-sm select-none ${bgClass} ${className}`}>
+      {badgeT}
+    </span>
+  );
+};
+
+export default Badge;
