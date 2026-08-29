@@ -52,7 +52,7 @@ const Ads = () => {
           {/* LEFT — SMARTPHONES (Large Card 780x780)                                    */}
           {/* Products located at top; clean negative space at bottom for text/CTA       */}
           {/* ========================================================================= */}
-          <div className="relative rounded-2xl overflow-hidden border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col justify-end min-h-105 sm:min-h-120 lg:min-h-full aspect-square lg:aspect-auto">
+          <div className="relative rounded-2xl overflow-hidden border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex flex-col justify-end w-full min-h-105 sm:min-h-120 lg:min-h-full aspect-square lg:aspect-auto">
             {/* Background promotional image */}
             <img
               src={isDark ? promoLeftDark : promoLeftLight}
@@ -91,7 +91,7 @@ const Ads = () => {
           {/* ========================================================================= */}
           <div className="flex flex-col gap-6 lg:gap-8 justify-between">
             {/* RIGHT TOP — MONITORS */}
-            <div className="relative rounded-2xl overflow-hidden border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex items-center min-h-55 sm:min-h-60 lg:min-h-62.5 aspect-780/370">
+            <div className="relative rounded-2xl overflow-hidden border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex items-center w-full min-h-55 sm:min-h-60 lg:min-h-62.5 aspect-780/370">
               <img
                 src={isDark ? promoRightTopDark : promoRightTopLight}
                 alt="Monitors collection"
@@ -124,7 +124,7 @@ const Ads = () => {
             </div>
 
             {/* RIGHT BOTTOM — AUDIO */}
-            <div className="relative rounded-2xl overflow-hidden border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex items-center min-h-55 sm:min-h-60 lg:min-h-62.5 aspect-780/370">
+            <div className="relative rounded-2xl overflow-hidden border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex items-center w-full min-h-55 sm:min-h-60 lg:min-h-62.5 aspect-780/370">
               <img
                 src={isDark ? promoRightBottomDark : promoRightBottomLight}
                 alt="Audio devices collection"
