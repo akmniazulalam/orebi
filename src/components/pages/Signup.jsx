@@ -258,11 +258,11 @@ const Signup = () => {
             </label>
           </div>
 
-          <div className="flex items-center gap-x-6 pt-5">
+          <div className="flex flex-wrap items-center gap-4 pt-5">
             <button
               type="submit"
               disabled={isSubmitting}
-              className="py-3 px-18 mt-6 text-white dark:text-[#262626] text-sm font-bold font-dmSans bg-menuHeading cursor-pointer border border-menuHeading disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2">
+              className="inline-flex items-center justify-center gap-2 py-3 px-10 mt-6 rounded-full bg-menuHeading text-white dark:bg-white dark:text-[#262626] text-sm font-bold font-dmSans cursor-pointer hover:opacity-90 transition-opacity duration-200 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed">
               {isSubmitting ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" />
@@ -274,7 +274,7 @@ const Signup = () => {
             </button>
             <Link
               to="/login"
-              className="py-3 px-8 mt-6 text-sm font-bold font-dmSans text-menuHeading hover:underline">
+              className="mt-6 text-sm font-dmSans font-semibold text-header dark:text-gray-400 hover:text-menuHeading dark:hover:text-white underline-offset-2 hover:underline transition-colors duration-200">
               Already have an account? Sign in
             </Link>
           </div>
