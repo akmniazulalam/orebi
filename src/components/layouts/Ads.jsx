@@ -11,6 +11,11 @@ import promoRightTopDark from "/src/assets/promo_right_top_dark.png";
 import promoRightBottomLight from "/src/assets/promo_right_bottom.png";
 import promoRightBottomDark from "/src/assets/promo_right_bottom_dark.png";
 
+import promoRightTopMobileLight from "/src/assets/promo_right_top_mobile.png";
+import promoRightTopMobileDark from "/src/assets/promo_right_top_dark_mobile.png";
+import promoRightBottomMobileLight from "/src/assets/promo_right_bottom_mobile.png";
+import promoRightBottomMobileDark from "/src/assets/promo_right_bottom_dark_mobile.png";
+
 const Ads = () => {
   // Theme detection synced with document.documentElement (.dark class)
   const [isDark, setIsDark] = useState(() =>
@@ -42,6 +47,19 @@ const Ads = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Responsive state for progress bar orientation & mobile image selection (< 768px)
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== "undefined" ? window.innerWidth < 768 : false,
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <section
       className="py-10 md:py-16 lg:py-20"
@@ -66,13 +84,13 @@ const Ads = () => {
 
             {/* Content Layer (positioned in the lower clean portion) */}
             <div className="relative z-10 p-6 sm:p-8 lg:px-10 lg:py-20 flex flex-col items-start justify-end">
-              <span className="font-dmSans text-xs font-bold uppercase tracking-wider text-header dark:text-gray-400 mb-2">
+              <span className="font-dmSans text-xs font-bold uppercase tracking-wider text-menuHeading dark:text-gray-400 mb-2">
                 SMARTPHONES
               </span>
               <h3 className="font-dmSans font-bold text-2xl sm:text-3xl lg:text-[32px] leading-tight text-menuHeading dark:text-white mb-2.5">
                 Find Your Perfect Phone
               </h3>
-              <p className="font-dmSans text-xs sm:text-sm text-header dark:text-gray-300 leading-relaxed max-w-sm mb-5 sm:mb-6">
+              <p className="font-dmSans text-xs sm:text-sm text-menuHeading font-medium dark:text-gray-300 leading-relaxed max-w-sm mb-5 sm:mb-6">
                 Explore premium smartphones built for performance, style, and
                 everyday life.
               </p>
@@ -91,9 +109,17 @@ const Ads = () => {
           {/* ========================================================================= */}
           <div className="flex flex-col gap-6 lg:gap-8 justify-between">
             {/* RIGHT TOP — MONITORS */}
-            <div className="relative rounded-2xl overflow-hidden border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex items-center w-full min-h-55 sm:min-h-60 lg:min-h-62.5 aspect-780/370">
+            <div className="relative rounded-2xl overflow-hidden border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex items-start w-full min-h-75 sm:min-h-60 lg:min-h-62.5 aspect-780/370">
               <img
-                src={isDark ? promoRightTopDark : promoRightTopLight}
+                src={
+                  isMobile
+                    ? isDark
+                      ? promoRightTopMobileDark
+                      : promoRightTopMobileLight
+                    : isDark
+                      ? promoRightTopDark
+                      : promoRightTopLight
+                }
                 alt="Monitors collection"
                 className="absolute inset-0 w-full h-full object-cover object-right transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 loading="lazy"
@@ -103,14 +129,14 @@ const Ads = () => {
               <div className="absolute inset-0 bg-linear-to-r from-white/0 via-white/0 to-transparent dark:from-[#0B0D17]/80 dark:via-[#0B0D17]/20 dark:to-transparent pointer-events-none" />
 
               {/* Content Layer (kept exclusively on the left side) */}
-              <div className="relative z-10 p-5 sm:p-7 lg:p-8 flex flex-col items-start justify-center max-w-[62%] sm:max-w-[58%]">
-                <span className="font-dmSans text-[11px] sm:text-xs font-bold uppercase tracking-wider text-header dark:text-gray-400 mb-1.5">
+              <div className="relative z-10 p-6 sm:p-7 lg:p-8 flex flex-col items-start justify-center max-w-[62%] sm:max-w-[58%]">
+                <span className="font-dmSans text-[11px] sm:text-xs font-bold uppercase tracking-wider text-menuHeading dark:text-gray-400 mb-1.5">
                   MONITORS
                 </span>
                 <h3 className="font-dmSans font-bold text-lg sm:text-2xl lg:text-[24px] leading-tight text-menuHeading dark:text-white mb-1.5 sm:mb-2">
                   See More. Do More.
                 </h3>
-                <p className="font-dmSans text-xs sm:text-sm text-header dark:text-gray-300 leading-snug sm:leading-relaxed max-w-xs mb-3.5 sm:mb-4.5 line-clamp-2 sm:line-clamp-none">
+                <p className="font-dmSans text-xs sm:text-sm text-menuHeading font-medium dark:text-gray-300 leading-snug sm:leading-relaxed max-w-xs mb-3.5 sm:mb-4.5 line-clamp-2 sm:line-clamp-none">
                   Upgrade your workspace with immersive displays designed for
                   productivity and creativity.
                 </p>
@@ -124,9 +150,17 @@ const Ads = () => {
             </div>
 
             {/* RIGHT BOTTOM — AUDIO */}
-            <div className="relative rounded-2xl overflow-hidden border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex items-center w-full min-h-55 sm:min-h-60 lg:min-h-62.5 aspect-780/370">
+            <div className="relative rounded-2xl overflow-hidden border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex items-start w-full min-h-75 sm:min-h-60 lg:min-h-62.5 aspect-780/370">
               <img
-                src={isDark ? promoRightBottomDark : promoRightBottomLight}
+                src={
+                  isMobile
+                    ? isDark
+                      ? promoRightBottomMobileDark
+                      : promoRightBottomMobileLight
+                    : isDark
+                      ? promoRightBottomDark
+                      : promoRightBottomLight
+                }
                 alt="Audio devices collection"
                 className="absolute inset-0 w-full h-full object-cover object-right transition-transform duration-700 ease-out group-hover:scale-[1.03]"
                 loading="lazy"
@@ -136,14 +170,14 @@ const Ads = () => {
               <div className="absolute inset-0 bg-linear-to-r from-white/0 via-white/0 to-transparent dark:from-[#0B0D17]/80 dark:via-[#0B0D17]/20 dark:to-transparent pointer-events-none" />
 
               {/* Content Layer (kept exclusively on the left side) */}
-              <div className="relative z-10 p-5 sm:p-7 lg:p-8 flex flex-col items-start justify-center max-w-[62%] sm:max-w-[58%]">
-                <span className="font-dmSans text-[11px] sm:text-xs font-bold uppercase tracking-wider text-header dark:text-gray-400 mb-1.5">
+              <div className="relative z-10 p-6 sm:p-7 lg:p-8 flex flex-col items-start justify-center max-w-[62%] sm:max-w-[58%]">
+                <span className="font-dmSans text-[11px] sm:text-xs font-bold uppercase tracking-wider text-menuHeading dark:text-gray-400 mb-1.5">
                   AUDIO
                 </span>
                 <h3 className="font-dmSans font-bold text-lg sm:text-2xl lg:text-[24px] leading-tight text-menuHeading dark:text-white mb-1.5 sm:mb-2">
                   Sound That Moves You
                 </h3>
-                <p className="font-dmSans text-xs sm:text-sm text-header dark:text-gray-300 leading-snug sm:leading-relaxed max-w-xs mb-3.5 sm:mb-4.5 line-clamp-2 sm:line-clamp-none">
+                <p className="font-dmSans text-xs sm:text-sm text-menuHeading font-medium dark:text-gray-300 leading-snug sm:leading-relaxed max-w-xs mb-3.5 sm:mb-4.5 line-clamp-2 sm:line-clamp-none">
                   Experience immersive sound with headphones, earbuds, and
                   speakers made for every moment.
                 </p>
