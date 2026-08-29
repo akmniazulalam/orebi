@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 
 const AdsTwo = () => {
   return (
-    <div className="mt-12">
+    <div className="my-12">
       <Container>
-        <Link to={"/shop"}>
-          <Image src={AdTwo} alt={AdTwo} />
+        <Link to={"/shop"} className="block rounded-2xl overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300">
+          <Image src={AdTwo} alt="Featured promotion banner" className="w-full h-full object-cover" />
         </Link>
       </Container>
     </div>
