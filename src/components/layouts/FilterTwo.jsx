@@ -12,7 +12,7 @@ const FilterTwo = () => {
             <select
               name="sort"
               id="sort"
-              className="font-dmSans text-sm text-menuHeading dark:text-white bg-white dark:bg-[#16192E] focus:outline-none focus:ring-0 border border-gray-200 dark:border-white/10 rounded-xl py-2.5 px-5 appearance-none w-[239px] cursor-pointer">
+              className="font-dmSans text-sm text-menuHeading dark:text-white bg-white dark:bg-[#16192E] focus:outline-none focus:ring-0 border border-gray-200 dark:border-white/10 rounded-xl py-2.5 px-5 appearance-none w-59.75 cursor-pointer">
               <option value="all" className="font-dmSans text-sm text-menuHeading">
                 Featured
               </option>
@@ -43,7 +43,7 @@ const FilterTwo = () => {
             <select
               name="show"
               id="show"
-              className="font-dmSans text-sm text-menuHeading dark:text-white bg-white dark:bg-[#16192E] focus:outline-none focus:ring-0 border border-gray-200 dark:border-white/10 rounded-xl py-2.5 px-5 appearance-none w-[139px] cursor-pointer">
+              className="font-dmSans text-sm text-menuHeading dark:text-white bg-white dark:bg-[#16192E] focus:outline-none focus:ring-0 border border-gray-200 dark:border-white/10 rounded-xl py-2.5 px-5 appearance-none w-34.75 cursor-pointer">
               <option value="36" className="font-dmSans text-sm text-menuHeading">36</option>
               <option value="12" className="font-dmSans text-sm text-menuHeading">12</option>
               <option value="24" className="font-dmSans text-sm text-menuHeading">24</option>
