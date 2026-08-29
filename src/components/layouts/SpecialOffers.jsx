@@ -39,10 +39,10 @@ const SpecialOffers = () => {
   }, []);
 
   return (
-    <section className="pt-10 md:pt-30">
+    <section className="py-12 md:py-20">
       <Container>
         <Heading
-          className={"font-dmSans font-bold text-[39px] text-menuHeading pb-14"}
+          className={"font-dmSans font-bold text-2xl sm:text-3xl md:text-[36px] text-menuHeading tracking-tight pb-14"}
           text={"Special Offers"}
           as={"h3"}
         />
