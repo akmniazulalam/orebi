@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { ChevronRight } from "lucide-react";
 import apiClient from "@/lib/apiClient";
 import { apiPaths } from "@/lib/productApi";
 
@@ -19,23 +20,23 @@ const CategoriesMenu = ({ isOpen, onClose }) => {
     navigate(`/shop?category=${encodeURIComponent(categoryName)}&page=1`);
   };
 
+  if (!isOpen) return null;
+
   return (
-    <>
-      {isOpen && (
-        <div
-          className={`w-65.75 z-10 absolute left-0 transition-all duration-300 bg-menuHeading dark:bg-[#262626] animate-slide`}>
-          {categories.map((item) => (
-            <button
-              key={item._id || item.name}
-              type="button"
-              onClick={() => handleCategoryClick(item.name)}
-              className="w-full text-left py-4.75 px-5.25 border-b-2 border-[#2D2D2D] flex justify-between items-center font-dmSans text-sm text-white opacity-70 hover:opacity-100 hover:font-bold hover:pl-9 transition-all duration-300 cursor-pointer focus:outline-none focus-visible:opacity-100">
-              {item.name} <span>&#62;</span>
-            </button>
-          ))}
-        </div>
-      )}
-    </>
+    <div className="w-68 z-30 absolute left-0 top-10 transition-all duration-300 rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#121429] shadow-xl overflow-hidden animate-slide">
+      <div className="divide-y divide-gray-100 dark:divide-white/5">
+        {categories.map((item) => (
+          <button
+            key={item._id || item.name}
+            type="button"
+            onClick={() => handleCategoryClick(item.name)}
+            className="w-full text-left py-3 px-5 flex justify-between items-center font-dmSans text-sm text-menuHeading dark:text-white hover:bg-gray-50 dark:hover:bg-white/5 hover:pl-6 transition-all duration-200 cursor-pointer focus:outline-none focus-visible:bg-gray-50 dark:focus-visible:bg-white/5">
+            <span className="capitalize">{item.name}</span>
+            <ChevronRight className="h-4 w-4 text-header dark:text-gray-400" />
+          </button>
+        ))}
+      </div>
+    </div>
   );
 };
 
