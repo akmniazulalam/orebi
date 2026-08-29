@@ -26,7 +26,7 @@ const ToggleButtons = ({ isOpen, onClose, closeMobileNav }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="z-50 absolute right-0 transition-all duration-300 top-10 animate-slide shadow-xl rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#121429] overflow-hidden min-w-[200px]">
+    <div className="z-50 absolute right-0 transition-all duration-300 top-10 animate-slide shadow-xl rounded-xl border border-gray-200 dark:border-white/10 bg-white dark:bg-[#121429] overflow-hidden min-w-50">
       {user ? (
         <div className="divide-y divide-gray-100 dark:divide-white/10">
           <Link
