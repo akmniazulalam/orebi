@@ -77,7 +77,7 @@ const Cart = () => {
               you'll love.
             </p>
             <Link to="/shop">
-              <Button className="px-8 py-6 text-base font-semibold rounded-full bg-black hover:bg-gray-800 text-white cursor-pointer">
+              <Button className="px-8 py-6 text-base font-semibold rounded-full bg-menuHeading dark:bg-white dark:text-[#262626] text-white hover:opacity-90 cursor-pointer shadow-sm">
                 Continue Shopping
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Button>
@@ -230,7 +230,7 @@ const Cart = () => {
                     />
                     <Button
                       onClick={handleCoupon}
-                      className="rounded-xl bg-black hover:bg-gray-800 text-white px-5 shrink-0 cursor-pointer">
+                      className="rounded-full bg-menuHeading dark:bg-white dark:text-[#262626] text-white hover:opacity-90 px-5 shrink-0 cursor-pointer shadow-sm transition-opacity duration-200">
                       Apply
                     </Button>
                   </div>
@@ -292,7 +292,7 @@ const Cart = () => {
                 </div>
 
                 <Link to="/checkout" className="block mt-6">
-                  <Button className="w-full py-6 rounded-full bg-black hover:bg-gray-800 text-white text-base font-semibold cursor-pointer">
+                  <Button className="w-full py-6 rounded-full bg-menuHeading text-white dark:bg-white dark:text-[#262626] text-base font-semibold cursor-pointer hover:opacity-90 transition-opacity shadow-sm">
                     Proceed to Checkout
                     <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
