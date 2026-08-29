@@ -44,7 +44,7 @@ function ProductCard({ product, className = "" }) {
         {display.badge ? (
           <Badge
             badgeT={display.badge}
-            className="absolute top-[19px] left-[19px]"
+            className="absolute top-4.75 left-4.75"
           />
         ) : null}
         <ActiveButtons
