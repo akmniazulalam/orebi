@@ -35,7 +35,7 @@ function ProductCard({ product, className = "" }) {
 
   const cardContent = (
     <>
-      <div className="relative w-full group/img">
+      <div className="relative w-full group/img rounded-2xl overflow-hidden">
         <Image
           src={display.image}
           alt={display.name}
