@@ -24,7 +24,7 @@ const ActiveButtons = ({ className = "", product }) => {
       <Flex className="justify-end items-center">
         <button
           type="button"
-          className="font-dmSans text-xs sm:text-sm text-header dark:text-gray-300 hover:text-menuHeading dark:hover:text-white transition-colors duration-200 hover:font-bold cursor-pointer">
+          className="font-dmSans text-xs sm:text-sm text-header dark:text-gray-300 hover:text-menuHeading dark:hover:text-white transition-all duration-300 hover:font-bold cursor-pointer">
           Add to Wish List
         </button>
         <FaHeart className="text-menuHeading dark:text-white ml-2.5 text-xs sm:text-sm" />
@@ -32,15 +32,15 @@ const ActiveButtons = ({ className = "", product }) => {
       <Flex className="pt-3 justify-end items-center">
         <button
           type="button"
-          className="font-dmSans text-xs sm:text-sm text-header dark:text-gray-300 pr-2.5 hover:text-menuHeading dark:hover:text-white transition-colors duration-200 hover:font-bold cursor-pointer">
+          className="font-dmSans text-xs sm:text-sm text-header dark:text-gray-300 pr-2.5 hover:text-menuHeading dark:hover:text-white transition-all duration-300 hover:font-bold cursor-pointer">
           Compare
         </button>
-        <CompareIcon className="dark:text-white" />
+        <CompareIcon />
       </Flex>
       <Flex className="pt-3 justify-end items-center">
         <button
           type="button"
-          className="font-dmSans text-xs sm:text-sm text-header dark:text-gray-300 hover:text-menuHeading dark:hover:text-white transition-colors duration-200 hover:font-bold cursor-pointer"
+          className="font-dmSans text-xs sm:text-sm text-header dark:text-gray-300 hover:text-menuHeading dark:hover:text-white transition-all duration-300 hover:font-bold cursor-pointer"
           onClick={handleAddToCart}>
           Add to Cart
         </button>
