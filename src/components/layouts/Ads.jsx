@@ -83,7 +83,7 @@ const Ads = () => {
             <div className="absolute inset-0 bg-linear-to-t from-white/0 via-white/0 to-transparent dark:from-[#0B0D17]/80 dark:via-[#0B0D17]/20 dark:to-transparent pointer-events-none" />
 
             {/* Content Layer (positioned in the lower clean portion) */}
-            <div className="relative z-10 p-6 sm:p-8 lg:px-10 lg:py-20 flex flex-col items-start justify-end">
+            <div className="relative z-10 p-6 sm:px-8 sm:py-24 lg:py-11 xl:py-22 flex flex-col items-start justify-end">
               <span className="font-dmSans text-xs font-bold uppercase tracking-wider text-menuHeading dark:text-gray-400 mb-2">
                 SMARTPHONES
               </span>
@@ -109,7 +109,7 @@ const Ads = () => {
           {/* ========================================================================= */}
           <div className="flex flex-col gap-6 lg:gap-8 justify-between">
             {/* RIGHT TOP — MONITORS */}
-            <div className="relative rounded-2xl overflow-hidden border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex items-start w-full min-h-75 sm:min-h-60 lg:min-h-62.5 aspect-780/370">
+            <div className="relative rounded-2xl overflow-hidden border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex items-start sm:items-center w-full min-h-75 sm:min-h-60 lg:min-h-62.5 aspect-780/370">
               <img
                 src={
                   isMobile
@@ -150,7 +150,7 @@ const Ads = () => {
             </div>
 
             {/* RIGHT BOTTOM — AUDIO */}
-            <div className="relative rounded-2xl overflow-hidden border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex items-start w-full min-h-75 sm:min-h-60 lg:min-h-62.5 aspect-780/370">
+            <div className="relative rounded-2xl overflow-hidden border border-gray-200/80 dark:border-white/10 shadow-sm hover:shadow-md transition-all duration-300 group flex items-start sm:items-center w-full min-h-75 sm:min-h-60 lg:min-h-62.5 aspect-780/370">
               <img
                 src={
                   isMobile
