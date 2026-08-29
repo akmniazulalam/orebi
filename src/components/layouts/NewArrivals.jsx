@@ -65,7 +65,7 @@ const NewArrivals = () => {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    autoplay: true,
+    autoplay: false,
     autoplaySpeed: 2000,
     pauseOnHover: true,
     prevArrow: <PrevArrow />,
@@ -100,10 +100,10 @@ const NewArrivals = () => {
   const fakeDotArray = [0, 1, 2, 3];
 
   return (
-    <section className="pt-10 md:pt-33.75">
+    <section className="py-12 md:py-20">
       <Container>
         <Heading
-          className={"font-dmSans font-bold text-[39px] text-menuHeading"}
+          className={"font-dmSans font-bold text-2xl sm:text-3xl md:text-[36px] text-menuHeading tracking-tight"}
           text={"New Arrivals"}
           as={"h3"}
         />
