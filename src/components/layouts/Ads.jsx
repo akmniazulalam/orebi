@@ -62,7 +62,7 @@ const Ads = () => {
 
   return (
     <section
-      className="py-10 md:py-16 lg:py-20"
+      className="py-8 md:py-10 lg:py-12"
       aria-label="Promotional Categories">
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">

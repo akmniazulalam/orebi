@@ -27,7 +27,7 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="bg-bHeaderBg py-12 mt-25">
+      <footer className="bg-bHeaderBg py-12 mt-12">
         <Container>
           <div className="flex flex-col lg:flex-row justify-between gap-y-10 lg:gap-y-0">
             <div className="w-full lg:w-[58%]">
