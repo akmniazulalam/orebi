@@ -70,13 +70,13 @@ const Account = () => {
               <div className="flex flex-wrap items-center gap-3">
                 <Link
                   to="/orders"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-xl bg-gray-900 px-5 text-sm font-semibold text-white transition hover:bg-gray-800 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100">
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-menuHeading text-white dark:bg-white dark:text-[#262626] px-6 text-sm font-bold font-dmSans hover:opacity-90 transition-opacity shadow-sm">
                   <ShoppingBag className="h-4 w-4" /> My Orders
                 </Link>
                 <button
                   onClick={handleLogout}
                   type="button"
-                  className="inline-flex h-11 items-center justify-center gap-2 rounded-xl border border-red-200 bg-red-50 dark:bg-red-950/40 px-5 text-sm font-semibold text-red-600 dark:text-red-300 transition hover:bg-red-100 cursor-pointer">
+                  className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-red-200 dark:border-red-800/40 bg-red-50 dark:bg-red-950/40 px-6 text-sm font-bold font-dmSans text-red-600 dark:text-red-300 hover:bg-red-100 dark:hover:bg-red-900/30 transition-colors cursor-pointer">
                   <LogOut className="h-4 w-4" /> Log Out
                 </button>
               </div>
