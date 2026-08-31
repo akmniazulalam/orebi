@@ -93,10 +93,10 @@ const OrderDetails = () => {
 
           {!isLoading && !loadError && order ? (
             <div className="space-y-6">
-              <div className="rounded-2xl border border-gray-200 bg-bHeaderBg p-6 shadow-sm dark:bg-[#121429] sm:p-8">
+              <div className="rounded-2xl border border-gray-200 dark:border-white/10 bg-bHeaderBg p-6 shadow-sm dark:bg-[#121429] sm:p-8">
                 <div className="flex flex-col gap-5 lg:flex-row lg:items-start lg:justify-between">
                   <div className="flex gap-4">
-                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white text-menuHeading dark:text-[#262626]">
+                    <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-white dark:bg-[#16192E] text-menuHeading dark:text-white border border-gray-200/60 dark:border-white/10">
                       <PackageCheck className="h-7 w-7" />
                     </div>
                     <div>
@@ -119,7 +119,7 @@ const OrderDetails = () => {
                   </div>
 
                   <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:min-w-96">
-                    <div className="rounded-xl border border-gray-200 bg-white p-4 dark:bg-[#191E28]">
+                    <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-white p-4 dark:bg-[#16192E]">
                       <ShoppingBag className="mb-2 h-5 w-5 text-menuHeading" />
                       <p className="text-xs font-semibold uppercase tracking-wide text-menuHeading">
                         Items
@@ -128,7 +128,7 @@ const OrderDetails = () => {
                         {getItemCount(order)}
                       </p>
                     </div>
-                    <div className="rounded-xl border border-gray-200 bg-white p-4 dark:bg-[#191E28]">
+                    <div className="rounded-xl border border-gray-200 dark:border-white/10 bg-white p-4 dark:bg-[#16192E]">
                       <ReceiptText className="mb-2 h-5 w-5 text-menuHeading" />
                       <p className="text-xs font-semibold uppercase tracking-wide text-menuHeading">
                         Total
@@ -137,7 +137,7 @@ const OrderDetails = () => {
                         {formatMoney(order?.pricing?.total, currency)}
                       </p>
                     </div>
-                    <div className="col-span-2 rounded-xl border border-gray-200 bg-white p-4 dark:bg-[#191E28] sm:col-span-1">
+                    <div className="col-span-2 rounded-xl border border-gray-200 dark:border-white/10 bg-white p-4 dark:bg-[#16192E] sm:col-span-1">
                       <ClipboardList className="mb-2 h-5 w-5 text-menuHeading" />
                       <p className="text-xs font-semibold uppercase tracking-wide text-menuHeading">
                         Payment
