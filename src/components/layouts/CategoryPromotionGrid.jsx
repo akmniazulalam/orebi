@@ -16,7 +16,7 @@ import promoRightTopMobileDark from "/src/assets/promo_right_top_dark_mobile.png
 import promoRightBottomMobileLight from "/src/assets/promo_right_bottom_mobile.png";
 import promoRightBottomMobileDark from "/src/assets/promo_right_bottom_dark_mobile.png";
 
-const Ads = () => {
+const CategoryPromotionGrid = () => {
   // Theme detection synced with document.documentElement (.dark class)
   const [isDark, setIsDark] = useState(() =>
     typeof document !== "undefined"
@@ -47,7 +47,7 @@ const Ads = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Responsive state for progress bar orientation & mobile image selection (< 768px)
+  // Responsive state for mobile image selection (< 768px)
   const [isMobile, setIsMobile] = useState(() =>
     typeof window !== "undefined" ? window.innerWidth < 768 : false,
   );
@@ -196,4 +196,4 @@ const Ads = () => {
   );
 };
 
-export default Ads;
+export default CategoryPromotionGrid;
