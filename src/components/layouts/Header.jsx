@@ -336,7 +336,7 @@ const Header = () => {
                     aria-label="Account menu">
                     <FaUser className="text-menuHeading" />
                     {user && (
-                      <span className="text-xs font-bold text-menuHeading dark:text-white max-w-[80px] truncate font-dmSans">
+                      <span className="text-xs font-bold text-menuHeading dark:text-white max-w-20 truncate font-dmSans">
                         {user.firstName ? user.firstName : user.email?.split("@")[0]}
                       </span>
                     )}
@@ -387,7 +387,7 @@ const Header = () => {
                 value={searchInput}
                 placeholder="Search Products"
                 aria-label="Search Products"
-                className="h-12 w-full rounded-xl border border-infoBg dark:border-white/10 bg-white py-3 pl-5 pr-24 font-dmSans text-sm text-header shadow-sm outline-none transition-[border-color,box-shadow,background-color] duration-200 placeholder:text-header/55 hover:border-header/35 hover:shadow-md focus:border-menuHeading focus:ring-4 focus:ring-menuHeading/10 dark:border-white/10 dark:bg-[#1F1F1F] dark:text-white dark:placeholder:text-white/50 dark:hover:border-white/25 dark:focus:border-white/50 dark:focus:ring-white/10"
+                className="h-12 w-full rounded-xl border border-infoBg bg-white py-3 pl-5 pr-24 font-dmSans text-sm text-header shadow-sm outline-none transition-[border-color,box-shadow,background-color] duration-200 placeholder:text-header/55 hover:border-header/35 hover:shadow-md focus:border-menuHeading focus:ring-4 focus:ring-menuHeading/10 dark:border-white/10 dark:bg-[#1F1F1F] dark:text-white dark:placeholder:text-white/50 dark:hover:border-white/25 dark:focus:border-white/50 dark:focus:ring-white/10"
                 onChange={(event) => setSearchInput(event.target.value)}
               />
               <button
@@ -438,7 +438,7 @@ const Header = () => {
                   aria-label="Account menu">
                   <FaUser className="text-menuHeading" />
                   {user && (
-                    <span className="text-xs font-bold text-menuHeading dark:text-white max-w-[120px] truncate font-dmSans">
+                    <span className="text-xs font-bold text-menuHeading dark:text-white max-w-30 truncate font-dmSans">
                       {user.firstName
                         ? `${user.firstName} ${user.lastName || ""}`.trim()
                         : user.email?.split("@")[0]}
