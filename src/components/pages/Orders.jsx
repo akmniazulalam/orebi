@@ -77,7 +77,7 @@ const Orders = () => {
             </div>
             <Link
               to="/shop"
-              className="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-gray-900 px-5 text-sm font-semibold text-white transition hover:bg-gray-800">
+              className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-menuHeading text-white dark:bg-white dark:text-[#262626] px-6 text-sm font-bold font-dmSans hover:opacity-90 transition-opacity shadow-sm">
               Continue Shopping <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
@@ -100,7 +100,7 @@ const Orders = () => {
 
           {!isLoading && !loadError && orders.length === 0 ? (
             <div className="flex min-h-72 flex-col items-center justify-center rounded-2xl border border-gray-200 bg-bHeaderBg p-8 text-center shadow-sm dark:bg-[#121429]">
-              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white text-menuHeading">
+              <div className="flex h-20 w-20 items-center justify-center rounded-full bg-white dark:bg-white/10 text-menuHeading dark:text-white shadow-sm">
                 <PackageSearch className="h-10 w-10" />
               </div>
               <h2 className="mt-5 text-2xl font-bold text-menuHeading">
@@ -112,7 +112,7 @@ const Orders = () => {
               </p>
               <Link
                 to="/shop"
-                className="mt-6 inline-flex h-11 items-center justify-center rounded-lg bg-gray-900 px-5 text-sm font-semibold text-white transition hover:bg-gray-800">
+                className="mt-6 inline-flex h-11 items-center justify-center rounded-full bg-menuHeading text-white dark:bg-white dark:text-[#262626] px-6 text-sm font-bold font-dmSans hover:opacity-90 transition-opacity shadow-sm">
                 Start Shopping
               </Link>
             </div>
@@ -127,10 +127,10 @@ const Orders = () => {
                   <Link
                     key={order._id}
                     to={`/orders/${order._id}`}
-                    className="block rounded-2xl border border-gray-200 bg-bHeaderBg p-5 shadow-sm transition hover:border-gray-300 hover:bg-white dark:bg-[#121429]">
+                    className="block rounded-2xl border border-gray-200 dark:border-white/10 bg-bHeaderBg p-5 shadow-sm transition hover:border-gray-300 dark:hover:border-white/20 hover:bg-white dark:bg-[#121429]">
                     <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
                       <div className="flex gap-4">
-                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white text-menuHeading dark:text-[#262626]">
+                        <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-white dark:bg-[#16192E] text-menuHeading dark:text-white border border-gray-200/60 dark:border-white/10">
                           <ClipboardList className="h-6 w-6" />
                         </div>
                         <div>
