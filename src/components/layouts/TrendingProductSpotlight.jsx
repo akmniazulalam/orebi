@@ -78,7 +78,7 @@ const TrendingProductSpotlight = () => {
   // ── Reusable studio frame canvas for hero product visual ─────────────────
   const ProductCanvas = ({ className = "" }) => (
     <div
-      className={`relative w-full max-w-xs sm:max-w-sm lg:max-w-md xl:max-w-lg aspect-square sm:aspect-[4/5] rounded-2xl bg-white border border-gray-200/80 dark:border-white/10 shadow-sm p-4 sm:p-6 lg:p-8 flex items-center justify-center overflow-hidden mx-auto ${className}`}>
+      className={`relative w-full max-w-xs sm:max-w-sm lg:max-w-md xl:max-w-lg aspect-square sm:aspect-4/5 rounded-2xl bg-white border border-gray-200/80 dark:border-white/10 shadow-sm p-4 sm:p-6 lg:p-8 flex items-center justify-center overflow-hidden mx-auto ${className}`}>
       {activeImage ? (
         <img
           key={activeImage}
@@ -113,7 +113,7 @@ const TrendingProductSpotlight = () => {
       className="py-8 sm:py-10 md:py-12"
       aria-label="Trending Product Spotlight">
       <Container>
-        <div className="relative rounded-3xl overflow-hidden border border-gray-200/80 dark:border-white/10 bg-gradient-to-br from-bHeaderBg/90 via-white to-bHeaderBg/60 dark:from-[#121429] dark:via-[#16192E] dark:to-[#0F1122] shadow-sm hover:shadow-md transition-shadow duration-500">
+        <div className="relative rounded-3xl overflow-hidden border border-gray-200/80 dark:border-white/10 bg-linear-to-br from-bHeaderBg/90 via-white to-bHeaderBg/60 dark:from-[#121429] dark:via-[#16192E] dark:to-[#0F1122] shadow-sm hover:shadow-md transition-shadow duration-500">
 
           {/* Ambient glow — subtle backdrop accent */}
           <div
@@ -223,7 +223,7 @@ const TrendingProductSpotlight = () => {
                         aria-label={`Select ${colorLabel} (${variant.storage || ""})`}
                         onClick={() => setActiveVariantIndex(index)}
                         className={[
-                          "relative flex h-9 w-9 sm:h-10 sm:w-10 min-w-[2.25rem] sm:min-w-[2.5rem] items-center justify-center rounded-full",
+                          "relative flex h-9 w-9 sm:h-10 sm:w-10 min-w-9 sm:min-w-10 items-center justify-center rounded-full",
                           "cursor-pointer transition-all duration-200",
                           "focus:outline-none focus-visible:ring-2 focus-visible:ring-menuHeading dark:focus-visible:ring-white focus-visible:ring-offset-2 dark:focus-visible:ring-offset-[#121429]",
                           isSelected
