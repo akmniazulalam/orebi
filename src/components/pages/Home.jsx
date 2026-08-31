@@ -1,9 +1,9 @@
 import Banner from "../layouts/Banner";
 import Information from "../layouts/Information";
-import Ads from "../layouts/Ads";
+import CategoryPromotionGrid from "../layouts/CategoryPromotionGrid";
 import NewArrivals from "../layouts/NewArrivals";
 import BestSellers from "../layouts/BestSellers";
-import AdsTwo from "../layouts/AdsTwo";
+import TrendingProductSpotlight from "../layouts/TrendingProductSpotlight";
 import SpecialOffers from "../layouts/SpecialOffers";
 
 const Home = () => {
@@ -11,11 +11,11 @@ const Home = () => {
     <>
       <Banner />
       <Information />
-      <Ads/>
-      <NewArrivals/>
-      <BestSellers/>
-      <AdsTwo/>
-      <SpecialOffers/>
+      <CategoryPromotionGrid />
+      <NewArrivals />
+      <BestSellers />
+      <TrendingProductSpotlight />
+      <SpecialOffers />
     </>
   );
 };
