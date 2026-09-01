@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 import Container from "../Container";
 import Intro from "../Intro";
+import usePageTitle from "@/hooks/usePageTitle";
 
 function formatMoney(value, currency = "USD") {
   const amount = Number(value) || 0;
@@ -44,6 +45,7 @@ function getOrderFromStorage() {
 }
 
 const OrderSuccess = () => {
+  usePageTitle("Order Confirmed");
   const location = useLocation();
   const order = useMemo(
     () => location.state?.order || getOrderFromStorage(),
