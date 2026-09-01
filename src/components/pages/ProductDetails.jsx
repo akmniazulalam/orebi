@@ -24,6 +24,7 @@ import { fetchProductById } from "@/services/productService";
 import { buildCartLineItem, findVariantByOptions } from "@/lib/cartUtils";
 import { getPrimaryVariant, getUniqueVariantColors } from "@/lib/productUtils";
 import toast from "react-hot-toast";
+import usePageTitle from "@/hooks/usePageTitle";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -33,6 +34,7 @@ const ProductDetails = () => {
 
   const [quantity, setQuantity] = useState(1);
   const [singleProduct, setSingleProduct] = useState(null);
+  usePageTitle(singleProduct?.name || "Product Details", !!singleProduct?.name);
   const [selectedColor, setSelectedColor] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
   const [selectedRam, setSelectedRam] = useState("");
