@@ -2,8 +2,10 @@ import React from "react";
 import Intro from "../Intro";
 import Container from "../Container";
 import Heading from "../Heading";
+import usePageTitle from "@/hooks/usePageTitle";
 
 const Contacts = () => {
+  usePageTitle("Contact");
   return (
     <>
       <Intro text={"Contacts"} pText={"Contacts"} />
