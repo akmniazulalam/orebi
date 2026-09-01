@@ -37,8 +37,10 @@ import useCart from "@/store/cart";
 import { getCartLineName, getCartLinePrice } from "@/lib/cartUtils";
 import toast from "react-hot-toast";
 import { useAuth } from "@/context/AuthContext";
+import usePageTitle from "@/hooks/usePageTitle";
 
 const Checkout = () => {
+  usePageTitle("Checkout");
   const { user } = useAuth();
   // Multi-step state: step 2 = Checkout details, step 3 = Payment
   const [activeStep, setActiveStep] = useState(2);
