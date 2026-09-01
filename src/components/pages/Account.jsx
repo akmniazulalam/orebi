@@ -13,8 +13,10 @@ import {
   ArrowRight,
   UserCheck,
 } from "lucide-react";
+import usePageTitle from "@/hooks/usePageTitle";
 
 const Account = () => {
+  usePageTitle("My Account");
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
