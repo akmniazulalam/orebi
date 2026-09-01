@@ -25,8 +25,10 @@ import {
 } from "@/lib/cartUtils";
 import apiClient from "@/lib/apiClient";
 import { apiPaths } from "@/lib/productApi";
+import usePageTitle from "@/hooks/usePageTitle";
 
 const Cart = () => {
+  usePageTitle("Cart");
   const { items, removeFromCart, increaseQuantity, decreaseQuantity } = useCart(
     (state) => state,
   );
