@@ -17,8 +17,10 @@ import {
   getItemCount,
   getStatusBadgeClass,
 } from "./orderFormat";
+import usePageTitle from "@/hooks/usePageTitle";
 
 const Orders = () => {
+  usePageTitle("My Orders");
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
