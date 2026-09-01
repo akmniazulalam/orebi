@@ -21,6 +21,7 @@ import Container from "../Container";
 import Intro from "../Intro";
 import { fetchProducts } from "@/services/productService";
 import { normalizeProductForDisplay } from "@/lib/productUtils";
+import usePageTitle from "@/hooks/usePageTitle";
 
 // Reusing existing local asset images directly
 import aboutHeroImg from "@/assets/about_hero.png";
@@ -130,6 +131,7 @@ const BRAND_VALUES = [
 ];
 
 const About = () => {
+  usePageTitle("About");
   const [featuredProducts, setFeaturedProducts] = useState([]);
   const [isLoadingStore, setIsLoadingStore] = useState(true);
   const [isDark, setIsDark] = useState(() =>
