@@ -19,10 +19,12 @@ import {
   getItemCount,
   getStatusBadgeClass,
 } from "./orderFormat";
+import usePageTitle from "@/hooks/usePageTitle";
 
 const OrderDetails = () => {
   const { id } = useParams();
   const [order, setOrder] = useState(null);
+  usePageTitle(order?._id ? `Order #${order._id.slice(-6).toUpperCase()}` : "Order Details");
   const [isLoading, setIsLoading] = useState(true);
   const [loadError, setLoadError] = useState("");
 
