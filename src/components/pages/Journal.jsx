@@ -25,6 +25,7 @@ import toast from "react-hot-toast";
 import Container from "../Container";
 import Intro from "../Intro";
 import { JOURNAL_CATEGORIES, JOURNAL_ARTICLES } from "@/data/journalData";
+import usePageTitle from "@/hooks/usePageTitle";
 
 const CATEGORY_ICONS = {
   all: Sparkles,
@@ -40,6 +41,7 @@ const Journal = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [activeArticle, setActiveArticle] = useState(null);
+  usePageTitle(activeArticle ? activeArticle.title : "Journal");
   const [newsletterEmail, setNewsletterEmail] = useState("");
   const [isSubmittingNewsletter, setIsSubmittingNewsletter] = useState(false);
 
