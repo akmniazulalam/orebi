@@ -2,8 +2,10 @@ import React from "react";
 import Container from "../Container";
 import { Link } from "react-router-dom";
 import { FaSearch } from "react-icons/fa";
+import usePageTitle from "@/hooks/usePageTitle";
 
 const Error = () => {
+  usePageTitle("404 — Page Not Found");
   return (
     <Container>
       <h1 className="font-dmSans font-bold text-[100px] sm:text-[200px] text-menuHeading pt-10 sm:pt-20 leading-30 sm:leading-60">
