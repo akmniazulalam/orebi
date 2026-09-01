@@ -6,8 +6,10 @@ import Heading from "../Heading";
 import { useAuth } from "@/context/AuthContext";
 import toast from "react-hot-toast";
 import { Loader2 } from "lucide-react";
+import usePageTitle from "@/hooks/usePageTitle";
 
 const Signup = () => {
+  usePageTitle("Sign Up");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
