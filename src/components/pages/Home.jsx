@@ -5,8 +5,10 @@ import NewArrivals from "../layouts/NewArrivals";
 import BestSellers from "../layouts/BestSellers";
 import TrendingProductSpotlight from "../layouts/TrendingProductSpotlight";
 import SpecialOffers from "../layouts/SpecialOffers";
+import usePageTitle from "@/hooks/usePageTitle";
 
 const Home = () => {
+  usePageTitle("Home");
   return (
     <>
       <Banner />
