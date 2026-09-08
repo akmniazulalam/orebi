@@ -19,6 +19,11 @@ import ProductDetails from "./components/pages/ProductDetails";
 import Signup from "./components/pages/Signup";
 import Login from "./components/pages/Login";
 import Account from "./components/pages/Account";
+import PrivacyPolicy from "./components/pages/legal/PrivacyPolicy";
+import TermsConditions from "./components/pages/legal/TermsConditions";
+import ShippingDelivery from "./components/pages/legal/ShippingDelivery";
+import ReturnsRefunds from "./components/pages/legal/ReturnsRefunds";
+import SecurePayments from "./components/pages/legal/SecurePayments";
 import { ProtectedRoute, GuestRoute } from "./components/ProtectedRoute";
 import { useEffect } from "react";
 
@@ -32,7 +37,7 @@ function App() {
       } else {
         document.documentElement.classList.remove("dark");
       }
-    } catch (e) {
+    } catch {
       // Storage unavailable or disabled
     }
   }, []);
@@ -46,6 +51,11 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contacts" element={<Contacts />} />
           <Route path="/journal" element={<Journal />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+          <Route path="/terms-conditions" element={<TermsConditions />} />
+          <Route path="/shipping-delivery" element={<ShippingDelivery />} />
+          <Route path="/returns-refunds" element={<ReturnsRefunds />} />
+          <Route path="/secure-payments" element={<SecurePayments />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/order-success" element={<OrderSuccess />} />
