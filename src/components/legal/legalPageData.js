@@ -2,7 +2,7 @@ export const privacyPolicyPage = {
   title: "Privacy Policy",
   description:
     "A clear overview of the information Orebi may collect while you browse, create an account, or place an order.",
-  effectiveDate: "[Effective Date]",
+  effectiveDate: "September 9, 2026",
   introduction:
     "This Privacy Policy explains how [Business Legal Name], operating as Orebi, may collect, use, and share information connected with the Orebi storefront. It should be read together with the terms that apply to purchases and account use.",
   sections: [
@@ -147,7 +147,7 @@ export const termsConditionsPage = {
   title: "Terms & Conditions",
   description:
     "The terms that describe use of the Orebi storefront, customer accounts, product listings, and purchases.",
-  effectiveDate: "[Effective Date]",
+  effectiveDate: "September 9, 2026",
   introduction:
     "These Terms & Conditions describe the general rules for using the Orebi storefront. They are a working template and should be reviewed by [Business Legal Name] with the applicable business and legal details before publication as final terms.",
   sections: [
@@ -271,7 +271,7 @@ export const shippingDeliveryPage = {
   title: "Shipping & Delivery",
   description:
     "Helpful information about how delivery details, shipping options, tracking, and delivery concerns are handled.",
-  effectiveDate: "[Effective Date]",
+  effectiveDate: "September 9, 2026",
   introduction:
     "This page explains the general shipping and delivery process for Orebi orders. Exact delivery areas, carrier options, charges, and fulfillment times should be confirmed by [Business Legal Name] before they are presented as customer commitments.",
   sections: [
@@ -356,7 +356,7 @@ export const returnsRefundsPage = {
   title: "Returns & Refunds",
   description:
     "A straightforward guide to starting a return request, product review, and refund-related questions.",
-  effectiveDate: "[Effective Date]",
+  effectiveDate: "September 9, 2026",
   introduction:
     "This page outlines the intended return and refund process for Orebi customers. The final return window, eligibility rules, fees, and refund timing must be confirmed by [Business Legal Name] before being published as a binding policy.",
   sections: [
@@ -444,7 +444,7 @@ export const securePaymentsPage = {
   title: "Secure Payments",
   description:
     "A clear explanation of the payment choices, checkout status, and customer actions that help keep an order moving safely.",
-  effectiveDate: "[Effective Date]",
+  effectiveDate: "September 9, 2026",
   introduction:
     "Orebi is designed to present payment choices clearly at checkout. This page explains the current storefront flow without claiming unverified security certifications, payment-provider certifications, or guarantees.",
   sections: [
