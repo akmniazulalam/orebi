@@ -1089,11 +1089,17 @@ const Checkout = () => {
                       <span>
                         I agree to the{" "}
                         <Link
-                          to="/terms"
+                          to="/terms-conditions"
                           className="font-semibold text-menuHeading dark:text-white underline">
                           terms & conditions
                         </Link>{" "}
-                        and privacy policy.
+                        and the{" "}
+                        <Link
+                          to="/privacy-policy"
+                          className="font-semibold text-menuHeading dark:text-white underline">
+                          privacy policy
+                        </Link>
+                        .
                       </span>
                     </label>
                   )}
