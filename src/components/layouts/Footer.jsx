@@ -5,10 +5,18 @@ import Logo from "../../assets/logo_two.png";
 import { FaFacebookF, FaLinkedinIn } from "react-icons/fa";
 import { BsInstagram } from "react-icons/bs";
 import Flex from "../Flex";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import apiClient from "@/lib/apiClient";
 import { apiPaths } from "@/lib/productApi";
+
+const LEGAL_LINKS = [
+  { label: "Privacy Policy", to: "/privacy-policy" },
+  { label: "Terms & Conditions", to: "/terms-conditions" },
+  { label: "Shipping & Delivery", to: "/shipping-delivery" },
+  { label: "Returns & Refunds", to: "/returns-refunds" },
+  { label: "Secure Payments", to: "/secure-payments" },
+];
 
 const Footer = () => {
   const [categories, setCategories] = useState([]);
@@ -98,31 +106,21 @@ const Footer = () => {
                     }
                   />
                   <ul className="flex flex-col gap-y-2">
-                    <Link to={"/"}>
-                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                        Privacy Policy
+                    {LEGAL_LINKS.map((link) => (
+                      <li key={link.to}>
+                        <NavLink
+                          to={link.to}
+                          className={({ isActive }) =>
+                            `font-dmSans text-[14px] font-normal transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-menuHeading/30 dark:focus-visible:ring-white/30 ${
+                              isActive
+                                ? "font-bold text-menuHeading"
+                                : "text-footerTexts hover:text-menuHeading hover:font-bold"
+                            }`
+                          }>
+                          {link.label}
+                        </NavLink>
                       </li>
-                    </Link>
-                    <Link to={"/"}>
-                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                        Terms & Conditions
-                      </li>
-                    </Link>
-                    <Link to={"/"}>
-                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                        Shipping & Delivery
-                      </li>
-                    </Link>
-                    <Link to={"/"}>
-                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                        Returns & Refunds
-                      </li>
-                    </Link>
-                    <Link to={"/"}>
-                      <li className="font-dmSans text-footerTexts text-[14px] font-normal hover:text-menuHeading hover:font-bold transition-all duration-300">
-                        Secure Payments
-                      </li>
-                    </Link>
+                    ))}
                   </ul>
                 </div>
                 <div>
