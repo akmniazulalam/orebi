@@ -4,14 +4,14 @@ export const privacyPolicyPage = {
     "A clear overview of the information Orebi may collect while you browse, create an account, or place an order.",
   effectiveDate: "September 9, 2026",
   introduction:
-    "This Privacy Policy explains how [Business Legal Name], operating as Orebi, may collect, use, and share information connected with the Orebi storefront. It should be read together with the terms that apply to purchases and account use.",
+    "This Privacy Policy explains how Orebi, operating as Orebi, may collect, use, and share information connected with the Orebi storefront. It should be read together with the terms that apply to purchases and account use.",
   sections: [
     {
       id: "privacy-introduction",
       title: "Introduction",
       paragraphs: [
         "We aim to describe our information practices in plain language. This policy applies to information connected with use of the Orebi website, account features, customer support, and orders.",
-        "Business and contact details that should appear in a final published policy are shown as placeholders where they have not been provided: [Business Legal Name], [Business Address], and [Contact Email].",
+        "Business and contact details that should appear in a final published policy are shown as placeholders where they have not been provided: Orebi, [Business Address], and [Contact Email].",
       ],
     },
     {
@@ -109,7 +109,7 @@ export const privacyPolicyPage = {
       id: "data-retention",
       title: "Data Retention",
       paragraphs: [
-        "Information may be retained for as long as reasonably needed to provide the service, maintain records, resolve disputes, enforce agreements, or meet applicable obligations. Retention periods should be confirmed by [Business Legal Name] before this page is published as a final legal policy.",
+        "Information may be retained for as long as reasonably needed to provide the service, maintain records, resolve disputes, enforce agreements, or meet applicable obligations. Retention periods should be confirmed by Orebi before this page is published as a final legal policy.",
       ],
     },
     {
@@ -149,7 +149,7 @@ export const termsConditionsPage = {
     "The terms that describe use of the Orebi storefront, customer accounts, product listings, and purchases.",
   effectiveDate: "September 9, 2026",
   introduction:
-    "These Terms & Conditions describe the general rules for using the Orebi storefront. They are a working template and should be reviewed by [Business Legal Name] with the applicable business and legal details before publication as final terms.",
+    "These Terms & Conditions describe the general rules for using the Orebi storefront. They are a working template and should be reviewed by Orebi with the applicable business and legal details before publication as final terms.",
   sections: [
     {
       id: "terms-introduction",
@@ -162,7 +162,7 @@ export const termsConditionsPage = {
       id: "eligibility",
       title: "Eligibility",
       paragraphs: [
-        "You must be able to enter into a binding agreement under the laws that apply to you, or use the service with the involvement of a parent or legal guardian where required. Additional eligibility requirements should be added if [Business Legal Name] adopts them.",
+        "You must be able to enter into a binding agreement under the laws that apply to you, or use the service with the involvement of a parent or legal guardian where required. Additional eligibility requirements should be added if Orebi adopts them.",
       ],
     },
     {
@@ -187,7 +187,7 @@ export const termsConditionsPage = {
       ],
       note: {
         title: "Before publication",
-        text: "[Business Legal Name] should add the applicable tax, currency, and pricing-error terms here if they differ by market or delivery destination.",
+        text: "Orebi should add the applicable tax, currency, and pricing-error terms here if they differ by market or delivery destination.",
       },
     },
     {
@@ -247,7 +247,7 @@ export const termsConditionsPage = {
       id: "disclaimer-and-liability",
       title: "Disclaimer and Limitation of Liability",
       paragraphs: [
-        "To the extent permitted by applicable law, the storefront is provided on an as-available basis. [Business Legal Name] should obtain legal review to add the specific disclaimer and limitation language that applies to its business and jurisdiction.",
+        "To the extent permitted by applicable law, the storefront is provided on an as-available basis. Orebi should obtain legal review to add the specific disclaimer and limitation language that applies to its business and jurisdiction.",
       ],
     },
     {
@@ -261,7 +261,7 @@ export const termsConditionsPage = {
       id: "governing-law-and-contact",
       title: "Governing Law and Contact Information",
       paragraphs: [
-        "The governing-law, dispute-resolution, business-name, and business-address details for final terms have not been provided. They should be added by [Business Legal Name] after appropriate review. For storefront questions, contact [Contact Email].",
+        "The governing-law, dispute-resolution, business-name, and business-address details for final terms have not been provided. They should be added by Orebi after appropriate review. For storefront questions, contact [Contact Email].",
       ],
     },
   ],
@@ -273,7 +273,7 @@ export const shippingDeliveryPage = {
     "Helpful information about how delivery details, shipping options, tracking, and delivery concerns are handled.",
   effectiveDate: "September 9, 2026",
   introduction:
-    "This page explains the general shipping and delivery process for Orebi orders. Exact delivery areas, carrier options, charges, and fulfillment times should be confirmed by [Business Legal Name] before they are presented as customer commitments.",
+    "This page explains the general shipping and delivery process for Orebi orders. Exact delivery areas, carrier options, charges, and fulfillment times should be confirmed by Orebi before they are presented as customer commitments.",
   sections: [
     {
       id: "shipping-overview",
@@ -297,7 +297,7 @@ export const shippingDeliveryPage = {
       ],
       note: {
         title: "Shipping details to confirm",
-        text: "[Business Legal Name] should publish final shipping-method names, service areas, costs, and any free-shipping thresholds once they are confirmed.",
+        text: "Orebi should publish final shipping-method names, service areas, costs, and any free-shipping thresholds once they are confirmed.",
       },
     },
     {
@@ -346,7 +346,7 @@ export const shippingDeliveryPage = {
       id: "international-shipping",
       title: "International Shipping",
       paragraphs: [
-        "International shipping availability has not been confirmed for this storefront. If it is introduced, [Business Legal Name] should update this page with supported destinations, customs responsibilities, and any applicable restrictions.",
+        "International shipping availability has not been confirmed for this storefront. If it is introduced, Orebi should update this page with supported destinations, customs responsibilities, and any applicable restrictions.",
       ],
     },
   ],
@@ -358,13 +358,13 @@ export const returnsRefundsPage = {
     "A straightforward guide to starting a return request, product review, and refund-related questions.",
   effectiveDate: "September 9, 2026",
   introduction:
-    "This page outlines the intended return and refund process for Orebi customers. The final return window, eligibility rules, fees, and refund timing must be confirmed by [Business Legal Name] before being published as a binding policy.",
+    "This page outlines the intended return and refund process for Orebi customers. The final return window, eligibility rules, fees, and refund timing must be confirmed by Orebi before being published as a binding policy.",
   sections: [
     {
       id: "return-policy-overview",
       title: "Return Policy Overview",
       paragraphs: [
-        "We want customers to have a clear way to ask for help with an order. Return requests are reviewed using the order details, condition of the item, and the final return policy adopted by [Business Legal Name].",
+        "We want customers to have a clear way to ask for help with an order. Return requests are reviewed using the order details, condition of the item, and the final return policy adopted by Orebi.",
       ],
     },
     {
@@ -378,7 +378,7 @@ export const returnsRefundsPage = {
       id: "return-window",
       title: "Return Window",
       paragraphs: [
-        "A specific return period has not been provided for Orebi. [Business Legal Name] should add the final return-request window and any different rules for special products before this policy is finalized.",
+        "A specific return period has not been provided for Orebi. Orebi should add the final return-request window and any different rules for special products before this policy is finalized.",
       ],
       note: {
         title: "Policy detail needed",
@@ -389,7 +389,7 @@ export const returnsRefundsPage = {
       id: "non-returnable-items",
       title: "Non-Returnable Items",
       paragraphs: [
-        "Some items may not be eligible for return because of hygiene, safety, personalization, digital delivery, damage after delivery, or other product-specific reasons. Final exclusions should be listed by [Business Legal Name] when confirmed.",
+        "Some items may not be eligible for return because of hygiene, safety, personalization, digital delivery, damage after delivery, or other product-specific reasons. Final exclusions should be listed by Orebi when confirmed.",
       ],
     },
     {
@@ -420,7 +420,7 @@ export const returnsRefundsPage = {
       id: "refund-process-and-timing",
       title: "Refund Process and Timing",
       paragraphs: [
-        "If a refund is approved, it is handled using the applicable order and payment information. Exact timing can vary by payment method, financial institution, and the final policy adopted by [Business Legal Name].",
+        "If a refund is approved, it is handled using the applicable order and payment information. Exact timing can vary by payment method, financial institution, and the final policy adopted by Orebi.",
       ],
     },
     {
