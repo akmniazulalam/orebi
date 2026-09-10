@@ -11,7 +11,7 @@ export const privacyPolicyPage = {
       title: "Introduction",
       paragraphs: [
         "We aim to describe our information practices in plain language. This policy applies to information connected with use of the Orebi website, account features, customer support, and orders.",
-        "Business and contact details that should appear in a final published policy are shown as placeholders where they have not been provided: Orebi, [Business Address], and [Contact Email].",
+        "Business and contact details that should appear in a final published policy are shown as placeholders where they have not been provided: Orebi, [Business Address], and niazulalam097@gmail.com.",
       ],
     },
     {
@@ -116,14 +116,14 @@ export const privacyPolicyPage = {
       id: "your-choices-and-rights",
       title: "Your Choices and Rights",
       paragraphs: [
-        "Depending on where you live and the information involved, you may have rights to request access, correction, deletion, or other information about how your data is handled. Contact [Contact Email] to make a request. We may need to verify the request before responding.",
+        "Depending on where you live and the information involved, you may have rights to request access, correction, deletion, or other information about how your data is handled. Contact niazulalam097@gmail.com to make a request. We may need to verify the request before responding.",
       ],
     },
     {
       id: "childrens-privacy",
       title: "Children's Privacy",
       paragraphs: [
-        "The storefront is not directed to children where parental consent would be required by law. If you believe a child has provided personal information without appropriate permission, contact [Contact Email] so the request can be reviewed.",
+        "The storefront is not directed to children where parental consent would be required by law. If you believe a child has provided personal information without appropriate permission, contact niazulalam097@gmail.com so the request can be reviewed.",
       ],
     },
     {
@@ -169,7 +169,7 @@ export const termsConditionsPage = {
       id: "account-registration",
       title: "Account Registration",
       paragraphs: [
-        "You are responsible for providing accurate account information and for keeping your sign-in credentials confidential. Tell us promptly at [Contact Email] if you believe your account has been used without authorization.",
+        "You are responsible for providing accurate account information and for keeping your sign-in credentials confidential. Tell us promptly at niazulalam097@gmail.com if you believe your account has been used without authorization.",
       ],
     },
     {
@@ -261,7 +261,7 @@ export const termsConditionsPage = {
       id: "governing-law-and-contact",
       title: "Governing Law and Contact Information",
       paragraphs: [
-        "The governing-law, dispute-resolution, business-name, and business-address details for final terms have not been provided. They should be added by Orebi after appropriate review. For storefront questions, contact [Contact Email].",
+        "The governing-law, dispute-resolution, business-name, and business-address details for final terms have not been provided. They should be added by Orebi after appropriate review. For storefront questions, contact niazulalam097@gmail.com.",
       ],
     },
   ],
@@ -311,7 +311,7 @@ export const shippingDeliveryPage = {
       id: "order-tracking",
       title: "Order Tracking",
       paragraphs: [
-        "When tracking is available, customers should receive the relevant shipment information through the appropriate order communication. If tracking is not yet available for an order, contact [Contact Email] with the order number for assistance.",
+        "When tracking is available, customers should receive the relevant shipment information through the appropriate order communication. If tracking is not yet available for an order, contact niazulalam097@gmail.com with the order number for assistance.",
       ],
     },
     {
@@ -325,7 +325,7 @@ export const shippingDeliveryPage = {
       id: "delayed-or-lost-packages",
       title: "Delayed or Lost Packages",
       paragraphs: [
-        "If a delivery appears delayed or cannot be located, contact [Contact Email] with the order number, delivery address, and any tracking details. The order can then be reviewed with the relevant delivery information.",
+        "If a delivery appears delayed or cannot be located, contact niazulalam097@gmail.com with the order number, delivery address, and any tracking details. The order can then be reviewed with the relevant delivery information.",
       ],
     },
     {
@@ -339,7 +339,7 @@ export const shippingDeliveryPage = {
       id: "damaged-packages",
       title: "Damaged Packages",
       paragraphs: [
-        "If a package arrives visibly damaged, keep the packaging and take clear photographs where practical. Contact [Contact Email] with your order number and a description of the issue so the situation can be reviewed.",
+        "If a package arrives visibly damaged, keep the packaging and take clear photographs where practical. Contact niazulalam097@gmail.com with your order number and a description of the issue so the situation can be reviewed.",
       ],
     },
     {
@@ -382,7 +382,7 @@ export const returnsRefundsPage = {
       ],
       note: {
         title: "Policy detail needed",
-        text: "Do not rely on an assumed return period. Contact [Contact Email] with the order number to ask about the current return process.",
+        text: "Do not rely on an assumed return period. Contact niazulalam097@gmail.com with the order number to ask about the current return process.",
       },
     },
     {
@@ -396,7 +396,7 @@ export const returnsRefundsPage = {
       id: "how-to-request-a-return",
       title: "How to Request a Return",
       items: [
-        "Contact [Contact Email] with the order number and the item you need help with.",
+        "Contact niazulalam097@gmail.com with the order number and the item you need help with.",
         "Describe the reason for the request and include clear photos if the item is damaged, defective, or incorrect.",
         "Wait for return instructions before sending an item back.",
         "Keep any shipping receipt or tracking information if return shipping is arranged.",
@@ -434,7 +434,7 @@ export const returnsRefundsPage = {
       id: "damaged-defective-or-wrong-items",
       title: "Damaged, Defective, or Wrong Items",
       paragraphs: [
-        "If an item arrives damaged, appears defective, or differs from the order, contact [Contact Email] promptly with the order number, a description, and supporting photos where possible. Keep the packaging and item available until you receive guidance.",
+        "If an item arrives damaged, appears defective, or differs from the order, contact niazulalam097@gmail.com promptly with the order number, a description, and supporting photos where possible. Keep the packaging and item available until you receive guidance.",
       ],
     },
   ],
@@ -498,7 +498,7 @@ export const securePaymentsPage = {
       id: "payment-issues",
       title: "Payment Issues",
       paragraphs: [
-        "If a payment option cannot be completed, review the information entered, try another available method, or contact [Contact Email] with the order context. Do not send sensitive card details through email or chat.",
+        "If a payment option cannot be completed, review the information entered, try another available method, or contact niazulalam097@gmail.com with the order context. Do not send sensitive card details through email or chat.",
       ],
     },
     {
