@@ -177,7 +177,7 @@ const LegalPageLayout = ({ page }) => {
                       Questions about this page?
                     </h2>
                     <p className="mt-1 max-w-2xl text-sm leading-7 text-header dark:text-slate-300">
-                      Contact <span className="font-semibold text-menuHeading">[Contact Email]</span> and include the page title and enough order or account context for the team to help.
+                      Contact <span className="font-semibold text-menuHeading">niazulalam097@gmail.com</span> and include the page title and enough order or account context for the team to help.
                     </p>
                   </div>
                 </div>
