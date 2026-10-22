@@ -27,7 +27,7 @@ const VariantDisplay = ({ variants = [], className = "" }) => {
                 title={color}
                 className="flex h-4 w-4 items-center justify-center rounded-full border border-black/10 dark:border-white/20">
                 <FaCircle
-                  className="h-[13px] w-[15px]"
+                  className="h-3.25 w-[15px]"
                   style={{ color: color.toLowerCase() }}
                 />
               </span>
