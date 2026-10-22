@@ -64,7 +64,7 @@ const TrendingProductSpotlight = () => {
     return (
       <section className="py-8 sm:py-12 md:py-16" aria-label="Trending Product Spotlight">
         <Container>
-          <div className="rounded-3xl border border-gray-200/80 dark:border-white/10 bg-bHeaderBg dark:bg-[#121429] animate-pulse min-h-[420px]" />
+          <div className="rounded-3xl border border-gray-200/80 dark:border-white/10 bg-bHeaderBg dark:bg-[#121429] animate-pulse min-h-105" />
         </Container>
       </section>
     );
