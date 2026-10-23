@@ -349,7 +349,7 @@ const Checkout = () => {
     ];
 
     return (
-      <ol className="flex items-center gap-2 text-xs sm:text-sm">
+      <ol className="flex items-center flex-wrap gap-2 text-xs sm:text-sm">
         {steps.map((s, i) => {
           const isDone = s.num < activeStep;
           const isActive = s.num === activeStep;
