@@ -751,7 +751,7 @@ const ProductDetails = () => {
                       : resetting
                         ? {
                             opacity: [0, 1],
-                            x: [-60, 0],
+                            x: [-40, 0],
                           }
                         : {
                             opacity: 1,
