@@ -840,7 +840,7 @@ const ProductDetails = () => {
                 {/* CART */}
                 <motion.div
                   animate={cartControls}
-                  className="absolute left-27 md:left-33.5">
+                  className="absolute left-27 md:left-33.5 lg:left-12.5">
                   <motion.div
                     className="relative w-9 h-7"
                     animate={
