@@ -103,7 +103,9 @@ const NewArrivals = () => {
     <section className="py-8 md:py-12">
       <Container>
         <Heading
-          className={"font-dmSans font-bold text-2xl sm:text-3xl md:text-[36px] text-menuHeading tracking-tight"}
+          className={
+            "font-dmSans font-bold text-2xl sm:text-3xl md:text-[36px] text-menuHeading tracking-tight"
+          }
           text={"New Arrivals"}
           as={"h3"}
         />
