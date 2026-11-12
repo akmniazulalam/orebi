@@ -65,7 +65,10 @@ const LegalPageLayout = ({ page }) => {
               <summary className="cursor-pointer list-none text-sm font-bold text-menuHeading focus:outline-none focus-visible:ring-2 focus-visible:ring-menuHeading/30 dark:focus-visible:ring-white/30">
                 <span className="flex items-center justify-between gap-3">
                   On this page
-                  <ScrollText className="h-4 w-4 text-header dark:text-slate-400" aria-hidden="true" />
+                  <ScrollText
+                    className="h-4 w-4 text-header dark:text-slate-400"
+                    aria-hidden="true"
+                  />
                 </span>
               </summary>
               <ol className="mt-4 grid gap-2 border-t border-gray-100 pt-4 text-sm dark:border-white/10 sm:grid-cols-2">
@@ -177,7 +180,12 @@ const LegalPageLayout = ({ page }) => {
                       Questions about this page?
                     </h2>
                     <p className="mt-1 max-w-2xl text-sm leading-7 text-header dark:text-slate-300">
-                      Contact <span className="font-semibold text-menuHeading">niazulalam097@gmail.com</span> and include the page title and enough order or account context for the team to help.
+                      Contact{" "}
+                      <span className="font-semibold text-menuHeading">
+                        niazulalam097@gmail.com
+                      </span>{" "}
+                      and include the page title and enough order or account
+                      context for the team to help.
                     </p>
                   </div>
                 </div>
