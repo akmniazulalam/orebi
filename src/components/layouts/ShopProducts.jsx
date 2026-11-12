@@ -312,7 +312,8 @@ function FilterPanel({
 function ActiveFilters({ query, onFilterChange, onClearFilters }) {
   const filters = [];
 
-  if (query.search) filters.push({ key: "search", label: `Search: ${query.search}` });
+  if (query.search)
+    filters.push({ key: "search", label: `Search: ${query.search}` });
   if (query.category) filters.push({ key: "category", label: query.category });
   if (query.minPrice || query.maxPrice) {
     filters.push({
@@ -323,7 +324,8 @@ function ActiveFilters({ query, onFilterChange, onClearFilters }) {
   if (query.stock !== "all") {
     filters.push({
       key: "stock",
-      label: STOCK_OPTIONS.find((option) => option.value === query.stock)?.label,
+      label: STOCK_OPTIONS.find((option) => option.value === query.stock)
+        ?.label,
     });
   }
   if (query.sort !== DEFAULT_QUERY.sort) {
@@ -356,7 +358,12 @@ function ActiveFilters({ query, onFilterChange, onClearFilters }) {
           <X className="h-3.5 w-3.5" />
         </button>
       ))}
-      <Button type="button" variant="ghost" size="sm" onClick={onClearFilters} className={"cursor-pointer"}>
+      <Button
+        type="button"
+        variant="ghost"
+        size="sm"
+        onClick={onClearFilters}
+        className={"cursor-pointer"}>
         Clear all
       </Button>
     </div>
@@ -430,7 +437,8 @@ function ProductCard({ product }) {
           </p>
           {display.variantCount > 0 ? (
             <span className="rounded-full bg-white px-2.5 py-1 font-dmSans text-xs text-header/70 dark:bg-white/10">
-              {display.variantCount} variant{display.variantCount === 1 ? "" : "s"}
+              {display.variantCount} variant
+              {display.variantCount === 1 ? "" : "s"}
             </span>
           ) : null}
         </div>
@@ -438,7 +446,9 @@ function ProductCard({ product }) {
         {(colors.length > 0 || sizes.length > 0) && (
           <div className="mt-4 space-y-2">
             {colors.length > 0 ? (
-              <div className="flex flex-wrap gap-1.5" aria-label="Available colors">
+              <div
+                className="flex flex-wrap gap-1.5"
+                aria-label="Available colors">
                 {colors.map((color) => (
                   <span
                     key={color}
@@ -449,7 +459,9 @@ function ProductCard({ product }) {
               </div>
             ) : null}
             {sizes.length > 0 ? (
-              <div className="flex flex-wrap gap-1.5" aria-label="Available sizes">
+              <div
+                className="flex flex-wrap gap-1.5"
+                aria-label="Available sizes">
                 {sizes.map((size) => (
                   <span
                     key={size}
@@ -469,7 +481,9 @@ function ProductCard({ product }) {
 
         <div className="mt-auto grid grid-cols-2 gap-2 pt-5">
           <Button asChild variant="outline" className="h-10 cursor-pointer">
-            <Link to={display.detailPath || `/productdetails/${display.id}`} className="flex items-center justify-center gap-2">
+            <Link
+              to={display.detailPath || `/productdetails/${display.id}`}
+              className="flex items-center justify-center gap-2">
               <Eye className="h-4 w-4" />
               Details
             </Link>
@@ -537,7 +551,8 @@ const ShopProducts = () => {
       const merged = { ...query, ...updates };
 
       for (const [key, value] of Object.entries(updates)) {
-        const normalized = value === undefined || value === null ? "" : String(value);
+        const normalized =
+          value === undefined || value === null ? "" : String(value);
         if (!normalized || (key === "stock" && normalized === "all")) {
           next.delete(key);
         } else {
@@ -643,7 +658,8 @@ const ShopProducts = () => {
     });
   };
 
-  const showingFrom = totalProducts === 0 ? 0 : (query.page - 1) * query.limit + 1;
+  const showingFrom =
+    totalProducts === 0 ? 0 : (query.page - 1) * query.limit + 1;
   const showingTo = Math.min(query.page * query.limit, totalProducts);
 
   return (
@@ -777,14 +793,20 @@ const ShopProducts = () => {
                 Try adjusting your search, filters, or price range to see more
                 results.
               </p>
-              <Button type="button" className="mt-5 cursor-pointer" onClick={clearFilters}>
+              <Button
+                type="button"
+                className="mt-5 cursor-pointer"
+                onClick={clearFilters}>
                 Clear Filters
               </Button>
             </div>
           ) : (
             <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
               {products.map((product) => (
-                <ProductCard key={product._id || product.id} product={product} />
+                <ProductCard
+                  key={product._id || product.id}
+                  product={product}
+                />
               ))}
             </div>
           )}
@@ -818,11 +840,8 @@ const ShopProducts = () => {
                     type="button"
                     variant={page === query.page ? "default" : "outline"}
                     aria-current={page === query.page ? "page" : undefined}
-                    onClick={() =>
-                      updateQuery({ page }, { resetPage: false })
-                    }
-                    className={"cursor-pointer"}
-                    >
+                    onClick={() => updateQuery({ page }, { resetPage: false })}
+                    className={"cursor-pointer"}>
                     {page}
                   </Button>
                 ))}
