@@ -48,7 +48,10 @@ const TrendingProductSpotlight = () => {
 
   // ── Derived values — all sourced from the API response, never hardcoded ──
   const variants = product?.variants ?? [];
-  const safeIndex = Math.min(activeVariantIndex, Math.max(0, variants.length - 1));
+  const safeIndex = Math.min(
+    activeVariantIndex,
+    Math.max(0, variants.length - 1),
+  );
   const activeVariant = variants[safeIndex] ?? null;
 
   const activeImage = activeVariant?.images?.[0] ?? "";
@@ -62,7 +65,9 @@ const TrendingProductSpotlight = () => {
   // ── Loading skeleton ──────────────────────────────────────────────────────
   if (isLoading) {
     return (
-      <section className="py-8 sm:py-12 md:py-16" aria-label="Trending Product Spotlight">
+      <section
+        className="py-8 sm:py-12 md:py-16"
+        aria-label="Trending Product Spotlight">
         <Container>
           <div className="rounded-3xl border border-gray-200/80 dark:border-white/10 bg-bHeaderBg dark:bg-[#121429] animate-pulse min-h-105" />
         </Container>
@@ -114,7 +119,6 @@ const TrendingProductSpotlight = () => {
       aria-label="Trending Product Spotlight">
       <Container>
         <div className="relative rounded-3xl overflow-hidden border border-gray-200/80 dark:border-white/10 bg-linear-to-br from-bHeaderBg/90 via-white to-bHeaderBg/60 dark:from-[#121429] dark:via-[#16192E] dark:to-[#0F1122] shadow-sm hover:shadow-md transition-shadow duration-500">
-
           {/* Ambient glow — subtle backdrop accent */}
           <div
             aria-hidden="true"
@@ -128,12 +132,10 @@ const TrendingProductSpotlight = () => {
 
           {/* ── Main grid ──────────────────────────────────────────────────── */}
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-0 lg:gap-8 xl:gap-12 items-center">
-
             {/* ═══════════════════════════════════════════════════════════════ */}
             {/* LEFT COLUMN: Editorial Content, Mobile Image, Specs, Swatches, CTA */}
             {/* ═══════════════════════════════════════════════════════════════ */}
             <div className="lg:col-span-7 flex flex-col items-start text-left p-5 sm:p-8 lg:p-14 lg:pr-4">
-
               {/* Eyebrow */}
               <div className="inline-flex items-center gap-2 rounded-full px-3 py-1 bg-white dark:bg-white/10 border border-gray-200/80 dark:border-white/10 shadow-2xs mb-3 sm:mb-4">
                 <span className="flex h-2 w-2 shrink-0 rounded-full bg-rose-500 animate-pulse" />
@@ -201,7 +203,8 @@ const TrendingProductSpotlight = () => {
                   </span>
                   {activeColor && (
                     <span className="font-dmSans text-xs font-semibold text-menuHeading dark:text-white">
-                      Selected: {activeColor}{activeStorage ? ` · ${activeStorage}` : ""}
+                      Selected: {activeColor}
+                      {activeStorage ? ` · ${activeStorage}` : ""}
                     </span>
                   )}
                 </div>
@@ -269,7 +272,6 @@ const TrendingProductSpotlight = () => {
             <div className="hidden lg:flex lg:col-span-5 relative items-center justify-center p-6 lg:p-8 lg:pr-12">
               <ProductCanvas />
             </div>
-
           </div>
         </div>
       </Container>
