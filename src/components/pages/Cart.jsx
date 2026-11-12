@@ -277,12 +277,16 @@ const Cart = () => {
                   </div>
                   <div className="flex justify-between text-menuHeading">
                     <span>Shipping</span>
-                    <span className="font-medium text-gray-900 dark:text-white">Free</span>
+                    <span className="font-medium text-gray-900 dark:text-white">
+                      Free
+                    </span>
                   </div>
                 </div>
 
                 <div className="flex justify-between items-end pt-4 border-t border-gray-100">
-                  <span className="font-semibold text-gray-900 dark:text-white">Total</span>
+                  <span className="font-semibold text-gray-900 dark:text-white">
+                    Total
+                  </span>
                   <div className="text-right">
                     <div className="text-2xl font-bold text-gray-900 dark:text-white">
                       ${total.toFixed(2)}
