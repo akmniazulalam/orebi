@@ -338,7 +338,8 @@ const Journal = () => {
                 {searchQuery && (
                   <span>
                     {" "}
-                    matching "<span className="font-semibold">{searchQuery}</span>"
+                    matching "
+                    <span className="font-semibold">{searchQuery}</span>"
                   </span>
                 )}
               </div>
@@ -627,7 +628,8 @@ const Journal = () => {
                 to={`/shop?category=${encodeURIComponent(activeArticle.categoryQuery)}`}
                 onClick={() => setActiveArticle(null)}
                 className="inline-flex items-center justify-center gap-2 rounded-full bg-menuHeading text-white dark:bg-white dark:text-[#262626] px-6 py-2.5 text-xs font-bold shadow-md hover:opacity-90 transition w-full sm:w-auto">
-                <ShoppingBag className="h-3.5 w-3.5" /> Shop {activeArticle.category} Gear
+                <ShoppingBag className="h-3.5 w-3.5" /> Shop{" "}
+                {activeArticle.category} Gear
               </Link>
             </div>
           </div>
