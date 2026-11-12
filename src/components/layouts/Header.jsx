@@ -307,10 +307,15 @@ const Header = () => {
                     />
                   </Flex>
                 </button>
-                {<CategoriesMenu
-                  isOpen={showMenu}
-                  onClose={() => { setShowMenu(false); setShowNav(false); }}
-                />}
+                {
+                  <CategoriesMenu
+                    isOpen={showMenu}
+                    onClose={() => {
+                      setShowMenu(false);
+                      setShowNav(false);
+                    }}
+                  />
+                }
               </div>
 
               {/* Mobile Header Icons Group */}
@@ -337,7 +342,9 @@ const Header = () => {
                     <FaUser className="text-menuHeading" />
                     {user && (
                       <span className="text-xs font-bold text-menuHeading dark:text-white max-w-20 truncate font-dmSans">
-                        {user.firstName ? user.firstName : user.email?.split("@")[0]}
+                        {user.firstName
+                          ? user.firstName
+                          : user.email?.split("@")[0]}
                       </span>
                     )}
                     {showButton ? (
