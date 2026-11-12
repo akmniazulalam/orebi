@@ -12,12 +12,16 @@ const Contacts = () => {
       <Container>
         <div className="max-w-195 w-full gap-y-6 grid">
           <Heading
-            className={"pb-10 font-dmSans font-bold text-2xl sm:text-3xl md:text-[36px] text-menuHeading tracking-tight"}
+            className={
+              "pb-10 font-dmSans font-bold text-2xl sm:text-3xl md:text-[36px] text-menuHeading tracking-tight"
+            }
             text={"Fill up a Form"}
             as={"h2"}
           />
           <div className="w-full">
-            <label className="block font-dmSans font-bold text-sm text-menuHeading mb-2">Name</label>
+            <label className="block font-dmSans font-bold text-sm text-menuHeading mb-2">
+              Name
+            </label>
             <input
               type="text"
               placeholder="Your name here"
@@ -25,7 +29,9 @@ const Contacts = () => {
             />
           </div>
           <div className="w-full">
-            <label className="block font-dmSans font-bold text-sm text-menuHeading mb-2">Email</label>
+            <label className="block font-dmSans font-bold text-sm text-menuHeading mb-2">
+              Email
+            </label>
             <input
               type="email"
               placeholder="Your email here"
@@ -33,7 +39,9 @@ const Contacts = () => {
             />
           </div>
           <div className="w-full">
-            <label className="block font-dmSans font-bold text-sm text-menuHeading mb-2">Message</label>
+            <label className="block font-dmSans font-bold text-sm text-menuHeading mb-2">
+              Message
+            </label>
             <textarea
               name="message"
               id="message"
@@ -53,8 +61,7 @@ const Contacts = () => {
             allowFullScreen=""
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            className="border-0 w-full block"
-          ></iframe>
+            className="border-0 w-full block"></iframe>
         </div>
       </Container>
     </>
